@@ -1,0 +1,269 @@
+<html>
+<head>
+<title>TestNG:  AssetHubRregressionTest</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>AssetHubRregressionTest</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>38/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Dec 30 22:12:21 IST 2019</td>
+</tr>
+<tr><td>Total time:</td><td>1487 seconds (1487989 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB001()'><b>ASSTHB001</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB001-Verify if selecting the Assets tile from the main hub page , user is navigated to the Asset Details screen</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB002()'><b>ASSTHB002</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB002-Verify if with  fresh installation, no assets should be displayed</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB003()'><b>ASSTHB003</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB003-Verify if Predefined Sort Options namely -Type, Manufacturer and Location are present</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB004()'><b>ASSTHB004</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB004-Verify  if Add New and Search -magnifier Iconsare present at the right top corner of the assets page</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB005()'><b>ASSTHB005</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB005-Verify  if clicking on New icon opens a New Asset creation page</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB006a()'><b>ASSTHB006a</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB006a-Verify the seacrh fucntionality in Asset hub page<br>Parameters: ASSTHB006a, 6a, HeatBath, AAS, HTC, VRT, 1, cu m, 12/26/2019, 1, Years, Test Description for ASSTHB006a</td>
+<td></td>
+<td>28</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB006b()'><b>ASSTHB006b</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB006b-Verify if No record found message displayed if incorrect Asset Name entered in the SearchFunctionality of Asset hub page<br>Parameters: ASSTHB006b, 6b, HeatBath, AAS, HTC, VRT, 1, cu m, 12/18/2019, 1, Weeks, Test Description for ASSTHB006b</td>
+<td></td>
+<td>39</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB007()'><b>ASSTHB007</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB007-Verify if clicking on Back Button at the left top to return to main Hub page</td>
+<td></td>
+<td>1</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB008()'><b>ASSTHB008</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB008-Verify if click on the Type filter user is able to filter all the assets correctly by Asset Type<br>Parameters: ASSTHB008b, 8b, HeatBath, AAS, HTC, VRT, 1, cu m, 12/18/2019, 1, Weeks, Test Description for ASSTHB008b</td>
+<td></td>
+<td>36</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB009()'><b>ASSTHB009</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB009-Verify if click on the Manufacturer Filter user is able to filter all the assets correctly by Asset Manufacturer</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB010()'><b>ASSTHB010</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB010-Verify if click on the Location type , User is able to filter all the assets correctly by Asset Location type</td>
+<td></td>
+<td>17</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubTest.ASSTHB011()'><b>ASSTHB011</b><br>Test class: com.vrt.testcases.assetHubTest<br>Test method: ASSTHB011-Verify if the help section in the Asset hub page is displayed by clicking Help icon</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.assetHubTest@307f6b8c</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB001, 01, HeatBath, AAS01, HTC01, VRT, 01, cu m, 12/26/2019, 1, Weeks, Test Description for ASSTHB0001</td>
+<td></td>
+<td>21</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB002, 02, HeatBath, AAS02, HTC02, VRT, 02, cu m, 12/26/2019, 2, Weeks, Test Description for ASSTHB0002</td>
+<td></td>
+<td>21</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB003, 03, HeatBath, AAS03, HTC03, VRT, 03, cu m, 12/26/2019, 3, Weeks, Test Description for ASSTHB0003</td>
+<td></td>
+<td>22</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB004, 04, HeatBath, AAS04, HTC04, VRT, 04, cu m, 12/26/2019, 4, Weeks, Test Description for ASSTHB0004</td>
+<td></td>
+<td>22</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB005, 05, HeatBath, AAS05, HTC05, VRT, 05, cu m, 12/26/2019, 5, Weeks, Test Description for ASSTHB0005</td>
+<td></td>
+<td>22</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB006, 06, HeatBath, AAS06, HTC06, VRT, 06, cu m, 12/26/2019, 6, Weeks, Test Description for ASSTHB0006</td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB007, 07, HeatBath, AAS07, HTC07, VRT, 07, cu m, 12/26/2019, 7, Weeks, Test Description for ASSTHB0007</td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB008, 08, HeatBath, AAS08, HTC08, VRT, 08, cu m, 12/26/2019, 8, Weeks, Test Description for ASSTHB0008</td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB009, 09, HeatBath, AAS09, HTC09, VRT, 09, cu m, 12/26/2019, 9, Weeks, Test Description for ASSTHB0009</td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB010, 10, HeatBath, AAS10, HTC10, VRT, 10, cu m, 12/26/2019, 10, Weeks, Test Description for ASSTHB0010</td>
+<td></td>
+<td>24</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB011, 11, HeatBath, AAS11, HTC11, VRT, 11, cu ft, 12/26/2019, 11, Months, Test Description for ASSTHB0011</td>
+<td></td>
+<td>25</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB012, 12, HeatBath, AAS12, HTC12, VRT, 12, cu ft, 12/26/2019, 12, Months, Test Description for ASSTHB0012</td>
+<td></td>
+<td>25</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB013, 13, HeatBath, AAS13, HTC13, VRT, 13, cu ft, 12/26/2019, 13, Months, Test Description for ASSTHB0013</td>
+<td></td>
+<td>26</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB014, 14, Sterilizer, AAS14, HTC14, VRT, 14, cu ft, 12/26/2019, 14, Months, Test Description for ASSTHB0014</td>
+<td></td>
+<td>26</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB015, 15, Sterilizer, AAS15, HTC15, VRT, 15, cu ft, 12/26/2019, 15, Months, Test Description for ASSTHB0015</td>
+<td></td>
+<td>26</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB016, 16, Sterilizer, AAS16, HTC16, VRT, 16, cu ft, 12/26/2019, 16, Months, Test Description for ASSTHB0016</td>
+<td></td>
+<td>27</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB017, 17, Sterilizer, AAS17, HTC17, VRT, 17, cu ft, 12/26/2019, 17, Months, Test Description for ASSTHB0017</td>
+<td></td>
+<td>27</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB018, 18, Sterilizer, AAS18, HTC18, VRT, 18, cu ft, 12/26/2019, 18, Months, Test Description for ASSTHB0018</td>
+<td></td>
+<td>27</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB019, 19, Sterilizer, AAS19, HTC19, VRT, 19, cu ft, 12/26/2019, 19, Months, Test Description for ASSTHB0019</td>
+<td></td>
+<td>28</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB020, 20, Sterilizer, AAS20, HTC20, VRT, 20, cu ft, 12/26/2019, 20, Months, Test Description for ASSTHB0020</td>
+<td></td>
+<td>28</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB021, 21, Sterilizer, AAS21, HTC21, VRT, 21, cu in, 12/26/2019, 21, Years, Test Description for ASSTHB0021</td>
+<td></td>
+<td>29</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB022, 22, Sterilizer, AAS22, HTC22, VRT, 22, cu in, 12/26/2019, 22, Years, Test Description for ASSTHB0022</td>
+<td></td>
+<td>29</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB023, 23, Sterilizer, AAS23, HTC23, VRT, 23, cu in, 12/26/2019, 23, Years, Test Description for ASSTHB0023</td>
+<td></td>
+<td>29</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB024, 24, Sterilizer, AAS24, HTC24, VRT, 24, cu in, 12/26/2019, 24, Years, Test Description for ASSTHB0024</td>
+<td></td>
+<td>30</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012a()'><b>ASSTHB012a</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: Create 25 assetscategories model, size, manufacturer,Location and Type<br>Parameters: ASSTHB025, 25, Sterilizer, AAS25, HTC25, VRT, 25, cu in, 12/26/2019, 24, Years, Test Description for ASSTHB0025</td>
+<td></td>
+<td>30</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+<tr>
+<td title='com.vrt.testcases.assetHubAssetCreationTest.ASSTHB012b()'><b>ASSTHB012b</b><br>Test class: com.vrt.testcases.assetHubAssetCreationTest<br>Test method: ASSTHB012-Verify 25 assets are created with each categories model, size, manufacturer,Location and Type</td>
+<td></td>
+<td>1</td>
+<td>com.vrt.testcases.assetHubAssetCreationTest@7a187f14</td></tr>
+</table><p>
+</body>
+</html>
