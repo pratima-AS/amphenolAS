@@ -186,7 +186,7 @@ public class assetDetailsTest extends BaseClass {
 	@Test(groups = { "Sanity", "Regression" }, description = "ASST017-Verify if Edit Icon is present"
 			+ " at the right top corner of assets detail page and opens the Edit asset - asset details "
 			+ "screen with the possibility to edit the selected asset")
-	public void ASST017() throws InterruptedException {
+	public void ASST017() throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("ASST017-Verify if clicking Edit Icon in assets " + "detail page opens the Edit asset");
 		SoftAssert sa = new SoftAssert();
@@ -210,7 +210,7 @@ public class assetDetailsTest extends BaseClass {
 	// 03-ASST018
 	@Test(groups = { "Sanity", "Regression" }, description = "ASST018-Verify if clicking on "
 			+ "Back Button at the left top to return to Assets Hub page")
-	public void ASST018() throws InterruptedException {
+	public void ASST018() throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("ASST018-Verify if clicking on Back Button at the left top to return to Assets Hub page");
 		SoftAssert sa = new SoftAssert();
@@ -229,7 +229,7 @@ public class assetDetailsTest extends BaseClass {
 	// 04-ASST020
 	@Test(groups = { "Sanity", "Regression" }, description = "ASST020-Verify if the data displayed "
 			+ "in the assets detail page is exactly same as the information given for asset in Create new Asset page")
-	public void ASST020() throws InterruptedException, ParseException {
+	public void ASST020() throws InterruptedException, ParseException, IOException {
 		extentTest = extent.startTest("ASST020-Verify if the data displayed in the assets detail page "
 				+ "is exactly same as the information given for asset in Create new Asset page");
 		SoftAssert sa = new SoftAssert();
