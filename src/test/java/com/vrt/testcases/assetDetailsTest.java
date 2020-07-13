@@ -229,6 +229,7 @@ public class assetDetailsTest extends BaseClass {
 			extentTest = extent.startTest(
 					"Verify the details displayed on the 2 sections in Asset details screen");
 
+<<<<<<< HEAD
 			SoftAssert sa = new SoftAssert();
 			sa.assertEquals(assetDetailsPage.AssetHub_ImgHldrPresence(), true, "FAIL: No Image field present");
 			sa.assertEquals(assetDetailsPage.AssetIDPresence(), true, "FAIL: No Asset ID field present");
@@ -242,6 +243,17 @@ public class assetDetailsTest extends BaseClass {
 			sa.assertEquals(assetDetailsPage.reportsTile_state(), true, "FAIL: No reportsTile field present");
 			sa.assertEquals(assetDetailsPage.docsTile_state(), true, "FAIL: No docsTile field present");
 			sa.assertAll();
+=======
+	
+	// 02-ASST017
+	@Test(groups = { "Sanity", "Regression" }, description = "ASST017-Verify if Edit Icon is present"
+			+ " at the right top corner of assets detail page and opens the Edit asset - asset details "
+			+ "screen with the possibility to edit the selected asset")
+	public void ASST017() throws InterruptedException, IOException {
+		extentTest = extent
+				.startTest("ASST017-Verify if clicking Edit Icon in assets " + "detail page opens the Edit asset");
+		SoftAssert sa = new SoftAssert();
+>>>>>>> branch 'master' of https://github.com/amphenolAS/VRT.git
 
 		}
 		
@@ -262,14 +274,48 @@ public class assetDetailsTest extends BaseClass {
 			sa.assertAll();
 	}
 	
+<<<<<<< HEAD
 	//ASST004-Verify if the details are saved during Edit Asset post modification
 
 	@Test(groups = {
 			"Regression" }, description = "ASST004-Verify if the details are saved during Edit Asset post modification")
 	public void ASST004() throws Exception {
 		extentTest = extent.startTest("Verify if the details are saved during Edit Asset post modification");
+=======
+	// 03-ASST018
+	@Test(groups = { "Sanity", "Regression" }, description = "ASST018-Verify if clicking on "
+			+ "Back Button at the left top to return to Assets Hub page")
+	public void ASST018() throws InterruptedException, IOException {
+		extentTest = extent
+				.startTest("ASST018-Verify if clicking on Back Button at the left top to return to Assets Hub page");
+>>>>>>> branch 'master' of https://github.com/amphenolAS/VRT.git
 		SoftAssert sa = new SoftAssert();
 
+<<<<<<< HEAD
+=======
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+
+		sa.assertEquals(assetHubPage.assetPageTitle(), "Assets",
+				"FAIL: TC-ASST018 -Incorrect Asset Hub Page title or landed into incorrect Page");
+		sa.assertAll();
+	}
+
+	
+	// ASST019 = Manual Test
+
+	
+	// 04-ASST020
+	@Test(groups = { "Sanity", "Regression" }, description = "ASST020-Verify if the data displayed "
+			+ "in the assets detail page is exactly same as the information given for asset in Create new Asset page")
+	public void ASST020() throws InterruptedException, ParseException, IOException {
+		extentTest = extent.startTest("ASST020-Verify if the data displayed in the assets detail page "
+				+ "is exactly same as the information given for asset in Create new Asset page");
+		SoftAssert sa = new SoftAssert();
+
+		String[] act_AssetDetailData = assetDetailsPage.get_assetinfo();
+		// System.out.println(Arrays.toString(act_AssetDetailData));
+
+>>>>>>> branch 'master' of https://github.com/amphenolAS/VRT.git
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.enterAssetID("02");
 		assetCreationPage.clickSaveBtn();
