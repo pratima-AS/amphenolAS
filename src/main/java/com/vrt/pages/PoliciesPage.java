@@ -15,6 +15,9 @@ import com.vrt.base.BaseClass;
 public class PoliciesPage extends BaseClass{
 	//Page element variable declaration definition
 	WebElement PoliciesHeaderText = null;
+	WebElement pwdcombobox = null;
+	WebElement SaveBtn = null;
+	WebElement UserManagement_TAB = null;
 
 
 		
@@ -22,6 +25,12 @@ public class PoliciesPage extends BaseClass{
 	private void initElements()
 	{
 		PoliciesHeaderText = driver.findElementByAccessibilityId("PoliciesButton");
+		pwdcombobox = driver.findElementByAccessibilityId("RequireMinLengthPasswordComboBox");
+		SaveBtn = driver.findElementByName("Save");
+		UserManagement_TAB = driver.findElementByAccessibilityId("UserManagementButton");
+		
+		
+		
 
 	}
 	
@@ -46,5 +55,26 @@ public class PoliciesPage extends BaseClass{
 	public boolean IsPolicies_screenDisplayed() {
 		return IsElementEnabledStatus(PoliciesHeaderText);
 	}
-
+	
+   // Select 7 chars for minimum length pwd
+	public void PWDLength_Box() throws InterruptedException {
+		//System.out.println(Utype);
+		clickOn(pwdcombobox);	
+		WebElement option2 = driver.findElementByName("7 Characters");
+		clickOn(option2);
+		ClickSaveButton();
+}
+	
+	
+	// Click Save button
+	public void ClickSaveButton() throws InterruptedException {
+		clickOn(SaveBtn);
+	}
+	
+	//Click on um tab
+	public UserManagementPage ClickUserManagement_TAB() throws InterruptedException, IOException {
+		clickOn(UserManagement_TAB);
+		return new UserManagementPage();
+	}
+	
 }

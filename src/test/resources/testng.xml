@@ -7,7 +7,8 @@
 	</listeners>
   <test thread-count="5" name="assetDetailsTestSanity">
     <classes>
-      <class name="com.vrt.testcases.assetDetailsTest"></class>
+    			<class name="com.vrt.testcases.UserManagementTest"></class>
+    
     </classes>
   </test> <!-- assetDetailsTestSanity -->
 </suite> <!-- assetDetailsTestSuite -->

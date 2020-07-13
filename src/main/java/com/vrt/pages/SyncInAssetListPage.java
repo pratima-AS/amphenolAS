@@ -74,6 +74,12 @@ public class SyncInAssetListPage  extends BaseClass{
 		clickOn(SyncInSelectAll_Btn);
 		Thread.sleep(1000);
 	}
+	// click on SyncInEquipmentCheckBox
+		public void click_EquipmentCheckBox() {
+			WebElement SyncIn_EquipmentCheckBox = driver.findElementByAccessibilityId("SyncInEquipmentCheckBox");
+			clickOn(SyncIn_EquipmentCheckBox);
+		}
+		
 	
 	//Click the Ok button
 	public void click_OkBtn() throws InterruptedException {

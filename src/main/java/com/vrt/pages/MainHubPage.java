@@ -22,7 +22,7 @@ public class MainHubPage extends BaseClass {
 	WebElement MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
 	WebElement MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
 	WebElement MainUIAdminTile = driver.findElementByName("Admin");
-	WebElement MainUIAssetTile = driver.findElementByName("Assets");
+	
 	WebElement AssetCountInfoInAsstTile = driver.findElementByAccessibilityId("TitleCountTextBlock");
 	WebElement MainUIPageTitle = driver.findElementByName("ValProbe RT System");
 	WebElement MainUIEquipmentTitle = driver.findElementByName("Equipment");
@@ -83,6 +83,7 @@ public class MainHubPage extends BaseClass {
 
 	// Click the Asset Tile
 	public assetHubPage ClickAssetTile() throws InterruptedException, IOException {
+		WebElement MainUIAssetTile = driver.findElementByName("Assets");
 		clickOn(MainUIAssetTile);
 		Thread.sleep(500);
 		return new assetHubPage();

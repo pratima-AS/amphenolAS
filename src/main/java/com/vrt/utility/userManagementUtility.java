@@ -166,12 +166,11 @@ public class userManagementUtility extends BaseClass{
 		 Object[][] data = getTestData(sheetname);
 		 return data;
 	}
-	
-	@DataProvider(name="maxuser")
-	public static Object[][] ADMN132() {
-		String sheetname = "maxuser";
-		 Object[][] data = getTestData(sheetname);
-		 return data;
+	@DataProvider(name = "SetupCreation_3")
+	public static Object[][] SETUP_Creation() {
+		String sheetName = "SetupCreation_3";
+		Object[][] data = getTestData(sheetName);
+		return data;
 	}
 }
 

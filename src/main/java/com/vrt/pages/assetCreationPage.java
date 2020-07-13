@@ -55,8 +55,6 @@ public class assetCreationPage extends BaseClass{
 	WebElement AssetClearBtn = driver.findElementByName("Clear");
 	WebElement AssetBackBtn = driver.findElementByAccessibilityId("BackButton");
 
-	
-	
 	//Verify the presence of New Asset Creation text 
 	public boolean newAssetCreatePagetitle() {
 		return IsElementVisibleStatus(CreateAssetPageTitle);

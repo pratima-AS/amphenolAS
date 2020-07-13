@@ -34,7 +34,15 @@ import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.assetDetailsPage;
 import com.vrt.pages.assetHubPage;
+import com.vrt.pages.Copyassetpage;
+import com.vrt.pages.FileManagementPage;
+import com.vrt.pages.SyncInPage;
+import com.vrt.pages.SyncInAssetListPage;
+import com.vrt.pages.CopySetuppage;
+import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.utility.TestUtilities;
+
+
 
 
 public class assetDetailsTest extends BaseClass {
@@ -59,11 +67,17 @@ public class assetDetailsTest extends BaseClass {
 	assetCreationPage assetCreationPage;
 	assetDetailsPage assetDetailsPage;
 	Setup_defineSetupPage defineSetupPage;
+	Copyassetpage Copyassetpage;
+	FileManagementPage FileManagementPage;
+	SyncInPage SyncInPage;
+	SyncInAssetListPage SyncInAssetListPage;
+	Setup_defineSetupPage Setup_defineSetupPage;
+	CopySetuppage CopySetuppage;
 
 	// Before All the tests are conducted
 	//@BeforeTest
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException, ParseException {
+	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_"+"_AssetDetailsTest"+".html", true);
 		extent.addSystemInfo("TestSuiteName", "AssetDetailsTest");
@@ -74,7 +88,7 @@ public class assetDetailsTest extends BaseClass {
 		System.out.println("assetDetailsTest in Progress..");
 
 		// Rename the User file (NgvUsers.uxx) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+	/*	renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the cache Asset file (Asset.txt) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		// Rename the Asset folder (Asset) if exists
@@ -108,10 +122,24 @@ public class assetDetailsTest extends BaseClass {
 		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
 				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-
-		AppClose();
+		assetHubPage = assetCreationPage.clickBackBtn();
+		MainHubPage = assetHubPage.click_BackBtn();
+		
+		FileManagementPage = MainHubPage.ClickFileManagementTitle();
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+		SyncInPage.enter_Filepath("syncin");
+		SyncInPage.click_FltrBtn();
+		SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+		SyncInAssetListPage.click_EquipmentCheckBox();
+		SyncInAssetListPage.click_SelectAllBtn();
+		SyncInAssetListPage.click_OkBtn();
+		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(1000);
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 
+		//AppClose();
+		//Thread.sleep(1000);
+*/
 	}
 
 	// After All the tests are conducted	
@@ -134,6 +162,7 @@ public class assetDetailsTest extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();		
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
+		Thread.sleep(500);
 	}
 
 	// TearDown of the App
@@ -166,7 +195,7 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	
-	// 01-ASST016
+	/*// 01-ASST016
 	@Test(groups = { "Sanity", "Regression" }, description = "ASST016-Verify if selecting the target Asset "
 			+ "tile in Asset hub page , user is navigated to the target Asset Details screen "
 			+ "with Asset name & Asset Type info displayed in the Header")
@@ -179,102 +208,194 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertEquals(assetDetailsPage.assetDetail_PageTitle(), "HeatBath - Asset01",
 				"FAIL: TC-ASST016 -Incorrect AssetDetails Page title or landed into incorrect Page");
 		sa.assertAll();
+	}*/
+	/*
+	// ASST001-Verify the details displayed in Asset details screen - EDIT,COPY,DELETE
+	 @Test(groups = {"Regression" }, description = "ASST001-Verify the details displayed in Asset details screen")
+     public void ASST001() throws Exception {extentTest = extent.startTest("Verify the details displayed in Asset details screen");
+    
+     SoftAssert sa = new SoftAssert();
+     sa.assertEquals(assetDetailsPage.assetEditBtn_state(), true, "FAIL: No UName field present");
+     sa.assertEquals(assetDetailsPage.DeleteIcon_state(), true, "FAIL: No UName field present");
+     sa.assertEquals(assetDetailsPage.CopyAsset_state(), true, "FAIL: No UName field present");
+     sa.assertAll();
+     
 	}
+	 
+	// ASST002-Verify the details displayed on the 2 sections in Asset details screen
+		@Test(groups = {
+				"Regression" }, description = "ASST002-Verify the details displayed on the 2 sections in Asset details screen")
+		public void ASST002() throws Exception {
+			extentTest = extent.startTest(
+					"Verify the details displayed on the 2 sections in Asset details screen");
 
-	
-	// 02-ASST017
-	@Test(groups = { "Sanity", "Regression" }, description = "ASST017-Verify if Edit Icon is present"
-			+ " at the right top corner of assets detail page and opens the Edit asset - asset details "
-			+ "screen with the possibility to edit the selected asset")
-	public void ASST017() throws InterruptedException {
-		extentTest = extent
-				.startTest("ASST017-Verify if clicking Edit Icon in assets " + "detail page opens the Edit asset");
-		SoftAssert sa = new SoftAssert();
+			SoftAssert sa = new SoftAssert();
+			sa.assertEquals(assetDetailsPage.AssetHub_ImgHldrPresence(), true, "FAIL: No Image field present");
+			sa.assertEquals(assetDetailsPage.AssetIDPresence(), true, "FAIL: No Asset ID field present");
+			sa.assertEquals(assetDetailsPage.ModelPresence(), true, "FAIL: No Model field present");
+			sa.assertEquals(assetDetailsPage.ManufacturerPresence(), true, "FAIL: No Manufacturer field present");
+			sa.assertEquals(assetDetailsPage.TypePresence(), true, "FAIL: No Type field present");
+			sa.assertEquals(assetDetailsPage.LastValidatedPresence(), true, "FAIL: No LastValidated field present");
+			Thread.sleep(200);
+			sa.assertEquals(assetDetailsPage.setupTile_state(), true, "FAIL: No setupTile field present");
+			sa.assertEquals(assetDetailsPage.qualTile_state(), true, "FAIL: No qualTile field present");
+			sa.assertEquals(assetDetailsPage.reportsTile_state(), true, "FAIL: No reportsTile field present");
+			sa.assertEquals(assetDetailsPage.docsTile_state(), true, "FAIL: No docsTile field present");
+			sa.assertAll();
 
-		// Verify Asset Edit button present or not in Asset details page
-		sa.assertEquals(assetDetailsPage.assetEditBtn_state(), true,
-				"FAIL: " + "TC-ASST017 -Asset Edit button not present in Asset details page");
-
-		if (assetDetailsPage.assetEditBtn_state()) {
-			assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		}
+		
+	//ASST003-Verify the on-click functionality of edit icon for Asset
+	
+	@Test(groups = {
+		"Regression" }, description = "ASST002-Verify the details displayed on the 2 sections in Asset details screen")
+      public void ASST003() throws Exception {
+	  extentTest = extent.startTest("Verify the details displayed on the 2 sections in Asset details screen");
+	   SoftAssert sa = new SoftAssert();
+	
+			if (assetDetailsPage.assetEditBtn_state()) {
+				assetCreationPage = assetDetailsPage.click_assetEditBtn();
+			}
 
-		// Verify clicking Asset edit button takes one to Asset creation page in edit
-		// mode
-		sa.assertEquals(assetCreationPage.get_newAssetCreatePagetitle(), "Edit Asset",
-				"FAIL: TC-ASST017 -Incorrect AssetCreation Page title in Asset Edit mode or landed into incorrect Page");
-		sa.assertAll();
+			sa.assertEquals(assetCreationPage.get_newAssetCreatePagetitle(), "Edit Asset",
+					"FAIL:Incorrect AssetCreation Page title in Asset Edit mode or landed into incorrect Page");
+			sa.assertAll();
 	}
-
 	
-	// 03-ASST018
-	@Test(groups = { "Sanity", "Regression" }, description = "ASST018-Verify if clicking on "
-			+ "Back Button at the left top to return to Assets Hub page")
-	public void ASST018() throws InterruptedException {
-		extentTest = extent
-				.startTest("ASST018-Verify if clicking on Back Button at the left top to return to Assets Hub page");
+	//ASST004-Verify if the details are saved during Edit Asset post modification
+
+	@Test(groups = {
+			"Regression" }, description = "ASST004-Verify if the details are saved during Edit Asset post modification")
+	public void ASST004() throws Exception {
+		extentTest = extent.startTest("Verify if the details are saved during Edit Asset post modification");
 		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-
-		sa.assertEquals(assetHubPage.assetPageTitle(), "Assets",
-				"FAIL: TC-ASST018 -Incorrect Asset Hub Page title or landed into incorrect Page");
-		sa.assertAll();
-	}
-
-	
-	// ASST019 = Manual Test
-
-	
-	// 04-ASST020
-	@Test(groups = { "Sanity", "Regression" }, description = "ASST020-Verify if the data displayed "
-			+ "in the assets detail page is exactly same as the information given for asset in Create new Asset page")
-	public void ASST020() throws InterruptedException, ParseException {
-		extentTest = extent.startTest("ASST020-Verify if the data displayed in the assets detail page "
-				+ "is exactly same as the information given for asset in Create new Asset page");
-		SoftAssert sa = new SoftAssert();
-
-		String[] act_AssetDetailData = assetDetailsPage.get_assetinfo();
-		// System.out.println(Arrays.toString(act_AssetDetailData));
 
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
-		String[] act_AssetCreationData = assetCreationPage.get_assetCreationinfo();
-		// System.out.println(Arrays.toString(act_AssetCreationData));
+		assetCreationPage.enterAssetID("02");
+		assetCreationPage.clickSaveBtn();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
-		sa.assertEquals(act_AssetDetailData, act_AssetCreationData,
-				"FAIL: TC-ASST020 -Mismatch in the Asset data compared between Asset details & Asset creation Page");
+		assetDetailsPage = assetCreationPage.click_BackBtn();
+		assetCreationPage = assetDetailsPage.click_assetEditBtn();
+		String EditedValue = assetCreationPage.getEqpID();
+		assetDetailsPage = assetCreationPage.click_BackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		String displayValue = assetHubPage.getAssetIDvalue();
+		sa.assertEquals(EditedValue,displayValue,
+				"FAIL:Edited value should be displayed in Asset Creation page ");
 		sa.assertAll();
+		
+		System.out.println(displayValue);	
+		
 	}
-
 	
-	// 05-ASST021
-	@Test(groups = { "Regression" }, description = "ASST021-Verify the first tier at the right hand side of the asset "
-					+ "detail page should have the following tiles arranged sequentially- Setups, Qualifications,Reports, Documents.")
-	public void ASST021() throws InterruptedException, ParseException {
-		extentTest = extent
-				.startTest("ASST021-Verify the first tier at the right hand side of the asset detail page should "
-						+ "have the following tiles arranged sequentially- Setups, Qualifications,Reports, Documents.");
+ //ASST006-Verify the Back Button functionality in Edit Asset screen
+	@Test(groups = {
+			"Regression" }, description = "ASST004-Verify if the details are saved during Edit Asset post modification")
+	public void ASST004() throws Exception {
+		extentTest = extent.startTest("Verify if the details are saved during Edit Asset post modification");
 		SoftAssert sa = new SoftAssert();
 
-		sa.assertEquals(assetDetailsPage.setupTile_state(), true,
-				"FAIL: TC-ASST021 - Setup tile absent under Asset details page");
-		sa.assertEquals(assetDetailsPage.qualTile_state(), true,
-				"FAIL: TC-ASST021 - Qual tile absent under Asset details page");
-		sa.assertEquals(assetDetailsPage.reportsTile_state(), true,
-				"FAIL: TC-ASST021 - Reports tile absent under Asset details page");
-		sa.assertEquals(assetDetailsPage.docsTile_state(), true,
-				"FAIL: TC-ASST021 - Docs tile absent under Asset details page");
+		assetCreationPage = assetDetailsPage.click_assetEditBtn();
+		assetDetailsPage = assetCreationPage.click_BackBtn();
+	}
+
+	// ASST007-Verify the clear button functionality in Edit Asset screen
+	@Test(groups = { "Regression" }, description = "ASST007-Verify the clear button functionality in Edit Asset screen")
+	public void ASST007() throws Exception {
+		extentTest = extent.startTest("Verify the clear button functionality in Edit Asset screen");
+		SoftAssert sa = new SoftAssert();
+
+		assetCreationPage = assetDetailsPage.click_assetEditBtn();
+		String BeforeclearValue = assetCreationPage.getEqpID();
+		assetCreationPage.enterAssetID("04");
+		assetCreationPage.clickClearBtn();
+		String AfterclearValue = assetCreationPage.getEqpID();
+		sa.assertEquals(BeforeclearValue, AfterclearValue,
+				"FAIL:The modified values should be cleared off and the previous original values should be displayed in the field");
 		sa.assertAll();
 	}
 	
+	//ASST008-Verify the display of Asset in Asset hub page when any Asset is edited
 	
-	// 06-ASST022
-	@Test(groups = { "Regression" }, description = "ASST022-Verify for  a fresh asset with no activities - "
-			+ "Setups, Qualifications, Reports and Docs -  as mentioned, all tiles should display 0")
-	public void ASST022() throws InterruptedException, ParseException {
+	@Test(groups = { "Regression" }, description = "ASST008-Verify the display of Asset in Asset hub page when any Asset is edited")
+	    public void ASST008() throws Exception {
+		extentTest = extent.startTest("Verify the display of Asset in Asset hub page when any Asset is edited");
+		SoftAssert sa = new SoftAssert();
+
+		assetCreationPage = assetDetailsPage.click_assetEditBtn();
+		assetCreationPage.enterAssetID("01");
+		assetDetailsPage = assetCreationPage.click_BackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
+		
+		sa.assertEquals(assetDetailsPage.assetDetail_PageTitle(), "HeatBath - Asset01",
+				"FAIL: TC-ASST016 -Incorrect AssetDetails Page title or landed into incorrect Page");
+		sa.assertAll();
+}
+
+	//ASST009-Verify the on-click of Copy icon for Assets
+	   
+	   @Test(groups = { "Regression" }, description = "ASST009-Verify the display of Asset in Asset hub page when any Asset is edited")
+	    public void ASST009() throws Exception {
+		extentTest = extent.startTest("Verify the display of Asset in Asset hub page when any Asset is edited");
+		SoftAssert sa = new SoftAssert();
+
+		Copyassetpage = assetDetailsPage.clickCopyasset();
+		sa.assertEquals(Copyassetpage.IsCopyAssetPageTitle_presence(),true,
+				"FAIL: Incorrect CopyAsset Page Title presence title or landed into incorrect Page");
+		sa.assertAll();
+		
+	}
+	
+	//ASST010-Verify the on-click of Delete icon for Assets with no files in it
+	@Test(groups = { "Regression" }, description = "ASST010-Verify the on-click of Delete icon for Assets with no files in it")
+    public void ASST010() throws Exception {
+	extentTest = extent.startTest("Verify the on-click of Delete icon for Assets with no files in it");
+	SoftAssert sa = new SoftAssert();
+	
+	assetHubPage = assetDetailsPage.ClickBackBtn();
+	assetCreationPage = assetHubPage.ClickAddAssetBtn();
+	String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+	assetCreationPage.assetCreationWithAllFieldEntry("DLTAsset", "001", "HeatBath", "TAS", "Hyderabad", "VRT-RF", "2",
+			"cu", crntDate, "5", "Weeks", "1st Asset Creation");
+	UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+	
+	assetHubPage = assetCreationPage.clickBackBtn();
+	assetDetailsPage = assetHubPage.click_assetTile("DLTAsset");
+	assetDetailsPage.DeleteAssert();
+	UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+	assetHubPage = assetDetailsPage.Delete_ClickYesBtn();
+	assetHubPage.click_serachAstBtn();
+	assetHubPage.enter_serachAsttxt("DLTAsset");
+	sa.assertEquals(assetHubPage.IsNoRecordFoundVisible(),true,
+			"FAIL: No Record Found Message should be displayed ");
+	sa.assertAll();
+
+	}
+	*/
+	//ASST012-Verify the on-click of Delete icon for Assets which has files in it
+/*	
+		@Test(groups = { "Regression" }, description = "ASST012-Verify the on-click of Delete icon for Assets which has files in it")
+	    public void ASST012() throws Exception {
+		extentTest = extent.startTest("Verify the on-click of Delete icon for Assets which has files in it");
+		SoftAssert sa = new SoftAssert();
+		
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+	assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+	assetDetailsPage.DeleteAssert();
+	UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+	assetDetailsPage.YesBtn_WithFiles();
+	assetDetailsPage.ClickOK_btn();
+	assetHubPage = assetDetailsPage.ClickBackBtn();
+		
+} 
+	
+	//ASST013-Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0
+	@Test(groups = { "Regression" }, description = "ASST013-Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0")
+	public void ASST013() throws InterruptedException, ParseException {
 		extentTest = extent
-				.startTest("ASST022-Verify for  a fresh asset with no activities for "
-						+ "Setups, Qualifications, Reports and Docs -  as mentioned, all tiles should display 0");
+				.startTest("Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0");
 		SoftAssert sa = new SoftAssert();
 		
 		sa.assertEquals(assetDetailsPage.setupTile_countdata(), "0",
@@ -289,131 +410,65 @@ public class assetDetailsTest extends BaseClass {
 	}
 	
 
-	
-	// 07-ASST024
-	@Test(groups = { "Regression" }, description = "ASST024-Verify if any number of documents uploaded,"
-			+ "the same number is displayed on the documents tile")
-	public void ASST024() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ASST024-Verify if  any number of documents uploaded,"
-						+ "the same number is displayed on the documents tile");
+ //ASST014STP-Verify the details displayed under Setups tile
+	@Test(groups = { "Regression" }, description = "ASST013-Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0")
+	   public void ASST013() throws InterruptedException, ParseException, IOException {
+		
+		extentTest = extent.startTest("Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0");
 		SoftAssert sa = new SoftAssert();
-				
-		//Close Vrt app
-		assetDetailsPage.click_vrtAppcloseBtn();
-		
-		// Rename the cache Asset file (Asset.txt) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		// Rename the Asset folder (Asset) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		
-		Thread.sleep(2000);
-		
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		Thread.sleep(1000);
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		
-		// Method to Create 1st Asset 
-		assetHubPage=MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		//assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
-			//	"cu", "5", "Weeks", "1st Asset Creation");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage=assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
-		
-		
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();		
-		//Upload File 1
-		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWord.docx");		
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();
-		//Upload File 2
-		assetDetailsPage.uploadDoc_Assetdetails("RW Review_Chapter 4.pdf");			
-
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
-				"FAIL: TC-ASST024 - Docs tile count not matching to the total amount of Docs(2) uploaded");
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		sa.assertEquals(assetDetailsPage.IsSetupTile_countdataPresence(), true,
+				"FAIL:The setup tile should display the counter for number");
+		sa.assertEquals(assetDetailsPage.SetupsHeader_state(), true,
+				"FAIL:The Setups Header state should display for the available setup");
+		sa.assertEquals(assetDetailsPage.SetupEditBtn_state(), true,
+				"FAIL:The Setup Edit Btn should be display for the available setup");
+		sa.assertEquals(assetDetailsPage.WiringImgButton_state(), true,
+				"FAIL:The Setup WiringImg Button should be display for the available setup");
+		sa.assertEquals(assetDetailsPage.DeleteBtn_state(), true,
+				"FAIL:The Setup Delete Btn should be display for the available setup");
 		sa.assertAll();
 	}
+ 	 
 	
-	
-	// 08-ASST025
-	@Test(groups = { "Regression" }, description = "ASST025-Verif if the application declines uploading documents that has same name")
-	public void ASST025() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ASST025-Verif if the application declines uploading documents that has same name");
-		SoftAssert sa = new SoftAssert();
-				
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();		
-		//Upload File 1
-		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWordPartOneReview.docx");		
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();
-		//Upload File 2
-		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWordPartOneReview.docx");	
+	//ASST015STP-Verify the Setup date and time for a new Setup
+		@Test(groups = { "Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
+		   public void ASST015() throws InterruptedException, ParseException, IOException {
+			
+			extentTest = extent.startTest("ASST015STP-Verify the Setup date and time for a new Setup");
+			SoftAssert sa = new SoftAssert();
+			assetHubPage = assetDetailsPage.ClickBackBtn();
+			assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+			sa.assertEquals(assetDetailsPage.DateUnder_Setup(), true,
+					"FAIL:The setup tile should display the counter for number");
+}
 		
-		String expAlert_msg = "Another file with same name already exists. Please use different name.";
-		String actAlert_msg = assetDetailsPage.alertMeg_duplicateDocupload_Assetdetails();
-
-
-		sa.assertEquals(actAlert_msg, expAlert_msg,
-				"FAIL: TC-ASST025 - Duplicate alert message not displayed while uploading duplicate document");
-		sa.assertAll();
-	}
-	
-	
-	// 09-ASST029
-	@Test(groups = { "Regression" }, description = "ASST029-Verify Initiate Qualification, "
-			+ "Initiate Calibration and Initiate Verification buttons are enable if any study is selected")
-	public void ASST029() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ASST029-Verify Initiate Qualification, Initiate Calibration and "
-				+ "Initiate Verification buttons are enable if any study is selected");
-		SoftAssert sa = new SoftAssert();
-
-		sa.assertEquals(assetDetailsPage.InitiateQualBtn_state(), false,
-				"FAIL: TC-ASST029 - Initiate Qual button appears to be enabled without any Setup file created");
-		sa.assertAll();
-	}
-	
-	
-	// 10-ASST033
-	@Test(groups = { "Sanity", "Regression" }, description = "ASST033-Verify  New button is available "
-			+ "and clicking on button user should able to define new setup")
-	public void ASST033() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ASST033-Verify  New button is available and clicking on "
-				+ "button user should able to define new setup");
-		SoftAssert sa = new SoftAssert();
-
-		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
-
-		sa.assertEquals(defineSetupPage.defineSetupPage_state(), true,
-				"FAIL: TC-ASST033 - Clicking New Setup button under Sstup tile did not launch Define Setup page");
-		sa.assertAll();
-	}
-	
-	
-	// 11-ASST034
-	@Test(groups = { "Sanity", "Regression" }, description = "ASST034-Verify if only one Asset is available then "
-			+ "copy setup screen should not allow any action")
-	public void ASST034() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ASST034-Verify if only one Asset is available then copy setup screen should not allow any action");
-		SoftAssert sa = new SoftAssert();
-
-		assetDetailsPage.click_CopyStup_Btn();
+		//ASST017STP-Verify New button is available and clicking on button user should able to define new setup
 		
-		String expAlert_msg = "To perform Copy Setup more than 1 asset required.";
-		String actAlert_msg = assetDetailsPage.alertMeg_CopyAsset_WithOneAsset();
-
-		sa.assertEquals(actAlert_msg, expAlert_msg,
-				"FAIL: TC-ASST034 - Copy asset window appears even if only Asset present");
-		sa.assertAll();
-	}
+		@Test(groups = { "Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
+		   public void ASST017() throws InterruptedException, ParseException, IOException {
+			
+			extentTest = extent.startTest("ASST015STP-Verify the Setup date and time for a new Setup");
+			SoftAssert sa = new SoftAssert();
+			Setup_defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
+			sa.assertEquals(Setup_defineSetupPage.defineSetupPage_state(), true,
+					"FAIL:The setup define page should be displayed ");
+			
+		}	
+		*/	
+	//ASST018STP-Verify on-click of Copy button for a setup
+	@Test(groups = { "Regression" }, description = "ASST018STP-Verify on-click of Copy button for a setup")
+	   public void ASST018() throws InterruptedException, ParseException, IOException {
+		
+		extentTest = extent.startTest("ASST018STP-Verify on-click of Copy button for a setup");
+		SoftAssert sa = new SoftAssert();
+		CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
+		sa.assertEquals(CopySetuppage.CopySetupPage_Title(), true,
+				"FAIL:The Copy setup tile should be displayed");
+		
+	}	
+	//ASST019STP-Verify Copy setup functionality when there is only one Asset available
 	
 	
-	
-	
-
 }

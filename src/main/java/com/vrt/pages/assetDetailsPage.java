@@ -11,10 +11,12 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.vrt.base.BaseClass;
@@ -22,7 +24,7 @@ import com.vrt.utility.TestUtilities;
 
 public class assetDetailsPage extends BaseClass {
 
-	TestUtilities TU = new TestUtilities();
+	TestUtilities tu = new TestUtilities();
 	// Asset Details element variable declaration definition
 	WebElement AssetDetailPageTitle = null;
 	WebElement AssetDetail_IDinfo = null;
@@ -50,6 +52,18 @@ public class assetDetailsPage extends BaseClass {
 	WebElement AssetHub_ImgHldr = null;
 	WebElement AssetHub_ImgHldr_NextBtn = null;
 	WebElement AssetHub_ImgHldr_PrvsBtn = null;
+	WebElement CopyAsset = null;
+	WebElement Print_Button = null;
+	WebElement AssetID = null;
+	WebElement Model = null;
+	WebElement Manufacturer = null;
+	WebElement Type = null;
+	WebElement LastValidated = null;
+	WebElement DeleteIcon = null;
+	WebElement Yesbtn = null;
+
+	
+
 
 	private void initElements() {
 		AssetDetailPageTitle = driver.findElementByAccessibilityId("AssetsNameTextBlock");
@@ -75,7 +89,17 @@ public class assetDetailsPage extends BaseClass {
 		CopySetup_Btn = driver.findElementByAccessibilityId("CopySetupButton");
 		AssetEdit_Btn = driver.findElementByAccessibilityId("EditAssetsButton");
 		AssetHub_ImgHldr = driver.findElementByClassName("Image");
+		CopyAsset = driver.findElementByAccessibilityId("CopyAssetsButton");
+		AssetID = driver.findElementByName("Asset ID");	
+		Model = driver.findElementByName("Model");	
+		Manufacturer = driver.findElementByName("Manufacturer");	
+		Type = driver.findElementByName("Type");
+		LastValidated = driver.findElementByName("Last Validated");
+	    DeleteIcon = driver.findElementByAccessibilityId("DeleteAssetsButton");
+		
 
+	  
+		
 	}
 
 	assetDetailsPage() throws IOException {
@@ -83,11 +107,84 @@ public class assetDetailsPage extends BaseClass {
 		initElements();
 	}
 
+ // Check the presence of AssetID field
+		public boolean AssetIDPresence() {
+			return IsElementEnabledStatus(AssetID);
+		}
+	
+ // Check the presence of AssetID field
+				public boolean ModelPresence() {
+					return IsElementEnabledStatus(Model);
+				}
+		
+ // Check the presence of AssetHub_ImgHldr field
+				public boolean AssetHub_ImgHldrPresence() {
+					return IsElementEnabledStatus(AssetHub_ImgHldr);
+				}
+
+ //Check the presence of Manufacturer field
+				public boolean TypePresence() {
+					return IsElementEnabledStatus(Type);
+				}
+				
+ //Check the presence of Manufacturer field
+				public boolean ManufacturerPresence() {
+					return IsElementEnabledStatus(Manufacturer);
+				}
+				
+ //Check the presence of Manufacturer field
+				public boolean LastValidatedPresence() {
+					return IsElementEnabledStatus(LastValidated);
+				}	
+				
+ //Check the presence of setupTile_countdata
+				public boolean IsSetupTile_countdataPresence() {
+					return IsElementEnabledStatus(SetupTile_Count);
+				}	
+				
+	
 	// Check the presence of Setup tile
 	public boolean setupTile_state() {
 		return IsElementVisibleStatus(Asset_SetupTile);
 	}
-
+	
+	// Check the presence of Setup tile
+		public boolean SetupsHeader_state() {
+			return IsElementVisibleStatus(SetupsHeaderTxt);
+		}
+		
+	// Check the presence of Edit button in set up section
+				public boolean SetupEditBtn_state() {
+					WebElement Edit_Button = driver.findElementByAccessibilityId("EditButton");
+					return IsElementVisibleStatus(Edit_Button);
+				}
+	// check the presence of date under setup
+				//
+				public boolean DateUnder_Setup() {
+					WebElement Date = driver.findElementByName("18-Mar-2020 13:11:17");
+					return IsElementVisibleStatus(Date);
+				}			
+				
+				
+				
+	// Check the presence of Print Button in set up section
+				public boolean PrintButton_state() {
+					WebElement PrintBtn = driver.findElementByAccessibilityId("PrintButton");
+					return IsElementVisibleStatus(PrintBtn);
+				}			
+						
+	// Check the presence of WiringImg Button in set up section
+				public boolean WiringImgButton_state() {
+					WebElement WiringImg_Button = driver.findElementByAccessibilityId("WiringImgButton");
+					return IsElementVisibleStatus(WiringImg_Button);
+				}	
+				
+  // Check the presence of Delete Btn in set up section
+				public boolean DeleteBtn_state() {
+					WebElement DeleteBtn  = driver.findElementByAccessibilityId("DeleteButton");
+					return IsElementVisibleStatus(DeleteBtn);
+				}			
+			
 	// Check the Setup tile default selected
 	public String get_Setupheader_txt() {
 		return FetchText(SetupsHeaderTxt);
@@ -152,11 +249,19 @@ public class assetDetailsPage extends BaseClass {
 		clickOn(qualbox);
 	}
 	
-    //click on GenerateReportsForQualButton
+    //application should display alert msg when user doest have access to generatereport
 	 public void GenerateReportsBtn() {
 		WebElement GenerateReports = driver.findElementByAccessibilityId("GenerateReportsForQualButton");
 		clickOn(GenerateReports);
 	}	
+	 
+	// user who has acess  will navigate to next page
+	 public RWFileSelctionPage GenerateReportsBtn_Nextpage() throws IOException {
+			WebElement GenerateReports = driver.findElementByAccessibilityId("GenerateReportsForQualButton");
+			clickOn(GenerateReports);
+			return new RWFileSelctionPage();
+		}	
+	 //Setup_qualreportSelectSensorTypepage
 	 
 	// Check the presence of Reports tile
 	public boolean reportsTile_state() {
@@ -182,21 +287,21 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// click on the qualification sub section from Reports tile
-	public void Click_QualUnderReport() {
+	public void Click_QualReportsButton() {
 		WebElement QualUnderReport = driver.findElementByAccessibilityId("QualificationReportsButton");
 		clickOn(QualUnderReport);
 	}
 
 	// click on the Pass/Fail sub section from Reports tile
-	public void Click_PassFailReport() {
+	public void Click_PassFailReportBtn() {
 		WebElement PassFailReport = driver.findElementByAccessibilityId("PassFailReportsButton");
 		clickOn(PassFailReport);
 	}
 
 	// click on the setup sub section from Reports tile
-	public void Click_SetupUnderReport() {
-		WebElement SetupUnderReport = driver.findElementByAccessibilityId("SetupReportsButton");
-		clickOn(SetupUnderReport);
+	public void Click_SetupReportsButton() {
+		WebElement SetupReportsButton = driver.findElementByAccessibilityId("SetupReportsButton");
+		clickOn(SetupReportsButton);
 	}
 
 	// Get the Reports count data form the Setup tile
@@ -231,6 +336,15 @@ public class assetDetailsPage extends BaseClass {
 	public String assetDetail_PageTitle() {
 		return FetchText(AssetDetailPageTitle);
 	}
+	
+	
+	//verify the presence of the assetDetail PageTitle
+	
+	public boolean assetDetailPageTitle_Visible() {
+		return IsElementVisibleStatus(AssetDetailPageTitle);
+	}
+
+	
 
 	// Get the Asset ID data for the corresponding Asset
 	public String get_asset_IDinfo() {
@@ -255,13 +369,23 @@ public class assetDetailsPage extends BaseClass {
 	// Get the Asset Last Validated data for the corresponding Asset
 	public String get_asset_LastValidatedinfo() throws ParseException {
 		String Dt = FetchText(AssetDetail_Dateinfo);
-		return TU.convert_StringDate_to_ActualDate_inCertainFormat(Dt);
+		return tu.convert_StringDate_to_ActualDate_inCertainFormat(Dt);
 	}
 
 	// Check the presence of Asset edit button
 	public boolean assetEditBtn_state() {
 		return IsElementVisibleStatus(AssetEditBtn);
 	}
+	
+	// Check the presence of Asset DeleteIcon button
+		public boolean DeleteIcon_state() {
+			return IsElementVisibleStatus(DeleteIcon);
+		}
+		
+	// Check the presence of Asset Copy button
+			public boolean CopyAsset_state() {
+				return IsElementVisibleStatus(CopyAsset);
+			}
 
 	// Click the Asset edit button
 	public assetCreationPage click_assetEditBtn() throws InterruptedException, IOException {
@@ -286,7 +410,7 @@ public class assetDetailsPage extends BaseClass {
 	// Click the Back Button
 	public assetHubPage ClickBackBtn() throws InterruptedException, IOException {
 		clickOn(BackBtn);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		return new assetHubPage();
 	}
 
@@ -307,7 +431,7 @@ public class assetDetailsPage extends BaseClass {
 	// Click new Setup create button
 	public Setup_defineSetupPage click_NewStupCreateBtn() throws InterruptedException, IOException {
 		clickOn(NewSetupCreate_Btn);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		return new Setup_defineSetupPage();
 	}
 
@@ -319,9 +443,10 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// Click Copy Setup button
-	public void click_CopyStup_Btn() throws InterruptedException {
+	public CopySetuppage click_CopyStup_Btn() throws InterruptedException, IOException {
 		clickOn(CopySetup_Btn);
 		Thread.sleep(1000);
+		return new CopySetuppage();
 	}
 
 	/*
@@ -407,7 +532,6 @@ public class assetDetailsPage extends BaseClass {
 
 	// Click on Delete Icon
 	public void DeleteAssert() {
-		WebElement DeleteIcon = driver.findElementByAccessibilityId("DeleteAssetsButton");
 		clickOn(DeleteIcon);
 	}
 
@@ -416,5 +540,234 @@ public class assetDetailsPage extends BaseClass {
 		WebElement dp = driver.findElementByAccessibilityId("Popup Window");
 		return IsElementVisibleStatus(dp);
 	}
+	// Click on "Yes" button from the delete confirmation pop-up
+		public assetHubPage Delete_ClickYesBtn() throws InterruptedException, IOException {
+			Yesbtn = driver.findElementByAccessibilityId("Button1");
+			clickOn(Yesbtn);
+			return new assetHubPage();
+		}
+		
+		//Click on Yes Btn with files
+		public void YesBtn_WithFiles() throws InterruptedException, IOException {
+			Yesbtn = driver.findElementByAccessibilityId("Button1");
+			clickOn(Yesbtn);
+		}
+		
+		// Click on "No" button from the delete confirmation pop-up
+		public void Delete_ClickNoBtn() throws InterruptedException {
+			WebElement Nobtn = driver.findElementByAccessibilityId("Button0");
+			clickOn(Nobtn);
+		}
+	
+	
+	
+	
+	
+	//Click on Copyasset button
+		public Copyassetpage clickCopyasset() throws InterruptedException, IOException
+		{
+			clickOn(CopyAsset);
+			Thread.sleep(500);
+			return new Copyassetpage();
+		}
+		
+		// select a setup 
+		
+		public void Click_SetupName(String SN) throws InterruptedException, IOException {
 
+			List<WebElement> SetupList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
+					.findElements(By.className("TextBlock"));
+			// Loop for the different serial number created
+			for (int i = 0; i < SetupList.size(); i++) {
+
+				List<WebElement> SETUPTileInfoList = SetupList.get(i).findElements(By.className("TextBlock"));
+
+				// Fetch all the contents of the Asset tile
+				for (int j = 0; j < SETUPTileInfoList.size(); j++) {
+					// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+
+					if (SETUPTileInfoList.get(j).getText().equals(SN)) {
+						clickOn(SETUPTileInfoList.get(j));
+						//Thread.sleep(1000);
+						break;
+					} else {
+							Actions ac = new Actions(driver);
+							ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+						}
+					}
+				}
+					
+		}
+		
+	// ||Hard code || click on set up file
+		
+		public void ClickSetup_file() throws InterruptedException, IOException {
+			WebElement Setupname = driver.findElementByName("Qual_case_51");
+			clickOn(Setupname);
+		}
+		
+		
+ //Click on CopyToDrive_Btn
+		public void SETUP_CopyToDrive_Btn(String filename) throws AWTException, IOException, InterruptedException
+		{
+			WebElement CopyToDrive_Btn = driver.findElementByName("Copy to drive");
+			clickOn(CopyToDrive_Btn);
+			Thread.sleep(1000);
+			tu.uploadDoc("CopySetups");
+			Robot r = new Robot();
+			r.keyPress(KeyEvent.VK_ENTER);
+			r.keyRelease(KeyEvent.VK_ENTER);
+		}
+		
+ //Print_Button
+		public void Click_Print_Button() throws AWTException, IOException, InterruptedException
+		{
+			Print_Button = driver.findElementByAccessibilityId("PrintButton");	
+
+			clickOn(Print_Button);
+		}
+		
+ // Select and click on Qual file
+		
+		public void  Select_QualFile(String SN) throws InterruptedException, IOException {
+
+			List<WebElement> QUALList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
+					.findElements(By.className("TextBlock"));
+
+			// Loop for the different serial number created
+			for (int i = 0; i < QUALList.size(); i++) {
+				// System.out.println("serial number : " + IrtdList.get(i).getText());
+
+				List<WebElement> QUALInfoList = QUALList.get(i).findElements(By.className("TextBlock"));
+				// System.out.println(" IRTD tile info count: " + IRTDTileInfoList.size());
+
+				// Fetch all the contents of the Asset tile
+				for (int j = 0; j < QUALInfoList.size(); j++) {
+					// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+
+					if (QUALInfoList.get(j).getText().contains(SN)) {
+						clickOn(QUALInfoList.get(j));
+						Thread.sleep(1000);
+						break;
+					} else {
+						Actions ac = new Actions(driver);
+						ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+					}
+				}
+			}		
+		}
+		// Select and click on Report file
+		
+				public void  Select_ReportFile(String SN) throws InterruptedException, IOException {
+
+					List<WebElement> REPORTList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
+							.findElements(By.className("TextBlock"));
+
+					// Loop for the different serial number created
+					for (int i = 0; i < REPORTList.size(); i++) {
+						// System.out.println("serial number : " + IrtdList.get(i).getText());
+
+						List<WebElement> REPORTListInfoList = REPORTList.get(i).findElements(By.className("TextBlock"));
+						// System.out.println(" IRTD tile info count: " + IRTDTileInfoList.size());
+
+						// Fetch all the contents of the Asset tile
+						for (int j = 0; j < REPORTListInfoList.size(); j++) {
+							// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+
+							if (REPORTListInfoList.get(j).getText().contains(SN)) {
+								clickOn(REPORTListInfoList.get(j));
+								Thread.sleep(1000);
+								break;
+							} else {
+								Actions ac = new Actions(driver);
+								ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+							}
+						}
+					}		
+				}
+				
+				// Select and click on Doc file
+				
+				public void  Select_DocFile(String DC) throws InterruptedException, IOException {
+
+					List<WebElement> REPORTList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
+							.findElements(By.className("TextBlock"));
+
+					// Loop for the different serial number created
+					for (int i = 0; i < REPORTList.size(); i++) {
+						// System.out.println("serial number : " + IrtdList.get(i).getText());
+
+						List<WebElement> REPORTListInfoList = REPORTList.get(i).findElements(By.className("TextBlock"));
+						// System.out.println(" IRTD tile info count: " + IRTDTileInfoList.size());
+
+						// Fetch all the contents of the Asset tile
+						for (int j = 0; j < REPORTListInfoList.size(); j++) {
+							// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+
+							if (REPORTListInfoList.get(j).getText().contains(DC)) {
+								clickOn(REPORTListInfoList.get(j));
+								Thread.sleep(1000);
+								break;
+							} else {
+								Actions ac = new Actions(driver);
+								ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+							}
+						}
+					}		
+				}
+				
+	//CopyToDrive Btn in QUAL sub group
+		
+		public void CopyQualToDrive_Btn(String filename) throws AWTException, IOException, InterruptedException {
+			WebElement CopyQualTo_Drive = driver.findElementByAccessibilityId("CopyQualToDrive");
+			clickOn(CopyQualTo_Drive);
+				Thread.sleep(1000);
+				tu.uploadDoc("CopyQUAL");
+				Robot r = new Robot();
+				r.keyPress(KeyEvent.VK_ENTER);
+				r.keyRelease(KeyEvent.VK_ENTER);
+			}
+		
+  //CopyToDrive Btn in Setup Reports
+	
+		public void CopyReportToDrive_Btn(String filename) throws AWTException, IOException, InterruptedException {
+			WebElement CopyToDrive_Report = driver.findElementByAccessibilityId("CopyReportToDrive");
+			clickOn(CopyToDrive_Report);
+				Thread.sleep(1000);
+				tu.uploadDoc("CopyReports");
+				Robot r = new Robot();
+				r.keyPress(KeyEvent.VK_ENTER);
+				r.keyRelease(KeyEvent.VK_ENTER);
+			}
+		
+	//CopyToDrive Btn in Document Reports
+		
+			public void CopyToDrive_Document(String filename) throws AWTException, IOException, InterruptedException {
+				WebElement CopyToDrive_Document_btn = driver.findElementByAccessibilityId("CopyDocumentToDrive");
+				clickOn(CopyToDrive_Document_btn);
+					Thread.sleep(1000);
+					tu.uploadDoc("CopyDoc");
+					Robot r = new Robot();
+					r.keyPress(KeyEvent.VK_ENTER);
+					r.keyRelease(KeyEvent.VK_ENTER);
+				}
+	//verify the presence of the setup
+			
+			public boolean SetupName_Visible() {
+				WebElement Setupname = driver.findElementByName("manual 1 min sampling");
+				return IsElementVisibleStatus(Setupname);
+			}
+			
+	//not able to delete
+			public void ClickOK_btn() throws InterruptedException {
+				driver.switchTo().activeElement();
+				Thread.sleep(1000);
+				WebElement OK_btn = driver.findElementByAccessibilityId("OK");
+				clickOn(OK_btn);
+				driver.switchTo().activeElement();
+				Thread.sleep(500);
+				
+			}
+		
+			
 }

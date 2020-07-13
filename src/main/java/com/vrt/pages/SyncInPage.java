@@ -107,6 +107,7 @@ public class SyncInPage extends BaseClass{
 		return new SyncInAssetListPage();
 	}
 	
+	
 	//Click the SycnIn Alert confirmation message
 	public void click_SyncIn_AlrtMag() {
 		clickOn(FltrByDtBtn);

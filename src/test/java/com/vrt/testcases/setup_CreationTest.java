@@ -304,7 +304,7 @@ public class setup_CreationTest extends BaseClass {
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 
 		//Setup_Review page
-		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes");
+		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "adminFull", "adminFull");
 		//Setup_ReviewPage.click_back_Btn();
 		System.out.println("Setup COunt: "+count);
 	}

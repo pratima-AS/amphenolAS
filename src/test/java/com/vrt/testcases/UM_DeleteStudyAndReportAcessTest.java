@@ -69,8 +69,8 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	SyncInAssetListPage SyncInAssetListPage;
 	
 
-	// @BeforeTest
-	@BeforeClass
+	@BeforeTest
+	//@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_DeleteStudyAndReportAcessTest"+".html", true);
@@ -80,7 +80,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 
-		// Rename the User file (NgvUsers.uxx) if exists
+	// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
@@ -158,17 +158,18 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		
-		//AppClose();
+		/*//AppClose();
 		Thread.sleep(2000);	
-		
+		*/	
 	}
 
 	// After All the tests are conducted
 	@AfterTest
-	@AfterClass
-	public void endReport() {
+	//@AfterClass
+	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
+		Thread.sleep(500);
 	}
 
 	// Before Method
@@ -203,14 +204,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	//Tests
 	//***************
 	
+	// ADMN051
 	
-	// ADMN051-Verify if Administrator is able to access the default
-	// privilege-Delete Delete Pass_Fail reports
-	// Pass_Fail reports should be available to perform delete action
-	// generate a report manually
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to "
-					+ "access the default privilege-Delete Delete Pass_Fail reports")
+					+ "access the default privilege-Delete  Pass_Fail reports",alwaysRun = true)
 	public void ADMN051() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN051_Verify if Administrator is able to access the default "
@@ -220,7 +218,8 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_PassFailReport();
+		assetDetailsPage.Click_PassFailReportBtn();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
@@ -228,30 +227,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 	
-		
-	//'ADMN056-Verify Administrator is unable to access the non-default privilege-Run Qualification
-	@Test(groups = { "Regression" }, description = "Verify if Administrator is able to "
-			+ "access the default privilege-Delete Delete Pass_Fail reports")
-	public void ADMN056() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("Verify Administrator is unable to access the "
-				+ "non-default privilege-Run Qualification");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.click_Setupfile("Setup1");
-		assetDetailsPage.click_InitiateQualBtn();
-		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
-		String ActAlertMsg = assetDetailsPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Administrator is able to Run Qualification"
-				+ "without privilege");
-		sa.assertAll();
-	}
-	
-	
-	// ADMN063-Verify if Administrator is able to access the default
-	// privilege-Delete Setups
-	// set up Files should be available to perform delete action
+	// ADMN063
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete Setups")
 	public void ADMN063() throws InterruptedException, ParseException, IOException, AWTException {
@@ -261,7 +237,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		//assetDetailsPage.click_SetupTile();
+		assetDetailsPage. Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
@@ -270,12 +246,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 		
 	
-	//ADMN065A-Verify if Administrator is able to access the default privilege-Delete StudyFiles
-	// StudyFiles should be available to perform delete action
-	// generate a study File manually
+	//ADMN065
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete StudyFiles")
-	public void ADMN065A() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN065() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN065A_Verify if Administrator is able to access the default privilege-Delete StudyFiles");
 		SoftAssert s = new SoftAssert();
@@ -283,6 +258,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
@@ -290,37 +266,31 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 	
-
+	//ADMN065A
 	
-	//ADMN065B-Verify if Administrator is able to access the default privilege-Delete_QualReports
-	// Qual Reports should be available to perform delete action
-	// generate a report manually
 	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete_Reports")
-	public void ADMN065B() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete Reports_qualification sub bar")
+	public void ADMN065A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("ADMN065B_Verify if Administrator is able to access the default privilege-Delete_Reports");
+				.startTest("ADMN065B_Verify if Administrator is able to access the default privilege-Delete Reports_qualification sub bar");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualUnderReport();
+		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
-				"Fail: Admin User not allowed to delete Study file reports");
+						"Fail: Admin User not allowed to delete Study file reports");
 		s.assertAll();
-	}
-
+					
+	}	
+	// ADMN065B
 	
-	// ADMN065C-Verify if Administrator is able to access the default
-	// privilege-Delete_SetUpReports
-	// SetUp Reports Reports should be available to perform delete action
-	// generate a report manually
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete_SetUpReports")
-	public void ADMN065C() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN065B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN065C_Verify if Administrator is able to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
@@ -328,7 +298,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_SetupUnderReport();
+		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
@@ -336,10 +306,10 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 	
-	// ADMN065E-Verify if Administrator is able to Delete documents from Asset Details-Documents tile
+	// ADMN065C
 	@Test(groups = { "Regression" }, description = "Verify if Administrator is able to Delete documents"
 			+ "from Asset Details-Documents tile")
-	public void ADMN065E() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN065C() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN065E-Verify if Administrator is able to Delete documents"
 				+ " from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
@@ -355,9 +325,8 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 
 
-	// ADMN079-Verify Supervisor is unable to access the non-default
-	// privilege-Delete Setups
-	// set up Files should be available to perform delete action
+	// ADMN079
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete Setups")
 	public void ADMN079() throws InterruptedException, ParseException, IOException, AWTException {
@@ -367,7 +336,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		//assetDetailsPage.click_SetupTile();
+		assetDetailsPage. Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -378,13 +347,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 
 
-	// ADMN081-Verify Supervisor is unable to access the non-default
-	// privilege-Delete StudyFiles_Reports
-	// StudyFiles should be available to perform delete action
-	// generate a study File manually
+	// ADMN081
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles")
-	public void ADMN081A() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN081() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN081A_Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles");
 		SoftAssert sa = new SoftAssert();
@@ -401,13 +368,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 
 	}
 
-	// ADMN081B-Verify Supervisor is unable to access the non-default
-	// privilege-Delete Reports-Qual
-	// Qual Reports should be available to perform delete action
-	// generate a report manually
+	// ADMN081A
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the default privilege-Delete_Reports")
-	public void ADMN081B() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN081A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN081B_Verify Supervisor is unable to access the default privilege-Delete_Reports");
 		SoftAssert sa = new SoftAssert();
@@ -415,7 +380,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualUnderReport();
+		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -424,13 +389,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN081C-Verify if Supervisor is able to access the default
-	// privilege-Delete_SetUpReports
-	// SetUp Reports Reports should be available to perform delete action
-	// generate a report manually
+	// ADMN081B
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the default privilege-Delete_SetUpReports")
-	public void ADMN081C() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN081B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN081C_Verify Supervisor is unable to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
@@ -438,7 +401,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		//assetDetailsPage.Click_SetupUnderReport();
+		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -447,13 +410,10 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 	
-	// ADMN081D-Verify if Supervisor is able to access the default privilege-Delete
-	// Pass_Fail Report
-	// Pass_Fail reports should be available to perform delete action
-	// generate a report manually
+	// ADMN081C
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report")
-	public void ADMN081D() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN081C() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report");
 		SoftAssert s = new SoftAssert();
@@ -461,7 +421,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_PassFailReport();
+		assetDetailsPage.Click_PassFailReportBtn();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -470,11 +430,10 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN081E-Verify if Supervisor is unable to Delete documents from Asset
-	// Details-Documents tile
-	@Test(groups = { "Regression" }, description = "Verify if Supervisor is unable to Delete Pass_Fail reports")
-	public void ADMN081E() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN081E_Verify if Supervisor is unable to Delete Pass_Fail reports");
+	// ADMN081D
+	@Test(groups = { "Regression" }, description = "Verify if Supervisor is unable to Delete documents from -Documents tile")
+	public void ADMN081D() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest("ADMN081E_Verify if Supervisor is unable to Delete documents from -Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -489,13 +448,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 	
 	
-	// ADMN103-Verify if Operator is unable to access the non-default
-	// privilege-Delete StudyFiles_Reports
-	// StudyFiles should be available to perform delete action
-	// generate a study File manually
+	// ADMN103
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete StudyFiles")
-	public void ADMN103A() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN103() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN103A_Verify Operator is unable to access the non-default privilege-Delete StudyFiles");
 		SoftAssert sa = new SoftAssert();
@@ -513,21 +470,18 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 	
 
-	// ADMN103B-Verify Operator is unable to access the non-default privilege-Delete
-	// Reports-Qual
-	// Qual Reports should be available to perform delete action
-	// generate a report manually
+	// ADMN103A
 	@Test(groups = {
-			"Regression" }, description = "Verify Operator is unable to access the default privilege-Delete_Reports")
-	public void ADMN103B() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Reports-Qual")
+	public void ADMN103A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("ADMN103B_Verify Operator is unable to access the default privilege-Delete_Reports");
+				.startTest("ADMN103A-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualUnderReport();
+		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -536,13 +490,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN103C-Verify if Operator is able to access the default
-	// privilege-Delete_SetUpReports
-	// SetUp Reports Reports should be available to perform delete action
-	// generate a report manually
+	// ADMN103B
+
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the default privilege-Delete_SetUpReports")
-	public void ADMN103C() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN103B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN103C_Verify Operator is unable to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
@@ -550,7 +502,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_SetupUnderReport();
+		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -559,13 +511,12 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN103D-Verify if Operator is unable to Delete documents from Asset
-	// Details-Documents tile
+	// ADMN103C
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to Delete documents from Asset Details-Documents tile")
-	public void ADMN103D() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN103D_Verify if Operator is unable to Delete documents from Asset Details-Documents tile");
+	public void ADMN103C() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest("ADMN103D_Verify if Operator is unable to Delete documents from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -580,13 +531,11 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 	
 	
-	// ADMN103E-Verify if Operator is able to access the default privilege-Delete
-	// Pass_Fail Report
-	// Pass_Fail reports should be available to perform delete action
-	// generate a report manually
+	// ADMN103D
+	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the default privilege-Delete Pass_Fail Report")
-	public void ADMN103E() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN103D() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN103E-Verify if Operator is able to access the default privilege-Delete Pass_Fail Report");
 		SoftAssert s = new SoftAssert();
@@ -594,7 +543,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_PassFailReport();
+		assetDetailsPage.Click_PassFailReportBtn();
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -603,10 +552,9 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN120-Verify if Operator is able to access the non-default privilege-Delete
-	// Set up Files should be available to perform delete action
+	// ADMN120
 	@Test(groups = {
-			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Setups")
+			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Setups",alwaysRun = true)
 	public void ADMN120() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN120_Verify Operator is unable to access the non-default privilege-Delete Setups");
@@ -622,5 +570,4 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Operator should be unable to access- Delete Setups");
 		sa.assertAll();
 	}
-
 }

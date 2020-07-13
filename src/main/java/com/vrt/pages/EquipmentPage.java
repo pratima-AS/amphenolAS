@@ -112,10 +112,11 @@ public class EquipmentPage extends BaseClass {
 	}	
 	
 	// Enter Mandatory fields and create Equipment
-	public void EqipCreation_MandatoryFields(String Etype, String ESN, String it)
+	public void EqipCreation_MandatoryFields(String Etype, String ESN, String EMN)
 			throws InterruptedException {
 		select_EquipmentType(Etype);
 		enterLgrSN(ESN);
+		enterNewModelNumber(EMN);
 		ClickSaveButton();
 	}	
 

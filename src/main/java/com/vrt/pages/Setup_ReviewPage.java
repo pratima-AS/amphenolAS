@@ -14,12 +14,14 @@ public class Setup_ReviewPage extends BaseClass{
 	WebElement QStart_Text = null;
 	WebElement Bottom_VScrollBar = null;
 	WebElement Back_btn = null;
+	WebElement CopyAsNewSetup_Button = null;
 	
 	
 	private void initializeEelements() {
 		ReviewPageTitle = driver.findElementByName("Review");
 		QStart_Text = driver.findElementByAccessibilityId("StartQualificationTextBlock");			
 		SaveSetup_Btn = driver.findElementByAccessibilityId("SaveSetupButton");	
+		CopyAsNewSetup_Button = driver.findElementByAccessibilityId("CopySetupButton");
 		Bottom_VScrollBar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
 		Back_btn = driver.findElementByAccessibilityId("GoButton");
 	}
@@ -34,6 +36,7 @@ public class Setup_ReviewPage extends BaseClass{
 		ReviewPageTitle = null;
 		QStart_Text = null;
 		SaveSetup_Btn = null;
+		CopyAsNewSetup_Button = null;
 		Bottom_VScrollBar = null;
 		Back_btn = null;
 	}
@@ -57,17 +60,19 @@ public class Setup_ReviewPage extends BaseClass{
 		return FetchText(QStart_Text);
 	}
 	
+	// Click expected TOD action option like "Yes or No or Cancel" as input to the method
+	// to perform the corresponding TOD Save Alert message
 	// Click save button
-	public void click_Save_Btn(String QStart, String TODAlertAction) throws InterruptedException {
+	public void click_Save_Btn(String QStart, String TODAlertAction, String UID, String PW) throws InterruptedException {
 		
 		if (!QStart.equals("Manual")) {
 			clickOn(SaveSetup_Btn);
-			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+			UserLoginPopup(getUID(UID), getPW(PW));
 			click_Yes_TODAlertMsg_Btn(TODAlertAction);
 			Thread.sleep(1000);
 		} else {
 			clickOn(SaveSetup_Btn);
-			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+			UserLoginPopup(getUID(UID), getPW(PW));
 			Thread.sleep(1000);
 		}
 	}
@@ -104,6 +109,11 @@ public class Setup_ReviewPage extends BaseClass{
 		clickOn(Back_btn);
 		Thread.sleep(2000);
 		
+	}
+
+	public void click_CopyAsNewSetup_Button() throws InterruptedException {
+		clickOn(CopyAsNewSetup_Button);
+		Thread.sleep(1000);
 	}
 
 }

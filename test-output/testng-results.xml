@@ -2,81 +2,104 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="27041" started-at="2020-07-07T22:58:53 IST" finished-at="2020-07-07T22:59:20 IST">
+  <suite name="Default suite" duration-ms="32657" started-at="2019-11-25T20:08:54 IST" finished-at="2019-11-25T20:09:26 IST">
     <groups>
+      <group name="Regression">
+        <method signature="assetHubTest.ASSTHB006b(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="ASSTHB006b" class="com.vrt.testcases.assetHubTest"/>
+      </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="27041" started-at="2020-07-07T22:58:53 IST" finished-at="2020-07-07T22:59:20 IST">
-      <class name="com.vrt.testcases.HitNTrialTests">
-        <test-method status="PASS" signature="testsetup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6]" name="testsetup" is-config="true" duration-ms="83" started-at="2020-07-07T22:58:53 IST" finished-at="2020-07-07T22:58:53 IST">
+    <test name="Default test" duration-ms="32657" started-at="2019-11-25T20:08:54 IST" finished-at="2019-11-25T20:09:26 IST">
+      <class name="com.vrt.testcases.assetHubTest">
+        <test-method status="PASS" signature="AssetCreationSetup()[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="AssetCreationSetup" is-config="true" duration-ms="78" started-at="2019-11-25T20:08:54 IST" finished-at="2019-11-25T20:08:54 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testsetup -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6]" name="Setup" is-config="true" duration-ms="9729" started-at="2020-07-07T22:58:54 IST" finished-at="2020-07-07T22:59:03 IST">
+        </test-method> <!-- AssetCreationSetup -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="Setup" is-config="true" duration-ms="8390" started-at="2019-11-25T20:08:55 IST" finished-at="2019-11-25T20:09:03 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="ADMN012(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6]" name="ADMN012" duration-ms="16362" started-at="2020-07-07T22:59:03 IST" data-provider="maxuser" finished-at="2020-07-07T22:59:20 IST">
+        <test-method status="PASS" signature="ASSTHB006b(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="ASSTHB006b" duration-ms="23237" started-at="2019-11-25T20:09:03 IST" description="ASSTHB006b-Verify if No record found message displayed if incorrect Asset Name entered in the Searchfucntionality of Asset hub page" data-provider="ASSTHB006b" finished-at="2019-11-25T20:09:26 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[User2]]>
+                <![CDATA[ASSTHB006b]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[2]]>
+                <![CDATA[6b]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[111111.0]]>
+                <![CDATA[HeatBath]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[Mgr]]>
+                <![CDATA[AAS]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[System Administrator]]>
+                <![CDATA[HTC]]>
               </value>
             </param>
             <param index="5">
               <value>
-                <![CDATA[9890983456]]>
+                <![CDATA[VRT]]>
               </value>
             </param>
             <param index="6">
               <value>
-                <![CDATA[Abc@gmail.com]]>
+                <![CDATA[1]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[avsLOGO.jpg]]>
+                <![CDATA[cu m]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[11/25/2019]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Weeks]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[Test Description for ASSTHB006b]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ADMN012 -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6]" name="Teardown" is-config="true" duration-ms="111" started-at="2020-07-07T22:59:20 IST" finished-at="2020-07-07T22:59:20 IST">
+        </test-method> <!-- ASSTHB006b -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="Teardown" is-config="true" duration-ms="31" started-at="2019-11-25T20:09:26 IST" finished-at="2019-11-25T20:09:26 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=ADMN012 status=SUCCESS method=HitNTrialTests.ADMN012(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6] output={null}]]]>
+                <![CDATA[[TestResult name=ASSTHB006b status=SUCCESS method=assetHubTest.ASSTHB006b(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.HitNTrialTests@2353b3e6]" name="endReport" is-config="true" duration-ms="206" started-at="2020-07-07T22:59:20 IST" finished-at="2020-07-07T22:59:20 IST">
+        <test-method status="PASS" signature="endReport_releaseMomory()[pri:0, instance:com.vrt.testcases.assetHubTest@2173f6d9]" name="endReport_releaseMomory" is-config="true" duration-ms="203" started-at="2019-11-25T20:09:26 IST" finished-at="2019-11-25T20:09:26 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- endReport -->
-      </class> <!-- com.vrt.testcases.HitNTrialTests -->
+        </test-method> <!-- endReport_releaseMomory -->
+      </class> <!-- com.vrt.testcases.assetHubTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

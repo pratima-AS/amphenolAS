@@ -22,9 +22,12 @@ public class EquipmentHubPage extends BaseClass {
 	// IRTDHubPage IRTDHubPage;
 	// EquipmentHubPage Element definition
 	WebElement AddButton = null;
+	WebElement VRTLogger = null;
 
 	private void initElements() {
 		AddButton = driver.findElementByAccessibilityId("AddEquipmentsButton");
+		VRTLogger = driver.findElementByAccessibilityId("TitleTextBlock1");
+		
 	}
 
 	EquipmentHubPage() throws IOException {
@@ -36,7 +39,7 @@ public class EquipmentHubPage extends BaseClass {
 	// Click AddButton
 	public EquipmentPage ClickAddButton() throws InterruptedException, IOException {
 		clickOn(AddButton);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		return new EquipmentPage();
 	}
 
@@ -46,6 +49,12 @@ public class EquipmentHubPage extends BaseClass {
 		WebElement irtdbox = driver.findElementByName("IRTD");
 		clickOn(irtdbox);
 		return new IRTDHubPage();
+	}
+		// 
+		// Click on VRT List box of Equipment page
+		public VRTLoggerHubPage Click_VRTLogger_listbox() throws IOException {
+			clickOn(VRTLogger);
+			return new VRTLoggerHubPage();
 	}
 
 	// Click AddButton to get Alert message when supervisor does not have default

@@ -110,7 +110,16 @@ public class assetHubPage extends BaseClass {
 		clickOn(SearchBtn);
 		Thread.sleep(500);
 	}
-
+	
+	//Click on back btn
+	
+	
+	public MainHubPage click_BackBtn() throws InterruptedException, IOException {
+		clickOn(BackBtn);
+		Thread.sleep(500);
+		return new MainHubPage();
+	}
+	
 	// Verify the presence of Search Asset Text field
 	public boolean searchAstTxtfiled_state() {
 		WebElement searchAst_textbx = driver.findElementByAccessibilityId("searchTextBox");
@@ -125,6 +134,13 @@ public class assetHubPage extends BaseClass {
 		enterText(searchAst_textbx, AstName);
 		Thread.sleep(1000);
 	}
+	
+	
+	// Verify the presence of No record found
+		public boolean IsNoRecordFoundVisible() {
+			WebElement NoRecordFoundMSG = driver.findElementByName("No record found");
+			return IsElementVisibleStatus(NoRecordFoundMSG);
+		}
 
 	// Verify the presence of Add Asset Button
 	public boolean addAst() {
@@ -512,5 +528,14 @@ public class assetHubPage extends BaseClass {
 		Thread.sleep(1000);
 		return FetchText(Msg);
 	}
+	
+
+	public String getAssetIDvalue() {
+			WebElement AssetIDvalue = driver.findElementByAccessibilityId("AssetIdTextBlock");
+			return FetchText(AssetIDvalue);
+		}
 
 }
+
+
+

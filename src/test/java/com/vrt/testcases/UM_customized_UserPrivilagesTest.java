@@ -41,6 +41,7 @@ import com.vrt.pages.assetDetailsPage;
 import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncOutPage;
+import com.vrt.pages.SyncInAssetListPage;
 
 public class UM_customized_UserPrivilagesTest extends BaseClass {
 	public UM_customized_UserPrivilagesTest() throws IOException {
@@ -68,9 +69,10 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	Setup_defineSetupPage Setup_defineSetupPage;
 	SyncInPage SyncInPage;
 	SyncOutPage SyncOutPage;
+	SyncInAssetListPage SyncInAssetListPage;
 
-	// @BeforeTest
-	@BeforeClass
+	@BeforeTest
+	//@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_customized_UserPrivilagesTest"+".html", true);
@@ -87,10 +89,11 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Equipment.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		// Rename the cache Setup file (Asset.txt) if exists
+		// Rename the cache Setup file (Setup.txt) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
-		// Rename the VRT Setups folder (Asset) if exists
+		// Rename the VRT Setups folder (VRTSetups) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+
 
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
@@ -110,7 +113,9 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		UserManagementPage.ClickNewUser();
 		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "Admintest1", getUID("SysAdmin"),
 				"1Start@1AM", "AdminNew", "123345678", "newAdmin@gmail.com");
+		
 		UserManagementPage.clickAnyUserinUserList("Admintest1");
+		Thread.sleep(300);
 		UserManagementPage.Click_AllCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -150,19 +155,34 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		Thread.sleep(500);
 		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(getUID("SysOperator"), "4Welcome4@AM",
 				getPW("SysOperator"));
-
-		AppClose();
+		LoginPage = MainHubPage.UserSignOut();
+				
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		FileManagementPage = MainHubPage.ClickFileManagementTitle();
+		FileManagementPage = MainHubPage.ClickFileManagementTitle();
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+		SyncInPage.enter_Filepath("syncin");
+		SyncInPage.click_FltrBtn();
+		SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+		SyncInAssetListPage.click_EquipmentCheckBox();
+		SyncInAssetListPage.click_SelectAllBtn();
+		SyncInAssetListPage.click_OkBtn();
+		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(500);
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+		//AppClose();
+		//Thread.sleep(500);		
 
 	}
 
 // After All the tests are conducted
-	// @AfterTest
-	@AfterClass
-	public void endReport() {
+    @AfterTest
+	//@AfterClass
+	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
 		System.out.println("UM_customized_UserPrivilagesTest Completed.");
+		Thread.sleep(500);
 	}
 
 // Before Method
@@ -192,7 +212,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 
 	
 	//CADMN1
-	@Test(groups = { "Regression" }, description = "Verify the customized non defult privileges for Administrator")
+	@Test(groups = { "Regression" }, description = "Verify the customized (non defult) privileges for Administrator")
 	public void CADMN1() throws Exception {
 		extentTest = extent.startTest("CADMN1-Verify the customized unchecked privileges for Administrator");
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
@@ -229,7 +249,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 				"FAIL: Audittrailstatus CheckBox should be Checked");
 		sa1.assertAll();
 	}
-
+	
 	// CADMN2
 	@Test(groups = { "Regression" }, description = "Verify the customized default privileges for Administrator")
 	public void CADMN2() throws Exception {
@@ -246,12 +266,12 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN3
+	//ADMN058
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is Unable to access the customized unchecked privilege-Create_Equipment")
-	public void CADMN3() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN058() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"CADMN3-Verify if Administrator is Unable to access customized unchecked privilege-Create_Equipment");
+				"ADMN058--Verify if Administrator is Unable to access customized unchecked privilege-Create_Equipment");
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		EquipmentHubPage.Alert_ClickAddBtn();
@@ -263,25 +283,17 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	}
 	
 
-	//CADMN4
+	//ADMN058A
 	@Test(groups = {
 			"Regression" }, description = "Verify Administrator is unable to access the customized unchecked privilege-Edit Equipment")
-	public void CADMN4() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN058A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"CADMN4-Verify if Administrator is able to access the customized unchecked privilege-Edit_ Equipment");
+				"ADMN058A-Verify if Administrator is able to access the customized unchecked privilege-Edit_ Equipment");
 		SoftAssert s = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "CADMN4", "1203");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		MainHubPage = EquipmentHubPage.ClickBackBtn();
-		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN4");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  CADMN22");
 		IRTDDetailspage.EditIRTDEquip("Editing");
 		//UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -298,18 +310,10 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		extentTest = extent.startTest(
 				"CADMN5_Verify Admin is unable to access the customized unchecked privilege-Delete Equipments");
 		SoftAssert s = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "CADMN5", "1203");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		MainHubPage = EquipmentHubPage.ClickBackBtn();
-		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN5");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  CADMN22");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -318,7 +322,6 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Alert message Not Matched");
 		s.assertAll();
 	}
-	
 	
 	// CADMN6
 	@Test(groups = {
@@ -415,7 +418,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("CAssert22");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		s.assertEquals(assetCreationPage.IsEditAssetscreenDisplayed(), true,
 				"FAIL: Admin should be able to access the Customized privilege-Edit Asset");
@@ -432,7 +435,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("CAssert22");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.click_CameraIcon();
 		String ExpMsg = "User does not have sufficient privileges to perform this operation";
@@ -443,16 +446,16 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	}
 
 	//dependsOnMethods = "CADMN10",
-	//CADMN13
+	//ADMN060
 	@Test(groups = {
 			"Regression" }, description = "Verify Administrator is able to access the customized privilege-Create Setups")
-	public void CADMN13() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN060() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("CADMN13_Verify Administrator is able to access the customized privilege-Create Setups");
+				.startTest("ADMN060_Verify Administrator is able to access the customized privilege-Create Setups");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("CAssert22");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Setup_defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		s.assertEquals(Setup_defineSetupPage.defineSetupPage_state(), true, "FAIL: setup page should be displayed");
 		s.assertAll();
@@ -468,7 +471,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("CAssert22");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.DeleteAssert();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
@@ -542,12 +545,12 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN17
+	//ADMN085
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is Unable to access the customized  privilege-Create Assets")
-	public void CADMN17() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN085() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("CADMN17_Verify if Supervisor is Unable to access the customized  privilege-Create Assets");
+				.startTest("ADMN085_Verify if Supervisor is Unable to access the customized  privilege-Create Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -559,16 +562,16 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	}
 
 	//dependsOnMethods = "CADMN10",
-	//CADMN18	
+	//ADMN085A	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the customized privilege-Edit Asset")
-	public void CADMN18() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN085A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("CADMN18-Verify Supervisor is unable to access the customized privilege-Edit Asset");
+				.startTest("ADMN085A-Verify Supervisor is unable to access the customized privilege-Edit Asset");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("CAssert22");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_assetEditBtn_alrt();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -636,9 +639,8 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		String ActAlertMsg = tu.get_AlertMsg_text();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Equipment should be created successfully");
 		s.assertAll();
-	}
-	
-	
+	}	
+		
 	//CADMN22
 	// dependsOnMethods = "CADMN21"
 	@Test(groups = {
@@ -649,13 +651,8 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "CADMN22", "CADMN22");
-		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		tu.click_Close_alertmsg();
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN22");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  CADMN22");
 		IRTDDetailspage.EditIRTDEquip("Editing");
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "Equipment \"CADMN22\" Updated successfully.";
@@ -663,9 +660,8 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Saved Successfully message should be displayed");
 		s.assertAll();
 	}
-	
-	
-	// CADMN23
+
+// CADMN23
 	// dependsOnMethods = "CADMN21",
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is able to access the customized non-default privilege-Delete Equipments")
@@ -687,7 +683,6 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		sa.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN23"), false, "FAIL:IRTD_Delete Popup Window should present");
 		sa.assertAll();
 	}
-	
 	
 	// CADMN23A
 	public void CADMN23A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -862,16 +857,11 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "CADMN31", "CADMN31");
-		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
-		tu.click_Close_alertmsg();
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN31");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  CADMN22");
 		IRTDDetailspage.EditIRTDEquip("Editing");
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
-		String ExpAlrtMsg = "Equipment \"CADMN31\" Updated successfully.";
+		String ExpAlrtMsg = "Equipment \"CADMN22\" Updated successfully.";
 		String ActAlertMsg = EquipmentHubPage.AlertMsg();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Saved Successfully message should be displayed");
 		s.assertAll();
@@ -902,10 +892,10 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	}
 
 	
-	//CADMN33	
+	//ADMN111	
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the customized unchecked-Create Asset")
-	public void CADMN33() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN111() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("CADMN33-Verify Operator is unable to access the customized unchecked-Create Asset");
 		SoftAssert sa = new SoftAssert();
@@ -919,10 +909,10 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN34
+	//ADMN111A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to access the customized Unchecked privilege-Edit Assets")
-	public void CADMN34() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ADMN111A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN34-Verify if Operator is unable to access the customized unchecked privilege-Edit Assets");
 		SoftAssert sa = new SoftAssert();
@@ -988,7 +978,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
-		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysOperator"), getPW("SysOperator"));
 		//UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		s.assertEquals(SyncInPage.SyncInTextBoxVisible(), true, "FAIL:Sync In TextBox should be Visible");
 		s.assertAll();
@@ -1045,5 +1035,38 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User should not able to access for Audit Trail");
 		s.assertAll();
 	}
-
-}
+ 
+	// ADMN087-Verify if Supervisor is able to access the customised non-default privilege-Delete setup
+		@Test(groups = {
+		"Regression" }, description = "ADMN087-Verify if Supervisor is able to access the customised non-default privilege-Delete setup")
+	    public void ADMN087() throws InterruptedException, IOException, AWTException {
+	    extentTest = extent.startTest("Verify if Supervisor is able to access the customised non-default privilege-Delete setup");
+	    SoftAssert s = new SoftAssert();
+	    MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
+	    assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage. Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(),true, "FAIL: User should able to delete");
+		s.assertAll();
+		} 
+	
+	//ADMN112-Verify Operator is able to access the customised non-default privilege-Delete setup
+	
+		@Test(groups = {
+		"Regression" }, description = "Verify Operator is able to access the customised non-default privilege-Delete setup")
+	    public void ADMN112() throws InterruptedException, IOException, AWTException {
+	    extentTest = extent.startTest("Verify Operator is able to access the customised non-default privilege-Delete setup");
+	    SoftAssert s = new SoftAssert();
+	    MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
+	    assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage. Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
+		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(),true, "FAIL: User should able to delete");
+		s.assertAll();
+		} 
+		
+	}
