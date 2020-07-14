@@ -98,6 +98,7 @@ public class UserManagementTest extends BaseClass {
 	
 	static String un = "User1";
 
+	// Before Class/Test
 	@BeforeTest
 	//@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
@@ -167,7 +168,7 @@ public class UserManagementTest extends BaseClass {
 
 	}
 
-	// After All the tests are conducted
+	// After Class/Test	
 	@AfterTest
 	//@AfterClass
 	public void endReport() throws InterruptedException {
@@ -187,7 +188,7 @@ public class UserManagementTest extends BaseClass {
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 	}
 
-	// TearDown-AftrMethod
+	// After Method-TearDown
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
@@ -230,55 +231,60 @@ public class UserManagementTest extends BaseClass {
 	
 	// ADMN007
 	@Test(groups = {
-			"Regression" }, description = "Verify if select the New User button and check if a form to fill in the Name, User ID, Password, Confirm Password, Title, User Type, Phone, Email and Assigning privileges is opened up for entries.")
+			"Regression" }, description = "ADMN007-Verify if select the New User button and check if a form "
+					+ "to fill in the Name, User ID, Password, Confirm Password, Title, User Type, Phone, Email "
+					+ "and Assigning privileges is opened up for entries.")
 	public void ADMN007() throws Exception {
 		extentTest = extent.startTest(
-				"Verify if select the New User button and check if a form to fill in the Name, User ID, Password, Confirm Password, Title, User Type, Phone, Email and Assigning privileges is opened up for entries.");
+				"ADMN007- Verify if select the New User button and check if a form to fill in the Name, User ID,"
+				+ "Password, Confirm Password, Title, User Type, Phone, Email and Assigning privileges is opened up for entries.");
 
 		// Click on NewUser button
 		UserManagementPage.ClickNewUser();
-		SoftAssert sa3 = new SoftAssert();
+		SoftAssert sa = new SoftAssert();
 
 		// Validate presence of UserName text field
-		sa3.assertEquals(UserManagementPage.UserNameFieldPresence(), true, "FAIL: No UName field present");
+		sa.assertEquals(UserManagementPage.UserNameFieldPresence(), true, "FAIL: No UName field present");
 
 		// Validate presence of UserID text field
-		sa3.assertEquals(UserManagementPage.UserIDFieldPresence(), true, "FAIL: No UID field present");
+		sa.assertEquals(UserManagementPage.UserIDFieldPresence(), true, "FAIL: No UID field present");
 
 		// Validate presence of password text field
-		sa3.assertEquals(UserManagementPage.PassworFieldPresence(), true, "FAIL: No PWD field present");
+		sa.assertEquals(UserManagementPage.PassworFieldPresence(), true, "FAIL: No PWD field present");
 
 		// Validate presence of password text field
-		sa3.assertEquals(UserManagementPage.ConPassworFieldPresence(), true, "FAIL: No Confirm PWD field present");
+		sa.assertEquals(UserManagementPage.ConPassworFieldPresence(), true, "FAIL: No Confirm PWD field present");
 
 		// Validate presence of Title text field
-		sa3.assertEquals(UserManagementPage.TitleFieldPresence(), true, "FAIL: No Title field present");
+		sa.assertEquals(UserManagementPage.TitleFieldPresence(), true, "FAIL: No Title field present");
 
 		// Validate presence of User Type DropDown field
-		sa3.assertEquals(UserManagementPage.UserTypeField_EnableState(), true, "FAIL: No Title field present");
+		sa.assertEquals(UserManagementPage.UserTypeField_EnableState(), true, "FAIL: No Title field present");
 
 		// Validate presence of Phone text field
-		sa3.assertEquals(UserManagementPage.PhoneFieldPresence(), true, "FAIL: No Phone field present");
+		sa.assertEquals(UserManagementPage.PhoneFieldPresence(), true, "FAIL: No Phone field present");
 
 		// Validate presence of Email text field
-		sa3.assertEquals(UserManagementPage.EmailFieldPresence(), true, "FAIL: No Email field present");
+		sa.assertEquals(UserManagementPage.EmailFieldPresence(), true, "FAIL: No Email field present");
 
 		// Validate presence of Email text field
-		sa3.assertEquals(UserManagementPage.EmailFieldPresence(), true, "FAIL: No Email field present");
+		sa.assertEquals(UserManagementPage.EmailFieldPresence(), true, "FAIL: No Email field present");
 
 		// Validate presence of Privilege check box field
-		sa3.assertEquals(UserManagementPage.PrivillagecheckboxPresence(), true, "FAIL: No Privilege field present");
-		sa3.assertAll();
+		sa.assertEquals(UserManagementPage.PrivillagecheckboxPresence(), true, "FAIL: No Privilege field present");
+		sa.assertAll();
 
 	}
 
 	// ADMN008
 	@Test(dataProvider = "tcADMN008", dataProviderClass = userManagementUtility.class, groups = {
-			"Regression" }, description = "ADMN008-Verify if mandatory fields are marked on the user management screen-Name, User ID, Password, Confirm Password, Title and User Type")
+			"Regression" }, description = "ADMN008-Verify if mandatory fields are marked on the user management "
+					+ "screen-Name, User ID, Password, Confirm Password, Title and User Type")
 
 	public void ADMN008(Object... dataProvider) throws InterruptedException {
 		extentTest = extent.startTest(
-				"ADMN008-Verify if mandatory fields are marked on the user management screen-Name, User ID, Password, Confirm Password, Title and User Type");
+				"ADMN008-Verify if mandatory fields are marked on the user management screen-Name, User ID, "
+				+ "Password, Confirm Password, Title and User Type");
 
 		SoftAssert sa4 = new SoftAssert();
 		String Name = (String) dataProvider[0];
@@ -2114,14 +2120,14 @@ public class UserManagementTest extends BaseClass {
 			"Regression" }, description = "Verify the deleted user should not be able to login to the application")
 	public void ADMN128() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN128_Verify the deleted user should not be able to login to the application");
-		SoftAssert sa30 = new SoftAssert();
+		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.InvalidLogin(getUID("TestAdmin"), getPW("TestAdmin"));
 		String ExpAlrtMsg = "Invalid Credential, Please try again.";
 		String ActAlertMsg = LoginPage.AlertMsg();
-		sa30.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Invalid Credential, Please try again message Not displaying");
-		sa30.assertAll();
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Invalid Credential, Please try again message Not displaying");
+		sa.assertAll();
 	}
 
 	// ADMN129

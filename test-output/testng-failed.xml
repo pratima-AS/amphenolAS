@@ -1,17 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [UMRegressionSuite]">
+  <listeners>
+    <listener class-name="com.vrt.Listners.ExtentReporterNG"/>
+    <listener class-name="com.vrt.Listners.RetryTransformer"/>
+  </listeners>
+  <test thread-count="5" verbose="5" name="UMTestRegression(failed)">
     <classes>
-      <class name="com.vrt.testcases.assetHubTest">
+      <class name="com.vrt.testcases.UserManagementTest">
         <methods>
-          <include name="ASSTHB006b" invocation-numbers="0"/>
-          <include name="Teardown"/>
-          <include name="AssetCreationSetup"/>
-          <include name="endReport_releaseMomory"/>
+          <include name="ADMN036A"/>
+          <include name="ADMN018"/>
+          <include name="ADMN016"/>
+          <include name="ADMN034B"/>
+          <include name="ADMN017"/>
+          <include name="ADMN032A"/>
+          <include name="ADMN034C"/>
+          <include name="ADMN039"/>
+          <include name="ADMN036"/>
+          <include name="ADMN036B"/>
+          <include name="ADMN015"/>
+          <include name="ADMN034A"/>
+          <include name="ADMN036C"/>
+          <include name="ADMN037"/>
+          <include name="ADMN040A"/>
+          <include name="ADMN034D"/>
+          <include name="ADMN042A"/>
+          <include name="ADMN042B"/>
+          <include name="PreSetup"/>
           <include name="Setup"/>
+          <include name="ADMN034"/>
+          <include name="ADMN035"/>
+          <include name="endReport"/>
+          <include name="Teardown"/>
+          <include name="ADMN037A"/>
+          <include name="ADMN037B"/>
+          <include name="ADMN069A"/>
+          <include name="ADMN039A"/>
+          <include name="ADMN126A"/>
+          <include name="ADMN128"/>
+          <include name="ADMN129"/>
+          <include name="ADMN043A"/>
+          <include name="ADMN127"/>
+          <include name="ADMN037C"/>
+          <include name="ADMN069B"/>
+          <include name="ADMN037D"/>
+          <include name="ADMN067A"/>
+          <include name="ADMN069C"/>
+          <include name="ADMN041A"/>
+          <include name="ADMN045"/>
+          <include name="ADMN043"/>
+          <include name="ADMN044"/>
+          <include name="ADMN041"/>
+          <include name="ADMN042"/>
+          <include name="ADMN040"/>
         </methods>
-      </class> <!-- com.vrt.testcases.assetHubTest -->
+      </class> <!-- com.vrt.testcases.UserManagementTest -->
+      <class name="com.vrt.testcases.UM_customized_UserPrivilagesTest">
+        <methods>
+          <include name="CADMN6"/>
+          <include name="PreSetup"/>
+          <include name="CADMN25"/>
+          <include name="CADMN26"/>
+          <include name="CADMN23"/>
+          <include name="CADMN5"/>
+          <include name="CADMN24"/>
+          <include name="CADMN29"/>
+          <include name="CADMN1"/>
+          <include name="CADMN27"/>
+          <include name="CADMN28"/>
+          <include name="endReport"/>
+          <include name="ADMN111A"/>
+          <include name="CADMN40"/>
+          <include name="ADMN058A"/>
+          <include name="CADMN21"/>
+          <include name="CADMN22"/>
+          <include name="CADMN31"/>
+          <include name="Teardown"/>
+          <include name="ADMN112"/>
+          <include name="ADMN058"/>
+          <include name="Setup"/>
+          <include name="ADMN111"/>
+          <include name="CADMN8"/>
+          <include name="CADMN7"/>
+          <include name="CADMN9"/>
+          <include name="CADMN14"/>
+          <include name="CADMN36"/>
+          <include name="CADMN15"/>
+          <include name="CADMN37"/>
+          <include name="CADMN12"/>
+          <include name="CADMN35"/>
+          <include name="ADMN085A"/>
+          <include name="CADMN19"/>
+          <include name="CADMN16"/>
+          <include name="CADMN38"/>
+          <include name="CADMN39"/>
+          <include name="CADMN10"/>
+          <include name="CADMN32"/>
+          <include name="CADMN11"/>
+          <include name="CADMN30"/>
+          <include name="CADMN20"/>
+          <include name="ADMN087"/>
+          <include name="ADMN085"/>
+          <include name="ADMN060"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.UM_customized_UserPrivilagesTest -->
+      <class name="com.vrt.testcases.UserPrivilegesTest">
+        <methods>
+          <include name="ADMN046"/>
+          <include name="ADMN048"/>
+          <include name="Teardown"/>
+          <include name="ADMN064"/>
+          <include name="ADMN097"/>
+          <include name="ADMN117A"/>
+          <include name="ADMN072"/>
+          <include name="ADMN062"/>
+          <include name="Setup"/>
+          <include name="ADMN080"/>
+          <include name="PreSetup"/>
+          <include name="ADMN048A"/>
+          <include name="ADMN077A"/>
+          <include name="endReport"/>
+          <include name="ADMN118"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.UserPrivilegesTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- UMTestRegression(failed) -->
+</suite> <!-- Failed suite [UMRegressionSuite] -->
