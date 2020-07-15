@@ -41,20 +41,17 @@ public class VRTLoggerHubPage extends BaseClass {
 
 		List<WebElement> VRTList = driver.findElementByName("VRT.DataObjects.DataContracts.EquipmentMasterData")
 				.findElements(By.className("GridViewItem"));
-		// List<WebElement> IrtdSerial = driver.findElementByName("Serial No:
-		// ").findElements(By.className("TextBlock"));
-		// System.out.println("Total IRTD Equipments created: " + IrtdList.size());
 
 		// Loop for the different serial number created
 		for (int i = 0; i < VRTList.size(); i++) {
 			// System.out.println("serial number : " + IrtdList.get(i).getText());
 
 			List<WebElement> VRTTileInfoList = VRTList.get(i).findElements(By.className("TextBlock"));
-			// System.out.println(" IRTD tile info count: " + IRTDTileInfoList.size());
+			// System.out.println(" VRT tile info count: " + VRTTileInfoList.size());
 
 			// Fetch all the contents of the Asset tile
 			for (int j = 0; j < VRTTileInfoList.size(); j++) {
-				// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+				// System.out.println("VRTTileInfo: "+VRTTileInfoList.get(j).getText());
 
 				if (VRTTileInfoList.get(j).getText().contains(SN)) {
 					clickOn(VRTTileInfoList.get(j));

@@ -155,8 +155,7 @@ public class setupCreationUtility extends BaseClass{
 		String sheetName = "SET020";
 		Object[][] data = getTestData(sheetName);
 		return data;
-	}
-	
+	}	
 	
 	@DataProvider(name = "SET022")
 	public static Object[][] SET022() {
@@ -164,5 +163,13 @@ public class setupCreationUtility extends BaseClass{
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
+	
+	@DataProvider(name = "ADMN037A")
+    public static Object[][] ADMN037A() {
+        String sheetName = "ADMN037A";
+        Object[][] data = getTestData(sheetName);
+        return data;
+    }	
+
 
 }

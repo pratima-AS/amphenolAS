@@ -17,14 +17,11 @@ public class Setup_GroupSensorsPage extends BaseClass{
 	
 	// Group Sensor page element variable declaration definition
 	WebElement GrpSensorPageTitle = null;
-	WebElement DefaultGrp_Btn = null;
-	WebElement GrpWiring_Btn = null;
-	
+	WebElement GrpWiring_Btn = null;	
 	WebElement NxtBtn = null;
 	
 	private void initializeEelements() {
 		GrpSensorPageTitle = driver.findElementByName("Group Sensors");
-		DefaultGrp_Btn = driver.findElementByAccessibilityId("DefaultGroupButton");
 		GrpWiring_Btn = driver.findElementByAccessibilityId("GroupsGraphButton");
 		NxtBtn = driver.findElementByAccessibilityId("NextButton");
 		
@@ -38,7 +35,6 @@ public class Setup_GroupSensorsPage extends BaseClass{
 	// Release memory
 	public void resetWebElements() {
 		GrpSensorPageTitle = null;
-		DefaultGrp_Btn = null;
 		GrpWiring_Btn = null;
 		NxtBtn = null;
 	}
@@ -59,6 +55,7 @@ public class Setup_GroupSensorsPage extends BaseClass{
 	
 	// Click the Default Group button
 	public void click_DfltGrp_Btn() throws InterruptedException {
+		WebElement DefaultGrp_Btn = driver.findElementByAccessibilityId("DefaultGroupButton");
 		clickOn(DefaultGrp_Btn);
 		Thread.sleep(1000);
 	}

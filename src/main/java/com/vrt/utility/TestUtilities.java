@@ -308,6 +308,32 @@ public class TestUtilities extends BaseClass {
 		driver.switchTo().activeElement();
 		Thread.sleep(500);
 	}	 
+	
+	// Select Folder method 
+	public void selectFolder(String foldername) throws AWTException, IOException, InterruptedException{
+
+		// switch to the file upload window
+		WebElement alert = driver.switchTo().activeElement();
+		Thread.sleep(1000);
+
+		// enter the filename
+		String folderpath = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\" + foldername;
+		//System.out.println(foldername);
+		alert.sendKeys(folderpath);
+		Thread.sleep(500);
+
+		// hit enter
+		Robot r = new Robot();		
+		r.keyPress(KeyEvent.VK_TAB);
+		r.keyRelease(KeyEvent.VK_ENTER);
+
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		// switch back
+		driver.switchTo().activeElement();
+		Thread.sleep(500);
+	}
+	
 	  
 	// Close alert message if visible
 	public void click_Close_alertmsg() throws InterruptedException {

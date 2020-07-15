@@ -42,9 +42,9 @@ import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.RWFileSelctionPage;
 import bsh.ParseException;
 
-public class UserPrivilegesTest extends BaseClass {
+public class UM2 extends BaseClass {
 	
-	public UserPrivilegesTest() throws IOException {
+	public UM2() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -74,8 +74,8 @@ public class UserPrivilegesTest extends BaseClass {
 	RWFileSelctionPage RWFileSelctionPage;
 	SyncInAssetListPage SyncInAssetListPage;
 	
-	@BeforeTest
-	//@BeforeClass
+	//@BeforeTest
+	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_UserPrivilagesTest"+".html", true);
@@ -160,7 +160,7 @@ public class UserPrivilegesTest extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		/* Thread.sleep(500);
 		AppClose();
@@ -170,9 +170,8 @@ public class UserPrivilegesTest extends BaseClass {
 	}
 
 	// After All the tests are conducted
-
-	@AfterTest
-	//@AfterClass
+	//@AfterTest
+	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
@@ -736,7 +735,7 @@ public class UserPrivilegesTest extends BaseClass {
 			CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
 			CopySetuppage.Click_Selectall_chkbox();
 			CopySetuppage.click_copy_Btn();
-			CopySetuppage.Yes_alert();
+			CopySetuppage.select_alertOption("Yes");
 			UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 			String ExpAlrtMsg = "User do not have permission to perform this operation";
 			String ActAlertMsg = tu.get_AlertMsg_text();
@@ -1157,11 +1156,10 @@ public class UserPrivilegesTest extends BaseClass {
 				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 				assetHubPage = MainHubPage.ClickAssetTile();
 				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage. Click_SetupName("manual 1 min sampling");
 				assetDetailsPage.Click_reportsTile();
 				assetDetailsPage.Click_SetupReportsButton();
 				assetDetailsPage.Select_ReportFile("manual 1 min sampling");
-				assetDetailsPage.CopyReportToDrive_Btn("CopyReports");
+				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
 				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 				String ActAlertMsg = tu.get_AlertMsg_text();
 				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
@@ -1176,11 +1174,10 @@ public class UserPrivilegesTest extends BaseClass {
 				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 				assetHubPage = MainHubPage.ClickAssetTile();
 				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage. Click_SetupName("manual 1 min sampling");
 				assetDetailsPage.Click_reportsTile();
 				assetDetailsPage.Click_QualReportsButton();
 				assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-				assetDetailsPage.CopyReportToDrive_Btn("CopyReports");
+				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
 				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 				String ActAlertMsg = tu.get_AlertMsg_text();
 				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
@@ -1195,11 +1192,10 @@ public class UserPrivilegesTest extends BaseClass {
 				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 				assetHubPage = MainHubPage.ClickAssetTile();
 				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage. Click_SetupName("manual 1 min sampling");
 				assetDetailsPage.Click_reportsTile();
 				assetDetailsPage.Click_PassFailReportBtn();
 				assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-				assetDetailsPage.CopyReportToDrive_Btn("CopyReports");
+				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
 				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 				String ActAlertMsg = tu.get_AlertMsg_text();
 				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");

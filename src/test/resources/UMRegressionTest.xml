@@ -8,10 +8,10 @@
 	</listeners>
 	<test thread-count="5" name="UMTestRegression" preserve-order="true">
 		<classes>
-			<class name="com.vrt.testcases.UserManagementTest"></class>
-			<class name="com.vrt.testcases.UserPrivilegesTest"></class>
-			<class name="com.vrt.testcases.UM_customized_UserPrivilagesTest" ></class>	
-			<class name="com.vrt.testcases.UM_DeleteStudyAndReportAcessTest" ></class>				
+			<class name="com.vrt.testcases.UM1"></class>
+			<class name="com.vrt.testcases.UM2"></class>
+			<class name="com.vrt.testcases.UM3" ></class>	
+			<class name="com.vrt.testcases.UM4" ></class>				
 		</classes>
 	</test> <!-- assetDetailsTestSanity -->
 </suite> <!-- assetDetailsTestSuite -->

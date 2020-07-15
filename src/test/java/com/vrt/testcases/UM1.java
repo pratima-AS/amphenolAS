@@ -58,9 +58,9 @@ import com.vrt.utility.sensorCofigUtility;
 import com.vrt.utility.setupCreationUtility;
 import com.vrt.utility.userManagementUtility;
 
-public class UserManagementTest extends BaseClass {
+public class UM1 extends BaseClass {
 
-	public UserManagementTest() throws IOException {
+	public UM1() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -99,8 +99,8 @@ public class UserManagementTest extends BaseClass {
 	static String un = "User1";
 
 	// Before Class/Test
-	@BeforeTest
-	//@BeforeClass
+	//@BeforeTest
+	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "UserManagementTest" + ".html",
@@ -110,18 +110,15 @@ public class UserManagementTest extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
-		System.out.println("UserManagementTest in Progress..");
-
+		System.out.println("UM1: UserManagementTest in Progress..");
 		
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Equipment.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
-		// Rename the VRT Setups folder (Asset) if exists
+		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
@@ -158,19 +155,14 @@ public class UserManagementTest extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		
-		/*Thread.sleep(500);
-		AppClose();
-		Thread.sleep(1000);
-		*/
 
 	}
 
 	// After Class/Test	
-	@AfterTest
-	//@AfterClass
+	//@AfterTest
+	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
@@ -817,7 +809,6 @@ public class UserManagementTest extends BaseClass {
 	}
 
 	// ADMN027
-
 	@Test(groups = { "Regression" }, description = "Verify that  Email field is non-mandatory")
 
 	public void ADMN027() throws InterruptedException {
@@ -831,7 +822,6 @@ public class UserManagementTest extends BaseClass {
 	}
 
 	// ADMN028
-
 	@Test(dataProvider = "tcADMN028", dataProviderClass = userManagementUtility.class, groups = {
 			"Regression" }, description = "Verify Invalid formats for Email Field at User Management Screen")
 
@@ -858,8 +848,7 @@ public class UserManagementTest extends BaseClass {
 		sa.assertAll();
 	}
 
- // ADMN029
-
+	// ADMN029
 	@Test(dataProvider = "tcADMN029", dataProviderClass = userManagementUtility.class, groups = {
 			"Regression" }, description = "Verify valid formats for Email Field at User Management Screen")
 	public void ADMN029(Object... dataProvider) throws InterruptedException {
@@ -954,53 +943,55 @@ public class UserManagementTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(UserManagementPage.DisableAlertMsgVisible(), true,
 				"Fail: user is able to disable his own account");
-		UserManagementPage.click_okBtn();
 		sa.assertAll();
 	}
 
 	// ADMN034
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Equipment-Logger details screen")
+			"Regression" }, description = "Verify the functionality when disabled user credentials are "
+					+ "given in authentication window of Equipment-Logger details screen - Copy to drive")
 	public void ADMN034() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN034-Verify the functionality when disabled user credentials are given in authentication window of Equipment-Logger details screen - Copy to drive");
+				"ADMN034-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Equipment-Logger details screen - Copy to drive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		
+		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();		
 		VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
-		VRTLoggersDetailspage.Click_VRTVerification_Report("U88A-A");
-		VRTLoggersDetailspage.CopyToDrive("VRTLoggers");
-		Thread.sleep(500);
+		VRTLoggersDetailspage.Click_VRTVerification_studyFile("U88A-A");
+		VRTLoggersDetailspage.selectFolder_CopyToDrive("syncin");		
 	    UserLoginPopup("1D", getPW("Dsbluser"));
+	    Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		//String ActAlertMsg = EquipmentPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to copy the study file to desired drive");
 		sa.assertAll();
 		}	
 		
- // ADMN034A
-	@Test(groups = { "Regression" }, description = "ADMN034A-ADMN034-Verify the functionality when disabled user credentials are given in authentication window of Equipment Logger details screen-Delete Icon")
+	// ADMN034A
+	@Test(groups = { "Regression" }, description = "ADMN034A-Verify the functionality when disabled user "
+			+ "credentials are given in authentication window of Equipment Logger details screen-Delete Icon")
 	public void ADMN034A() throws InterruptedException, IOException {
 		
-		extentTest = extent.startTest("ADMN034A-Verify the functionality when disabled user credentials are given in authentication window of Equipment Logger details screen-Delete Icon");
+		extentTest = extent.startTest("ADMN034A-Verify the functionality when disabled user credentials are"
+				+ " given in authentication window of Equipment Logger details screen-Delete Icon");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 		VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
-		VRTLoggersDetailspage.Click_VRTVerification_Report("U88A-A");
+		VRTLoggersDetailspage.Click_VRTVerification_studyFile("U88A-A");
 		VRTLoggersDetailspage.Click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
 		
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to Delete equipments");
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user able to Delete equipments");
 		sa.assertAll();
 	}
-
 	
 	// ADMN034B
 	@Test(groups = {
@@ -1016,16 +1007,17 @@ public class UserManagementTest extends BaseClass {
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 		VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		VRTLoggersDetailspage.Click_reporttile();
-		VRTLoggersDetailspage.Click_VRTVerification_Report("U88A-A");
+		VRTLoggersDetailspage.Click_VRTVerification_studyFile("U88A-A");
 		VRTLoggersDetailspage.Click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
-		
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to delete equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user able to delete equipments pdf report files");
 		sa.assertAll();
 	}
-
+	
 	// ADMN034C
 	@Test(groups = {
 			"Regression" }, description = "Verify the functionality when disabled user credentials are given in "
@@ -1039,27 +1031,24 @@ public class UserManagementTest extends BaseClass {
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 		VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
-		VRTLoggersDetailspage.Upload_Documents("uploadnote.txt");
 		VRTLoggersDetailspage.Click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to delete equipments");
-		sa.assertAll();
-		VRTLoggersDetailspage.Click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		VRTLoggersDetailspage.click_Alrt_YesBtn();
-		System.out.println("Deleted successfully");
 		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user able to delete documents under "
+				+ "Document tile of Logger equipment");
+		sa.assertAll();		
 	}
-
+	
 	// ADMN034D
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in "
+			"Regression" }, description = "ADMN034D-Verify the functionality when disabled user credentials are given in "
 					+ "authentication window of Equipment Logger details screen- Modification")
 	public void ADMN034D() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN034C-Verify the functionality when disabled user credentials are given in authentication "
+				"ADMN034D-Verify the functionality when disabled user credentials are given in authentication "
 						+ "window of Equipment Logger details screen- Modification");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -1069,9 +1058,11 @@ public class UserManagementTest extends BaseClass {
 		VRTLoggersDetailspage.Enter_EquipmentName("test");
 		VRTLoggersDetailspage.Click_Save();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to delete equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user able to modify equipment details");
 		sa.assertAll();
 	}
 
@@ -1111,8 +1102,7 @@ public class UserManagementTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN036A
-	
+	// ADMN036A	
 	@Test(groups = {
 			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Edit in Assets screen")
 	public void ADMN036A() throws InterruptedException, IOException {
@@ -1155,7 +1145,6 @@ public class UserManagementTest extends BaseClass {
 	}
 
 	// ADMN036C
-
 	@Test(groups = {
 			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of copy Assets screen")
 	public void ADMN036C() throws InterruptedException, IOException {
@@ -1178,25 +1167,20 @@ public class UserManagementTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN037
+	// ADMN037A-Verify if a disabled User is not allowed to create a new Setup
 	@Test(groups = {
-			"Regression" }, dataProvider = "SetupCreation_3", dataProviderClass = setupCreationUtility.class, description = "Create Setups")
+			"Regression" }, dataProvider = "ADMN037A", dataProviderClass = setupCreationUtility.class, 
+					description = "ADMN037A-Verify if a disabled User is not allowed to create a new Setup	")
 
-	public void ADMN037(String AName, String AID, String AType, String AManufaturer, String ALocation, String SetupName,
-			String SensorCount, String SOP, String LoadDescription, String Comments, String TempCount, String PrsrCount,
-			String TCSensorLabel, String PrSensorLabel, String BaseTemp, String AlethCondition, String Qstart,
-			String TOD, String Qstop, String Hrs, String Mnts, String Secs, String SR, String TR, String RF_Transmitt,
-			String count) throws InterruptedException, IOException, AWTException, ParseException {
+	public void ADMN037A(String AName, String SetupName,
+			String SensorCount, String TempCount, String TCSensorLabel, String Qstart) throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"Verify the functionality when disabled user credentials are given in authentication window of Setups screen");
+				"ADMN037A-Verify if a disabled User is not allowed to create a new Setup");
 		SoftAssert sa = new SoftAssert();
-		// Create Asset
+		
+		// Select Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		assetCreationPage.assetCreation(AName, AID, AType, AManufaturer, ALocation);
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
 		// Define Setup
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
@@ -1205,135 +1189,91 @@ public class UserManagementTest extends BaseClass {
 		defineSetupPage.click_defineSetupPage_SensorCountField();
 		defineSetupPage.clear_defineSetupPage_SensorCount();
 		defineSetupPage.enter_defineSetupPage_SensorCount(SensorCount);
-		defineSetupPage.click_defineSetupPage_SOPField();
-		defineSetupPage.clear_defineSetupPage_SOP();
-		defineSetupPage.enter_defineSetupPage_SOP(SOP);
-		defineSetupPage.click_defineSetupPage_LoadDescField();
-		defineSetupPage.clear_defineSetupPage_LoadDesc();
-		defineSetupPage.enter_defineSetupPage_LoadDesc(LoadDescription);
-		defineSetupPage.click_defineSetupPage_commentsField();
-		defineSetupPage.clear_defineSetupPage_comments();
-		defineSetupPage.enter_defineSetupPage_comments(Comments);
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
-
-		// Setup COnfig page
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		int PrNo = Integer.parseInt(PrsrCount);
-
-		if (PrNo > 0) {
-			Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-			Setup_SensorConfigPage.Enter_PressureCount_textField(PrsrCount);
-
-			Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-			Setup_SensorConfigPage.select_Sensortype_temp();
-			Setup_SensorConfigPage.Enter_Num_To(TempCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-			Setup_SensorConfigPage.select_Sensortype_Pr();
-			Setup_SensorConfigPage.Enter_Num_To(PrsrCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(PrSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-
-		} else {
-			Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-			Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-			Setup_SensorConfigPage.select_Sensortype_temp();
-			Setup_SensorConfigPage.Enter_Num_To(TempCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-		}
-
-		int SensorCnt = Integer.parseInt(SensorCount);
-		int TCNo = Integer.parseInt(TempCount);
-
-		if (!(SensorCnt > (TCNo + PrNo))) {
-			Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
-		} else {
-			Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
-		}
-
-		// Setup_Group Sensors Config page
-		if (!(PrNo > 0)) {
-			Setup_GroupSensorsPage.click_DfltGrp_Btn();
-
-		} else {
-			Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		}
-
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
-
-		// Setup_Claculations page
-		float bTemp = Float.parseFloat(BaseTemp);
-		if (bTemp >= 0.0) {
-			Setup_CalculationsPage.enter_bTemp(BaseTemp);
-		}
-		Setup_CalculationsPage.select_AlethCondition(AlethCondition);
-
-		if (PrNo > 0) {
-			Setup_CalculationsPage.click_SatTP_btn();
-			Setup_CalculationsPage.select_1stTempSensor();
-			Setup_CalculationsPage.select_1stPrSensor();
-			Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-
-		} else {
-			Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-		}
-
-		// Setup_Qual Parameters page
-		int Yr = Integer.parseInt(TOD.split(":")[0]);
-		int Mn = Integer.parseInt(TOD.split(":")[1]);
-		int Dt = Integer.parseInt(TOD.split(":")[2]);
-		int Hr = Integer.parseInt(TOD.split(":")[3]);
-		int Mnt = Integer.parseInt(TOD.split(":")[4]);
-		int Se = Integer.parseInt(TOD.split(":")[5]);
-		Setup_QualParamPage.select_QualStart_condition(Qstart, Yr, Mn, Dt, Hr, Mnt, Se);// Select TOD Qual Start
-																						// parameter
-																						// yr/Mnth/Dt/Hr/Mnt/Sec,
-		Setup_QualParamPage.select_QualStop_condition(Qstop, Hrs, Mnts, Secs);
-		Setup_QualParamPage.select_SR(SR);
-		Setup_QualParamPage.select_TR(SR, TR);
-		Setup_QualParamPage.select_RFT(RF_Transmitt);
-
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
+		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
+		Setup_SensorConfigPage.select_Sensortype_temp();
+		Setup_SensorConfigPage.Enter_Num_To(TempCount);
+		Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
+		Setup_SensorConfigPage.Click_assignBtn();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();		
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "1D", getPW("Dsbluser"));
-		//UserLoginPopup("1D", getPW("Dsbluser"));
-
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		// String ActAlertMsg = EquipmentPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create setups");
-		//Setup_ReviewPage.click_cross_btn();
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to create new setup");
 		sa.assertAll();
-
 	}
-
-	// ADMN037A
-
+	
+	// ADMN037B-Verify if a disabled User is not allowed to edit an existing Setup and save the changes
 	@Test(groups = {
-			"Regression" }, description = "ADMN037A-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _copy to drive")
-	public void ADMN037A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN037B-Verify if a disabled User is not allowed to edit"
+					+ " an existing Setup and save the changes")
+
+	public void ADMN037B() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"ADMN037A-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_copy to drive");
+				"ADMN037B-Verify if a disabled User is not allowed to edit an existing Setup and save the changes");
+		SoftAssert sa = new SoftAssert();
+		
+		// Select Asset
+		MainHubPage = UserManagementPage.ClickBackButn();
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		// Edit Setup
+		defineSetupPage = assetDetailsPage.click_editStupBtn();
+		defineSetupPage.enter_defineSetupPage_SOP("ADMIN037B");
+		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();		
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
+		Thread.sleep(2000);
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();		
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
+		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to edit & save setup");
+		sa.assertAll();
+	}
+	
+	// ADMN037C
+	@Test(groups = {
+			"Regression" }, description = "ADMN037C-Verify the functionality when disabled user credentials "
+					+ "are given in authentication window of Setups screen _copy to drive")
+	public void ADMN037C() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN037C-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Setups screen_copy to drive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.SETUP_CopyToDrive_Btn("CopySetups");
-		Thread.sleep(1000);
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "setup");		
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(1000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to conduct Copy to Drive for Setups");
 		sa.assertAll();
 	}
-
-	// ADMN037B
+	
+	// ADMN037D
 	@Test(groups = {
-			"Regression" }, description = "ADMN037B-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _Print_Button")
-	public void ADMN037B() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN037D-Verify the functionality when disabled user credentials are "
+					+ "given in authentication window of Setups screen _Print_Button")
+	public void ADMN037D() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN037B-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_Print_Button ");
+				"ADMN037D-Verify the functionality when disabled user credentials are given in authentication window "
+				+ "of Setups screen_Print_Button ");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -1341,18 +1281,21 @@ public class UserManagementTest extends BaseClass {
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_Print_Button();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(1000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to print setup");
 		sa.assertAll();
 	}
-
-	// ADMN037C
+	
+	// ADMN037E
 	@Test(groups = {
-			"Regression" }, description = "ADMN037B-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _Delete Set Up")
-	public void ADMN037C() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN037E-Verify the functionality when disabled user credentials "
+					+ "are given in authentication window of Setups screen _Delete Set Up")
+	public void ADMN037E() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN037C-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_Delete Set Up Btn");
+				"ADMN037E-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_Delete Set Up Btn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -1360,270 +1303,220 @@ public class UserManagementTest extends BaseClass {
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(1000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to delete setups");
 		sa.assertAll();
 	}
-
-	// ADMN037D
+	
+	// ADMN037F
 	@Test(groups = {
-			"Regression" }, dataProvider = "SetupCreation_4", dataProviderClass = setupCreationUtility.class, 
-					description = "Verify the functionality when disabled user credentials are given in "
+			"Regression" }, dataProvider = "ADMIN037F", dataProviderClass = userManagementUtility.class, 
+					description = "ADMN037F-Verify the functionality when disabled user credentials are given in "
 							+ "authentication window of Setups screen_CopySetup_Button")
 
-	public void ADMN037D(String AName, String AID, String AType, String AManufaturer, String ALocation,
-			String SetupName, String SensorCount, String SOP, String LoadDescription, String Comments, String TempCount,
-			String PrsrCount, String TCSensorLabel, String PrSensorLabel, String BaseTemp, String AlethCondition,
-			String Qstart, String TOD, String Qstop, String Hrs, String Mnts, String Secs, String SR, String TR,
-			String RF_Transmitt, String count) throws InterruptedException, IOException, AWTException, ParseException {
+	public void ADMN037F(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"ADMN037D-Verify the functionality when disabled user credentials are given in authentication window of "
+				"ADMN037F-Verify the functionality when disabled user credentials are given in authentication window of "
 				+ "Setups screen_CopySetup_Button");
 		SoftAssert sa = new SoftAssert();
 		// Create Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		assetCreationPage.assetCreation(AName, AID, AType, AManufaturer, ALocation);
+		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
+		//Select the newly created Asset
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		// Define Setup
-		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
-		defineSetupPage.clear_defineSetupPage_setupName();
-		defineSetupPage.enter_defineSetupPage_setupName(SetupName);
-		defineSetupPage.click_defineSetupPage_SensorCountField();
-		defineSetupPage.clear_defineSetupPage_SensorCount();
-		defineSetupPage.enter_defineSetupPage_SensorCount(SensorCount);
-		defineSetupPage.click_defineSetupPage_SOPField();
-		defineSetupPage.clear_defineSetupPage_SOP();
-		defineSetupPage.enter_defineSetupPage_SOP(SOP);
-		defineSetupPage.click_defineSetupPage_LoadDescField();
-		defineSetupPage.clear_defineSetupPage_LoadDesc();
-		defineSetupPage.enter_defineSetupPage_LoadDesc(LoadDescription);
-		defineSetupPage.click_defineSetupPage_commentsField();
-		defineSetupPage.clear_defineSetupPage_comments();
-		defineSetupPage.enter_defineSetupPage_comments(Comments);
-		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
-
-		// Setup COnfig page
-		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		int PrNo = Integer.parseInt(PrsrCount);
-
-		if (PrNo > 0) {
-			Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-			Setup_SensorConfigPage.Enter_PressureCount_textField(PrsrCount);
-
-			Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-			Setup_SensorConfigPage.select_Sensortype_temp();
-			Setup_SensorConfigPage.Enter_Num_To(TempCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-			Setup_SensorConfigPage.select_Sensortype_Pr();
-			Setup_SensorConfigPage.Enter_Num_To(PrsrCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(PrSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-
-		} else {
-			Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-			Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-			Setup_SensorConfigPage.select_Sensortype_temp();
-			Setup_SensorConfigPage.Enter_Num_To(TempCount);
-			Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
-			Setup_SensorConfigPage.Click_assignBtn();
-		}
-
-		int SensorCnt = Integer.parseInt(SensorCount);
-		int TCNo = Integer.parseInt(TempCount);
-
-		if (!(SensorCnt > (TCNo + PrNo))) {
-			Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
-		} else {
-			Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
-		}
-
-		// Setup_Group Sensors Config page
-		if (!(PrNo > 0)) {
-			Setup_GroupSensorsPage.click_DfltGrp_Btn();
-
-		} else {
-			Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		}
-
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
-
-		// Setup_Claculations page
-		float bTemp = Float.parseFloat(BaseTemp);
-		if (bTemp >= 0.0) {
-			Setup_CalculationsPage.enter_bTemp(BaseTemp);
-		}
-		Setup_CalculationsPage.select_AlethCondition(AlethCondition);
-
-		if (PrNo > 0) {
-			Setup_CalculationsPage.click_SatTP_btn();
-			Setup_CalculationsPage.select_1stTempSensor();
-			Setup_CalculationsPage.select_1stPrSensor();
-			Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-
-		} else {
-			Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-		}
-
-		// Setup_Qual Parameters page
-		int Yr = Integer.parseInt(TOD.split(":")[0]);
-		int Mn = Integer.parseInt(TOD.split(":")[1]);
-		int Dt = Integer.parseInt(TOD.split(":")[2]);
-		int Hr = Integer.parseInt(TOD.split(":")[3]);
-		int Mnt = Integer.parseInt(TOD.split(":")[4]);
-		int Se = Integer.parseInt(TOD.split(":")[5]);
-		Setup_QualParamPage.select_QualStart_condition(Qstart, Yr, Mn, Dt, Hr, Mnt, Se);// Select TOD Qual Start
-																						// parameter
-																						// yr/Mnth/Dt/Hr/Mnt/Sec,
-		Setup_QualParamPage.select_QualStop_condition(Qstop, Hrs, Mnts, Secs);
-		Setup_QualParamPage.select_SR(SR);
-		Setup_QualParamPage.select_TR(SR, TR);
-		Setup_QualParamPage.select_RFT(RF_Transmitt);
-
-		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
-
-		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
-		// Setup_Review page
-		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "adminFull", "adminFull");
-		// Setup_ReviewPage.click_back_Btn();
-		//System.out.println("Setup COunt: " + count);
-		Setup_ReviewPage.click_CopyAsNewSetup_Button();
-		//Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "1D", getPW("Dsbluser"));
+		CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
+		CopySetuppage.Click_Selectall_chkbox();
+		CopySetuppage.click_copy_Btn();
+		CopySetuppage.select_alertOption("Yes");
 		UserLoginPopup("1D", getPW("Dsbluser"));
-
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		// String ActAlertMsg = EquipmentPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
-		//Setup_ReviewPage.click_cross_btn();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to peform copy setups to a different Asset");
 		sa.assertAll();
 	}
-
-	// ADMN039
-
+	
+	
+	// ADMN037G
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tile-Delete icon")
-	public void ADMN039() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN037G-Verify the functionality when disabled user credentials "
+					+ "are given in authentication window of Setups screen_Copy As New Setup_Button")
+
+	public void ADMN037G() throws IOException, InterruptedException {
 		extentTest = extent.startTest(
-				"ADMN039-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tiletile-Delete icon");
+				"ADMN037G-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Setups screen_Copy As New Setup_Button");
 		SoftAssert sa = new SoftAssert();
+		// Select Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.click_QualTile();
-		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		// Edit Setup
+		defineSetupPage = assetDetailsPage.click_editStupBtn();
+		defineSetupPage.enter_defineSetupPage_SOP("ADMIN037G");
+		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();		
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
+		Thread.sleep(2000);
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();		
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
+		Setup_ReviewPage.click_CopyAsNewSetup_Button();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to create setup using create a New Setup button");
 		sa.assertAll();
 	}
+
 
 	// ADMN039A
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tile-CopyQualToDrive_Btn")
+			"Regression" }, description = "ADMN039A-Verify the functionality when disabled user credentials are "
+					+ "given in authentication window of Asset Details-Qualification tile-Delete icon")
 	public void ADMN039A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN039A-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tile-CopyQualToDrive_Btn");
+				"ADMN039A-Verify the functionality when disabled user credentials are given in authentication"
+				+ " window of Asset Details-Qualification tile-Delete icon");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		assetDetailsPage.CopyQualToDrive_Btn("CopyQUAL");
+		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to delete Qual study file");
 		sa.assertAll();
 	}
 
-	// ADMN040
+	// ADMN039B
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-Delete Btn")
-	public void ADMN040() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN039B-Verify the functionality when disabled user credentials"
+					+ " are given in authentication window of Asset Details-Qualification tile-CopyQualToDrive_Btn")
+	public void ADMN039B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN040-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-Delete Btn");
+				"ADMN039B-Verify the functionality when disabled user credentials are given in authentication"
+				+ " window of Asset Details-Qualification tile-CopyQualToDrive_Btn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");		
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "qual");
+		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to perform copy to drive");
+		sa.assertAll();
+	}
+
+	
+	// ADMN040A
+	@Test(groups = {
+			"Regression" }, description = "ADMN040A-Verify the functionality when disabled user credentials are given"
+					+ " in authentication window of Asset Details-Reports tile-Delete Btn")
+	public void ADMN040A() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN040A-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Asset Details-Reports tile-Delete Btn");
+		SoftAssert sa = new SoftAssert();
+		MainHubPage = UserManagementPage.ClickBackButn();
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_SetupReportsButton();
+		//assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to delete report files");
 		sa.assertAll();
 	}
 
-	// ADMN040A
+	// ADMN040B
 	@Test(groups = {
-			"Regression" }, description = "ADMN040-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-CopyReports")
-	public void ADMN040A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN040B-Verify the functionality when disabled user credentials "
+					+ "are given in authentication window of Asset Details-Reports tile-Copy to Drive")
+	public void ADMN040B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN040-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-CopyReports");
+				"ADMN040-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Asset Details-Reports tile-Copy to Drive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
-		assetDetailsPage.CopyReportToDrive_Btn("CopyReports");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to perform Copy to Drive");
 		sa.assertAll();
 	}
 
-	// ADMN041
+	// ADMN041A
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents tile-click_DeleteBtn")
-	public void ADMN041() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN041A- Verify the functionality when disabled user credentials"
+					+ " are given in authentication window of Asset Details-Documents tile-click_DeleteBtn")
+	public void ADMN041A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN041-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents tile-click_DeleteBtn");
+				"ADMN041A-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Asset Details-Documents tile-click_DeleteBtn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
 		assetDetailsPage.click_DeleteBtn();
 		UserLoginPopup("1D", getPW("Dsbluser"));
+		Thread.sleep(1000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+		
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to delete documents");
 		sa.assertAll();
 	}
 		 
-	 //ADMN041A
+	 //ADMN041B
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents -CopyToDrive")
-	public void ADMN041A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN041B-Verify the functionality when disabled user credentials are "
+					+ "given in authentication window of Asset Details-Documents -CopyToDrive")
+	public void ADMN041B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN041-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents tile-CopyToDrive");
+				"ADMN041B-Verify the functionality when disabled user credentials are given in authentication "
+				+ "window of Asset Details-Documents tile-CopyToDrive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
-		assetDetailsPage.CopyToDrive_Document("CopyDoc");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "docs");
 		UserLoginPopup("1D", getPW("Dsbluser"));
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -1785,29 +1678,37 @@ public class UserManagementTest extends BaseClass {
 		sa26.assertAll();
 	}
 
-	// ADM046 - ADM066 and ADM068 TC's: Refer UserPrivilegesTest Script
+	
+	// ADM046 - ADM066 and ADM068 TC's: Refer UM2: UserPrivilegesTest Script
 
-	// ADMN067
+	
+	// ADMN067A
 	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups")
-	public void ADMN067() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, dataProvider = "ADMIN067A", dataProviderClass = userManagementUtility.class, 
+					description = "ADMN067A-Verify if Administrator is able to access the default "
+					+ "privilege-Copy Files_Reports - Copy Setups")
+	public void ADMN067A(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN067-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
+				"ADMN067A-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
-		assetCreationPage.assetCreation("Astxx", "1A1", "HeatBath", "HYdd", "Ind");
+		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("Astxx");
-		assetDetailsPage.click_SetupTile();
+		assetDetailsPage = assetHubPage.click_assetTile(AName);
+		//assetDetailsPage.click_SetupTile();
 		CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
 		CopySetuppage.Click_Selectall_chkbox();
 		CopySetuppage.click_copy_Btn();
-		CopySetuppage.Yes_alert();
+		CopySetuppage.select_alertOption("Yes");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		sa.assertEquals(assetDetailsPage.SetupName_Visible(), true, "FAIL: No message displayed");
+		tu.click_Close_alertmsg();
+		assetDetailsPage = CopySetuppage.Click_Back_Btn();
+		
+		sa.assertEquals(assetDetailsPage.SetupName_Visible(), true, "FAIL: No Setup Added");
 		sa.assertAll();
 
 	}
@@ -1815,25 +1716,31 @@ public class UserManagementTest extends BaseClass {
 	// ADMN067A-Verify if Administrator is able to access the default privilege-Copy
 	// Files_Reports-Assets
 	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Copy Files_Reports- copy Assets")
-	public void ADMN067A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "Verify if Administrator is able to access the default "
+					+ "privilege-Copy Files_Reports- copy Assets")
+	public void ADMN067B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN067-Verify the functionality when disabled user credentials are given in authentication window of Asset Details- Copy Assets");
+				"ADMN067-Verify the functionality when disabled user credentials are given in "
+				+ "authentication window of Asset Details- Copy Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Copyassetpage = assetDetailsPage.clickCopyasset();
-		Copyassetpage.Enter_NewAssetNameField("TestB1");
-		Copyassetpage.Enter_NewAssetIDField("102B");
+		Copyassetpage.Enter_NewAssetNameField("ADMN067B");
+		Copyassetpage.Enter_NewAssetIDField("067BB");
 		Copyassetpage.click_copy_Btn();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		Copyassetpage.clickBack_Button();
-		assetDetailsPage = Copyassetpage.Yes_alert();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("TestB1");
+		
+		String AlrtMsgTxt = tu.get_AlertMsg_text();
+		//System.out.println(AlrtMsgTxt);
+		String[] expectedAssetName = AlrtMsgTxt.split(" ");
+		//System.out.println(expectedAssetName[0]);
+		/*for (String wrds : expectedAssetName) {
+			System.out.println(wrds);
+		}*/
 
-		sa.assertEquals(assetDetailsPage.assetDetailPageTitle_Visible(), true, "FAIL: No name displayed");
+		sa.assertEquals("ADMN067B", expectedAssetName[0], "FAIL: Unable to create New Asset By Admin");
 		sa.assertAll();
 
 	}
@@ -1876,7 +1783,6 @@ public class UserManagementTest extends BaseClass {
 	}
 
 	// ADMN069B
-
 	@Test(groups = {
 			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Equipment Edit")
 	public void ADMN069B() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1900,8 +1806,7 @@ public class UserManagementTest extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN069C
-	
+	// ADMN069C	
 	@Test(groups = {
 			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Equipment Delete")
 	void ADMN069C() throws InterruptedException, IOException {
@@ -2155,7 +2060,6 @@ public class UserManagementTest extends BaseClass {
 		sa.assertEquals(UserManagementPage.IsSearchNamevisible("User1"), true, "Fail: Searched users should available");
 		sa.assertAll();
 	}
-
 	
 	// ADMN132
 	@Test(groups = { "Regression" }, description = "Verify the cancel button functionality")

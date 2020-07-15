@@ -41,9 +41,9 @@ import com.vrt.pages.SyncInAssetListPage;
 
 import bsh.ParseException;
 
-public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
+public class UM4 extends BaseClass {
 	
-	public UM_DeleteStudyAndReportAcessTest() throws IOException {
+	public UM4() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -69,8 +69,8 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	SyncInAssetListPage SyncInAssetListPage;
 	
 
-	@BeforeTest
-	//@BeforeClass
+	//@BeforeTest
+	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_DeleteStudyAndReportAcessTest"+".html", true);
@@ -79,11 +79,17 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
-
-	// Rename the User file (NgvUsers.uxx) if exists
+		System.out.println("UM_DeleteStudyAndReportAcessTest in Progress..");
+		
+		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Equipment.txt");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
+		// Rename the VRT Setups folder (Asset) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
@@ -146,7 +152,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		LoginPage = MainHubPage.UserSignOut();
 		Thread.sleep(500);
 		
-		//SynIn Assets method
+		//SyncIn Assets method
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));		
@@ -156,6 +162,7 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
+		Thread.sleep(5000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		
 		/*//AppClose();
@@ -164,8 +171,8 @@ public class UM_DeleteStudyAndReportAcessTest extends BaseClass {
 	}
 
 	// After All the tests are conducted
-	@AfterTest
-	//@AfterClass
+	//@AfterTest
+	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();

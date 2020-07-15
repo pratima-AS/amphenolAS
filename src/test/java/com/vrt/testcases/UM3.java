@@ -43,8 +43,9 @@ import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncOutPage;
 import com.vrt.pages.SyncInAssetListPage;
 
-public class UM_customized_UserPrivilagesTest extends BaseClass {
-	public UM_customized_UserPrivilagesTest() throws IOException {
+public class UM3 extends BaseClass {
+	
+	public UM3() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -71,8 +72,8 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	SyncOutPage SyncOutPage;
 	SyncInAssetListPage SyncInAssetListPage;
 
-	@BeforeTest
-	//@BeforeClass
+	//@BeforeTest
+	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_customized_UserPrivilagesTest"+".html", true);
@@ -168,7 +169,7 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(500);
+		Thread.sleep(5000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		//AppClose();
 		//Thread.sleep(500);		
@@ -176,8 +177,8 @@ public class UM_customized_UserPrivilagesTest extends BaseClass {
 	}
 
 // After All the tests are conducted
-    @AfterTest
-	//@AfterClass
+    //@AfterTest
+	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();

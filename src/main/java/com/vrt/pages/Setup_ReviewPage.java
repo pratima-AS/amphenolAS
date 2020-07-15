@@ -67,12 +67,12 @@ public class Setup_ReviewPage extends BaseClass{
 		
 		if (!QStart.equals("Manual")) {
 			clickOn(SaveSetup_Btn);
-			UserLoginPopup(getUID(UID), getPW(PW));
+			UserLoginPopup(UID, PW);
 			click_Yes_TODAlertMsg_Btn(TODAlertAction);
 			Thread.sleep(1000);
 		} else {
 			clickOn(SaveSetup_Btn);
-			UserLoginPopup(getUID(UID), getPW(PW));
+			UserLoginPopup(UID, PW);
 			Thread.sleep(1000);
 		}
 	}
@@ -110,7 +110,8 @@ public class Setup_ReviewPage extends BaseClass{
 		Thread.sleep(2000);
 		
 	}
-
+	
+	//Click the Copy As New Setup button of Review page
 	public void click_CopyAsNewSetup_Button() throws InterruptedException {
 		clickOn(CopyAsNewSetup_Button);
 		Thread.sleep(1000);
