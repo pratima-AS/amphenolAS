@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="137457" started-at="2020-07-16T02:01:12 IST" finished-at="2020-07-16T02:03:30 IST">
+  <suite name="Default suite" duration-ms="17879" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:39 IST">
     <groups>
       <group name="Regression">
-        <method signature="HitNTrialTests.ADMN067A(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN067A" class="com.vrt.testcases.HitNTrialTests"/>
-        <method signature="HitNTrialTests.ADMN067B()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN067B" class="com.vrt.testcases.HitNTrialTests"/>
+        <method signature="HitNTrialTests.ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN062" class="com.vrt.testcases.HitNTrialTests"/>
       </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="137457" started-at="2020-07-16T02:01:12 IST" finished-at="2020-07-16T02:03:30 IST">
+    <test name="Default test" duration-ms="17879" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:39 IST">
       <class name="com.vrt.testcases.HitNTrialTests">
-        <test-method status="PASS" signature="testsetup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="testsetup" is-config="true" duration-ms="74326" started-at="2020-07-16T02:01:12 IST" finished-at="2020-07-16T02:02:26 IST">
+        <test-method status="PASS" signature="testsetup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="testsetup" is-config="true" duration-ms="84" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:22 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testsetup -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Setup" is-config="true" duration-ms="11090" started-at="2020-07-16T02:02:27 IST" finished-at="2020-07-16T02:02:38 IST">
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Setup" is-config="true" duration-ms="3929" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:26 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="ADMN067A(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN067A" duration-ms="30681" started-at="2020-07-16T02:02:38 IST" description="ADMN067A-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups" data-provider="ADMIN067A" finished-at="2020-07-16T02:03:09 IST">
+        <test-method status="PASS" signature="ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN062" duration-ms="12291" started-at="2020-07-16T19:38:26 IST" description="ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets" data-provider="ADMIN062" finished-at="2020-07-16T19:38:38 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[ADMIN067]]>
+                <![CDATA[ADMIN062]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[067]]>
+                <![CDATA[062]]>
               </value>
             </param>
             <param index="2">
@@ -49,38 +48,19 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ADMN067A -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Teardown" is-config="true" duration-ms="83" started-at="2020-07-16T02:03:09 IST" finished-at="2020-07-16T02:03:09 IST">
+        </test-method> <!-- ADMN062 -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Teardown" is-config="true" duration-ms="600" started-at="2020-07-16T19:38:38 IST" finished-at="2020-07-16T19:38:39 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=ADMN067A status=SUCCESS method=HitNTrialTests.ADMN067A(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d] output={null}]]]>
+                <![CDATA[[TestResult name=ADMN062 status=SUCCESS method=HitNTrialTests.ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Setup" is-config="true" duration-ms="10013" started-at="2020-07-16T02:03:09 IST" finished-at="2020-07-16T02:03:19 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="ADMN067B()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN067B" duration-ms="10185" started-at="2020-07-16T02:03:19 IST" description="Verify if Administrator is able to access the default privilege-Copy Files_Reports- copy Assets" finished-at="2020-07-16T02:03:29 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ADMN067B -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Teardown" is-config="true" duration-ms="107" started-at="2020-07-16T02:03:29 IST" finished-at="2020-07-16T02:03:29 IST">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=ADMN067B status=SUCCESS method=HitNTrialTests.ADMN067B()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="endReport" is-config="true" duration-ms="248" started-at="2020-07-16T02:03:29 IST" finished-at="2020-07-16T02:03:30 IST">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="endReport" is-config="true" duration-ms="438" started-at="2020-07-16T19:38:39 IST" finished-at="2020-07-16T19:38:39 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->

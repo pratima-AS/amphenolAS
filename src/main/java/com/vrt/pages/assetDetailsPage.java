@@ -577,7 +577,13 @@ public class assetDetailsPage extends BaseClass {
 		WebElement dp = driver.findElementByAccessibilityId("Popup Window");
 		return IsElementVisibleStatus(dp);
 	}
-
+	
+	//Get text of the Delete Alert message
+	public String get_text_DeleteAst_popup() {
+		WebElement deleteAsset_popup = driver.findElementByAccessibilityId("Content_String");
+		return deleteAsset_popup.getAttribute("Name");		
+	}	
+	
 	// Click on "Yes" button from the delete confirmation pop-up
 	public assetHubPage Delete_ClickYesBtn() throws InterruptedException, IOException {
 		Yesbtn = driver.findElementByAccessibilityId("Button1");

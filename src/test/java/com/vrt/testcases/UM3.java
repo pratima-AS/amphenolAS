@@ -76,7 +76,7 @@ public class UM3 extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_customized_UserPrivilagesTest"+".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM3_customized_UserPrivilagesTest"+".html", true);
 		extent.addSystemInfo("TestSuiteName", "UM_customized_UserPrivilagesTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));

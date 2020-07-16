@@ -103,7 +103,7 @@ public class UM1 extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "UserManagementTest" + ".html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "UM1: UserManagementTest" + ".html",
 				true);
 		extent.addSystemInfo("TestSuiteName", "UserManagementTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
@@ -155,7 +155,7 @@ public class UM1 extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 
 	}
@@ -166,7 +166,7 @@ public class UM1 extends BaseClass {
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
-		System.out.println("UserManagementTest Completed.");
+		System.out.println("UM1: UserManagementTest Completed.");
 		Thread.sleep(500);
 	}
 
@@ -184,14 +184,14 @@ public class UM1 extends BaseClass {
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getName() + " #"); // to add name in extent
-																								// report
+			// to add name in extent report
+			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getName() + " #"); 
 			// to add error/exception in extent report
 			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getThrowable() + " #");
 
 			String screenshotPath1 = TestUtilities.getFailedTCScreenshot(driver, result.getName());
-			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath1)); // to add screenshot in extent
-																							// report
+			// to add screenshot in extent report
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath1)); 
 
 			// extentTest.log(LogStatus.FAIL, extentTest.addScreencast(screenshotPath));
 			// //to add screenshot/video in extent report
@@ -209,8 +209,10 @@ public class UM1 extends BaseClass {
 		driver.quit();
 	}
 
+	/************************************
 	// ADMN001 to ADMN005 covered in login class
-
+	 ************************************/
+	
 	// ADMN006
 	@Test(groups = { "Sanity", "Regression" }, description = "ADMN006-Verify that new user button is enabled",alwaysRun = true)
 	public void ADMN006() throws Exception {
@@ -1344,8 +1346,7 @@ public class UM1 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to peform copy setups to a different Asset");
 		sa.assertAll();
 	}
-	
-	
+		
 	// ADMN037G
 	@Test(groups = {
 			"Regression" }, description = "ADMN037G-Verify the functionality when disabled user credentials "
@@ -1378,7 +1379,6 @@ public class UM1 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to create setup using create a New Setup button");
 		sa.assertAll();
 	}
-
 
 	// ADMN039A
 	@Test(groups = {
@@ -1427,7 +1427,6 @@ public class UM1 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user able to perform copy to drive");
 		sa.assertAll();
 	}
-
 	
 	// ADMN040A
 	@Test(groups = {
@@ -1574,7 +1573,6 @@ public class UM1 extends BaseClass {
 	}
 
 	// ADMN043
-
 	@Test(groups = {
 			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of File Management screen")
 	public void ADMN043() throws InterruptedException, IOException {
@@ -1591,8 +1589,7 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN043A
-	
+	// ADMN043A	
 	@Test(groups = {
 			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of File Management screen")
 	public void ADMN043A() throws InterruptedException, IOException {
@@ -1638,8 +1635,7 @@ public class UM1 extends BaseClass {
 
 	}
 
-	// ADMN045
-	
+	// ADMN045	
 	@Test(groups = { "Regression" }, description = "Verify Reset pwd functionality for second user-Admin")
 	public void ADMN045() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN045-Verify Reset pwd functionality for second user-Admin");
@@ -1659,8 +1655,7 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN045A
-	
+	// ADMN045A	
 	@Test(groups = {
 			"Regression" }, description = "Verify user should not be able to login with the Pre-Reset password")
 	public void ADMN045A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1713,14 +1708,14 @@ public class UM1 extends BaseClass {
 
 	}
 
-	// ADMN067A-Verify if Administrator is able to access the default privilege-Copy
+	// ADMN067B-Verify if Administrator is able to access the default privilege-Copy
 	// Files_Reports-Assets
 	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default "
+			"Regression" }, description = "ADMN067B-Verify if Administrator is able to access the default "
 					+ "privilege-Copy Files_Reports- copy Assets")
 	public void ADMN067B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN067-Verify the functionality when disabled user credentials are given in "
+				"ADMN067B-Verify the functionality when disabled user credentials are given in "
 				+ "authentication window of Asset Details- Copy Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -1766,7 +1761,7 @@ public class UM1 extends BaseClass {
 
 	// ADMN069A
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Equipment Creation")
+			"Regression" }, description = "ADMN069A-Verify mandatory login for a new user before saving any changes-Equipment Creation")
 	public void ADMN069A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN069A-Verify mandatory login for a new user before saving any changes-Equipment Creation");
@@ -1847,7 +1842,6 @@ public class UM1 extends BaseClass {
 	}
 
 	// ADMN069E
-
 	@Test(groups = {
 			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Aseert Edit")
 	public void ADMN069E() throws InterruptedException, IOException {
@@ -1873,7 +1867,6 @@ public class UM1 extends BaseClass {
 	}
 
 	// ADMN069F
-
 	@Test(groups = {
 			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Aseert Delete")
 	public void ADMN069F() throws InterruptedException, IOException {

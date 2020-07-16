@@ -27,6 +27,7 @@ import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.EquipmentPage;
 import com.vrt.utility.TestUtilities;
+import com.vrt.utility.userManagementUtility;
 import com.vrt.pages.IRTDDetailspage;
 import com.vrt.pages.IRTDHubPage;
 import com.vrt.pages.FileManagementPage;
@@ -43,12 +44,11 @@ import com.vrt.pages.RWFileSelctionPage;
 import bsh.ParseException;
 
 public class UM2 extends BaseClass {
-	
+
 	public UM2() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public ExtentReports extent;
 	public ExtentTest extentTest;
@@ -70,35 +70,33 @@ public class UM2 extends BaseClass {
 	Setup_defineSetupPage Setup_defineSetupPage;
 	SyncInPage SyncInPage;
 	SyncOutPage SyncOutPage;
-	CopySetuppage CopySetuppage; 
+	CopySetuppage CopySetuppage;
 	RWFileSelctionPage RWFileSelctionPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	
-	//@BeforeTest
+
+	// Before Class/Test
+	// @BeforeTest
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_UserPrivilagesTest"+".html", true);
+		extent = new ExtentReports(
+				System.getProperty("user.dir") + "/test-output/ER_" + "UM2: UserPrivilagesTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "UM_UserPrivilagesTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
-		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));		
-		System.out.println("UserPrivilagesTest in Progress..");
-		
-  // Rename the User file (NgvUsers.uxx) if exists
- 	  renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Equipment.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		// Rename the cache Setup file (Setup.txt) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
-		// Rename the VRT Setups folder (VRTSetups) if exists
+		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
+		System.out.println("UM2: UserPrivilagesTest in Progress..");
+
+		//Rename the User file (NgvUsers.uxx) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		Thread.sleep(500);
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
@@ -115,7 +113,7 @@ public class UM2 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
-		
+
 		// ADMIN user creation
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
@@ -149,7 +147,7 @@ public class UM2 extends BaseClass {
 		Thread.sleep(500);
 		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(getUID("SysOperator"), "6Start@6AM", getPW("SysOperator"));
 		LoginPage = MainHubPage.UserSignOut();
-		
+
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
@@ -160,22 +158,19 @@ public class UM2 extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		/* Thread.sleep(500);
-		AppClose();
-		Thread.sleep(1000);
-		*/
+
 
 	}
 
 	// After All the tests are conducted
-	//@AfterTest
+	// @AfterTest
 	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
-		System.out.println("UserPrivilagesTest Completed.");
+		System.out.println("UM2: UserPrivilagesTest Completed.");
 		Thread.sleep(500);
 	}
 
@@ -191,16 +186,14 @@ public class UM2 extends BaseClass {
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getName() + " #"); // to add name in extent
-																								// report
-			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getThrowable() + " #"); // to add
-																										// error/exception
-																										// in extent
-																										// report
+			// to add name in extent report
+			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getName() + " #"); 
+			// to add error/exception in extent report
+			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # " + result.getThrowable() + " #"); 
 
 			String screenshotPath1 = TestUtilities.getFailedTCScreenshot(driver, result.getName());
-			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath1)); // to add screenshot in extent
-																							// report
+			// to add screenshot in extent report
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath1)); 
 			// extentTest.log(LogStatus.FAIL, extentTest.addScreencast(screenshotPath));
 			// //to add screen cast/video in extent report
 		} else if (result.getStatus() == ITestResult.SKIP) {
@@ -218,7 +211,7 @@ public class UM2 extends BaseClass {
 	}
 
 	// ADMN046
-	@Test(groups = { "Regression" }, description = "Verify the default privileges for Administrator",alwaysRun = true)
+	@Test(groups = { "Regression" }, description = "Verify the default privileges for Administrator", alwaysRun = true)
 	public void ADMN046() throws Exception {
 		extentTest = extent.startTest("ADMN046-Verify the default privileges for Administrator");
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -231,22 +224,22 @@ public class UM2 extends BaseClass {
 				"FAIL: CreateAndEditEquipmentstatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.CreateReportsstatus(), true,
 				"FAIL: CreateReportsstatus CheckBox Not Checked");
-		
+
 		sa1.assertEquals(UserManagementPage.DeleteAssetsstatus(), true, "FAIL: DeleteAssetsstatus Not Checked");
 		sa1.assertEquals(UserManagementPage.DeleteSetupstatus(), true, "FAIL: DeleteSetupstatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.DeleteEquipmentstatus(), true,
 				"FAIL:DeleteEquipmentstatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.DeleteStudyFilesReportsstatus(), true,
 				"FAIL: DeleteStudyFilesReportsstatus CheckBox Not Checked");
-		
+
 		sa1.assertEquals(UserManagementPage.CopyFilesReportsstatus(), true, "FAIL:CopyFilesReportsstatus Not Checked");
 		sa1.assertEquals(UserManagementPage.Archivedatastatus(), true, "FAIL: Archivedatastatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.ManualSyncstatus(), true, "FAIL:ManualSyncstatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.CameraAccessstatus(), true, "FAIL:CameraAccessstatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.Iscancelvisible(), true, "FAIL:CameraAccessstatus CheckBox Not Checked");
-		//UserManagementPage.ClkscrollBar_down();	
+		// UserManagementPage.ClkscrollBar_down();
 		sa1.assertEquals(UserManagementPage.Deletepassfailtemplatestatus(), true,
-				"FAIL:Deletepassfailtemplatestatus CheckBox Not Checked");	
+				"FAIL:Deletepassfailtemplatestatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.EditPassFailtemplatestatus(), true,
 				"FAIL:EditPassFailtemplatestatus CheckBox Not Checked");
 		sa1.assertEquals(UserManagementPage.CreatePassFailtemplatestatus(), true,
@@ -272,8 +265,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 
 	}
-	
-	
+
 	// ADMN048
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Create Equipment")
@@ -312,7 +304,6 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	
 	// ADMN049
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Archive")
@@ -328,7 +319,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN050	
+	// ADMN050
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-SyncIn")
 	public void ADMN050() throws InterruptedException, ParseException, IOException, AWTException {
@@ -336,12 +327,12 @@ public class UM2 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
-		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysAdmin"), getPW("SysAdmin"));		
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysAdmin"), getPW("SysAdmin"));
 		sa.assertEquals(SyncInPage.SyncInTextBoxVisible(), true, "FAIL:Sync In TextBox should be Visible");
 		sa.assertAll();
 	}
 
-	//ADMN050A
+	// ADMN050A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-SyncOut")
 	public void ADMN050A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -354,12 +345,12 @@ public class UM2 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncOutPage = FileManagementPage.ClickSyncOutBtn_SyncOutPage(getUID("SysAdmin"), getPW("SysAdmin"));
-		
+
 		s5.assertEquals(SyncOutPage.SyncOutTextBoxVisible(), true, "FAIL: Sync Out window not present");
 		s5.assertAll();
 	}
 
-	//ADMN052
+	// ADMN052
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Access Audit Trail")
 	public void ADMN052() throws InterruptedException, ParseException, IOException, AWTException {
@@ -372,7 +363,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN053
+	// ADMN053
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Camera Access")
 	public void ADMN053() throws InterruptedException, ParseException, IOException, AWTException {
@@ -388,7 +379,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN054	
+	// ADMN054
 	@Test(groups = {
 			"Regression" }, description = "Verify Administrator is unable to access the non-default privilege-Create Asset")
 	public void ADMN054() throws InterruptedException, ParseException, IOException, AWTException {
@@ -405,7 +396,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN054A
+	// ADMN054A
 	@Test(groups = {
 			"Regression" }, description = "Verify Administrator is unable to access the non-default privilege-Edit Asset")
 	public void ADMN054A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -423,30 +414,15 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//dependsOnMethods = "ADMN054A",	
-	//ADMN062
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete Assets")
-	public void ADMN062() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.DeleteAssert();
-		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL:Delete pop up window should be Visible");
-		sa.assertAll();
-	}
 
-	//ADMN055
+
+	// ADMN055
 	@Test(groups = {
 			"Regression" }, description = "Verify Administrator is unable to access the non-default privilege-Create Setups")
 	public void ADMN055() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN055-Verify Administrator is unable to access the non-default privilege-Create Setups");
-		SoftAssert sa = new SoftAssert();		
+		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
@@ -457,23 +433,56 @@ public class UM2 extends BaseClass {
 				"FAIL: user should be unable to access the non-default privilege-Create Setups");
 		sa.assertAll();
 	}
+
+	// ADMN059-Verify if Administrator is able to access the default
+	// privilege-Create Reports
+	@Test(groups = {
+			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Create Reports")
+	public void ADMN059() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ADMN059-Verify if Administrator is able to access the default privilege-Create Reports");
+		SoftAssert sa = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+		RWFileSelctionPage = assetDetailsPage.GenerateReportsBtn_Nextpage();
+
+		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
+		sa.assertAll();
+	}
+
+	// ADMN062
+	@Test(groups = {
+			"Regression" }, dataProvider = "ADMIN062", dataProviderClass = userManagementUtility.class,
+					description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
+	public void ADMN062(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
+		SoftAssert sa = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetCreationPage = assetHubPage.Click_AddAssetButton();
+		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
+		assetHubPage = assetCreationPage.clickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile(AName);
+		assetDetailsPage.DeleteAssert();		
+		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
+		Thread.sleep(2000);
+		String alrtMsg = assetDetailsPage.get_text_DeleteAst_popup();
+		//System.out.println(alrtMsg);
+		String[] wordlist = alrtMsg.split(":");
+		//System.out.println(wordlist[0]);
+		sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
+				+ " a diferent popup is observed");
+		sa.assertAll();
+	}
+
 	
-	//ADMN059-Verify if Administrator is able to access the default privilege-Create Reports
-		@Test(groups = { "Regression" }, description = "Verify if Administrator is able to access the default privilege-Create Reports")
-		public void ADMN059() throws InterruptedException, ParseException, IOException, AWTException {
-			extentTest = extent.startTest("ADMN059-Verify if Administrator is able to access the default privilege-Create Reports");
-			SoftAssert sa = new SoftAssert();
-			MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-			assetHubPage = MainHubPage.ClickAssetTile();
-			assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-			assetDetailsPage.click_QualTile();
-			assetDetailsPage.Select_QualFile("manual 1 min sampling");
-			RWFileSelctionPage = assetDetailsPage.GenerateReportsBtn_Nextpage();
-			
-			sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(),true, "AssetsNameText  should be Visible");
-			sa.assertAll();
-		}
-		
 	// dependsOnMethods = "ADMN048",
 	// ADMN064
 	@Test(groups = {
@@ -487,7 +496,7 @@ public class UM2 extends BaseClass {
 		EquipmentPage = EquipmentHubPage.ClickAddButton();
 		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "ADMN064", "4");
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();	
+		EquipmentHubPage = EquipmentPage.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("ADMN064");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
@@ -495,8 +504,8 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 
 	}
-	
-	//ADMN071
+
+	// ADMN071
 	@Test(groups = { "Regression" }, description = "ADMN071-Verify User Creation for Supervisor User")
 	public void ADMN133() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ADMN071-Verify User Creation for Supervisor User");
@@ -506,12 +515,11 @@ public class UM2 extends BaseClass {
 		UserManagementPage.clickAnyUserinUserList("Sup1");
 		String ExpAlrtMsg = "Sup1";
 		String ActAlertMsg = UserManagementPage.GetUserNametext();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,"FAIL:User should be available");
-		sa.assertAll();	
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:User should be available");
+		sa.assertAll();
 	}
 
-	
-	//ADMN072
+	// ADMN072
 	@Test(groups = { "Regression" }, description = "ADMN072-Verify default privileges  for Supervisor User")
 	public void ADMN072() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN072-Verify default privileges  for Supervisor User");
@@ -542,8 +550,8 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(UserManagementPage.Audittrailstatus(), true, "FAIL: Audittrailstatus should Checked");
 		sa.assertAll();
 	}
-	
-	//ADMN073
+
+	// ADMN073
 	@Test(groups = { "Regression" }, description = "Verify the non- default privileges  for Supervisor User")
 	public void ADMN073() throws Exception {
 		extentTest = extent.startTest("ADMN073-Verify the non- default privileges  for Supervisor User");
@@ -556,7 +564,7 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(UserManagementPage.Adminstatus(), false, "FAIL:Adminstatus checkbox should not be Checked");
 		sa.assertEquals(UserManagementPage.CreateAndEditEquipmentstatus(), false,
 				"FAIL:CreateAndEditEquipmentstatus CheckBox should not be Checked");
-		
+
 		sa.assertEquals(UserManagementPage.DeleteAssetsstatus(), false,
 				"FAIL:DeleteAssetsstatus checkbox should not be Checked");
 		sa.assertEquals(UserManagementPage.DeleteSetupstatus(), false,
@@ -565,17 +573,17 @@ public class UM2 extends BaseClass {
 				"FAIL:DeleteEquipmentstatus checkbox should not be Checked");
 		sa.assertEquals(UserManagementPage.DeleteStudyFilesReportsstatus(), false,
 				"FAIL:DeleteStudyFilesReportsstatus checkbox should not be Checked");
-		
+
 		sa.assertEquals(UserManagementPage.CopyFilesReportsstatus(), false,
 				"FAIL:CopyFilesReportsstatus checkbox should not be Checked");
 		sa.assertEquals(UserManagementPage.Archivedatastatus(), false,
 				"FAIL:Archivedatastatus CheckBox checkbox should not be Checked");
-		
+
 		sa.assertAll();
 
 	}
 
-	//ADMN074
+	// ADMN074
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Create Assets")
 	public void ADMN074() throws InterruptedException, ParseException, IOException, AWTException {
@@ -609,7 +617,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN075
+	// ADMN075
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Audit Trail")
 	public void ADMN075() throws InterruptedException, ParseException, IOException, AWTException {
@@ -621,9 +629,9 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(AuditPage.AuditHeadTitleVisible(), true, "FAIL: Title not present");
 		sa.assertAll();
 	}
-	
+
 	// dependsOnMethods = "ADMN074",
-	//	ADMN076
+	// ADMN076
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Camera Access")
 	public void ADMN076() throws InterruptedException, ParseException, IOException, AWTException {
@@ -639,9 +647,8 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 
 	}
-	
 
-	//ADMN077
+	// ADMN077
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Create Equipment")
 	public void ADMN077() throws InterruptedException, ParseException, IOException, AWTException {
@@ -656,16 +663,15 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Supervisor should not able to Create Equipment");
 		sa.assertAll();
 	}
-	
-	
-	//ADMN077A
+
+	// ADMN077A
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Edit Equipment")
 	public void ADMN077A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN077A-Verify Supervisor is unable to access the non-default privilege-Create Equipment");
 		SoftAssert sa = new SoftAssert();
-		
+
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
@@ -676,10 +682,9 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Alert message Not Matched");
 		sa.assertAll();
 	}
-	
-	
+
 	// dependsOnMethods = "ADMN074",
-	//ADMN078
+	// ADMN078
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete Asset")
 	public void ADMN078() throws InterruptedException, ParseException, IOException, AWTException {
@@ -696,9 +701,9 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Supervisor should be unable to access- Delete Asset");
 		sa.assertAll();
 	}
-	
+
 	// dependsOnMethods = "ADMN077A",
-	//ADMN080
+	// ADMN080
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete Equipments")
 	public void ADMN080() throws InterruptedException, ParseException, IOException, AWTException {
@@ -717,33 +722,35 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Supervisor should be unable to access Delete Equipments");
 		sa.assertAll();
 	}
-	
-	//ADMN082
-	
-		@Test(groups = { "Regression" }, description = "Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups")
-		public void ADMN082() throws InterruptedException, ParseException, IOException, AWTException {
-			extentTest = extent.startTest("ADMN067-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
-			SoftAssert sa = new SoftAssert();
-			MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-			assetHubPage = MainHubPage.ClickAssetTile();
-			assetCreationPage = assetHubPage.Click_AddAssetButton();
-			assetCreationPage.assetCreation("xAst1", "2B1", "HeatBath", "HYdd", "Ind");
-			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-			assetHubPage = assetCreationPage.clickBackBtn();
-			assetDetailsPage = assetHubPage.click_assetTile("xAst1");
-			assetDetailsPage.click_SetupTile();
-			CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
-			CopySetuppage.Click_Selectall_chkbox();
-			CopySetuppage.click_copy_Btn();
-			CopySetuppage.select_alertOption("Yes");
-			UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
-			String ExpAlrtMsg = "User do not have permission to perform this operation";
-			String ActAlertMsg = tu.get_AlertMsg_text();
-			sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Operator should be unable to access Delete Equipments");
-			sa.assertAll();	
-		}
 
-	//ADMN083
+	// ADMN082
+
+	@Test(groups = {
+			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups")
+	public void ADMN082() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN067-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
+		SoftAssert sa = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetCreationPage = assetHubPage.Click_AddAssetButton();
+		assetCreationPage.assetCreation("xAst1", "2B1", "HeatBath", "HYdd", "Ind");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = assetCreationPage.clickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("xAst1");
+		assetDetailsPage.click_SetupTile();
+		CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
+		CopySetuppage.Click_Selectall_chkbox();
+		CopySetuppage.click_copy_Btn();
+		CopySetuppage.select_alertOption("Yes");
+		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		String ExpAlrtMsg = "User do not have permission to perform this operation";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Operator should be unable to access Delete Equipments");
+		sa.assertAll();
+	}
+
+	// ADMN083
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Archive data")
 	public void ADMN083() throws InterruptedException, ParseException, IOException, AWTException {
@@ -774,8 +781,8 @@ public class UM2 extends BaseClass {
 				"FAIL: Supervisor should be unable to access the non-default privilege-Admin");
 		sa.assertAll();
 	}
-	
- // ADMN086
+
+	// ADMN086
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Create Setups")
 	public void ADMN086() throws InterruptedException, ParseException, IOException, AWTException {
@@ -791,10 +798,12 @@ public class UM2 extends BaseClass {
 
 	}
 
-	//ADMN088
-	@Test(groups = { "Regression" }, description = "Verify if Supervisor is able to access the default privilege-Create Reports")
+	// ADMN088
+	@Test(groups = {
+			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Create Reports")
 	public void ADMN088() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN088-Verify if Supervisor is able to access the default privilege-Create Reports");
+		extentTest = extent
+				.startTest("ADMN088-Verify if Supervisor is able to access the default privilege-Create Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -802,13 +811,12 @@ public class UM2 extends BaseClass {
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
 		RWFileSelctionPage = assetDetailsPage.GenerateReportsBtn_Nextpage();
-		
-		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(),true, "AssetsNameText  should be Visible");
+
+		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
 		sa.assertAll();
 	}
-	
 
-	//ADMN094
+	// ADMN094
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-SyncIn")
 	public void ADMN094() throws InterruptedException, ParseException, IOException, AWTException {
@@ -816,12 +824,12 @@ public class UM2 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
-		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysSupervisor"), getPW("SysSupervisor"));		
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		sa.assertEquals(SyncInPage.SyncInTextBoxVisible(), true, "FAIL: SyncIn TextBox should be Visible ");
 		sa.assertAll();
 	}
 
-	//ADMN094A
+	// ADMN094A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-SyncOut")
 	public void ADMN094A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -833,8 +841,8 @@ public class UM2 extends BaseClass {
 		s22.assertEquals(SyncOutPage.SyncOutTextBoxVisible(), true, "FAIL: SyncOut TextBox should be Visible ");
 		s22.assertAll();
 	}
-	
-	//ADMN096
+
+	// ADMN096
 	@Test(groups = { "Regression" }, description = "Verify the User Creation for Operator user from User management")
 	public void ADMN096() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ADMN096-Verify the User Creation for Operator user from User management");
@@ -844,11 +852,12 @@ public class UM2 extends BaseClass {
 		UserManagementPage.clickAnyUserinUserList("Ope1");
 		String ExpAlrtMsg = "Ope1";
 		String ActAlertMsg = UserManagementPage.GetUserNametext();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,"FAIL:User should be available");
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:User should be available");
 		sa.assertAll();
-		
-	}		
-	//ADMN097
+
+	}
+
+	// ADMN097
 	@Test(groups = { "Regression" }, description = "Verify default privileges  for Operator User")
 	public void ADMN097() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN097-Verify default privileges  for Operator User");
@@ -873,7 +882,7 @@ public class UM2 extends BaseClass {
 
 	}
 
-	//ADMN098
+	// ADMN098
 	@Test(groups = { "Regression" }, description = "Verify non-default privileges  for Operator User")
 	public void ADMN098() throws Exception {
 		extentTest = extent.startTest("ADMN098-Verify non-default privileges  for Operator User");
@@ -907,7 +916,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN099
+	// ADMN099
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the default privilege-Create  Assets")
 	public void ADMN099() throws InterruptedException, ParseException, IOException, AWTException {
@@ -924,9 +933,8 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(ActMsg, ExpMsg, "FAIL: Alert message Not Matched");
 		sa.assertAll();
 	}
-	
 
- //ADMN100
+	// ADMN100
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the default privilege-Edit Assets")
 	public void ADMN100() throws InterruptedException, ParseException, IOException, AWTException {
@@ -941,11 +949,13 @@ public class UM2 extends BaseClass {
 				"FAIL:User should be able to access the default privilege-Edit Assets");
 		s.assertAll();
 	}
-	
- //ADMN101
-	@Test(groups = { "Regression" }, description = "Verify if Operator is able to access the default privilege-Create Reports")
+
+	// ADMN101
+	@Test(groups = {
+			"Regression" }, description = "Verify if Operator is able to access the default privilege-Create Reports")
 	public void ADMN101() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN101-Verify if Operator is able to access the default privilege-Create Reports");
+		extentTest = extent
+				.startTest("ADMN101-Verify if Operator is able to access the default privilege-Create Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -953,12 +963,12 @@ public class UM2 extends BaseClass {
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
 		RWFileSelctionPage = assetDetailsPage.GenerateReportsBtn_Nextpage();
-		
+
 		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
 		sa.assertAll();
 	}
- 
-	//ADMN105
+
+	// ADMN105
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the default privilege-Camera access")
 	public void ADMN105() throws InterruptedException, ParseException, IOException, AWTException {
@@ -974,8 +984,8 @@ public class UM2 extends BaseClass {
 				"FAIL: Operator should be able to access Camera access");
 		s.assertAll();
 	}
-	
- //ADMN106
+
+	// ADMN106
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Delete Assets")
 	public void ADMN106() throws InterruptedException, ParseException, IOException, AWTException {
@@ -992,8 +1002,8 @@ public class UM2 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is unable to access Delete Assets");
 		s.assertAll();
 	}
-	
- //ADMN107	
+
+	// ADMN107
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is  unable to access the non-default privilege-Archive data")
 	public void ADMN107() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1010,8 +1020,7 @@ public class UM2 extends BaseClass {
 		s.assertAll();
 	}
 
-	
-	//ADMN108
+	// ADMN108
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Admin")
 	public void ADMN108() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1025,7 +1034,7 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN109
+	// ADMN109
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the non-default privilege-Manual syncIn")
 	public void ADMN109() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1042,7 +1051,7 @@ public class UM2 extends BaseClass {
 		s.assertAll();
 	}
 
-	//ADMN109A
+	// ADMN109A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the non-default privilege-Manual syncOut")
 	public void ADMN109A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1059,7 +1068,7 @@ public class UM2 extends BaseClass {
 		s.assertAll();
 	}
 
-	//ADMN115
+	// ADMN115
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the default privilege-Access Audit trail")
 	public void ADMN115() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1071,25 +1080,25 @@ public class UM2 extends BaseClass {
 		sa.assertEquals(AuditPage.AuditHeadTitleVisible(), true, "FAIL:Operator should be able to access Audit trail");
 		sa.assertAll();
 	}
-	
-	// ADMN116
-		@Test(groups = {
-				"Regression" }, description = "Verify  Operator is unable to access the non-default privilege-Create Setups")
-		public void ADMN116() throws InterruptedException, ParseException, IOException, AWTException {
-			extentTest = extent
-					.startTest("ADMN116A- Verify Operator is unable to access the non-default privilege-Create Setups");
-			SoftAssert s = new SoftAssert();
-			MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-			assetHubPage = MainHubPage.ClickAssetTile();
-			assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-			assetDetailsPage.click_NewStupCreateBtn_alert();
-			String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
-			String ActAlertMsg = assetDetailsPage.AlertMsg();
-			s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User Is able to access the non-default privilege-Delete Assets");
-			s.assertAll();
-		}
 
-	//ADMN117
+	// ADMN116
+	@Test(groups = {
+			"Regression" }, description = "Verify  Operator is unable to access the non-default privilege-Create Setups")
+	public void ADMN116() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ADMN116A- Verify Operator is unable to access the non-default privilege-Create Setups");
+		SoftAssert s = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_NewStupCreateBtn_alert();
+		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
+		String ActAlertMsg = assetDetailsPage.AlertMsg();
+		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User Is able to access the non-default privilege-Delete Assets");
+		s.assertAll();
+	}
+
+	// ADMN117
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the non-default privilege-Create- Equipments")
 	public void ADMN117() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1104,16 +1113,15 @@ public class UM2 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
 		s.assertAll();
 	}
-	
 
-	//ADMN117A
+	// ADMN117A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the non-default privilege-Edit Equipments")
 	public void ADMN117A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN117A-Verify if Operator is able to access the non-default privilege-Edit Equipments");
-		SoftAssert s = new SoftAssert();		
-		
+		SoftAssert s = new SoftAssert();
+
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
@@ -1125,8 +1133,7 @@ public class UM2 extends BaseClass {
 		s.assertAll();
 	}
 
-	
-	//ADMN118
+	// ADMN118
 	// dependsOnMethods = "ADMN117A",
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Delete Equipments")
@@ -1140,7 +1147,7 @@ public class UM2 extends BaseClass {
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  CADMN22");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
-		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));	
+		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -1148,63 +1155,67 @@ public class UM2 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports
-			@Test(groups = { "Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports")
-			public void ADMN119() throws InterruptedException, ParseException, IOException, AWTException {
-				extentTest = extent.startTest("ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports");
-				SoftAssert s = new SoftAssert();
-				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-				assetHubPage = MainHubPage.ClickAssetTile();
-				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage.Click_reportsTile();
-				assetDetailsPage.Click_SetupReportsButton();
-				assetDetailsPage.Select_ReportFile("manual 1 min sampling");
-				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
-				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
-				String ActAlertMsg = tu.get_AlertMsg_text();
-				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
-				s.assertAll();
-			}
-			
-		//ADMN119A-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports-QualReport
-			@Test(groups = { "Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport")
-			public void ADMN119A() throws InterruptedException, ParseException, IOException, AWTException {
-				extentTest = extent.startTest("ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport");
-				SoftAssert s = new SoftAssert();
-				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-				assetHubPage = MainHubPage.ClickAssetTile();
-				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage.Click_reportsTile();
-				assetDetailsPage.Click_QualReportsButton();
-				assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
-				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
-				String ActAlertMsg = tu.get_AlertMsg_text();
-				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
-				s.assertAll();
-			}
-		
-		//ADMN119B-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports
-			@Test(groups = { "Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports",alwaysRun = true)
-			public void ADMN119B() throws InterruptedException, ParseException, IOException, AWTException {
-				extentTest = extent.startTest("ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports");
-				SoftAssert s = new SoftAssert();
-				MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-				assetHubPage = MainHubPage.ClickAssetTile();
-				assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-				assetDetailsPage.Click_reportsTile();
-				assetDetailsPage.Click_PassFailReportBtn();
-				assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-				assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
-				String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
-				String ActAlertMsg = tu.get_AlertMsg_text();
-				s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
-				s.assertAll();
-			}	
-			
-}
-	
-	
-	
+	// ADMN119-Verify if Operator is unable to access the non-default privilege-Copy
+	// Files_Reports
+	@Test(groups = {
+			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports")
+	public void ADMN119() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports");
+		SoftAssert s = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_SetupReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
+		s.assertAll();
+	}
 
-	
+	// ADMN119A-Verify if Operator is unable to access the non-default
+	// privilege-Copy Files_Reports-QualReport
+	@Test(groups = {
+			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport")
+	public void ADMN119A() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport");
+		SoftAssert s = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_QualReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
+		s.assertAll();
+	}
+
+	// ADMN119B-Verify if Operator is unable to access the non-default
+	// privilege-Copy Files_Reports
+	@Test(groups = {
+			"Regression" }, description = "Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports", alwaysRun = true)
+	public void ADMN119B() throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports");
+		SoftAssert s = new SoftAssert();
+		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_PassFailReportBtn();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User is able to create Equipment ");
+		s.assertAll();
+	}
+
+}

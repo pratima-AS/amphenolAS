@@ -111,7 +111,7 @@ public class HitNTrialTests extends BaseClass {
 		System.out.println("UserManagementTest in Progress..");
 
 		
-		//Rename the User file (NgvUsers.uxx) if exists
+		/*//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
@@ -136,7 +136,7 @@ public class HitNTrialTests extends BaseClass {
 		UserManagementPage.clickPrivRunCal();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		/*UserManagementPage.ClickNewUser();
+		UserManagementPage.ClickNewUser();
 		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), getPW("Dsbluser"),
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -144,7 +144,7 @@ public class HitNTrialTests extends BaseClass {
 		UserManagementPage.clickAnyUserinUserList("dsbl1");
 		UserManagementPage.Select_DisableUserCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));*/
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
 		//SyncIn Method
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
@@ -157,7 +157,7 @@ public class HitNTrialTests extends BaseClass {
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
-		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();*/
 		
 		
 	}
@@ -177,8 +177,8 @@ public class HitNTrialTests extends BaseClass {
 	public void Setup() throws InterruptedException, IOException {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();		
+		//MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		//UserManagementPage = MainHubPage.ClickAdminTile_UMpage();		
 	}
 	
 	/*@BeforeMethod(alwaysRun=true)
@@ -214,7 +214,7 @@ public class HitNTrialTests extends BaseClass {
 
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
-		driver.quit();
+		//driver.quit();
 	}
 
 
@@ -239,67 +239,33 @@ public class HitNTrialTests extends BaseClass {
 		System.out.println("User " +UID+ " created");
 	}*/
 	
-	// ADMN067A
+	// ADMN062
 	@Test(groups = {
-			"Regression" }, dataProvider = "ADMIN067A", dataProviderClass = userManagementUtility.class, 
-					description = "ADMN067A-Verify if Administrator is able to access the default "
-					+ "privilege-Copy Files_Reports - Copy Setups")
-	public void ADMN067A(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			"Regression" }, dataProvider = "ADMIN062", dataProviderClass = userManagementUtility.class,
+					description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
+	public void ADMN062(String AName, String AID, String AType, String AManufacturer, String ALocation) 
 			throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN067A-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
+		extentTest = extent
+				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
 		SoftAssert sa = new SoftAssert();
-		MainHubPage = UserManagementPage.ClickBackButn();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		//assetDetailsPage.click_SetupTile();
-		CopySetuppage = assetDetailsPage.click_CopyStup_Btn();
-		CopySetuppage.Click_Selectall_chkbox();
-		CopySetuppage.click_copy_Btn();
-		CopySetuppage.select_alertOption("Yes");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		tu.click_Close_alertmsg();
-		assetDetailsPage = CopySetuppage.Click_Back_Btn();
-		
-		sa.assertEquals(assetDetailsPage.SetupName_Visible(), true, "FAIL: No Setup Added");
+		assetDetailsPage.DeleteAssert();		
+		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
+		Thread.sleep(2000);
+		String alrtMsg = assetDetailsPage.get_text_DeleteAst_popup();
+		//System.out.println(alrtMsg);
+		String[] wordlist = alrtMsg.split(":");
+		//System.out.println(wordlist[0]);
+		sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
+				+ " a diferent popup is observed");
 		sa.assertAll();
-
-	}
-
-	// ADMN067A-Verify if Administrator is able to access the default privilege-Copy
-	// Files_Reports-Assets
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default "
-					+ "privilege-Copy Files_Reports- copy Assets")
-	public void ADMN067B() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN067-Verify the functionality when disabled user credentials are given in "
-				+ "authentication window of Asset Details- Copy Assets");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		Copyassetpage = assetDetailsPage.clickCopyasset();
-		Copyassetpage.Enter_NewAssetNameField("ADMN067B");
-		Copyassetpage.Enter_NewAssetIDField("067BB");
-		Copyassetpage.click_copy_Btn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		
-		String AlrtMsgTxt = tu.get_AlertMsg_text();
-		//System.out.println(AlrtMsgTxt);
-		String[] expectedAssetName = AlrtMsgTxt.split(" ");
-		//System.out.println(expectedAssetName[0]);
-		/*for (String wrds : expectedAssetName) {
-			System.out.println(wrds);
-		}*/
-
-		sa.assertEquals("ADMN067B", expectedAssetName[0], "FAIL: Unable to create New Asset By Admin");
-		sa.assertAll();
-
 	}
 
 }

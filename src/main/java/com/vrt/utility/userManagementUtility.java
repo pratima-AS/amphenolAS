@@ -167,6 +167,13 @@ public class userManagementUtility extends BaseClass{
 		return data;
 	}
 	
+	@DataProvider(name = "ADMIN062")
+	public static Object[][] ADMIN062() {
+		String sheetName = "tcADMN062";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+	
 	@DataProvider(name = "ADMIN067A")
 	public static Object[][] ADMIN067A() {
 		String sheetName = "tcADMN067A";

@@ -10,76 +10,29 @@
       <class name="com.vrt.testcases.UM1">
         <methods>
           <include name="Teardown"/>
-          <include name="ADMN039A"/>
-          <include name="ADMN034"/>
-          <include name="ADMN034C"/>
-          <include name="Setup"/>
           <include name="PreSetup"/>
-          <include name="ADMN040A"/>
-          <include name="ADMN041A"/>
           <include name="ADMN016"/>
-          <include name="ADMN069A"/>
-          <include name="ADMN034B"/>
           <include name="endReport"/>
           <include name="ADMN018"/>
-          <include name="ADMN037D"/>
-          <include name="ADMN067A"/>
-          <include name="ADMN069C"/>
           <include name="ADMN015"/>
-          <include name="ADMN037"/>
+          <include name="Setup"/>
           <include name="ADMN017"/>
-          <include name="ADMN037A"/>
           <include name="ADMN069B"/>
         </methods>
       </class> <!-- com.vrt.testcases.UM1 -->
       <class name="com.vrt.testcases.UM3">
         <methods>
-          <include name="ADMN087"/>
-          <include name="ADMN085"/>
-          <include name="ADMN060"/>
-          <include name="ADMN085A"/>
-          <include name="CADMN15"/>
-          <include name="CADMN37"/>
-          <include name="CADMN35"/>
-          <include name="CADMN14"/>
-          <include name="CADMN36"/>
-          <include name="CADMN19"/>
-          <include name="CADMN12"/>
-          <include name="CADMN39"/>
-          <include name="CADMN16"/>
-          <include name="CADMN38"/>
-          <include name="CADMN11"/>
-          <include name="Teardown"/>
-          <include name="CADMN31"/>
-          <include name="CADMN10"/>
-          <include name="CADMN32"/>
           <include name="CADMN30"/>
-          <include name="ADMN058"/>
-          <include name="ADMN111A"/>
-          <include name="ADMN112"/>
-          <include name="ADMN111"/>
-          <include name="Setup"/>
-          <include name="CADMN7"/>
-          <include name="CADMN8"/>
-          <include name="CADMN9"/>
-          <include name="CADMN26"/>
           <include name="CADMN5"/>
-          <include name="CADMN24"/>
-          <include name="CADMN6"/>
           <include name="PreSetup"/>
-          <include name="CADMN25"/>
-          <include name="CADMN1"/>
           <include name="CADMN23"/>
-          <include name="CADMN2"/>
-          <include name="CADMN28"/>
-          <include name="CADMN29"/>
-          <include name="CADMN40"/>
-          <include name="CADMN27"/>
+          <include name="Setup"/>
           <include name="endReport"/>
           <include name="CADMN22"/>
+          <include name="Teardown"/>
           <include name="ADMN058A"/>
-          <include name="CADMN20"/>
-          <include name="CADMN21"/>
+          <include name="CADMN31"/>
+          <include name="CADMN32"/>
         </methods>
       </class> <!-- com.vrt.testcases.UM3 -->
       <class name="com.vrt.testcases.UM2">
@@ -91,9 +44,7 @@
           <include name="Teardown"/>
           <include name="ADMN077A"/>
           <include name="Setup"/>
-          <include name="ADMN048A"/>
           <include name="endReport"/>
-          <include name="ADMN048"/>
           <include name="ADMN080"/>
           <include name="ADMN118"/>
         </methods>

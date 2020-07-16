@@ -73,7 +73,7 @@ public class UM4 extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM_DeleteStudyAndReportAcessTest"+".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM4_DeleteStudyAndReportAcessTest"+".html", true);
 		extent.addSystemInfo("TestSuiteName", "UM_DeleteStudyAndReportAcessTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
