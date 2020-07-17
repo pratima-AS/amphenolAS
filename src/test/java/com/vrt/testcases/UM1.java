@@ -103,9 +103,9 @@ public class UM1 extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "UM1: UserManagementTest" + ".html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "UM1_UserManagementTest" + ".html",
 				true);
-		extent.addSystemInfo("TestSuiteName", "UserManagementTest");
+		extent.addSystemInfo("TestSuiteName", "UM1_UserManagementTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
@@ -124,6 +124,7 @@ public class UM1 extends BaseClass {
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
+		//Create the default Admin USer
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
 				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
@@ -136,6 +137,7 @@ public class UM1 extends BaseClass {
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage.ClickNewUser();
+		//Create a User & disable it
 		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), getPW("Dsbluser"),
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -144,8 +146,12 @@ public class UM1 extends BaseClass {
 		UserManagementPage.Select_DisableUserCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		MainHubPage = UserManagementPage.ClickBackButn();
-		
+		//Create a New Admin User but do not change its PW
+		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "NewU1", getUID("Newuser"),
+				getPW("Newuser"), "Admin", "12324", "abc@gmail.com");
+		UserManagementPage.click_Close_alertmsg();
+				MainHubPage = UserManagementPage.ClickBackButn();
+		//Conduct a Syncin operation
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
 		SyncInPage.enter_Filepath("syncin");
@@ -157,7 +163,7 @@ public class UM1 extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-
+		
 	}
 
 	// After Class/Test	
@@ -1731,25 +1737,22 @@ public class UM1 extends BaseClass {
 		//System.out.println(AlrtMsgTxt);
 		String[] expectedAssetName = AlrtMsgTxt.split(" ");
 		//System.out.println(expectedAssetName[0]);
-		/*for (String wrds : expectedAssetName) {
-			System.out.println(wrds);
-		}*/
+		//for (String wrds : expectedAssetName) {
+			//System.out.println(wrds);
+		//}
 
 		sa.assertEquals("ADMN067B", expectedAssetName[0], "FAIL: Unable to create New Asset By Admin");
 		sa.assertAll();
 
 	}
-
-	// ADMN069
+	
+	// ADMN069A
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login before saving any changes  for any user type")
-	public void ADMN069() throws InterruptedException {
+			"Regression" }, description = "ADMN069A-Verify mandatory login before saving any changes  for any user type")
+	public void ADMN069A() throws InterruptedException {
 
-		extentTest = extent.startTest("ADMN069-Verify mandatory login before saving any changes  for any user type");
+		extentTest = extent.startTest("ADMN069A-Verify mandatory login before saving any changes  for any user type");
 		SoftAssert s = new SoftAssert();
-		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "NewU1", getUID("Newuser"),
-				getPW("Newuser"), "Admin", "12324", "abc@gmail.com");
-		UserManagementPage.click_Close_alertmsg();
 		UserManagementPage.ClickNewUser();
 		UserManagementPage.CreateOperatorUser(getUID("Newuser"), getPW("Newuser"), "TestX", "ADMN069", "ADMN069",
 				"Operator", "12324", "abc@gmail.com");
@@ -1759,16 +1762,17 @@ public class UM1 extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN069A
+	// ADMN069B
 	@Test(groups = {
-			"Regression" }, description = "ADMN069A-Verify mandatory login for a new user before saving any changes-Equipment Creation")
-	public void ADMN069A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN069B-Verify mandatory login for a new user before "
+					+ "saving any changes-Equipment Creation")
+	public void ADMN069B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN069A-Verify mandatory login for a new user before saving any changes-Equipment Creation");
+				"ADMN069B-Verify mandatory login for a new user before saving any changes-Equipment Creation");
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.BaseStation_EqipCreation_MandatoryFields("Base Station", "ADMN069A", "20A", "ADMN069A");
+		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "ADMN069B", "69B");
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExptedAlert = "Please login the system at least once";
 		String ActAlert = tu.get_AlertMsg_text();
@@ -1777,21 +1781,19 @@ public class UM1 extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN069B
+	// ADMN069C
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Equipment Edit")
-	public void ADMN069B() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN069C-Verify mandatory login for a new user "
+					+ "before saving any changes-Equipment Edit")
+	public void ADMN069C() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("ADMN069B-Verify mandatory login for a new user before saving any changes-Equipment-Edit");
+				.startTest("ADMN069C-Verify mandatory login for a new user before "
+						+ "saving any changes-Equipment-Edit");
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		EquipmentPage = EquipmentHubPage.ClickAddButton();
-		EquipmentPage.EqipCreation_MandatoryFields("IRTD", "ADMN069B", "2202");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = EquipmentPage.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("ADMN069B");
-		IRTDDetailspage.EditIRTDEquip("test");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		IRTDDetailspage.enter_IRTDEquipName("test");
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExptedAlert = "Please login the system at least once";
 		String ActAlert = tu.get_AlertMsg_text();
@@ -1800,18 +1802,20 @@ public class UM1 extends BaseClass {
 				"FAIL: Alert message should be displayed as Please login the system at least once ");
 		s.assertAll();
 	}
-
-	// ADMN069C	
+	
+	// ADMN069D	
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Equipment Delete")
-	void ADMN069C() throws InterruptedException, IOException {
+			"Regression" }, description = "ADMN069D-Verify mandatory login for a new user before "
+					+ "saving any changes-Equipment Delete")
+	void ADMN069D() throws InterruptedException, IOException {
 		extentTest = extent
-				.startTest("ADMN069C-Verify mandatory login for a new user before saving any changes-Equipment Delete");
+				.startTest("ADMN069D-Verify mandatory login for a new user before saving "
+						+ "any changes-Equipment Delete");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
-		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("ADMN069B");
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
@@ -1822,12 +1826,14 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069D
+	// ADMN069E
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Aseert Creation")
-	public void ADMN069D() throws InterruptedException, IOException {
+			"Regression" }, description = "ADMN069E-Verify mandatory login for a "
+					+ "new user before saving any changes-Aseert Creation")
+	public void ADMN069E() throws InterruptedException, IOException {
 		extentTest = extent
-				.startTest("ADMN069D-Verify mandatory login for a new user before saving any changes-Aseert Creation");
+				.startTest("ADMN069E-Verify mandatory login for a new user before "
+						+ "saving any changes-Aseert Creation");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -1841,20 +1847,24 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069E
+	// ADMN069F
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Aseert Edit")
-	public void ADMN069E() throws InterruptedException, IOException {
+			"Regression" }, dataProvider = "ADMIN069F", dataProviderClass = userManagementUtility.class,
+					description = "ADMN069F-Verify mandatory login for a new user "
+					+ "before saving any changes-Aseert Edit")
+	public void ADMN069F(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			throws InterruptedException, IOException {
 		extentTest = extent
-				.startTest("ADMN069E-Verify mandatory login for a new user before saving any changes-Aseert Edit");
+				.startTest("ADMN069F-Verify mandatory login for a new user before "
+						+ "saving any changes-Aseert Edit");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
-		assetCreationPage.assetCreation("NWAst2", "201A", "HeatBath", "HYdd", "Ind");
+		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("NWAst2");
+		assetDetailsPage = assetHubPage.click_assetTile(AName);
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.enterModelName("abc");
 		assetCreationPage.clickSaveBtn();
@@ -1866,16 +1876,24 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069F
+	// ADMN069G
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Aseert Delete")
-	public void ADMN069F() throws InterruptedException, IOException {
+			"Regression" }, dataProvider = "ADMIN069G", dataProviderClass = userManagementUtility.class,
+					description = "ADMN069G- Verify mandatory login for a new user"
+					+ " before saving any changes-Aseert Delete")
+	public void ADMN069G(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			throws InterruptedException, IOException {
 		extentTest = extent
-				.startTest("ADMN069F-Verify mandatory login for a new user before saving any changes-Aseert Delete");
+				.startTest("ADMN069F-Verify mandatory login for a new user before saving "
+						+ "any changes-Aseert Delete");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("NWAst2");
+		assetCreationPage = assetHubPage.Click_AddAssetButton();
+		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = assetCreationPage.clickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile(AName);
 		assetDetailsPage.DeleteAssert();
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExpAlrtMsg = "Please login the system at least once";
@@ -1885,14 +1903,18 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069G
+	// ADMN069H
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Admin screen-Edit")
-	public void ADMN069G() throws InterruptedException {
+			"Regression" }, description = "ADMN069H-Verify mandatory login for a new user"
+					+ " before saving any changes-Admin screen-Edit")
+	public void ADMN069H() throws InterruptedException {
 		extentTest = extent.startTest(
-				"ADMN069G-Verify mandatory login for a new user before saving any changes-Admin screen-Edit");
+				"ADMN069H-Verify mandatory login for a new user before saving any "
+				+ "changes-Admin screen-Edit");
 		SoftAssert sa = new SoftAssert();
 		UserManagementPage.clickAnyUserinUserList("User1");
+		UserManagementPage.ClickUserTypeDropDown();
+		UserManagementPage.SelectSupervisor();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExpAlrtMsg = "Please login the system at least once";
@@ -1902,12 +1924,14 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069H
+	// ADMN069I
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Admin screen-Delete")
-	public void ADMN069H() throws InterruptedException {
+			"Regression" }, description = "ADMN069I-Verify mandatory login for a new user "
+					+ "before saving any changes-Admin screen-Delete")
+	public void ADMN069I() throws InterruptedException {
 		extentTest = extent.startTest(
-				"ADMN069H-Verify mandatory login for a new user before saving any changes-Admin screen-Delete");
+				"ADMN069I-Verify mandatory login for a new user before saving any "
+				+ "changes-Admin screen-Delete");
 		SoftAssert sa = new SoftAssert();
 		UserManagementPage.clickAnyUserinUserList("User1");
 		UserManagementPage.ClickDeletebtn();
@@ -1919,17 +1943,18 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069I
+	// ADMN069J
 	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-File Management screen")
-	public void ADMN069I() throws InterruptedException, IOException {
+			"Regression" }, description = "ADMN069J-Verify mandatory login for a new user "
+					+ "before saving any changes-File Management screen")
+	public void ADMN069J() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ADMN069I-Verify mandatory login for a new user before saving any changes-File Management screen");
+				"ADMN069J-Verify mandatory login for a new user before saving any "
+				+ "changes-File Management screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		FileManagementPage.ClickSyncInBtn(getUID("Newuser"), getPW("Newuser"));
-		// UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExpAlrtMsg = "Please login the system at least once";
 		String ActAlertMsg = FileManagementPage.AlertMsg();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,
@@ -1937,24 +1962,6 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN069J
-	@Test(groups = {
-			"Regression" }, description = "Verify mandatory login for a new user before saving any changes-Admin screen-Delete File Management screen")
-	public void ADMN069J() throws InterruptedException, IOException {
-		extentTest = extent.startTest(
-				"ADMN069J-Verify the functionality when disabled user credentials are given in authentication window of File Management screen");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = UserManagementPage.ClickBackButn();
-		FileManagementPage = MainHubPage.ClickFileManagementTitle();
-		FileManagementPage.ClickSyncOutBtn(getUID("Newuser"), getPW("Newuser"));
-		// UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
-		String ExpAlrtMsg = "Please login the system at least once";
-		String ActAlertMsg = FileManagementPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,
-				"FAIL: Alert message should be displayed as Please login the system at least once");
-		sa.assertAll();
-	}
-	
 
 	// ADMN126
 	// dependsOnMethods = { "ADMN044", "ADMN045" },

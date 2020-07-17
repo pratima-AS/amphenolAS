@@ -648,7 +648,8 @@ public class assetDetailsPage extends BaseClass {
 	//any files from the respective Asset tiles
 	//This method requires user input o which tile he has selected like 
 	//Setup(default) or Qual, Reports or Doc
-	public void selectFolder_CopyToDrive(String folderName, String tile) throws InterruptedException, AWTException, IOException {
+	public void selectFolder_CopyToDrive(String folderName, String tile) 
+			throws InterruptedException, AWTException, IOException {
 		if (tile.equalsIgnoreCase("setup")) {
 			click_Setup_CopyToDrive();
 			// Select any folder present in the resource folder TestData

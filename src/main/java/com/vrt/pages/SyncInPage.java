@@ -69,25 +69,20 @@ public class SyncInPage extends BaseClass{
 		Thread.sleep(500);
 		// switch to the file upload window
 		WebElement alert = driver.switchTo().activeElement();
-		Thread.sleep(5000);
-
-		// enter the filename
-		String filepath1 = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\";
-		//System.out.println(filepath);
-		alert.sendKeys(filepath1);
-		Thread.sleep(500);
+		Thread.sleep(2000);
 
 		// hit enter
 		Robot r = new Robot();
 		r.keyPress(KeyEvent.VK_ENTER);
-		r.keyRelease(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);		 
 		
 		String fp2 = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\" + pathname;
 		//System.out.println(filepath);
 		alert.sendKeys(fp2);
 		Thread.sleep(500);
-		r.keyPress(KeyEvent.VK_ENTER);
-		r.keyRelease(KeyEvent.VK_ENTER);
+		//Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_TAB);
+		r.keyRelease(KeyEvent.VK_TAB);
 		r.keyPress(KeyEvent.VK_ENTER);
 		r.keyRelease(KeyEvent.VK_ENTER);
 

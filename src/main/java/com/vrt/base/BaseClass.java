@@ -224,11 +224,11 @@ public class BaseClass {
 	public static HashMap<String, String> getUIDCredentials() {
 		HashMap<String, String> UserMap = new HashMap<String, String>();
 		
-		UserMap.put("adminFull", "1:Welcome1@AM");		
+		UserMap.put("adminFull", "1:111111");		
 		//User roles for privilege and customized privilege
-		UserMap.put("SysAdmin", "2:Start@1AM");
-		UserMap.put("SysSupervisor", "3:Welcome3@AM");
-		UserMap.put("SysOperator", "4:Welcome4@AM");	
+		UserMap.put("SysAdmin", "2:222222");
+		UserMap.put("SysSupervisor", "3:333333");
+		UserMap.put("SysOperator", "4:444444");	
 		
 		UserMap.put("TestAdmin", "2:Start@5AM");
 		UserMap.put("Dsbluser", "1D:Start@1AM");
@@ -264,7 +264,7 @@ public class BaseClass {
 			String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
 			File backupFile = new File(filepath + "/" + timestamp + "_"+fileName);
 			file.renameTo(backupFile);
-			System.out.println("Target file renamed");
+			System.out.println(fileName+" file renamed");
 		}				
 	}
 	
