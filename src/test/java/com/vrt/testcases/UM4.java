@@ -74,22 +74,20 @@ public class UM4 extends BaseClass {
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM4_DeleteStudyAndReportAcessTest"+".html", true);
-		extent.addSystemInfo("TestSuiteName", "UM_DeleteStudyAndReportAcessTest");
+		extent.addSystemInfo("TestSuiteName", "UM4_DeleteStudyAndReportAcessTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
-		System.out.println("UM_DeleteStudyAndReportAcessTest in Progress..");
+		System.out.println("UM4_DeleteStudyAndReportAcessTest in Progress..");
 		
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Equipment.txt");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
-		// Rename the VRT Setups folder (Asset) if exists
+		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
@@ -162,12 +160,9 @@ public class UM4 extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		
-		/*//AppClose();
-		Thread.sleep(2000);	
-		*/	
+
 	}
 
 	// After All the tests are conducted
@@ -211,11 +206,10 @@ public class UM4 extends BaseClass {
 	//Tests
 	//***************
 	
-	// ADMN051
-	
+	// ADMN051	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to "
-					+ "access the default privilege-Delete  Pass_Fail reports",alwaysRun = true)
+					+ "access the default privilege-Delete  Pass_Fail reports")
 	public void ADMN051() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN051_Verify if Administrator is able to access the default "

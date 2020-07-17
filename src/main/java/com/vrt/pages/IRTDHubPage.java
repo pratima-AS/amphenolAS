@@ -71,7 +71,7 @@ public class IRTDHubPage extends BaseClass {
 		return new IRTDDetailspage();
 	}
 	
-	// Click/Select the IRTD serial number in IRTDHubPage
+	// Verify if the IRTD is present in IRTDHubPage
 	public boolean Is_Irtd_visible(String SN) throws InterruptedException {
 
 		List<WebElement> IrtdList = driver.findElementByAccessibilityId("loggersGrid")

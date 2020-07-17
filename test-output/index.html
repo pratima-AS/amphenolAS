@@ -5,8 +5,9 @@
   <meta charset='utf-8'>
   <title>TestNG reports</title>
 
-    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
-    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="testng-reports.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type='text/javascript'>
@@ -23,6 +24,7 @@
   <body>
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
+      <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
       <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
@@ -49,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse-1455391530\testng-customsuite.xml</span>
+                    <span>C:\Users\SSC\AppData\Local\Temp\testng-eclipse-1450566378\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +104,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.vrt.testcases.HitNTrialTests" hash-for-method="ADMN062(ADMIN062, 062, HeatBath, HTC, Hyderabad)">ADMN062(ADMIN062, 062, HeatBath, HTC, Hyderabad)</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.vrt.testcases.UM3" hash-for-method="CADMN5">CADMN5</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -120,17 +122,16 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.vrt.testcases.HitNTrialTests</span>
+              <span class="class-name">com.vrt.testcases.UM3</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="ADMN062(ADMIN062, 062, HeatBath, HTC, Hyderabad)">
-                  </a> <!-- ADMN062(ADMIN062, 062, HeatBath, HTC, Hyderabad) -->
-                  <span class="method-name">ADMN062</span>
-                  <span class="parameters">(ADMIN062, 062, HeatBath, HTC, Hyderabad)</span>
+                  <a name="CADMN5">
+                  </a> <!-- CADMN5 -->
+                  <span class="method-name">CADMN5</span>
                   <em>
-(ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets)                  </em>
+(CADMN5-Verify Admin is unable to access the customized unchecked privilege-Delete Equipments)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -138,7 +139,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse-1455391530\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\SSC\AppData\Local\Temp\testng-eclipse-1450566378\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,7 +148,11 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test thread-count=&quot;5&quot; verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.vrt.testcases.HitNTrialTests&quot;/&gt;
+      &lt;class name=&quot;com.vrt.testcases.UM3&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;CADMN5&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.vrt.testcases.UM3 --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -175,7 +180,7 @@
               <span class="test-group-name">Regression</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">ADMN062</span>
+                <span class="method-in-group-name">CADMN5</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -197,14 +202,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ADMN062')
-data.setCell(0, 2, 'com.vrt.testcases.HitNTrialTests')
-data.setCell(0, 3, 12291);
+data.setCell(0, 1, 'CADMN5')
+data.setCell(0, 2, 'com.vrt.testcases.UM3')
+data.setCell(0, 3, 10447);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -219,9 +224,98 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">42 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.vrt.testcases.UM3</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">ADMN087</span>
+                <br/>
+                <span class="ignored-method-name">CADMN23A</span>
+                <br/>
+                <span class="ignored-method-name">CADMN23B</span>
+                <br/>
+                <span class="ignored-method-name">ADMN060</span>
+                <br/>
+                <span class="ignored-method-name">ADMN085A</span>
+                <br/>
+                <span class="ignored-method-name">CADMN15</span>
+                <br/>
+                <span class="ignored-method-name">CADMN37</span>
+                <br/>
+                <span class="ignored-method-name">CADMN35</span>
+                <br/>
+                <span class="ignored-method-name">CADMN14</span>
+                <br/>
+                <span class="ignored-method-name">CADMN36</span>
+                <br/>
+                <span class="ignored-method-name">CADMN19</span>
+                <br/>
+                <span class="ignored-method-name">CADMN12</span>
+                <br/>
+                <span class="ignored-method-name">CADMN39</span>
+                <br/>
+                <span class="ignored-method-name">ADMN085B</span>
+                <br/>
+                <span class="ignored-method-name">CADMN16</span>
+                <br/>
+                <span class="ignored-method-name">CADMN38</span>
+                <br/>
+                <span class="ignored-method-name">CADMN11</span>
+                <br/>
+                <span class="ignored-method-name">CADMN31</span>
+                <br/>
+                <span class="ignored-method-name">CADMN10</span>
+                <br/>
+                <span class="ignored-method-name">CADMN32</span>
+                <br/>
+                <span class="ignored-method-name">CADMN30</span>
+                <br/>
+                <span class="ignored-method-name">ADMN111A</span>
+                <br/>
+                <span class="ignored-method-name">ADMN112</span>
+                <br/>
+                <span class="ignored-method-name">ADMN111</span>
+                <br/>
+                <span class="ignored-method-name">CADMN7</span>
+                <br/>
+                <span class="ignored-method-name">CADMN8</span>
+                <br/>
+                <span class="ignored-method-name">CADMN9</span>
+                <br/>
+                <span class="ignored-method-name">CADMN26</span>
+                <br/>
+                <span class="ignored-method-name">CADMN6</span>
+                <br/>
+                <span class="ignored-method-name">CADMN24</span>
+                <br/>
+                <span class="ignored-method-name">CADMN25</span>
+                <br/>
+                <span class="ignored-method-name">CADMN1</span>
+                <br/>
+                <span class="ignored-method-name">CADMN2</span>
+                <br/>
+                <span class="ignored-method-name">CADMN28</span>
+                <br/>
+                <span class="ignored-method-name">CADMN29</span>
+                <br/>
+                <span class="ignored-method-name">CADMN40</span>
+                <br/>
+                <span class="ignored-method-name">CADMN27</span>
+                <br/>
+                <span class="ignored-method-name">CADMN22</span>
+                <br/>
+                <span class="ignored-method-name">ADMN058B</span>
+                <br/>
+                <span class="ignored-method-name">ADMN058A</span>
+                <br/>
+                <span class="ignored-method-name">CADMN20</span>
+                <br/>
+                <span class="ignored-method-name">CADMN21</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -230,30 +324,31 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.vrt.testcases.HitNTrialTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.vrt.testcases.UM3</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">testsetup</span>
+                <span class="method-name">PreSetup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">Setup</span>
-                <span class="method-start">605 ms</span>
+                <span class="method-start">3793 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">ADMN062(ADMIN062, 062, HeatBath, HTC, Hyderabad)</span>
-                <span class="method-start">4534 ms</span>
+                <span class="method-name">CADMN5</span>
+                <span class="method-start">9647 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">Teardown([TestResult name=ADMN062 status=SUCCESS method=HitNTrialTests.ADMN062(java.lang.String, java.lang.St...)</span>
-                <span class="method-start">16827 ms</span>
+                <span class="method-name">Teardown([TestResult name=CADMN5 status=SUCCESS method=UM3.CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38b...)</span>
+                <span class="method-start">20098 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">endReport</span>
-                <span class="method-start">17428 ms</span>
+                <span class="method-start">20126 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
     </div> <!-- wrapper -->
   </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
 </html>

@@ -10,8 +10,8 @@
 		<classes>
 			<class name="com.vrt.testcases.UM1"></class>
 			<class name="com.vrt.testcases.UM2"></class>
-			<class name="com.vrt.testcases.UM3" ></class>	
-			<class name="com.vrt.testcases.UM4" ></class>				
+			<class name="com.vrt.testcases.UM3"></class>	
+			<class name="com.vrt.testcases.UM4"></class>				
 		</classes>
 	</test> <!-- assetDetailsTestSanity -->
 </suite> <!-- assetDetailsTestSuite -->

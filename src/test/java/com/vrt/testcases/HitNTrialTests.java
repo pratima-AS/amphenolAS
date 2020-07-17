@@ -111,14 +111,14 @@ public class HitNTrialTests extends BaseClass {
 		System.out.println("UserManagementTest in Progress..");
 
 		
-		/*//Rename the User file (NgvUsers.uxx) if exists
+		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-
+		
 		
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
@@ -128,7 +128,7 @@ public class HitNTrialTests extends BaseClass {
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
 				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		/*UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
@@ -145,7 +145,7 @@ public class HitNTrialTests extends BaseClass {
 		UserManagementPage.Select_DisableUserCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		MainHubPage = UserManagementPage.ClickBackButn();
+		MainHubPage = UserManagementPage.ClickBackButn();*/
 		//SyncIn Method
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
@@ -157,7 +157,7 @@ public class HitNTrialTests extends BaseClass {
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
-		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();*/
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		
 		
 	}
@@ -241,31 +241,17 @@ public class HitNTrialTests extends BaseClass {
 	
 	// ADMN062
 	@Test(groups = {
-			"Regression" }, dataProvider = "ADMIN062", dataProviderClass = userManagementUtility.class,
-					description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
-	public void ADMN062(String AName, String AID, String AType, String AManufacturer, String ALocation) 
+			"Regression" }, description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
+	public void ADMN062() 
 			throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
 		SoftAssert sa = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.Click_AddAssetButton();
-		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		tu.click_Close_alertmsg();
-		assetHubPage = assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		assetDetailsPage.DeleteAssert();		
-		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		Thread.sleep(2000);
-		String alrtMsg = assetDetailsPage.get_text_DeleteAst_popup();
-		//System.out.println(alrtMsg);
-		String[] wordlist = alrtMsg.split(":");
-		//System.out.println(wordlist[0]);
-		sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
-				+ " a diferent popup is observed");
-		sa.assertAll();
+
+		System.out.println("checking syinc In");
+		//sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
+			//	+ " a diferent popup is observed");
+		//sa.assertAll();
 	}
 
 }

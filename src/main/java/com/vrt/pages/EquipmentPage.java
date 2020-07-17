@@ -25,18 +25,29 @@ public class EquipmentPage extends BaseClass {
 	WebElement ModelNumber = null;
 	WebElement EquipmentTypeUMDropDown = null;
 	WebElement EquipmentSaveButton = null;
+	WebElement backBtn = null;
 
 	private void initElements() {
 		EquipmentID = driver.findElementByAccessibilityId("EquipmentIDTextBox");
 		ModelNumber = driver.findElementByAccessibilityId("ModelNumberTextBox");
 		EquipmentTypeUMDropDown = driver.findElementByAccessibilityId("EquipmentTypeComboBox");
 		EquipmentSaveButton = driver.findElementByName("Save");
+		backBtn = driver.findElementByAccessibilityId("ArrowGlyph");
 
 	}
 
 	EquipmentPage() throws IOException {
 		super();
 		initElements();
+	}
+	
+	// Release memory
+	public void resetWebElements() {
+		EquipmentID = null;
+		ModelNumber = null;
+		EquipmentTypeUMDropDown = null;
+		EquipmentSaveButton = null;
+		backBtn = null;
 	}
 
 	/*----------------------
@@ -140,10 +151,13 @@ public class EquipmentPage extends BaseClass {
 		ClickSaveButton();
 	}
 
-//Click on back button 
-	public EquipmentHubPage ClickBackBtn() throws IOException {
-		WebElement backBtn = driver.findElementByAccessibilityId("ArrowGlyph");
+	//Click on back button 
+	public EquipmentHubPage ClickBackBtn() throws InterruptedException, IOException {
 		clickOn(backBtn);
+		//Temporary handling of Alert message (Bug 2033)
+		WebElement Yes_AlertMsg = driver.findElementByAccessibilityId("Button1");
+		clickOn(Yes_AlertMsg);
+		Thread.sleep(2000);
 		return new EquipmentHubPage();
 	}
 

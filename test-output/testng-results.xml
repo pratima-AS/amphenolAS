@@ -1,70 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="42" total="43" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="17879" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:39 IST">
+  <suite name="Default suite" duration-ms="20951" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:26 IST">
     <groups>
       <group name="Regression">
-        <method signature="HitNTrialTests.ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN062" class="com.vrt.testcases.HitNTrialTests"/>
+        <method signature="UM3.CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="CADMN5" class="com.vrt.testcases.UM3"/>
       </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="17879" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:39 IST">
-      <class name="com.vrt.testcases.HitNTrialTests">
-        <test-method status="PASS" signature="testsetup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="testsetup" is-config="true" duration-ms="84" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:22 IST">
+    <test name="Default test" duration-ms="20951" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:26 IST">
+      <class name="com.vrt.testcases.UM3">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="PreSetup" is-config="true" duration-ms="3769" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:09 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testsetup -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Setup" is-config="true" duration-ms="3929" started-at="2020-07-16T19:38:22 IST" finished-at="2020-07-16T19:38:26 IST">
+        </test-method> <!-- PreSetup -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="Setup" is-config="true" duration-ms="5853" started-at="2020-07-17T23:57:09 IST" finished-at="2020-07-17T23:57:15 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="ADMN062" duration-ms="12291" started-at="2020-07-16T19:38:26 IST" description="ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets" data-provider="ADMIN062" finished-at="2020-07-16T19:38:38 IST">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[ADMIN062]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[062]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[HeatBath]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[HTC]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Hyderabad]]>
-              </value>
-            </param>
-          </params>
+        <test-method status="PASS" signature="CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="CADMN5" duration-ms="10447" started-at="2020-07-17T23:57:15 IST" description="CADMN5-Verify Admin is unable to access the customized unchecked privilege-Delete Equipments" finished-at="2020-07-17T23:57:25 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ADMN062 -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="Teardown" is-config="true" duration-ms="600" started-at="2020-07-16T19:38:38 IST" finished-at="2020-07-16T19:38:39 IST">
+        </test-method> <!-- CADMN5 -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="Teardown" is-config="true" duration-ms="27" started-at="2020-07-17T23:57:25 IST" finished-at="2020-07-17T23:57:25 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=ADMN062 status=SUCCESS method=HitNTrialTests.ADMN062(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d] output={null}]]]>
+                <![CDATA[[TestResult name=CADMN5 status=SUCCESS method=UM3.CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.HitNTrialTests@69a3d1d]" name="endReport" is-config="true" duration-ms="438" started-at="2020-07-16T19:38:39 IST" finished-at="2020-07-16T19:38:39 IST">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="endReport" is-config="true" duration-ms="806" started-at="2020-07-17T23:57:25 IST" finished-at="2020-07-17T23:57:26 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
-      </class> <!-- com.vrt.testcases.HitNTrialTests -->
+      </class> <!-- com.vrt.testcases.UM3 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

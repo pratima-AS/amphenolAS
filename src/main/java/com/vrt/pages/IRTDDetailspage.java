@@ -27,20 +27,29 @@ public class IRTDDetailspage extends BaseClass {
 	// EquipmentHubPage Element definition
 	WebElement IRTDHeader = null;
 	WebElement DeleteBtn = null;		
-	WebElement EntrAssertname = null;
+	WebElement Eqpname = null;
 	WebElement ClkSaveBtn = null;
 
 	// Button1
 	private void initElements() {
 		IRTDHeader = driver.findElementByAccessibilityId("EquipmentsHeaderTextBlock");
 		DeleteBtn = driver.findElementByAccessibilityId("DeleteEquipmentsButton");
-
+		Eqpname = driver.findElementByAccessibilityId("AssetNameTextBox");
+		ClkSaveBtn = driver.findElementByAccessibilityId("SaveButton");
 	}
 
 	IRTDDetailspage() throws IOException {
 		super();
 		initElements();
 
+	}
+	
+	// Release memory
+	public void resetWebElements() {
+		IRTDHeader = null;
+		DeleteBtn = null;		
+		Eqpname = null;
+		ClkSaveBtn = null;
 	}
 
 	// IRTD Details page Header is presence...
@@ -78,23 +87,21 @@ public class IRTDDetailspage extends BaseClass {
 		return new IRTDHubPage();
 	}
 
-	// Edit Asset Name
-	public void EditAssertname(String an) {
-		EntrAssertname = driver.findElementByAccessibilityId("AssetNameTextBox");
-		ClearText(EntrAssertname);
-		enterText(EntrAssertname, an);
+	// Edit Equipment Name
+	public void enter_Equipmentname(String equipNm) {		
+		ClearText(Eqpname);
+		enterText(Eqpname, equipNm);
 	}
 
 	// Click on save button after edited
 	public void ClickSaveButton() throws InterruptedException {
-		ClkSaveBtn = driver.findElementByAccessibilityId("SaveButton");
 		clickOn(ClkSaveBtn);
 		Thread.sleep(1000);
 	}
 
 	//Edit Functionality for IRTD Equipments				
-	public void EditIRTDEquip(String an) throws InterruptedException {
-		EditAssertname(an);
+	public void enter_IRTDEquipName(String an) throws InterruptedException {
+		enter_Equipmentname(an);
 		ClickSaveButton();
 	}
 
