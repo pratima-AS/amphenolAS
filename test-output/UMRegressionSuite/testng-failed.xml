@@ -9,45 +9,20 @@
     <classes>
       <class name="com.vrt.testcases.UM2">
         <methods>
-          <include name="ADMN064"/>
-          <include name="ADMN117A"/>
           <include name="PreSetup"/>
-          <include name="ADMN062" invocation-numbers="0 0 0"/>
           <include name="Teardown"/>
-          <include name="ADMN077A"/>
           <include name="Setup"/>
           <include name="endReport"/>
-          <include name="ADMN080"/>
-          <include name="ADMN118"/>
+          <include name="Check"/>
         </methods>
       </class> <!-- com.vrt.testcases.UM2 -->
-      <class name="com.vrt.testcases.UM3">
-        <methods>
-          <include name="CADMN30"/>
-          <include name="CADMN5"/>
-          <include name="PreSetup"/>
-          <include name="CADMN23"/>
-          <include name="Setup"/>
-          <include name="endReport"/>
-          <include name="CADMN22"/>
-          <include name="Teardown"/>
-          <include name="ADMN058A"/>
-          <include name="CADMN31"/>
-          <include name="CADMN32"/>
-        </methods>
-      </class> <!-- com.vrt.testcases.UM3 -->
       <class name="com.vrt.testcases.UM1">
         <methods>
           <include name="Teardown"/>
           <include name="PreSetup"/>
-          <include name="ADMN016"/>
-          <include name="ADMN069D"/>
           <include name="endReport"/>
-          <include name="ADMN018"/>
-          <include name="ADMN069C"/>
-          <include name="ADMN015"/>
           <include name="Setup"/>
-          <include name="ADMN017"/>
+          <include name="Check"/>
         </methods>
       </class> <!-- com.vrt.testcases.UM1 -->
     </classes>

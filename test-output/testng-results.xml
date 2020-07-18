@@ -1,43 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="42" total="43" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20951" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:26 IST">
+  <suite name="UMRegressionSuite" duration-ms="843477" started-at="2020-07-18T16:42:02 IST" finished-at="2020-07-18T16:56:06 IST">
     <groups>
-      <group name="Regression">
-        <method signature="UM3.CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="CADMN5" class="com.vrt.testcases.UM3"/>
-      </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="20951" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:26 IST">
-      <class name="com.vrt.testcases.UM3">
-        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="PreSetup" is-config="true" duration-ms="3769" started-at="2020-07-17T23:57:05 IST" finished-at="2020-07-17T23:57:09 IST">
+    <test name="UMTestRegression" duration-ms="843477" started-at="2020-07-18T16:42:02 IST" finished-at="2020-07-18T16:56:06 IST">
+      <class name="com.vrt.testcases.UM4">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM4@20d28811]" name="PreSetup" is-config="true" duration-ms="231888" started-at="2020-07-18T16:52:13 IST" finished-at="2020-07-18T16:56:05 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PreSetup -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="Setup" is-config="true" duration-ms="5853" started-at="2020-07-17T23:57:09 IST" finished-at="2020-07-17T23:57:15 IST">
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM4@20d28811]" name="Setup" is-config="true" duration-ms="0" started-at="2020-07-18T16:56:05 IST" finished-at="2020-07-18T16:56:05 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="CADMN5" duration-ms="10447" started-at="2020-07-17T23:57:15 IST" description="CADMN5-Verify Admin is unable to access the customized unchecked privilege-Delete Equipments" finished-at="2020-07-17T23:57:25 IST">
+        <test-method status="PASS" signature="Check()[pri:0, instance:com.vrt.testcases.UM4@20d28811]" name="Check" duration-ms="3" started-at="2020-07-18T16:56:05 IST" description="check for SyncIn im UM4" finished-at="2020-07-18T16:56:05 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CADMN5 -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="Teardown" is-config="true" duration-ms="27" started-at="2020-07-17T23:57:25 IST" finished-at="2020-07-17T23:57:25 IST">
+        </test-method> <!-- Check -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM4@20d28811]" name="Teardown" is-config="true" duration-ms="71" started-at="2020-07-18T16:56:05 IST" finished-at="2020-07-18T16:56:05 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=CADMN5 status=SUCCESS method=UM3.CADMN5()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5] output={null}]]]>
+                <![CDATA[[TestResult name=Check status=SUCCESS method=UM4.Check()[pri:0, instance:com.vrt.testcases.UM4@20d28811] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM3@38bc8ab5]" name="endReport" is-config="true" duration-ms="806" started-at="2020-07-17T23:57:25 IST" finished-at="2020-07-17T23:57:26 IST">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM4@20d28811]" name="endReport" is-config="true" duration-ms="567" started-at="2020-07-18T16:56:05 IST" finished-at="2020-07-18T16:56:06 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.vrt.testcases.UM4 -->
+      <class name="com.vrt.testcases.UM3">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM3@3cc2931c]" name="PreSetup" is-config="true" duration-ms="261990" started-at="2020-07-18T16:47:51 IST" finished-at="2020-07-18T16:52:13 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PreSetup -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM3@3cc2931c]" name="Setup" is-config="true" duration-ms="1" started-at="2020-07-18T16:52:13 IST" finished-at="2020-07-18T16:52:13 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="Check()[pri:0, instance:com.vrt.testcases.UM3@3cc2931c]" name="Check" duration-ms="2" started-at="2020-07-18T16:52:13 IST" description="check for SyncIn im UM3" finished-at="2020-07-18T16:52:13 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Check -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM3@3cc2931c]" name="Teardown" is-config="true" duration-ms="79" started-at="2020-07-18T16:52:13 IST" finished-at="2020-07-18T16:52:13 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=Check status=SUCCESS method=UM3.Check()[pri:0, instance:com.vrt.testcases.UM3@3cc2931c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM3@3cc2931c]" name="endReport" is-config="true" duration-ms="583" started-at="2020-07-18T16:52:13 IST" finished-at="2020-07-18T16:52:13 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
       </class> <!-- com.vrt.testcases.UM3 -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      <class name="com.vrt.testcases.UM2">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM2@59d016c9]" name="PreSetup" is-config="true" duration-ms="220947" started-at="2020-07-18T16:44:09 IST" finished-at="2020-07-18T16:47:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PreSetup -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM2@59d016c9]" name="Setup" is-config="true" duration-ms="0" started-at="2020-07-18T16:47:50 IST" finished-at="2020-07-18T16:47:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="Check()[pri:0, instance:com.vrt.testcases.UM2@59d016c9]" name="Check" duration-ms="4" started-at="2020-07-18T16:47:50 IST" description="check for SyncIn im UM2" finished-at="2020-07-18T16:47:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Check -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM2@59d016c9]" name="Teardown" is-config="true" duration-ms="41" started-at="2020-07-18T16:47:50 IST" finished-at="2020-07-18T16:47:50 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=Check status=SUCCESS method=UM2.Check()[pri:0, instance:com.vrt.testcases.UM2@59d016c9] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM2@59d016c9]" name="endReport" is-config="true" duration-ms="563" started-at="2020-07-18T16:47:50 IST" finished-at="2020-07-18T16:47:51 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.vrt.testcases.UM2 -->
+      <class name="com.vrt.testcases.UM1">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1]" name="PreSetup" is-config="true" duration-ms="125841" started-at="2020-07-18T16:42:02 IST" finished-at="2020-07-18T16:44:08 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PreSetup -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1]" name="Setup" is-config="true" duration-ms="0" started-at="2020-07-18T16:44:08 IST" finished-at="2020-07-18T16:44:08 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="Check()[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1]" name="Check" duration-ms="15" started-at="2020-07-18T16:44:08 IST" description="check for SyncIn im UM1" finished-at="2020-07-18T16:44:08 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Check -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1]" name="Teardown" is-config="true" duration-ms="43" started-at="2020-07-18T16:44:08 IST" finished-at="2020-07-18T16:44:08 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=Check status=SUCCESS method=UM1.Check()[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.vrt.testcases.UM1@4b5a5ed1]" name="endReport" is-config="true" duration-ms="769" started-at="2020-07-18T16:44:08 IST" finished-at="2020-07-18T16:44:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.vrt.testcases.UM1 -->
+    </test> <!-- UMTestRegression -->
+  </suite> <!-- UMRegressionSuite -->
 </testng-results>

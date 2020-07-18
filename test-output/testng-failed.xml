@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [UMRegressionSuite]">
+  <listeners>
+    <listener class-name="com.vrt.Listners.ExtentReporterNG"/>
+    <listener class-name="com.vrt.Listners.RetryTransformer"/>
+  </listeners>
+  <test thread-count="5" verbose="5" name="UMTestRegression(failed)">
     <classes>
-      <class name="com.vrt.testcases.UM3">
+      <class name="com.vrt.testcases.UM2">
         <methods>
           <include name="PreSetup"/>
+          <include name="Teardown"/>
           <include name="Setup"/>
           <include name="endReport"/>
-          <include name="Teardown"/>
-          <include name="CADMN31"/>
+          <include name="Check"/>
         </methods>
-      </class> <!-- com.vrt.testcases.UM3 -->
+      </class> <!-- com.vrt.testcases.UM2 -->
+      <class name="com.vrt.testcases.UM1">
+        <methods>
+          <include name="Teardown"/>
+          <include name="PreSetup"/>
+          <include name="endReport"/>
+          <include name="Setup"/>
+          <include name="Check"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.UM1 -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- UMTestRegression(failed) -->
+</suite> <!-- Failed suite [UMRegressionSuite] -->
