@@ -245,7 +245,7 @@ public class LoginPage extends BaseClass {
 		MainLoginUID.sendKeys("Kaye");
 		MainLoginPW.sendKeys("411");
 		MainLoginBtn.click();
-		Thread.sleep(2000);	
+		Thread.sleep(1000);	
 		
 		return new UserManagementPage();
 	}

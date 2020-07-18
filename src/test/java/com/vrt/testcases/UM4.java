@@ -157,12 +157,35 @@ public class UM4 extends BaseClass {
 		SyncInPage.enter_Filepath("syncin");
 		SyncInPage.click_FltrBtn();
 		SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+		SyncInAssetListPage.click_EquipmentCheckBox();
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-
+		Thread.sleep(2000);
+		//Verify if Syncin happened or not
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		LoginPage = new LoginPage();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		//System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
+		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
+			AppClose();
+			Thread.sleep(1000);
+		} else {
+			FileManagementPage = MainHubPage.ClickFileManagementTitle();
+			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+			SyncInPage.enter_Filepath("syncin");
+			SyncInPage.click_FltrBtn();
+			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+			SyncInAssetListPage.click_EquipmentCheckBox();
+			SyncInAssetListPage.click_SelectAllBtn();
+			SyncInAssetListPage.click_OkBtn();
+			SyncInAssetListPage.click_AlrtYesBtn();
+			Thread.sleep(6000);
+			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+			Thread.sleep(2000);
+		}
 	}
 
 	// After All the tests are conducted
@@ -177,6 +200,7 @@ public class UM4 extends BaseClass {
 	// Before Method
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws InterruptedException, IOException {
+		//System.out.println("Synin Process check in UM4");
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 	}
@@ -205,6 +229,14 @@ public class UM4 extends BaseClass {
 	//***************
 	//Tests
 	//***************
+	
+	/*// Check
+	@Test(description = "check for SyncIn im UM1")
+	public void Check() throws Exception {
+		extentTest = extent.startTest("Syncin Process check in UM1");
+		System.out.println("Syncin Process check in UM1");
+	}*/
+	
 	
 	// ADMN051	
 	@Test(groups = {
@@ -571,4 +603,5 @@ public class UM4 extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Operator should be unable to access- Delete Setups");
 		sa.assertAll();
 	}
+	
 }

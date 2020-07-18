@@ -112,14 +112,59 @@ public class UserManagementPage extends BaseClass {
 		CameraAccess = driver.findElementByAccessibilityId("CamerAccessCheckbox");
 		DeletePassFailTemplate = driver.findElementByAccessibilityId("DeleteTemplateCheckBox");
 		DisableCheckbox = driver.findElementByAccessibilityId("DisableUserCheckBox");
-		UsersListButton = driver.findElementByAccessibilityId("PrintUsersListButton");
-		
+		UsersListButton = driver.findElementByAccessibilityId("PrintUsersListButton");		
 
 	}
 
 	UserManagementPage() throws IOException {
 		super();
 		initElements();
+	}
+	
+	// Release memory
+	public void resetWebElements() {
+		UMHeaderText = null;
+		PreferencesHeaderText = null;
+		PoliciesHeaderText = null;
+		NewUserUMBtn = null;
+		UNUMField = null;
+		UserIDUMField = null;
+		PWUMField = null;
+		ConPWUMField = null;
+		TitleUMField = null;
+		UserTypeUMDropDown = null;
+		PhoneUMField = null;
+		EmailUMField = null;
+		DeleteUMBtn = null;
+		UMAssetPriv = null;
+		UMSetupPriv = null;
+		UMQualPriv = null;
+		UMCalPriv = null;
+		SaveUMBtn = null;
+		CancelUMBtn = null;
+		AdminPriv = null;
+		CreaeteEditAssetPriv = null;
+		CreaeteEditSetupPriv = null;
+		CreaeteEditEquipPriv = null;
+		CreateReports = null;
+		CreatePassFailTemplate = null;
+		AuditTrail = null;
+		RunQualification = null;
+		DeleteAssets = null;
+		DeleteSetup = null;
+		DeleteEquipment = null;
+		DeleteStudyFiles = null;
+		EditPassFailTemplate = null;
+		RunCalibration = null;
+		CopyFilesReports = null;
+		ArchiveData = null;
+		ManualSync = null;
+		CameraAccess = null;
+		DeletePassFailTemplate = null;
+		DisableCheckbox = null;
+		UsersListButton = null;
+		UMImgBtn = null;
+
 	}
 
 	// TODO Auto-generated constructor stub

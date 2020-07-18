@@ -66,6 +66,7 @@ public class MainHubPage extends BaseClass {
 	public UserManagementPage ClickAdminTile_UMpage() throws InterruptedException, IOException {
 		clickOn(MainUIAdminTile);
 		Thread.sleep(500);
+		
 		return new UserManagementPage();
 	}
 

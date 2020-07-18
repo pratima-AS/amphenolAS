@@ -168,7 +168,29 @@ public class UM3 extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		
+		//Verify if Syncin happened or not
+		Thread.sleep(2000);
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		LoginPage = new LoginPage();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		//System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
+		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
+			AppClose();
+			Thread.sleep(1000);
+		} else {
+			FileManagementPage = MainHubPage.ClickFileManagementTitle();
+			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+			SyncInPage.enter_Filepath("syncin");
+			SyncInPage.click_FltrBtn();
+			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+			SyncInAssetListPage.click_EquipmentCheckBox();
+			SyncInAssetListPage.click_SelectAllBtn();
+			SyncInAssetListPage.click_OkBtn();
+			SyncInAssetListPage.click_AlrtYesBtn();
+			Thread.sleep(6000);
+			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+			Thread.sleep(2000);
+		}
 
 	}
 
@@ -185,10 +207,12 @@ public class UM3 extends BaseClass {
 	// Before Method
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws InterruptedException, IOException {
+		//System.out.println("Synin Process check in UM3");
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 	}
 
+	//After Method
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
@@ -207,6 +231,13 @@ public class UM3 extends BaseClass {
 		driver.quit();
 	}
 
+	/*// Check
+	@Test(description = "check for SyncIn im UM1")
+	public void Check() throws Exception {
+		extentTest = extent.startTest("Syncin Process check in UM1");
+		System.out.println("Syncin Process check in UM1");
+	}*/
+	
 	
 	//CADMN1
 	@Test(groups = { "Regression" }, description = "Verify the customized (non defult) "
@@ -1092,4 +1123,4 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 		
-	}
+}
