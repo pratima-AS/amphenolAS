@@ -185,6 +185,7 @@ public class UM2 extends BaseClass {
 			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 			Thread.sleep(2000);
 		}
+		
 
 	}
 
@@ -517,7 +518,7 @@ public class UM2 extends BaseClass {
 		//System.out.println(alrtMsg);
 		String[] wordlist = alrtMsg.split(":");
 		//System.out.println(wordlist[0]);
-		sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
+		sa.assertEquals(wordlist[0], "Do you want to delete asset", "FAIL:Admin unable to delete Asset or"
 				+ " a diferent popup is observed");
 		sa.assertAll();
 	}
