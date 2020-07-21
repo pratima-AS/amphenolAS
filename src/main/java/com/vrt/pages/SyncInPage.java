@@ -69,7 +69,7 @@ public class SyncInPage extends BaseClass{
 		Thread.sleep(500);
 		// switch to the file upload window
 		WebElement alert = driver.switchTo().activeElement();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		// hit enter
 		Robot r = new Robot();
@@ -79,7 +79,7 @@ public class SyncInPage extends BaseClass{
 		r.keyRelease(KeyEvent.VK_ENTER);
 		
 		String fp2 = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\" + pathname;
-		//System.out.println(filepath);
+		System.out.println(fp2);
 		alert.sendKeys(fp2);
 		Thread.sleep(500);
 		//Robot r = new Robot();

@@ -573,7 +573,7 @@ public class assetCreationPage extends BaseClass{
 	//Click Save button
 	public void clickSaveBtn() throws InterruptedException {
 		clickOn(AssetSaveBtn);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 	}
 	
 	//Verify the Save Alert message displayed
