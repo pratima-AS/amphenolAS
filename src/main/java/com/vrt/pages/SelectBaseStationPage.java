@@ -31,9 +31,9 @@ public class SelectBaseStationPage extends BaseClass{
 		
 	}
 	
- // Check the presence of Select Base Station page
+ // Check the presence of Select Base Station header title
 	 public boolean SelectBaseStationTitle_state() {
-		return IsElementVisibleStatus(SelectBaseStationTitle);
+	 return IsElementVisibleStatus(SelectBaseStationTitle);
 	}
 
 }

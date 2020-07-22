@@ -47,7 +47,7 @@ import com.vrt.pages.Setup_QualParamPage;
 import com.vrt.pages.Setup_ReviewPage;
 import com.vrt.pages.Setup_SensorConfigPage;
 import com.vrt.pages.OverlayWiringImagePage;
-
+import com.vrt.pages.RWFileSelctionPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.assetCreationUtility;
 import com.vrt.utility.setupCreationUtility;
@@ -82,6 +82,7 @@ public class assetDetailsTest extends BaseClass {
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
+	RWFileSelctionPage RWFileSelctionPage;
 
 	CopySetuppage CopySetuppage;
 	SelectBaseStationPage SelectBaseStationPage;
@@ -127,6 +128,36 @@ public class assetDetailsTest extends BaseClass {
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
+		LoginPage = MainHubPage.UserSignOut();
+
+		// SUPERVISOR user creation
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage.CreateSupervisorUser(getUID("adminFull"), getPW("adminFull"), "Sup1",
+				getUID("SysSupervisor"), "4Start@4AM", "SUpNew", "123345678", "newSup@gmail.com");
+		UserManagementPage.clickAnyUserinUserList("Sup1");
+		UserManagementPage.CreateReports();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		MainHubPage = UserManagementPage.ClickBackButn();
+		LoginPage = MainHubPage.UserSignOut();
+		Thread.sleep(500);
+		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(getUID("SysSupervisor"), "4Start@4AM",
+				getPW("SysSupervisor"));
+		LoginPage = MainHubPage.UserSignOut();
+
+		// Method to Create 1st Asset
+
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetCreationPage = assetHubPage.ClickAddAssetBtn();
+		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = assetCreationPage.clickBackBtn();
+		MainHubPage = assetHubPage.click_BackBtn();
+
+		// Sync IN Assets and setups
 
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
@@ -164,8 +195,8 @@ public class assetDetailsTest extends BaseClass {
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
-		// assetDetailsPage = assetHubPage.click_assetTile("Asset01");
-		Thread.sleep(500);
+		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
+		// Thread.sleep(500);
 	}
 
 	// TearDown of the App
@@ -264,7 +295,6 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//<<<<<<< HEAD
 	// ASST004-Verify if the details are saved during Edit Asset post modification
 
 	// ASST006-Verify the Back Button functionality in Edit Asset screen
@@ -467,7 +497,7 @@ public class assetDetailsTest extends BaseClass {
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.SETUP_CopyToDrive_Btn("CopySetups");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "setup");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to D:\\Stored-Code\\TestAutomation\\Development\\Root\\Source\\VRT\\src\\test\\resources\\TestData\\CopySetups";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -663,7 +693,7 @@ public class assetDetailsTest extends BaseClass {
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		defineSetupPage = assetDetailsPage.Click_SetupEditBtn();
+		defineSetupPage = assetDetailsPage.click_editStupBtn();
 
 		sa.assertEquals(defineSetupPage.defineSetupPage_state(), true, "Fail: landed into incorrect Page");
 		sa.assertAll();
@@ -683,7 +713,7 @@ public class assetDetailsTest extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		defineSetupPage = assetDetailsPage.Click_SetupEditBtn();
+		defineSetupPage = assetDetailsPage.click_editStupBtn();
 
 //Define Setup
 		defineSetupPage.click_defineSetupPage_commentsField();
@@ -704,7 +734,7 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage = Setup_ReviewPage.click_backBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		defineSetupPage = assetDetailsPage.Click_SetupEditBtn();
+		defineSetupPage = assetDetailsPage.click_editStupBtn();
 		String CmntTxt2 = defineSetupPage.get_defineSetupPage_comments_txtData();
 		sa.assertEquals(CmntTxt1, CmntTxt2, "FAIL:Editted comment is not displaying");
 		sa.assertAll();
@@ -718,7 +748,7 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST029WO() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST029WO-Verify the on-click functionality of the wiring icon for a setup");
 		SoftAssert sa = new SoftAssert();
-		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		OverlayWiringImagePage = assetDetailsPage.Click_WiringImgButton();
@@ -733,7 +763,7 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST030WO() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST030WO-Verify the details displayed in Wiring overlay screen for a setup");
 		SoftAssert sa = new SoftAssert();
-		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		OverlayWiringImagePage = assetDetailsPage.Click_WiringImgButton();
@@ -754,15 +784,15 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST032WO() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST030WO-Verify the details displayed in Wiring overlay screen for a setup");
 		SoftAssert sa = new SoftAssert();
-		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		OverlayWiringImagePage = assetDetailsPage.Click_WiringImgButton();
 		OverlayWiringImagePage.Click_PrintIcon();
 		sa.assertEquals(OverlayWiringImagePage.GroupWiring_Report_State(), true,
-				"Fail:GroupWiring_Report_Visible is not Visible ");
+				"Fail:GroupWiring_Report is not Visible ");
 		sa.assertEquals(OverlayWiringImagePage.All_GroupOverlayReport_State(), true,
-				"Fail: All_GroupOverlay_Report_Visible is not Visible");
+				"Fail: All_GroupOverlay_Report is not Visible");
 		sa.assertAll();
 	}
 
@@ -774,7 +804,7 @@ public class assetDetailsTest extends BaseClass {
 		extentTest = extent.startTest(
 				"ASST033WO-Verify the on-click functionality of the _Group Overlay Report_ btn in the wiring overlay screen for a setup");
 		SoftAssert sa = new SoftAssert();
-		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		OverlayWiringImagePage = assetDetailsPage.Click_WiringImgButton();
@@ -792,7 +822,7 @@ public class assetDetailsTest extends BaseClass {
 		extentTest = extent.startTest(
 				"ASST034WO-Verify the on-click functionality of the _All Group Overlay Report_ btn in the wiring overlay screen for a setup");
 		SoftAssert sa = new SoftAssert();
-		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		OverlayWiringImagePage = assetDetailsPage.Click_WiringImgButton();
@@ -801,7 +831,8 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertAll();
 	}
 
- //	ASST036WO-Verify user is unable to generate the wiring overlay report from Asset details screen when there is no report generation privilege given
+	// ASST036WO-Verify user is unable to generate the wiring overlay report from
+	// Asset details screen when there is no report generation privilege given
 
 	@Test(groups = {
 			"Regression" }, description = "ASST036WO-Verify user is unable to generate the wiring overlay report from Asset details screen when there is no report generation privilege given")
@@ -809,32 +840,422 @@ public class assetDetailsTest extends BaseClass {
 		extentTest = extent.startTest("Verify the display of Asset in Asset hub page when any Asset is edited");
 		SoftAssert sa = new SoftAssert();
 
-		assetCreationPage = assetDetailsPage.click_assetEditBtn();
-		assetCreationPage.enterAssetID("01");
-		assetDetailsPage = assetCreationPage.click_BackBtn();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
-		
+
 		sa.assertEquals(assetDetailsPage.NewSetupCreateBtn_State(), "true", "FAIL: New SetUp Button is not Present");
 		sa.assertAll();
-	  }
+	}
 
- // ASST037-Verify the on-click functionality of the print icon for a setup
+	// ASST037-Verify the on-click functionality of the print icon for a setup
 
 	@Test(groups = {
 			"Regression" }, description = "ASST036WO-Verify user is unable to generate the wiring overlay report from Asset details screen when there is no report generation privilege given")
-	public void ASST037() throws InterruptedException, IOException {
+	public void ASST037() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("Verify the display of Asset in Asset hub page when any Asset is edited");
 		SoftAssert sa = new SoftAssert();
 
-		assetCreationPage = assetDetailsPage.click_assetEditBtn();
-		assetCreationPage.enterAssetID("01");
-		assetDetailsPage = assetCreationPage.click_BackBtn();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
-		assetDetailsPage.NewSetupCreateBtn_State();
-		sa.assertEquals(assetDetailsPage.UserLoginPopupVisible(), "true", "FAIL: User Login Popup Button is not Present");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.Click_Print_Button();
+		sa.assertEquals(assetDetailsPage.UserLoginPopupVisible(), true, "FAIL: User Login Popup Button is not Present");
 		sa.assertAll();
 	}
-	
+
+	// ASST038-Verify if user is unable to generate the setup report when there is
+	// no privilege given
+
+	@Test(groups = {
+			"Regression" }, description = "ASST038-Verify if user is unable to generate the setup report when there is no privilege given")
+	public void ASST038() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ASST038-Verify if user is unable to generate the setup report when there is no privilege given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_Print_Button();
+		String actualmsg = assetDetailsPage.AlertMsg();
+		String Expectmsg = "User do not have permission to perform this operation";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: User is able to print the report");
+		sa.assertAll();
+	}
+
+	// ASST040-Verify the on-click of delete icon for a setup
+	@Test(groups = { "Regression" }, description = "ASST040-Verify the on-click of delete icon for a setup")
+	public void ASST040() throws InterruptedException, IOException {
+		extentTest = extent.startTest("ASST040-Verify the on-click of delete icon for a setup");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL: delete Popup window is not Present");
+
+		String actualmsg = assetDetailsPage.get_text_DeleteAst_popup();
+		// System.out.println(actualmsg);
+		String Expectmsg = "Do you want to delete the ' manual 1 min sampling ' Study?";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: Alert message is not available in delete login pop up window");
+		sa.assertAll();
+	}
+
+	// ASST041-Verify if user is not able to delete the setup when there are no
+	// privileges given
+	@Test(groups = {
+			"Regression" }, description = "ASST041-Verify if user is not able to delete the setup when there are no privileges given")
+	public void ASST041() throws InterruptedException, IOException {
+		extentTest = extent
+				.startTest("ASST041-Verify if user is not able to delete the setup when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		String actualmsg = assetDetailsPage.AlertMsg();
+		String Expectmsg = "User do not have permission to perform this operation";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: User is able to delete the set up file");
+		sa.assertAll();
+
+	}
+
+	// ASST043-Verify the details displayed under Qualifications tile
+	@Test(groups = {
+			"Regression" }, description = "ASST041-Verify if user is not able to delete the setup when there are no privileges given")
+	public void ASST043(String Name) throws InterruptedException, IOException {
+		extentTest = extent
+				.startTest("ASST041-Verify if user is not able to delete the setup when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+		sa.assertEquals(assetDetailsPage.Qual_DeleteBtn_state(), true, "FAIL: Qual Delete Button is not Present");
+		sa.assertEquals(assetDetailsPage.IsGenerateReportsBtn_Visible(), true,
+				"FAIL: Generate Reports Btn is not Present");
+		sa.assertEquals(assetDetailsPage.CopyQualToDrive_State(), true, "FAIL: Copy Qual to drive Btn is not Present");
+		sa.assertEquals(assetDetailsPage.qualTile_Header_Text(), true, "FAIL:  qualTile Header Btn is not Present");
+		sa.assertAll();
+	}
+
+	// ASST044-Verify -Copy to drive- functionality of a Qualification study file
+	// for local drive
+	@Test(groups = {
+			"Regression" }, description = "ASST041-Verify if user is not able to delete the setup when there are no privileges given")
+	public void ASST044(String Name) throws InterruptedException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ASST041-Verify if user is not able to delete the setup when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "qual");
+		UserLoginPopup("1", getPW("adminFull"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to C:\\Users\\Ruchika.Behura\\git\\VRT\\src\\test\\resources\\TestData\\syncin";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: copied successfully message not populated");
+		sa.assertAll();
+	}
+	// ASST047-Verify the display of Generate Reports button in Qualifications tile
+
+	@Test(groups = {
+			"Regression" }, description = "ASST047-Verify the display of Generate Reports button in Qualifications tile")
+	public void ASST047(String Name) throws InterruptedException, IOException {
+		extentTest = extent.startTest("ASST047-Verify the display of Generate Reports button in Qualifications tile");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+
+		sa.assertEquals(assetDetailsPage.IsGenerateReportsBtn_Visible(), true,
+				"FAIL: Generate Reports Btn is not Present");
+		sa.assertAll();
+	}
+
+//ASST048-Verify the on-click functionality of generate reports button in Qualification tile
+
+	@Test(groups = {
+			"Regression" }, description = "'ASST048-Verify the on-click functionality of generate reports button in Qualification tile")
+	public void ASST048(String Name) throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"'ASST048-Verify the on-click functionality of generate reports button in Qualification tile");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+
+		RWFileSelctionPage = assetDetailsPage.GenerateReportsBtn_Nextpage();
+		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "FAIL: Landed to wrong page ");
+		sa.assertAll();
+	}
+
+//ASST049-Verify the on-click of delete icon for a Qualification study file
+
+	// ASST040-Verify the on-click of delete icon for a setup
+	@Test(groups = {
+			"Regression" }, description = "ASST049-Verify the on-click of delete icon for a Qualification study file")
+	public void ASST049() throws InterruptedException, IOException {
+		extentTest = extent.startTest("ASST049-Verify the on-click of delete icon for a Qualification study file");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+		assetDetailsPage.click_DeleteQualificationButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL: Delete pop up window is not displaying ");
+
+		String actualmsg = assetDetailsPage.get_text_DeleteAst_popup();
+		// System.out.println(actualmsg);
+		String Expectmsg = "Do you want to delete the ' manual 1 min sampling ' Study?";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: Alert message is not available in delete login pop up window");
+		sa.assertAll();
+	}
+
+	// ASST050-Verify if user is not able to delete the study file when there are no
+	// privileges given
+	@Test(groups = {
+			"Regression" }, description = "ASST050-Verify if user is not able to delete the study file when there are no privileges given")
+	public void ASST050() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"ASST050-Verify if user is not able to delete the study file when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.click_QualTile();
+		assetDetailsPage.Select_QualFile("manual 1 min sampling");
+		assetDetailsPage.click_DeleteQualificationButton();
+		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		String actualmsg = assetDetailsPage.AlertMsg();
+		String Expectmsg = "User do not have permission to perform this operation";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: User is able to delete the selected studyfile");
+		sa.assertAll();
+
+	}
+
+	// ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup
+
+	@Test(groups = {
+			"Regression" }, description = "ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup")
+	public void ASST052_1REP() throws InterruptedException, IOException {
+		extentTest = extent.startTest("ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_SetupReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		sa.assertEquals(assetDetailsPage.ReportsHeaderText_state(), true, "FAIL: Report Heaser  is not Present");
+		sa.assertEquals(assetDetailsPage.ReportView_Btn_State(), true, "FAIL: print Button is not Present");
+		sa.assertEquals(assetDetailsPage.DeleteBtn_state(), true, "FAIL: Report Delete Button is not Present");
+		sa.assertAll();
+	}
+
+	// ASST052REP-Verify the details displayed under reports tile
+	@Test(groups = { "Regression" }, description = "ASST052REP-Verify the details displayed under reports tile")
+	public void ASST052REP() throws InterruptedException, IOException {
+		extentTest = extent.startTest("ASST052REP-Verify the details displayed under reports tile");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_SetupReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		sa.assertEquals(assetDetailsPage.ReportsTile_Count_state(), true,
+				"FAIL: Repoer tile count is not displayng under report tile");
+		sa.assertEquals(assetDetailsPage.SetupReportsButton_State(), true, "FAIL: setup Report button is not Present");
+		sa.assertEquals(assetDetailsPage.QualReportsButton_State(), true, "FAIL: qual Report button is not Present");
+		sa.assertEquals(assetDetailsPage.PassFailReportButton_State(), true,
+				"FAIL: passfail Report button is not Present");
+		sa.assertAll();
+	}
+
+	// ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local
+	// drive
+
+	@Test(groups = {
+			"Regression" }, description = "ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local drive")
+	public void ASST053REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local driveASST041-Verify if user is not able to delete the setup when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_SetupReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		UserLoginPopup("1", getPW("adminFull"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to C:\\Users\\Ruchika.Behura\\git\\VRT\\src\\test\\resources\\TestData\\syncin";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: copied successfully message not populated");
+		sa.assertAll();
+	}
+
+	// ASST053_1REP-Verify the on-click functionality of PDF icon for Detailed
+	// report under Reports tile-Qualifications sub tab
+
+	@Test(groups = {
+			"Regression" }, description = "ASST053_1REP-Verify -Copy to drive- functionality of a Setup Report for local drive")
+	public void ASST053_1REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local driveASST041-Verify if user is not able to delete the setup when there are no privileges given");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_QualReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.click_printBtn_Report();
+		sa.assertEquals(assetDetailsPage.ReportView_Popupvisible(), true, "FAIL: Report View Popup is not Present");
+	}
+
+	// ASST056REP-Verify the on-click functionality of PDF icon under Reports
+	// tile-Setups sub tab
+
+	// ASST057REP-Verify the on-click functionality of Delete icon under Reports
+	// tile-Setups sub tab
+
+	@Test(groups = {
+			"Regression" }, description = "ASST057REP-Verify the on-click functionality of Delete icon under Reports tile-Setups sub tab")
+	public void ASST057REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ASST057REP-Verify the on-click functionality of Delete icon under Reports tile-Setups sub tab");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_SetupReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL: Delete pop up window is not displaying ");
+
+		String actualmsg = assetDetailsPage.get_text_DeleteAst_popup();
+// System.out.println(actualmsg);
+		String Expectmsg = "Do you want to delete the ' manual 1 min sampling ' Study?";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: Alert message is not available in delete login pop up window");
+		sa.assertAll();
+	}
+
+//ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive
+
+	@Test(groups = {
+			"Regression" }, description = "ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive")
+	public void ASST059REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_QualReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		UserLoginPopup("1", getPW("adminFull"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to C:\\Users\\Ruchika.Behura\\git\\VRT\\src\\test\\resources\\TestData\\syncin";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: copied successfully message not populated");
+		sa.assertAll();
+	}
+
+	// ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local
+	// drive
+	@Test(groups = {
+			"Regression" }, description = "ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local drive")
+	public void ASST062REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local drive");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_QualReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		UserLoginPopup("1", getPW("adminFull"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to C:\\Users\\Ruchika.Behura\\git\\VRT\\src\\test\\resources\\TestData\\syncin";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: copied successfully message not populated");
+		sa.assertAll();
+	}
+	// ASST065REP-Verify -Copy to drive- functionality of a Pass_Fail Report for
+	// local drive
+
+	@Test(groups = {
+			"Regression" }, description = "ASST065REP-Verify -Copy to drive- functionality of a Pass_Fail Report for local drive")
+	public void ASST065REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent
+				.startTest("ASST065REP-Verify -Copy to drive- functionality of a Pass_Fail Report for local drive");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_PassFailReportBtn();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.selectFolder_CopyToDrive("syncin", "reports");
+		UserLoginPopup("1", getPW("adminFull"));
+		Thread.sleep(2000);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to C:\\Users\\Ruchika.Behura\\git\\VRT\\src\\test\\resources\\TestData\\syncin";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: copied successfully message not populated");
+		sa.assertAll();
+	}
+
+	// ASST069REP-Verify the on-click functionality of Delete icon for Pass_Fail
+	// report under Reports tile-Pass_Fail sub tab
+
+	@Test(groups = {
+			"Regression" }, description = "ASST069REP-Verify the on-click functionality of Delete icon for Pass_Fail report under Reports tile-Pass_Fail sub tab")
+	public void ASST069REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"ASST069REP-Verify the on-click functionality of Delete icon for Pass_Fail report under Reports tile-Pass_Fail sub tab");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_PassFailReportBtn();
+		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		assetDetailsPage.click_DeleteBtn();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL: Delete pop up window is not displaying ");
+
+		String actualmsg = assetDetailsPage.get_text_DeleteAst_popup();
+// System.out.println(actualmsg);
+		String Expectmsg = "Do you want to delete the ' manual 1 min sampling ' Study?";
+		sa.assertEquals(actualmsg, Expectmsg, "FAIL: Alert message is not available in delete login pop up window");
+		sa.assertAll();
+	}
+
 }
