@@ -599,7 +599,13 @@ public class UserManagementPage extends BaseClass {
 	public boolean CreateReportsstatus() {
 		return checkboxSelectStatus(CreateReports);
 	}
-
+	
+    // Click on CreateReports
+	public void CreateReports()
+	{
+		clickOn(CreateReports);
+	}
+	
 	// Verify if Create Pass/Fail template Privilege checked/selected or not
 	public boolean CreatePassFailtemplatestatus() {
 		return checkboxSelectStatus(CreatePassFailTemplate);

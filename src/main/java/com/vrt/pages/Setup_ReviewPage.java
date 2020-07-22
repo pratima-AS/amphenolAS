@@ -110,6 +110,14 @@ public class Setup_ReviewPage extends BaseClass{
 		Thread.sleep(2000);
 		
 	}
+	// click on back button to navigate assetdetails page
+	
+	public assetDetailsPage click_backBtn() throws InterruptedException, IOException {		
+		clickOn(Back_btn);
+		Thread.sleep(2000);
+		return new assetDetailsPage();
+		
+	}
 	
 	//Click the Copy As New Setup button of Review page
 	public void click_CopyAsNewSetup_Button() throws InterruptedException {
