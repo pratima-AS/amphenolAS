@@ -6,6 +6,7 @@
 package com.vrt.testcases;
 
 
+import java.awt.AWTException;
 import java.io.IOException;
 
 import org.testng.ITestResult;
@@ -47,7 +48,7 @@ public class LoginTest extends BaseClass{
 	//Before All the tests are conducted
 	@BeforeClass
 	//@BeforeTest
-	private void PreSetUp() throws IOException, InterruptedException {
+	private void PreSetUp() throws IOException, InterruptedException, AWTException {
 		
 		System.out.println("Login Test in Progress..");
 
@@ -89,11 +90,11 @@ public class LoginTest extends BaseClass{
 		MainLoginPage= new LoginPage();
 	}
 
-	// TearDown of the App
 	@AfterMethod(alwaysRun=true)
 	public void Teardown(ITestResult result) throws IOException {
 		if(result.getStatus()==ITestResult.FAILURE){
 			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # "+result.getName()+" #"); //to add name in extent report
+			// TearDown of the App
 			extentTest.log(LogStatus.FAIL, "TEST CASE FAILED IS # "+result.getThrowable()+" #"); //to add error/exception in extent report
 			
 			String screenshotPath1 = TestUtilities.getFailedTCScreenshot(driver, result.getName());
@@ -109,8 +110,9 @@ public class LoginTest extends BaseClass{
 			//extentTest.log(LogStatus.PASS, extentTest.addScreenCapture(screenshotPath2)); //to add screenshot in extent report
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
-		
+		MainLoginPage.resetWebElements();
 		driver.quit();
+		driver = null;
 	}
 	
 	
@@ -120,7 +122,6 @@ public class LoginTest extends BaseClass{
 	*********/
 	
 	
-	//LOGIN_001- Verify if user can log into the Kaye Application after 
 	//installation with default provided credentials
 	@Test(groups = {"Regression"}, description="LOGIN_001- Verify if user can log "
 			+ "into the Kaye Application after installation with default provided credentials")
@@ -133,15 +134,16 @@ public class LoginTest extends BaseClass{
 
 		sa.assertEquals(UserManagementPage.IsUMscreenDisplayed(), true, "FAIL: Unable to Login"
 				+" with defualt Kaye/411 login credentials");
+		//LOGIN_001- Verify if user can log into the Kaye Application after 
 		
 		sa.assertAll();
 	}
 	
-	/*
+	
 	//LOGIN_001b-Verify that Policies,Preferences screens are disabled for login with First installation
 	@Test(groups = {"Regression"}, description="LOGIN_001b-Verify that Policies,Preferences screens "
 			+ "are disabled for login with First installation")
-	public void LOGIN_001b() throws InterruptedException {
+	public void LOGIN_001b() throws InterruptedException, IOException {
 		extentTest = extent.startTest("LOGIN_001b-Verify that Policies,Preferences screens are disabled"
 				+ " for login with First installation");
 
@@ -156,7 +158,7 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-	
+/*	
 	//LOGIN_002- Verify if clicking on the Kaye application tab opens the Login Screen of the application
 	@Test(groups = {"Regression", "Sanity"},description="LOGIN_002- Verify if clicking on the Kaye "
 			+ "application tab opens the Login Screen of the application")

@@ -5,6 +5,9 @@
 
 package com.vrt.base;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -198,10 +201,18 @@ public class BaseClass {
 	}
 	
 	//Close the App any time using the Top right Close button 
-	public void AppClose() throws InterruptedException {
-		WebElement AppCloseBtn = driver.findElementByName("Close ValProbe RT");
+	public void AppClose() throws InterruptedException, AWTException {
+		Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_ALT);
+		r.keyPress(KeyEvent.VK_F4);
+		r.keyRelease(KeyEvent.VK_F4);
+		r.keyRelease(KeyEvent.VK_ALT);
+		Thread.sleep(1000);
+		r=null;
+		//r.keyRelease(KeyEvent.VK_ENTER);
+		/*WebElement AppCloseBtn = driver.findElementByName("Close ValProbe RT");
 		clickOn(AppCloseBtn);		
-		Thread.sleep(1000);				
+		Thread.sleep(1000);	*/			
 	} 
 	
 	

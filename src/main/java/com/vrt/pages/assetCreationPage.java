@@ -28,33 +28,82 @@ import com.vrt.utility.TestUtilities;
 
 public class assetCreationPage extends BaseClass{
 	
-	public assetCreationPage() throws IOException {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	// Asset Details Page Element definition
-	WebElement CreateAssetPageTitle = driver.findElementByAccessibilityId("pageTitle");
-	WebElement AssetNameTxtBox = driver.findElementByAccessibilityId("NameTextBox");
-	WebElement AssetIDTxtBox = driver.findElementByAccessibilityId("EqidTextBox");	
-	List<WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
-	//List <WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
-	List <WebElement> AssetEditBox = driver.findElementsByAccessibilityId("EditableTextBox");
-	WebElement AssetModelTxtBox = driver.findElementByAccessibilityId("ModelTextBox");
-	WebElement AssetSizeTxtBox = driver.findElementByAccessibilityId("SizeTextBox");
-	WebElement AssetLstVldtdDate = driver.findElementByAccessibilityId("PART_PickerButton");
-	WebElement AssetFrqBtn = driver.findElementByAccessibilityId("CalibrationFrequencyComboBox");
-	WebElement AssetFrqIntrvlBtn = driver.findElementByAccessibilityId("CalibrationFrequencyMeasurementComboBox");
-	WebElement AssetDescTextField = driver.findElementByAccessibilityId("DescriptionTextBox");
-	WebElement AssetImgBrowseBtn = driver.findElementByAccessibilityId("AssetImageButton");	
-	WebElement AssetImg1_Btn = driver.findElementByAccessibilityId("AssetImage1");
-	WebElement AssetImg2_Btn = driver.findElementByAccessibilityId("AssetImage2");
-	WebElement AssetImg3_Btn = driver.findElementByAccessibilityId("AssetImage3");
-	WebElement AssetImg_Camera_Btn = driver.findElementByAccessibilityId("AssertCameraUploadButton");	
-	WebElement AssetSaveBtn = driver.findElementByName("Save");
-	WebElement AssetClearBtn = driver.findElementByName("Clear");
-	WebElement AssetBackBtn = driver.findElementByAccessibilityId("BackButton");
+	WebElement CreateAssetPageTitle = null;
+	WebElement AssetNameTxtBox = null;
+	WebElement AssetIDTxtBox = null;	
+	List<WebElement> Combobx = null;
+	//List <WebElement> Combobx = null;
+	List <WebElement> AssetEditBox = null;
+	WebElement AssetModelTxtBox = null;
+	WebElement AssetSizeTxtBox = null;
+	WebElement AssetLstVldtdDate = null;
+	WebElement AssetFrqBtn = null;
+	WebElement AssetFrqIntrvlBtn = null;
+	WebElement AssetDescTextField = null;
+	WebElement AssetImgBrowseBtn = null;	
+	WebElement AssetImg1_Btn = null;
+	WebElement AssetImg2_Btn = null;
+	WebElement AssetImg3_Btn = null;
+	WebElement AssetImg_Camera_Btn = null;	
+	WebElement AssetSaveBtn = null;
+	WebElement AssetClearBtn = null;
+	WebElement AssetBackBtn = null;
 
+	private void initElements() {
+		// LoginPage Page Element definition
+		CreateAssetPageTitle = driver.findElementByAccessibilityId("pageTitle");
+		AssetNameTxtBox = driver.findElementByAccessibilityId("NameTextBox");
+		AssetIDTxtBox = driver.findElementByAccessibilityId("EqidTextBox");	
+		List<WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
+		//List <WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
+		List <WebElement> AssetEditBox = driver.findElementsByAccessibilityId("EditableTextBox");
+		AssetModelTxtBox = driver.findElementByAccessibilityId("ModelTextBox");
+		AssetSizeTxtBox = driver.findElementByAccessibilityId("SizeTextBox");
+		AssetLstVldtdDate = driver.findElementByAccessibilityId("PART_PickerButton");
+		AssetFrqBtn = driver.findElementByAccessibilityId("CalibrationFrequencyComboBox");
+		AssetFrqIntrvlBtn = driver.findElementByAccessibilityId("CalibrationFrequencyMeasurementComboBox");
+		AssetDescTextField = driver.findElementByAccessibilityId("DescriptionTextBox");
+		AssetImgBrowseBtn = driver.findElementByAccessibilityId("AssetImageButton");	
+		AssetImg1_Btn = driver.findElementByAccessibilityId("AssetImage1");
+		AssetImg2_Btn = driver.findElementByAccessibilityId("AssetImage2");
+		AssetImg3_Btn = driver.findElementByAccessibilityId("AssetImage3");
+		AssetImg_Camera_Btn = driver.findElementByAccessibilityId("AssertCameraUploadButton");	
+		AssetSaveBtn = driver.findElementByName("Save");
+		AssetClearBtn = driver.findElementByName("Clear");
+		AssetBackBtn = driver.findElementByAccessibilityId("BackButton");
+	}
+
+	public assetCreationPage() throws IOException {
+		super();
+		initElements();
+	}
+
+	// Release memory
+	public void resetWebElements() {
+		CreateAssetPageTitle = null;
+		AssetNameTxtBox = null;
+		AssetIDTxtBox = null;	
+		Combobx = null;
+		AssetEditBox = null;
+		AssetModelTxtBox = null;
+		AssetSizeTxtBox = null;
+		AssetLstVldtdDate = null;
+		AssetFrqBtn = null;
+		AssetFrqIntrvlBtn = null;
+		AssetDescTextField = null;
+		AssetImgBrowseBtn = null;	
+		AssetImg1_Btn = null;
+		AssetImg2_Btn = null;
+		AssetImg3_Btn = null;
+		AssetImg_Camera_Btn = null;	
+		AssetSaveBtn = null;
+		AssetClearBtn = null;
+		AssetBackBtn = null;
+	}
+	
+	
 	//Verify the presence of New Asset Creation text 
 	public boolean newAssetCreatePagetitle() {
 		return IsElementVisibleStatus(CreateAssetPageTitle);

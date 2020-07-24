@@ -67,7 +67,7 @@ public class assetCreationTest extends BaseClass{
 	//Ensure the User has got rights to create Assets
 	//@BeforeTest
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException {
 		
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"assetCreationTest"+".html",true);
 		extent.addSystemInfo("TestSuiteName", "Asset Creation Test");
@@ -150,7 +150,7 @@ public class assetCreationTest extends BaseClass{
 			//extentTest.log(LogStatus.PASS, extentTest.addScreenCapture(screenshotPath2)); //to add screenshot in extent report
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
-		
+		assetCreationPage.resetWebElements();
 		driver.quit();
 	}
 

@@ -68,7 +68,7 @@ public class setup_CreationTest extends BaseClass {
 
 	// Before Class -All the tests are conducted
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException, ParseException {
+	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
 		extent = new ExtentReports(
 				System.getProperty("user.dir") + "/test-output/ER_" + "Multiple_Setups_CreationTest" + ".html", true);

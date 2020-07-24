@@ -1,6 +1,7 @@
 package com.vrt.testcases;
 
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -59,7 +60,7 @@ public class assetHubAssetCreationTest extends BaseClass{
 	//Before All the tests are conducted
 	//@BeforeTest
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException {
 		
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"MultipleAssetCreationTest.html",true);
 		extent.addSystemInfo("TestSuiteName", "MultipleAssetCreationTest");
@@ -123,7 +124,7 @@ public class assetHubAssetCreationTest extends BaseClass{
 		assetHubPage.waitforAssetHubPageLoad();
 	}
 
-	//TearDown of the App
+	//After Method TearDown of the App
 	@AfterMethod(alwaysRun=true)
 	public void Teardown(ITestResult result) throws IOException, InterruptedException {
 		if(result.getStatus()==ITestResult.FAILURE){
@@ -143,10 +144,9 @@ public class assetHubAssetCreationTest extends BaseClass{
 			//extentTest.log(LogStatus.PASS, extentTest.addScreenCapture(screenshotPath2)); //to add screenshot in extent report
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report		
-
+		assetCreationPage.resetWebElements();
 		driver.quit();
 		driver = null;
-
 	}
 
 	

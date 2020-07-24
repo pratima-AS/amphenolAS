@@ -236,6 +236,7 @@ public class UM1 extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
+		UserManagementPage.resetWebElements();
 		driver.quit();
 	}
 

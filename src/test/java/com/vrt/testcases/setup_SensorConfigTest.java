@@ -1,5 +1,6 @@
 package com.vrt.testcases;
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -56,7 +57,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	// Before All the tests are conducted
 	@BeforeTest
-	public void PreSetup() throws InterruptedException, IOException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_"+"setup_SensorConfigTest"+".html", true);
 		extent.addSystemInfo("TestSuiteName", "setup_SensorConfigTest");

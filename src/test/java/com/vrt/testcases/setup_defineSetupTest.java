@@ -1,5 +1,6 @@
 package com.vrt.testcases;
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -54,7 +55,7 @@ public class setup_defineSetupTest extends BaseClass{
 
 	// Before All the tests are conducted
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException, ParseException {		
+	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {		
 
 		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER"+"_Setup_defineSetupTest.html", true);
 		extent.addSystemInfo("TestSuiteName", "Setup_DefineSetupTest");
