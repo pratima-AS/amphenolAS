@@ -14,20 +14,45 @@ import com.vrt.base.BaseClass;
 
 public class MainHubPage extends BaseClass {
 
+	// Main Hub Page Element definition
+	WebElement MainUILoggedinUserTitle = null;
+	WebElement MainUILoggedinUserName = null;
+	WebElement MainUIAdminTile = null;	
+	WebElement AssetCountInfoInAsstTile = null;
+	WebElement MainUIPageTitle = null;
+	WebElement MainUIEquipmentTitle = null;
+	WebElement FileManagementTitle = null;
+	WebElement AuditTitle = null;
+	
+	private void initElements() {
+		// Main Hub Page Page Element definition
+		MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
+		MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
+		MainUIAdminTile = driver.findElementByName("Admin");	
+		AssetCountInfoInAsstTile = driver.findElementByAccessibilityId("TitleCountTextBlock");
+		MainUIPageTitle = driver.findElementByName("ValProbe RT System");
+		MainUIEquipmentTitle = driver.findElementByName("Equipment");
+		FileManagementTitle = driver.findElementByName("File Management");
+		AuditTitle = driver.findElementByName("Audit");
+	}
+	
 	public MainHubPage() throws IOException {
 		super();
-		// TODO Auto-generated constructor stub
+		initElements();
 	}
-	// Main Hub Page Element definition
-	WebElement MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
-	WebElement MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
-	WebElement MainUIAdminTile = driver.findElementByName("Admin");
-	
-	WebElement AssetCountInfoInAsstTile = driver.findElementByAccessibilityId("TitleCountTextBlock");
-	WebElement MainUIPageTitle = driver.findElementByName("ValProbe RT System");
-	WebElement MainUIEquipmentTitle = driver.findElementByName("Equipment");
-	WebElement FileManagementTitle = driver.findElementByName("File Management");
-	WebElement AuditTitle = driver.findElementByName("Audit");
+
+	// Release memory
+	public void resetWebElements() {
+		MainUILoggedinUserTitle = null;
+		MainUILoggedinUserName = null;
+		MainUIAdminTile = null;	
+		AssetCountInfoInAsstTile = null;
+		MainUIPageTitle = null;
+		MainUIEquipmentTitle = null;
+		FileManagementTitle = null;
+		AuditTitle = null;
+		//System.out.println("Login Page elements memory released");
+	}
 
 	// Verify the Main Hub Page title name
 	public boolean mainPageTitle() {
