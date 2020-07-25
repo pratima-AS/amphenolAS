@@ -66,7 +66,6 @@ public class UserManagementPage extends BaseClass {
 	WebElement DisableCheckbox = null;
 	WebElement UsersListButton = null;
 	WebElement UMImgBtn = null;
-	
 
 	private void initElements() {
 		// UserManagement Page Element definition
@@ -112,7 +111,7 @@ public class UserManagementPage extends BaseClass {
 		CameraAccess = driver.findElementByAccessibilityId("CamerAccessCheckbox");
 		DeletePassFailTemplate = driver.findElementByAccessibilityId("DeleteTemplateCheckBox");
 		DisableCheckbox = driver.findElementByAccessibilityId("DisableUserCheckBox");
-		UsersListButton = driver.findElementByAccessibilityId("PrintUsersListButton");		
+		UsersListButton = driver.findElementByAccessibilityId("PrintUsersListButton");
 
 	}
 
@@ -120,7 +119,7 @@ public class UserManagementPage extends BaseClass {
 		super();
 		initElements();
 	}
-	
+
 	// Release memory
 	public void resetWebElements() {
 		UMHeaderText = null;
@@ -166,8 +165,6 @@ public class UserManagementPage extends BaseClass {
 		UMImgBtn = null;
 
 	}
-
-	// TODO Auto-generated constructor stub
 
 	/*----------------------
 	Methods of UserManagement Page
@@ -274,7 +271,7 @@ public class UserManagementPage extends BaseClass {
 		enterText(PWUMField, NewPW);
 	}
 
-//fetch PW text
+	//fetch PW text
 	public String get_PWField_text() {
 		return FetchText(PWUMField);
 	}
@@ -343,7 +340,7 @@ public class UserManagementPage extends BaseClass {
 		Thread.sleep(1000);
 		tu.uploadDoc(imgName);
 	}
-	
+
 	// Select Sys Admin from the UserType drop-down list
 	public void SelectAdministrator() {
 		WebElement UMAdministrator = driver.findElementByName("System Administrator");
@@ -437,8 +434,7 @@ public class UserManagementPage extends BaseClass {
 		// Thread.sleep(1000);
 	}
 
-//Scroll down and click on AuditTrail
-
+	//Scroll down and click on AuditTrail user privilege checkbox
 	public void ClkAuditTrail() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
@@ -451,8 +447,7 @@ public class UserManagementPage extends BaseClass {
 
 	}
 
-//Scroll down and click on AuditTrail
-
+	//Scroll down and click on AuditTrail
 	public void ClkscrollBar_down() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
@@ -560,8 +555,6 @@ public class UserManagementPage extends BaseClass {
 		return IsElementEnabledStatus(CameraClose);
 	}
 
-	// DisableUserCheckBox
-
 	// check/select Disable User CheckBox
 	public void Select_DisableUserCheckBox() throws InterruptedException {
 		clickOn(DisableCheckbox);
@@ -578,13 +571,12 @@ public class UserManagementPage extends BaseClass {
 		return IsElementVisibleStatus(Dmsg);
 	}
 
-// Click on ok button in Alert message box if a user disable his own account
+	// Click on ok button in Alert message box if a user disable his own account
 	public void click_okBtn() {
 		WebElement ok = driver.findElementByAccessibilityId("Button0");
 		clickOn(ok);
 	}
 
-	// Button0
 	// Verify if Admin Privilege checked/selected or not
 	public boolean Adminstatus() {
 		return checkboxSelectStatus(AdminPriv);
@@ -599,13 +591,12 @@ public class UserManagementPage extends BaseClass {
 	public boolean CreateReportsstatus() {
 		return checkboxSelectStatus(CreateReports);
 	}
-	
-    // Click on CreateReports
-	public void CreateReports()
-	{
+
+	// Click on CreateReports
+	public void CreateReports() {
 		clickOn(CreateReports);
 	}
-	
+
 	// Verify if Create Pass/Fail template Privilege checked/selected or not
 	public boolean CreatePassFailtemplatestatus() {
 		return checkboxSelectStatus(CreatePassFailTemplate);
@@ -912,10 +903,10 @@ public class UserManagementPage extends BaseClass {
 		clickOn(PoliciesHeaderText);
 		return new PoliciesPage();
 	}
-	
+
 	// User Management Creation with ALL fields
-	public void UMCreation_AllFields(String UName, String UID, String Pwd, String Title,
-			String Utype, String phno, String Email, String ImageName) throws InterruptedException, AWTException, IOException {
+	public void UMCreation_AllFields(String UName, String UID, String Pwd, String Title, String Utype, String phno,
+			String Email, String ImageName) throws InterruptedException, AWTException, IOException {
 		enterNewUserName(UName);
 		enterNewUserID(UID);
 		enterNewUserPW(Pwd);

@@ -17,9 +17,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.InvalidPropertiesFormatException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -277,7 +279,7 @@ public class TestUtilities extends BaseClass {
 		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		// after execution, you could see a folder "FailedTestsScreenshots"
+		// after execution, you could see a folder "PassTestsScreenshots"
 		// under src folder
 		String destination = System.getProperty("user.dir") + "/PassTCScreenshots/" + screenshotName +"_"+ dateName
 				+ ".png";
@@ -349,6 +351,23 @@ public class TestUtilities extends BaseClass {
 	public String get_AlertMsg_text() {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
+	}
+	
+	//Method to retrive all the file names present in any folder
+	public List<String> get_fileNamesList(String folderpath) {
+		List<String> results = new ArrayList<String>();
+
+		// enter the folder path
+		//String folderpath = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\" + foldername;		
+		File[] files = new File(folderpath).listFiles();
+		//If this pathname does not denote a directory, then listFiles() returns null. 
+
+		for (File file : files) {
+		    if (file.isFile()) {
+		       results.add(file.getName());
+		    }
+		}
+		return results;
 	}
 
 

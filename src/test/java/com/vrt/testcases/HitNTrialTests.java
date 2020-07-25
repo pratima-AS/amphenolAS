@@ -110,7 +110,7 @@ public class HitNTrialTests extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("UserManagementTest in Progress..");
 
-		
+		/*
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -128,7 +128,7 @@ public class HitNTrialTests extends BaseClass {
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
 				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		/*UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
@@ -145,7 +145,7 @@ public class HitNTrialTests extends BaseClass {
 		UserManagementPage.Select_DisableUserCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		MainHubPage = UserManagementPage.ClickBackButn();*/
+		MainHubPage = UserManagementPage.ClickBackButn();
 		//SyncIn Method
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
@@ -158,7 +158,7 @@ public class HitNTrialTests extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		
+		*/
 		
 	}
 	
@@ -181,17 +181,7 @@ public class HitNTrialTests extends BaseClass {
 		//UserManagementPage = MainHubPage.ClickAdminTile_UMpage();		
 	}
 	
-	/*@BeforeMethod(alwaysRun=true)
-	public void Setup() throws InterruptedException {		
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");			
-		Thread.sleep(1000);
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetHubPage.waitforAssetHubPageLoad();
-	}*/
 
-	
 	// AfterMethod- TearDown of the App
 	@AfterMethod
 	public void Teardown(ITestResult result) throws IOException {
@@ -246,12 +236,16 @@ public class HitNTrialTests extends BaseClass {
 			throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
-		SoftAssert sa = new SoftAssert();
 
-		System.out.println("checking syinc In");
-		//sa.assertEquals(wordlist[0], "Do you want to delete asset: ", "FAIL:Admin unable to delete Asset or"
-			//	+ " a diferent popup is observed");
-		//sa.assertAll();
+		String filepath= System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\AutoLogs";
+		List<String> fn = tu.get_fileNamesList(filepath);
+		String expFileName= "1065306A4C9C5E7376FC.cfg";
+		for (String filename : fn) {
+			System.out.println(filename);
+			if (!filename.contains(expFileName)) {
+				System.out.println("Expected setup file is not copied to the destination folder");
+			}
+		}
 	}
 
 }
