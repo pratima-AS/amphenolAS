@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
@@ -83,7 +84,6 @@ public class assetDetailsTest extends BaseClass {
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
 	RWFileSelctionPage RWFileSelctionPage;
-
 	CopySetuppage CopySetuppage;
 	SelectBaseStationPage SelectBaseStationPage;
 	OverlayWiringImagePage OverlayWiringImagePage;
@@ -101,16 +101,17 @@ public class assetDetailsTest extends BaseClass {
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("assetDetailsTest in Progress..");
-
-		// Rename the User file (NgvUsers.uxx) if exists
+		
+		/*
+		//Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		// Rename the cache Asset file (Asset.txt) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		// Rename the Asset folder (Asset) if exists
+		// Rename the VRT folder if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		// Thread.sleep(1000);
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		// Method to Create Very 1st User with All privilege
@@ -124,7 +125,6 @@ public class assetDetailsTest extends BaseClass {
 		UserManagementPage.clickPrivCreateEditAsset();
 		UserManagementPage.clickPrivCreateEditSetup();
 		UserManagementPage.clickPrivRunCal();
-
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -137,6 +137,7 @@ public class assetDetailsTest extends BaseClass {
 				getUID("SysSupervisor"), "4Start@4AM", "SUpNew", "123345678", "newSup@gmail.com");
 		UserManagementPage.clickAnyUserinUserList("Sup1");
 		UserManagementPage.CreateReports();
+		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
@@ -144,21 +145,19 @@ public class assetDetailsTest extends BaseClass {
 		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(getUID("SysSupervisor"), "4Start@4AM",
 				getPW("SysSupervisor"));
 		LoginPage = MainHubPage.UserSignOut();
-
+		
 		// Method to Create 1st Asset
-
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "Aas", "Hyderabad", "VRT-RF", "2",
 				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 
 		// Sync IN Assets and setups
-
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
 		SyncInPage.enter_Filepath("syncin");
@@ -168,11 +167,32 @@ public class assetDetailsTest extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(1000);
-		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-
-		// AppClose();
-		// Thread.sleep(1000);
+		Thread.sleep(6000);
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();		
+		//Verify if Synnin happened or not
+		Thread.sleep(2000);
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		LoginPage = new LoginPage();
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		//System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
+		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
+			AppClose();
+			Thread.sleep(1000);
+		} else {
+			FileManagementPage = MainHubPage.ClickFileManagementTitle();
+			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+			SyncInPage.enter_Filepath("syncin");
+			SyncInPage.click_FltrBtn();
+			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+			SyncInAssetListPage.click_EquipmentCheckBox();
+			SyncInAssetListPage.click_SelectAllBtn();
+			SyncInAssetListPage.click_OkBtn();
+			SyncInAssetListPage.click_AlrtYesBtn();
+			Thread.sleep(6000);
+			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+			Thread.sleep(2000);
+		}
+	*/
 
 	}
 
@@ -182,8 +202,7 @@ public class assetDetailsTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetHubPage.resetWebElements();
-		// System.out.println("Reset Webelement memory released");
+		assetDetailsPage.resetWebElements();
 		System.out.println("assetDetails Test  Completed.");
 	}
 
@@ -199,7 +218,7 @@ public class assetDetailsTest extends BaseClass {
 		// Thread.sleep(500);
 	}
 
-	// TearDown of the App
+	// After Method: TearDown of the App
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
@@ -224,10 +243,14 @@ public class assetDetailsTest extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-
 		driver.quit();
 	}
-
+	
+	
+	/******************************
+	Asset Details Test cases/scripts
+	 ******************************/	
+	
 	// 01-ASST016
 	@Test(groups = { "Sanity", "Regression" }, description = "ASST016-Verify if selecting the target Asset "
 			+ "tile in Asset hub page , user is navigated to the target Asset Details screen "
@@ -497,11 +520,26 @@ public class assetDetailsTest extends BaseClass {
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.selectFolder_CopyToDrive("syncin", "setup");
+		assetDetailsPage.selectFolder_CopyToDrive("AutoLogs", "setup");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to D:\\Stored-Code\\TestAutomation\\Development\\Root\\Source\\VRT\\src\\test\\resources\\TestData\\CopySetups";
-		String ActAlertMsg = tu.get_AlertMsg_text();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Disable user should not be able to create equipments");
+
+		String foldrpath= System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\AutoLogs";
+		//System.out.println("Act Folderpath: "+filepath);
+		String ExpAlrtMsg = "manual 1 min sampling has been copied successfully to "+foldrpath;
+		//System.out.println("Exp Folderpath: "+ExpAlrtMsg);
+		String ActAlrtMsg = tu.get_AlertMsg_text();
+		//System.out.println("Act alert msg: "+ActAlrtMsg);
+
+		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Copy to drive operation failed for Setup");
+		
+		//Confirm if the file got copied to the above destination folder or not
+		List<String> fn = tu.get_fileNamesList(foldrpath);
+		String expFileName= "1065306A4C9C5E7376FC.cfg";
+		for (String filename : fn) {
+			//System.out.println(filename);
+			sa.assertEquals(filename, expFileName, "FAIL: Incorrect file is copied or "
+					+ "not all copeid during Copy to drive operation for Setup");
+		}
 		sa.assertAll();
 
 	}
@@ -585,10 +623,10 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage.click_InitiateQualBtn();
 		Thread.sleep(500);
 		String expectedvalue = "1234567890123456789012345678901234567890123456789012";
-		System.out.println("count of SOP NUM to be entered: " + expectedvalue.length());
+		//System.out.println("count of SOP NUM to be entered: " + expectedvalue.length());
 		assetDetailsPage.Enter_SOPNum(expectedvalue);
 		String actualvaluAllowed = assetDetailsPage.GetSOPNumText();
-		System.out.println("count of SOP NUM allowed : " + actualvaluAllowed.length());
+		//System.out.println("count of SOP NUM allowed : " + actualvaluAllowed.length());
 
 		sa.assertEquals(actualvaluAllowed.length(), 50, "FAIL: SOP Protocol field  accepting more than  50 characters");
 		sa.assertAll();
@@ -656,10 +694,10 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage.click_InitiateQualBtn();
 		Thread.sleep(500);
 		String Invalidvalue = "99999"; // 5 char
-		System.out.println("count of RUN NUM to be entered: " + Invalidvalue.length());
+		//System.out.println("count of RUN NUM to be entered: " + Invalidvalue.length());
 		assetDetailsPage.Enter_RunNumber(Invalidvalue);
 		String actualvaluAllowed = assetDetailsPage.GetRunNumText();
-		System.out.println("count of RUN NUM allowed : " + actualvaluAllowed.length());
+		//System.out.println("count of RUN NUM allowed : " + actualvaluAllowed.length());
 
 		sa.assertEquals(actualvaluAllowed.length(), 4, "FAIL: Run Number Text shpuld  accepts 4 characters");
 		sa.assertAll();
@@ -896,7 +934,7 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL: delete Popup window is not Present");
 
 		String actualmsg = assetDetailsPage.get_text_DeleteAst_popup();
-		// System.out.println(actualmsg);
+		// //System.out.println(actualmsg);
 		String Expectmsg = "Do you want to delete the ' manual 1 min sampling ' Study?";
 		sa.assertEquals(actualmsg, Expectmsg, "FAIL: Alert message is not available in delete login pop up window");
 		sa.assertAll();

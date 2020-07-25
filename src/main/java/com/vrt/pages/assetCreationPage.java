@@ -56,9 +56,9 @@ public class assetCreationPage extends BaseClass{
 		CreateAssetPageTitle = driver.findElementByAccessibilityId("pageTitle");
 		AssetNameTxtBox = driver.findElementByAccessibilityId("NameTextBox");
 		AssetIDTxtBox = driver.findElementByAccessibilityId("EqidTextBox");	
-		List<WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
+		Combobx = driver.findElementsByAccessibilityId("EditableCombo");
 		//List <WebElement> Combobx = driver.findElementsByAccessibilityId("EditableCombo");
-		List <WebElement> AssetEditBox = driver.findElementsByAccessibilityId("EditableTextBox");
+		AssetEditBox = driver.findElementsByAccessibilityId("EditableTextBox");
 		AssetModelTxtBox = driver.findElementByAccessibilityId("ModelTextBox");
 		AssetSizeTxtBox = driver.findElementByAccessibilityId("SizeTextBox");
 		AssetLstVldtdDate = driver.findElementByAccessibilityId("PART_PickerButton");
