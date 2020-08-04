@@ -79,11 +79,11 @@ public class Copyassetpage extends BaseClass {
 
 			clickOn(Back_Button);
 		}
- // click on yes btn 
-		
+ // click on yes btn 		
 		public assetDetailsPage  Yes_alert() throws IOException {
 			WebElement YesAlert_btn = driver.findElementByName("Yes");
 			clickOn(YesAlert_btn);
 			return new assetDetailsPage();
-		}
+		}		
+		
 }

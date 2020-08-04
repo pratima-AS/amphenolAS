@@ -45,7 +45,7 @@ public class EquipmentHubPage extends BaseClass {
 
 	// IRTD
 	// Click on IRTD List box of Equipment page
-	public IRTDHubPage ClickonIRTDlistbox() throws IOException {
+	public IRTDHubPage click_IRTDTile() throws IOException {
 		WebElement irtdbox = driver.findElementByName("IRTD");
 		clickOn(irtdbox);
 		return new IRTDHubPage();

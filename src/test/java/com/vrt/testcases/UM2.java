@@ -88,7 +88,7 @@ public class UM2 extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("UM2: UserPrivilagesTest in Progress..");
 
-		
+		/*
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -185,7 +185,7 @@ public class UM2 extends BaseClass {
 			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 			Thread.sleep(2000);
 		}
-		
+		*/
 
 	}
 
@@ -236,13 +236,9 @@ public class UM2 extends BaseClass {
 		driver.quit();
 	}
 
-	/*// Check
-	@Test(description = "check for SyncIn im UM1")
-	public void Check() throws Exception {
-		extentTest = extent.startTest("Syncin Process check in UM1");
-		System.out.println("Syncin Process check in UM1");
-	}*/
-	
+/***************************
+ * Test Methods for UM module
+****************************/	
 	
 	// ADMN046
 	@Test(groups = { "Regression" }, description = "Verify the default privileges for Administrator", alwaysRun = true)
@@ -336,7 +332,7 @@ public class UM2 extends BaseClass {
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		tu.click_Close_alertmsg();
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("ADMN048B");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -511,7 +507,7 @@ public class UM2 extends BaseClass {
 		tu.click_Close_alertmsg();
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		assetDetailsPage.DeleteAssert();		
+		assetDetailsPage.DeleteAsset();		
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		Thread.sleep(2000);
 		String alrtMsg = assetDetailsPage.get_text_DeleteAst_popup();
@@ -534,7 +530,7 @@ public class UM2 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		sa.assertEquals(IRTDDetailspage.IRTD_DeletePopupWindow(), true, 
@@ -718,7 +714,7 @@ public class UM2 extends BaseClass {
 
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("  J1129");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -738,7 +734,7 @@ public class UM2 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -757,7 +753,7 @@ public class UM2 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
@@ -1040,7 +1036,7 @@ public class UM2 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -1171,7 +1167,7 @@ public class UM2 extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -1191,7 +1187,7 @@ public class UM2 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
+import com.vrt.utility.TestUtilities;
 
 //import io.qameta.allure.Step;
 
@@ -22,7 +23,8 @@ public class LoginPage extends BaseClass {
 	WebElement MainLoginPW = null;
 	WebElement MainLoginBtn = null;
 	WebElement MainLoginCnclBtn = null;
-
+	TestUtilities tu = new TestUtilities();
+	
 	private void initElements() {
 		// LoginPage Page Element definition
 		ProductName = driver.findElementByName("ValProbe RT System");
@@ -68,6 +70,7 @@ public class LoginPage extends BaseClass {
 
 	// Enter User ID: {0}")
 	public void EnterUserID(String UID) {
+		//clickOn(MainLoginUID);
 		ClearText(MainLoginUID);
 		enterText(MainLoginUID, UID);
 	}
@@ -244,6 +247,7 @@ public class LoginPage extends BaseClass {
 
 	// Login method for User OTHER THAN Kaye/411...")
 	public void LoginEntry(String UID, String PW) throws InterruptedException {
+		
 		EnterUserID(UID);
 		EnterUserPW(PW);
 	}
@@ -253,7 +257,7 @@ public class LoginPage extends BaseClass {
 		enterNewPW(NPW);
 		enterConfNewPW(NPW);
 		ClickNewPWSaveBtn();
-
+		//tu.click_Close_alertmsg();
 		return new MainHubPage();
 	}
 
@@ -299,7 +303,7 @@ public class LoginPage extends BaseClass {
 
 	public String UserBlocked_PopUp_Msg() {
 		WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
-		return FetchText(LogMsg);
+		return LogMsg.getAttribute("Name");
 	}
 
 	// Get the Sw version info from the About window on clicking About icon of the
