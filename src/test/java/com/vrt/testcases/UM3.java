@@ -324,7 +324,7 @@ public class UM3 extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -344,7 +344,7 @@ public class UM3 extends BaseClass {
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
@@ -508,7 +508,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -518,7 +518,7 @@ public class UM3 extends BaseClass {
 	}
 
 	//CADMN15
-	@Test(groups = { "Regression" }, description = "Verify the Customized checked privileges  for Supervisor User")
+	@Test(groups = { "Regression" }, description = "CADMN15-Verify the Customized checked privileges for Supervisor User")
 	public void CADMN15() throws Exception {
 		extentTest = extent.startTest("CADMN15-Verify the Customized default privileges  for Supervisor User");
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -526,7 +526,8 @@ public class UM3 extends BaseClass {
 		UserManagementPage.clickAnyUserinUserList("Suptest1");
 		SoftAssert sa = new SoftAssert();
 		// Validate check boxes are checked
-		sa.assertEquals(UserManagementPage.Adminstatus(), true, "FAIL:Adminstatus checkbox should be Checked");
+		sa.assertEquals(UserManagementPage.Adminstatus(), true, 
+				"FAIL:Adminstatus checkbox should be Checked");
 		sa.assertEquals(UserManagementPage.CreateAndEditEquipmentstatus(), true,
 				"FAIL:CreateAndEditEquipmentstatus CheckBox should  be Checked");
 
@@ -636,7 +637,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("Supcas5");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		s.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL:Delete popup window should be Visible");
 		s.assertAll();
@@ -696,7 +697,7 @@ public class UM3 extends BaseClass {
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		tu.click_Close_alertmsg();
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN22");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -722,7 +723,7 @@ public class UM3 extends BaseClass {
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		tu.click_Close_alertmsg();
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN23A");
 		IRTDHubPage = IRTDDetailspage.delete_IRTD(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN23"));
@@ -890,7 +891,7 @@ public class UM3 extends BaseClass {
 		String ActAlertMsg = tu.get_AlertMsg_text();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Equipment should be created successfully");
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN30"));
 		s.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN30"), true, "FAIL:IRTD_is not created");		
 		s.assertAll();
@@ -908,7 +909,7 @@ public class UM3 extends BaseClass {
 		
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.enter_IRTDEquipName("Editing");
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
@@ -933,7 +934,7 @@ public class UM3 extends BaseClass {
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		tu.click_Close_alertmsg();
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN32");
 		IRTDHubPage = IRTDDetailspage.delete_IRTD(getUID("SysOperator"), getPW("SysOperator"));
 		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN32"));
@@ -996,7 +997,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("CuOpAst5");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		sa.assertEquals(assetDetailsPage.Deletepopupwindow(), true, "FAIL:Delete popup window should be Visible");
 		System.out.println("Deleted successfully");

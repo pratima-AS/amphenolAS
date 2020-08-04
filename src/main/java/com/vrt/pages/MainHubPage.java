@@ -83,7 +83,7 @@ public class MainHubPage extends BaseClass {
 		Thread.sleep(500);
 		WebElement MainUISignOut = driver.findElementByName("Sign out");
 		clickOn(MainUISignOut);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		return new LoginPage();
 	}
 

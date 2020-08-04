@@ -397,7 +397,7 @@ public class assetDetailsTest extends BaseClass {
 
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("DLTAsset");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetDetailsPage.Delete_ClickYesBtn();
 		assetHubPage.click_serachAstBtn();
@@ -418,7 +418,7 @@ public class assetDetailsTest extends BaseClass {
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetDetailsPage.ClickOK_btn();

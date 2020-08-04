@@ -241,10 +241,11 @@ public class BaseClass {
 		UserMap.put("SysSupervisor", "3:333333");
 		UserMap.put("SysOperator", "4:444444");	
 		
-		UserMap.put("TestAdmin", "2:Start@5AM");
+		UserMap.put("TestAdmin", "5:555555");
 		UserMap.put("Dsbluser", "1D:Start@1AM");
 		UserMap.put("Newuser", "1N:Start@7AM");
-		//UserMap.put("Delrprt", "5:Start@5AM");
+		UserMap.put("CustoAdmin", "6:666666");
+		UserMap.put("CustomSup", "7:777777");
 		return UserMap;
 	}
 	

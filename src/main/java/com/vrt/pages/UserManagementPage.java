@@ -412,19 +412,19 @@ public class UserManagementPage extends BaseClass {
 	// Click On All Checked boxes to customized the privileges
 	public void Click_AllCheckBox() throws InterruptedException, AWTException {
 		clickOn(AdminPriv);
-		clickOn(CreaeteEditAssetPriv);
-		clickOn(CreaeteEditSetupPriv);
-		clickOn(CreaeteEditEquipPriv);
-		clickOn(CreateReports);
 		clickOn(RunQualification);
-		clickOn(DeleteAssets);
-		clickOn(DeleteSetup);
-		clickOn(DeleteEquipment);
-		clickOn(DeleteStudyFiles);
 		clickOn(RunCalibration);
+		clickOn(CreaeteEditAssetPriv);
+		clickOn(DeleteAssets);
 		clickOn(CopyFilesReports);
-		clickOn(ArchiveData);
+		clickOn(CreaeteEditSetupPriv);
+		clickOn(DeleteSetup);
+		clickOn(ArchiveData);		
+		clickOn(CreaeteEditEquipPriv);
+		clickOn(DeleteEquipment);
 		clickOn(ManualSync);
+		clickOn(CreateReports);
+		clickOn(DeleteStudyFiles);
 		clickOn(CameraAccess);
 		ClkscrollBar_down();
 		clickOn(CreatePassFailTemplate);

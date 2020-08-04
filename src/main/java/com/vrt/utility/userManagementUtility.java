@@ -59,6 +59,14 @@ public class userManagementUtility extends BaseClass{
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//ADMIN module related Test Data reference
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	@DataProvider(name = "LOGIN_024")
+	public static Object[][] LOGIN_024() {
+		String sheetName = "LOGIN_024";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+	
 	@DataProvider(name = "tcADMN008")
 	public static Object[][] ADMN008() {
 		String sheetName = "tcADMN008";

@@ -182,9 +182,10 @@ public class UM1 extends BaseClass {
 			SyncInAssetListPage.click_SelectAllBtn();
 			SyncInAssetListPage.click_OkBtn();
 			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(6000);
+			Thread.sleep(7000);
 			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 			Thread.sleep(2000);
+			
 		}
 		
 	}
@@ -621,7 +622,6 @@ public class UM1 extends BaseClass {
 	}
 
 	// ADMN017
-
 	@Test(dataProvider = "tcADMN017", dataProviderClass = userManagementUtility.class, groups = {
 			"Regression" }, description = "ADMN017-Verify Valid inputs allowed for Confirm Password Field at User Management Screen")
 
@@ -658,7 +658,6 @@ public class UM1 extends BaseClass {
 	}
 
 	// ADMN018
-
 	@Test(dataProvider = "tcADMN018", dataProviderClass = userManagementUtility.class, groups = {
 			"Regression" }, description = "ADMN018-Verify Invalid inputs that are not allowed for Confirm Password Field at User Management Screen")
 
@@ -824,21 +823,13 @@ public class UM1 extends BaseClass {
 
 	// ADMN026
 	@Test(dataProvider = "tcADMN026", dataProviderClass = userManagementUtility.class, groups = {
-			"Regression" }, description = "Verify the Invalid inputs for Phone number field")
+			"Regression" }, description = "ADMN026-Verify the Invalid inputs for Phone number field")
 
-	public void ADMN026(Object... dataProvider) throws InterruptedException {
+	public void ADMN026(String Name, String UserID, String Password, String ConfirmPassword, String Title, String UserType, 
+			String PhoneNo, String Email, String ExpAlrtMsg) throws InterruptedException {
 		extentTest = extent.startTest("ADMN026-Verify the Invalid inputs for Phone number field");
 
 		SoftAssert sa = new SoftAssert();
-		String Name = (String) dataProvider[0];
-		String UserID = (String) dataProvider[1];
-		String Password = (String) dataProvider[2];
-		String ConfirmPassword = (String) dataProvider[3];
-		String Title = (String) dataProvider[4];
-		String UserType = (String) dataProvider[5];
-		String PhoneNo = (String) dataProvider[6];
-		String Email = (String) dataProvider[7];
-		String ExpAlrtMsg = (String) dataProvider[8];
 		UserManagementPage.ClickNewUser();
 		UserManagementPage.UMCreation_NonmandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType,
 				PhoneNo, Email);
@@ -1124,13 +1115,14 @@ public class UM1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN036
-	// dependsOnMethods = "ADMN032A"
+	// ADMN036A
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Assets screen")
-	public void ADMN036() throws InterruptedException, IOException {
+			"Regression" }, description = "ADMN036A-Verify the functionality when disabled user "
+					+ "credentials are given in authentication window of Assets screen")
+	public void ADMN036A() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ADMN036-Verify the functionality when disabled user credentials are given in authentication window of Assets screen");
+				"ADMN036A-Verify the functionality when disabled user credentials are "
+				+ "given in authentication window of Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -1138,63 +1130,66 @@ public class UM1 extends BaseClass {
 		assetCreationPage.assetCreation("DUAst2", "201A", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup("1D", getPW("Dsbluser"));
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
-		String ActAlertMsg = assetCreationPage.AlertMsg();
+		String ActAlertMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to create asserts");
 		sa.assertAll();
 	}
 
-	// ADMN036A	
+	// ADMN036B
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of Edit in Assets screen")
-	public void ADMN036A() throws InterruptedException, IOException {
+			"Regression" }, description = "ADMN036B-Verify the functionality when disabled user credentials"
+					+ " are given in authentication window of Edit in Assets screen")
+	public void ADMN036B() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ADMN036A-Verify the functionality when disabled user credentials are given in authentication window of Edit in Assets screen");
+				"ADMN036B-Verify the functionality when disabled user credentials are given in"
+				+ " authentication window of Edit in Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.Click_AddAssetButton();
-		assetCreationPage.assetCreation("DUAst3", "202A", "HeatBath", "HYdd", "Ind");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("DUAst3");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
+		assetCreationPage.enterModelName("Test");
 		assetCreationPage.clickSaveBtn();
 		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
-		String ActAlertMsg = assetCreationPage.AlertMsg();
+		String ActAlertMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to Edit in Assets screen");
-		sa.assertAll();
-	}
-
-	// ADMN036B
-	// dependsOnMethods = { "ADMN032A", "ADMN036A" },
-	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of delete Assets screen")
-	public void ADMN036B() throws InterruptedException, IOException {
-		extentTest = extent.startTest(
-				"ADMN036B-Verify the functionality when disabled user credentials are given in authentication window of delete Assets screen");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("DUAst3");
-		assetDetailsPage.DeleteAssert();
-		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
-		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
-		String ActAlertMsg = assetCreationPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to delete in Assets screen");
 		sa.assertAll();
 	}
 
 	// ADMN036C
 	@Test(groups = {
-			"Regression" }, description = "Verify the functionality when disabled user credentials are given in authentication window of copy Assets screen")
+			"Regression" }, description = "ADMN036C-Verify the functionality when disabled user"
+					+ " credentials are given in authentication window of delete Assets screen")
 	public void ADMN036C() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ADMN036C-Verify the functionality when disabled user credentials are given in authentication window of copy Assets screen");
+				"ADMN036C-Verify the functionality when disabled user credentials are given in "
+				+ "authentication window of delete Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile("DUAst3");
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.DeleteAsset();
+		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
+		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
+		String ActAlertMsg = tu.get_AlertMsg_text();
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be "
+				+ "able to delete in Assets screen");
+		sa.assertAll();
+	}
+
+	// ADMN036D
+	@Test(groups = {
+			"Regression" }, description = "ADMN036D-Verify the functionality when disabled user"
+					+ " credentials are given in authentication window of copy Assets screen")
+	public void ADMN036D() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"ADMN036D-Verify the functionality when disabled user credentials are given in"
+				+ " authentication window of copy Assets screen");
+		SoftAssert sa = new SoftAssert();
+		MainHubPage = UserManagementPage.ClickBackButn();
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Copyassetpage = assetDetailsPage.clickCopyasset();
 
 		Copyassetpage.Enter_NewAssetNameField("testName");
@@ -1203,7 +1198,7 @@ public class UM1 extends BaseClass {
 
 		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
-		String ActAlertMsg = assetCreationPage.AlertMsg();
+		String ActAlertMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:  Disable user should not be able to delete in Assets screen");
 		sa.assertAll();
 	}
@@ -1370,6 +1365,7 @@ public class UM1 extends BaseClass {
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		assetHubPage = assetCreationPage.clickBackBtn();
 		//Select the newly created Asset
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
@@ -1377,7 +1373,7 @@ public class UM1 extends BaseClass {
 		CopySetuppage.Click_Selectall_chkbox();
 		CopySetuppage.click_copy_Btn();
 		CopySetuppage.select_alertOption("Yes");
-		UserLoginPopup("1D", getPW("Dsbluser"));
+		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
 		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -1433,8 +1429,8 @@ public class UM1 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup("1D", getPW("Dsbluser"));
+		assetDetailsPage.click_qualstudy_DeleteBtn();
+		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
 		Thread.sleep(2000);
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -1731,6 +1727,7 @@ public class UM1 extends BaseClass {
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
 		//assetDetailsPage.click_SetupTile();
@@ -1824,7 +1821,7 @@ public class UM1 extends BaseClass {
 						+ "saving any changes-Equipment-Edit");
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.enter_IRTDEquipName("test");
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
@@ -1847,7 +1844,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.ClickonIRTDlistbox();
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
 		IRTDDetailspage.clickDeleteEquipmentIcon();
 		IRTDDetailspage.ClickYesBtn();
@@ -1889,15 +1886,11 @@ public class UM1 extends BaseClass {
 			throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("ADMN069F-Verify mandatory login for a new user before "
-						+ "saving any changes-Aseert Edit");
+						+ "saving any changes-Assert Edit");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		assetHubPage = MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.Click_AddAssetButton();
-		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = assetCreationPage.clickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile(AName);
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.enterModelName("abc");
 		assetCreationPage.clickSaveBtn();
@@ -1927,7 +1920,7 @@ public class UM1 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExpAlrtMsg = "Please login the system at least once";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -1951,7 +1944,7 @@ public class UM1 extends BaseClass {
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
 		String ExpAlrtMsg = "Please login the system at least once";
-		String ActAlertMsg = UserManagementPage.AlertMsg();
+		String ActAlertMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,
 				"FAIL: Alert message should be displayed as Please login the system at least once");
 		sa.assertAll();

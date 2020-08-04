@@ -73,38 +73,27 @@ public class EquipmentPage extends BaseClass {
 	public void select_EquipmentType(String Etype) throws InterruptedException {
 		// System.out.println(Etype);
 		clickOn(EquipmentTypeUMDropDown);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		WebElement EPSelect = driver.findElementByName("Select");
-		WebElement EPValidator = driver.findElementByName("Validator");
+		//WebElement EPValidator = driver.findElementByName("Validator");
 		WebElement EPVRTLogger = driver.findElementByName("VRT Logger");
-		WebElement EPAVS = driver.findElementByName("AVS");
+		//WebElement EPAVS = driver.findElementByName("AVS");
 		WebElement EPIRTD = driver.findElementByName("IRTD");
-		WebElement EPBath = driver.findElementByName("Calibration Bath");
-		WebElement EPBaseStation = driver.findElementByName("Base Station");
+		//WebElement EPBath = driver.findElementByName("Calibration Bath");
+		//WebElement EPBaseStation = driver.findElementByName("Base Station");
 
 		if (Etype.equals(EPSelect.getText())) {
 			clickOn(EPSelect);
 			Thread.sleep(500);
-		} else if (Etype.equals(EPValidator.getText())) {
-			// SelectAdministrator();
-			clickOn(EPValidator);
-			// Thread.sleep(500);
 		} else if (Etype.equals(EPVRTLogger.getText())) {
 			clickOn(EPVRTLogger);
-			Thread.sleep(500);
-		} else if (Etype.equals(EPAVS.getText())) {
-			clickOn(EPAVS);
 			Thread.sleep(500);
 		} else if (Etype.equals(EPIRTD.getText())) {
 			clickOn(EPIRTD);
 			Thread.sleep(500);
-		} else if (Etype.equals(EPBath.getText())) {
-			clickOn(EPBath);
-			Thread.sleep(500);
-		} else if (Etype.equals(EPBaseStation.getText())) {
-			clickOn(EPBaseStation);
-			Thread.sleep(500);
+		} else {
+			System.out.println("Incorrect Equipment selected or incorrect text given as input");
 		}
 
 	}
@@ -154,10 +143,6 @@ public class EquipmentPage extends BaseClass {
 	//Click on back button 
 	public EquipmentHubPage ClickBackBtn() throws InterruptedException, IOException {
 		clickOn(backBtn);
-		//Temporary handling of Alert message (Bug 2033)
-		WebElement Yes_AlertMsg = driver.findElementByAccessibilityId("Button1");
-		clickOn(Yes_AlertMsg);
-		Thread.sleep(2000);
 		return new EquipmentHubPage();
 	}
 
