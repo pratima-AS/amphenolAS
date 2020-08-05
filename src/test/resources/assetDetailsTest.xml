@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="AsseTDetailsTestSuite" parallel="false">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AsseTDetailsTestSuite" parallel="false" verbose="5">
 	<listeners>		
 		<listener class-name="com.vrt.Listners.ExtentReporterNG" ></listener>
 		<listener class-name="com.vrt.Listners.RetryTransformer" ></listener>
 	</listeners>
-	<test thread-count="5" name="assetDetailsSanityTest">
+	<test thread-count="5" name="assetDetailsFunctionalityTest">
 <!-- 		<groups>
 			<run>
 				<include name="Sanity"></include>

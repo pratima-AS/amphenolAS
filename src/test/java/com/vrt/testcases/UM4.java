@@ -279,8 +279,7 @@ public class UM4 extends BaseClass {
 	}
 		
 	
-	//ADMN065
-	
+	//ADMN065	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete StudyFiles")
 	public void ADMN065() throws InterruptedException, ParseException, IOException, AWTException {
@@ -299,8 +298,7 @@ public class UM4 extends BaseClass {
 		s.assertAll();
 	}
 	
-	//ADMN065A
-	
+	//ADMN065A	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete Reports_qualification sub bar")
 	public void ADMN065A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -319,8 +317,8 @@ public class UM4 extends BaseClass {
 		s.assertAll();
 					
 	}	
-	// ADMN065B
 	
+	// ADMN065B	
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete_SetUpReports")
 	public void ADMN065B() throws InterruptedException, ParseException, IOException, AWTException {
@@ -358,8 +356,7 @@ public class UM4 extends BaseClass {
 	}
 
 
-	// ADMN079
-	
+	// ADMN079	
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete Setups")
 	public void ADMN079() throws InterruptedException, ParseException, IOException, AWTException {
@@ -380,11 +377,10 @@ public class UM4 extends BaseClass {
 	}
 
 
-	// ADMN081
-	
+	// ADMN081A	
 	@Test(groups = {
-			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles")
-	public void ADMN081() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN081A-Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles")
+	public void ADMN081A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN081A_Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles");
 		SoftAssert sa = new SoftAssert();
@@ -401,13 +397,12 @@ public class UM4 extends BaseClass {
 
 	}
 
-	// ADMN081A
-	
+	// ADMN081B
 	@Test(groups = {
-			"Regression" }, description = "Verify Supervisor is unable to access the default privilege-Delete_Reports")
-	public void ADMN081A() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN081B-Verify Supervisor is unable to access the default privilege-Delete_Reports")
+	public void ADMN081B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("ADMN081B_Verify Supervisor is unable to access the default privilege-Delete_Reports");
+				.startTest("ADMN081B-Verify Supervisor is unable to access the default privilege-Delete_Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -422,11 +417,10 @@ public class UM4 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ADMN081B
-	
+	// ADMN081C
 	@Test(groups = {
-			"Regression" }, description = "Verify Supervisor is unable to access the default privilege-Delete_SetUpReports")
-	public void ADMN081B() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN081C-Verify Supervisor is unable to access the default privilege-Delete_SetUpReports")
+	public void ADMN081C() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN081C_Verify Supervisor is unable to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
@@ -443,10 +437,10 @@ public class UM4 extends BaseClass {
 		s.assertAll();
 	}
 	
-	// ADMN081C
+	// ADMN081D
 	@Test(groups = {
-			"Regression" }, description = "Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report")
-	public void ADMN081C() throws InterruptedException, ParseException, IOException, AWTException {
+			"Regression" }, description = "ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report")
+	public void ADMN081D() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report");
 		SoftAssert s = new SoftAssert();
@@ -463,9 +457,9 @@ public class UM4 extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN081D
-	@Test(groups = { "Regression" }, description = "Verify if Supervisor is unable to Delete documents from -Documents tile")
-	public void ADMN081D() throws InterruptedException, ParseException, IOException, AWTException {
+	// ADMN081E
+	@Test(groups = { "Regression" }, description = "ADMN081E-Verify if Supervisor is unable to Delete documents from -Documents tile")
+	public void ADMN081E() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN081E_Verify if Supervisor is unable to Delete documents from -Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -481,8 +475,7 @@ public class UM4 extends BaseClass {
 	}
 	
 	
-	// ADMN103
-	
+	// ADMN103	
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete StudyFiles")
 	public void ADMN103() throws InterruptedException, ParseException, IOException, AWTException {
@@ -505,7 +498,8 @@ public class UM4 extends BaseClass {
 
 	// ADMN103A
 	@Test(groups = {
-			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Reports-Qual")
+			"Regression" }, description = "ADMN103A-Verify Operator is unable to access the "
+					+ "non-default privilege-Delete Reports-Qual")
 	public void ADMN103A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN103A-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual");

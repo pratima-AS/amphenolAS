@@ -411,6 +411,7 @@ public class UserManagementPage extends BaseClass {
 
 	// Click On All Checked boxes to customized the privileges
 	public void Click_AllCheckBox() throws InterruptedException, AWTException {
+		ClkscrollBar_up();
 		clickOn(AdminPriv);
 		clickOn(RunQualification);
 		clickOn(RunCalibration);
@@ -446,8 +447,17 @@ public class UserManagementPage extends BaseClass {
 		Thread.sleep(500);
 
 	}
+	
+	//Scroll Up and click 3 times
+	public void ClkscrollBar_up() throws InterruptedException, AWTException {
 
-	//Scroll down and click on AuditTrail
+		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallDecrease");
+		clickOn(scrollbar);
+		clickOn(scrollbar);
+		clickOn(scrollbar);
+	}
+
+	//Scroll down and click 3 times
 	public void ClkscrollBar_down() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
@@ -780,14 +790,6 @@ public class UserManagementPage extends BaseClass {
 
 		UserLoginPopup(UID, PW);
 
-		/*
-		 * WebElement SaveAlertmsg =
-		 * driver.findElementByAccessibilityId("displayMessageTextBlock"); if
-		 * (IsElementVisibleStatus(SaveAlertmsg)) { String NewUsertext =
-		 * SaveAlertmsg.getText(); if (NewUsertext.contains(NewUN)) {
-		 * System.out.println("New Admin User: " + NewUN + " is created successfuly"); }
-		 * }
-		 */
 	}
 
 	// Create a New Supervisor User
@@ -807,14 +809,6 @@ public class UserManagementPage extends BaseClass {
 
 		UserLoginPopup(UID, PW);
 
-		/*
-		 * WebElement SaveAlertmsg =
-		 * driver.findElementByAccessibilityId("displayMessageTextBlock"); if
-		 * (IsElementVisibleStatus(SaveAlertmsg)) { String NewUsertext =
-		 * SaveAlertmsg.getText(); if (NewUsertext.contains(NewUN)) {
-		 * //System.out.println("New Supervisor User " + NewUN +
-		 * " is created successfuly"); } }
-		 */
 	}
 
 	// Create a New Operator User
@@ -834,14 +828,6 @@ public class UserManagementPage extends BaseClass {
 
 		UserLoginPopup(UID, PW);
 
-		/*
-		 * WebElement SaveAlertmsg =
-		 * driver.findElementByAccessibilityId("displayMessageTextBlock"); if
-		 * (IsElementVisibleStatus(SaveAlertmsg)) { String NewUsertext =
-		 * SaveAlertmsg.getText(); if (NewUsertext.contains(NewUN)) {
-		 * //System.out.println("New Operator User " + NewUN +
-		 * " is created successfuly"); } }
-		 */
 	}
 
 	// User Management Creation with Mandatory fields

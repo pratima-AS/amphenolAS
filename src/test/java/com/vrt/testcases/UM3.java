@@ -84,6 +84,7 @@ public class UM3 extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));		
 		System.out.println("UM3_customized_UserPrivilagesTest in Progress..");
 		
+		
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -112,7 +113,7 @@ public class UM3 extends BaseClass {
 				"1Start@1AM", "AdminNew", "123345678", "newAdmin@gmail.com");
 		
 		UserManagementPage.clickAnyUserinUserList("Admintest1");
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		UserManagementPage.Click_AllCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -166,7 +167,7 @@ public class UM3 extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(6000);
+		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		//Verify if Syncin happened or not
 		Thread.sleep(2000);
@@ -187,7 +188,7 @@ public class UM3 extends BaseClass {
 			SyncInAssetListPage.click_SelectAllBtn();
 			SyncInAssetListPage.click_OkBtn();
 			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(6000);
+			Thread.sleep(7000);
 			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 			Thread.sleep(2000);
 		}
@@ -521,10 +522,12 @@ public class UM3 extends BaseClass {
 	@Test(groups = { "Regression" }, description = "CADMN15-Verify the Customized checked privileges for Supervisor User")
 	public void CADMN15() throws Exception {
 		extentTest = extent.startTest("CADMN15-Verify the Customized default privileges  for Supervisor User");
-		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		SoftAssert sa = new SoftAssert();
+		
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("Suptest1");
-		SoftAssert sa = new SoftAssert();
+		
 		// Validate check boxes are checked
 		sa.assertEquals(UserManagementPage.Adminstatus(), true, 
 				"FAIL:Adminstatus checkbox should be Checked");
