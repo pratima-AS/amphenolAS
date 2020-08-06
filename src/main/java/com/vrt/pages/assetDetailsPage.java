@@ -146,13 +146,11 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Check the presence of AssetID field
-
 	public boolean AssetIDPresence() {
 		return IsElementEnabledStatus(AssetID);
 	}
 
 // Check the presence of AssetID field
-
 	public boolean ModelPresence() {
 		return IsElementEnabledStatus(Model);
 	}
@@ -790,7 +788,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // select any setup from asset details page
-
 	public void Click_SetupName(String SN) throws InterruptedException, IOException {
 
 		List<WebElement> SetupList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
@@ -814,15 +811,8 @@ public class assetDetailsPage extends BaseClass {
 		}
 	}
 
-// ||Hard code || Select and click on the mentioned set up file
-
-	public void ClickSetup_file() throws InterruptedException, IOException {
-		WebElement Setupname = driver.findElementByName("Qual_case_51");
-		clickOn(Setupname);
-	}
 
 // click on the Print_Button
-
 	public void Click_Print_Button() throws AWTException, IOException, InterruptedException {
 		Print_Button = driver.findElementByAccessibilityId("PrintButton");
 		Thread.sleep(2000);
@@ -830,7 +820,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Select any qual file and click on that
-
 	public void Select_QualFile(String SN) throws InterruptedException, IOException {
 		List<WebElement> QUALList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
 				.findElements(By.className("TextBlock"));
@@ -858,7 +847,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// Select any report file and click on that
-
 	public void Select_ReportFile(String SN) throws InterruptedException, IOException {
 
 		List<WebElement> REPORTList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
@@ -890,7 +878,7 @@ public class assetDetailsPage extends BaseClass {
 
 	public void Select_DocFile(String DC) throws InterruptedException, IOException {
 		List<WebElement> DOCList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
-				.findElements(By.className("ListViewItem"));
+				.findElements(By.className("TextBlock"));
 
 		// Loop for the different serial number created
 		for (int i = 0; i < DOCList.size(); i++) {
@@ -985,17 +973,16 @@ public class assetDetailsPage extends BaseClass {
 
 //Click on Ok button under delete login pop upm (Not able to delete the asset with files)
 
-	public void ClickOK_btn() throws InterruptedException {
-		driver.switchTo().activeElement();
-		Thread.sleep(3000);
-		WebElement OK_btn = driver.findElementByName("OK");
-		clickOn(OK_btn);
-		driver.switchTo().activeElement();
-		Thread.sleep(500);
+	public assetHubPage ClickOK_btn() throws InterruptedException, AWTException, IOException {
+		// hit enter
+		Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
+		return new assetHubPage();
+
 	}
 
 // check the Login Popup presence when user  click upon print icon
-
 	public boolean UserLoginPopupVisible() throws InterruptedException {
 		WebElement LgInPopup = driver.findElementByName("Enter User Credentials");
 		return IsElementVisibleStatus(LgInPopup);
@@ -1010,7 +997,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Check on-click functionality of PDF icon for Detailed report under Reports tile-Qualifications sub tab
-
 	public boolean ReportView_Popupvisible() throws InterruptedException {
 		driver.switchTo().activeElement();
 		// Thread.sleep(500);
@@ -1022,9 +1008,9 @@ public class assetDetailsPage extends BaseClass {
 	// displaying
 	public void check_openfile_window_Presence() throws InterruptedException, AWTException {
 		// hit enter
-		 Robot r = new Robot();
-		 r.keyPress(KeyEvent.VK_ENTER);
-		 r.keyRelease(KeyEvent.VK_ENTER);
+		Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_ENTER);
+		r.keyRelease(KeyEvent.VK_ENTER);
 
 	}
 
