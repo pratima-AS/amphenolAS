@@ -171,27 +171,6 @@ public class UM3 extends BaseClass {
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		//Verify if Syncin happened or not
 		Thread.sleep(2000);
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		//System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
-		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
-			AppClose();
-			Thread.sleep(1000);
-		} else {
-			FileManagementPage = MainHubPage.ClickFileManagementTitle();
-			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
-			SyncInPage.enter_Filepath("syncin");
-			SyncInPage.click_FltrBtn();
-			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
-			SyncInAssetListPage.click_EquipmentCheckBox();
-			SyncInAssetListPage.click_SelectAllBtn();
-			SyncInAssetListPage.click_OkBtn();
-			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(7000);
-			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-			Thread.sleep(2000);
-		}
 
 	}
 
@@ -201,7 +180,7 @@ public class UM3 extends BaseClass {
 	public void endReport() throws InterruptedException {
 		extent.flush();
 		extent.close();
-		System.out.println("UM_customized_UserPrivilagesTest Completed.");
+		System.out.println("UM3_customized_UserPrivilagesTest Completed.");
 		Thread.sleep(500);
 	}
 

@@ -138,7 +138,7 @@ public class UM1 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage.ClickNewUser();
 		//Create a User & disable it
-		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), getPW("Dsbluser"),
+		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), 
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		//tu.click_Close_alertmsg();
@@ -161,32 +161,10 @@ public class UM1 extends BaseClass {
 		SyncInAssetListPage.click_SelectAllBtn();
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
-		Thread.sleep(6000);
+		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();		
-		//Verify if Synnin happened or not
 		Thread.sleep(2000);
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		//System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
-		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
-			AppClose();
-			Thread.sleep(1000);
-		} else {
-			FileManagementPage = MainHubPage.ClickFileManagementTitle();
-			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
-			SyncInPage.enter_Filepath("syncin");
-			SyncInPage.click_FltrBtn();
-			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
-			SyncInAssetListPage.click_EquipmentCheckBox();
-			SyncInAssetListPage.click_SelectAllBtn();
-			SyncInAssetListPage.click_OkBtn();
-			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(7000);
-			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-			Thread.sleep(2000);
-			
-		}
+
 		
 	}
 
@@ -329,7 +307,7 @@ public class UM1 extends BaseClass {
 		String UserType = (String) dataProvider[5];
 		String ExpAlrtMsg = (String) dataProvider[6];
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		String ActBlankFieldAlertMsg = UserManagementPage.AlertMsg();
 
 		sa4.assertEquals(ActBlankFieldAlertMsg, ExpAlrtMsg);
@@ -355,7 +333,7 @@ public class UM1 extends BaseClass {
 
 		UserManagementPage.ClickNewUser();
 
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		sa5.assertEquals(UserManagementPage.UserLoginPopupVisible(), true);
 		sa5.assertAll();
 	}
@@ -400,7 +378,7 @@ public class UM1 extends BaseClass {
 
 		UserManagementPage.ClickNewUser();
 
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		// UserManagementPage.ClickNewUserSaveButton();
 		String ActInvalidFieldAlertMsg = UserManagementPage.AlertMsg();
 
@@ -421,7 +399,7 @@ public class UM1 extends BaseClass {
 
 		// System.out.println(UserID);
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 
 		sa9.assertEquals(UserManagementPage.UserLoginPopupVisible(), true);
 		sa9.assertAll();
@@ -458,7 +436,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa8 = new SoftAssert();
 
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		String ActInvalidUIDAlertMsg = UserManagementPage.AlertMsg();
 
 		sa8.assertEquals(ActInvalidUIDAlertMsg, ExpAlrtMsg, "FAIL: Not Matched");
@@ -473,7 +451,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa11 = new SoftAssert();
 
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("super1", getUID("adminFull"), getPW("adminFull"),
+		UserManagementPage.UMCreation_MandatoryFields("super1", getUID("adminFull"), 
 				getPW("adminFull"), "AdminNew", "System Administrator");
 
 		String ExpAlrtMsg = "User Id already in use. Please try different User Id";
@@ -490,7 +468,7 @@ public class UM1 extends BaseClass {
 		extentTest = extent.startTest("ADMN014-Verify Unique user Name functionality at User management screen");
 		SoftAssert sa12 = new SoftAssert();
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(un, "1a", getPW("adminFull"), getPW("adminFull"), "AdminNew",
+		UserManagementPage.UMCreation_MandatoryFields(un, "1a", getPW("adminFull"), "AdminNew",
 				"System Administrator");
 		String ExpAlrtMsg = "User Name already in use. Please try different User Name";
 		String ActAlertMsg = UserManagementPage.AlertMsg();
@@ -553,7 +531,7 @@ public class UM1 extends BaseClass {
 
 		// System.out.println(UserID);
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 
 		sa.assertEquals(UserManagementPage.UserLoginPopupVisible(), true);
 		sa.assertAll();
@@ -596,7 +574,7 @@ public class UM1 extends BaseClass {
 
 		UserManagementPage.ClickNewUser();
 
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		String ActInvalidUIDAlertMsg = UserManagementPage.AlertMsg();
 
 		sa.assertEquals(ActInvalidUIDAlertMsg, ExpAlrtMsg, "FAIL: Not Matched");
@@ -634,7 +612,7 @@ public class UM1 extends BaseClass {
 
 		// System.out.println(UserID);
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 
 		sa.assertEquals(UserManagementPage.UserLoginPopupVisible(), true);
 
@@ -676,7 +654,7 @@ public class UM1 extends BaseClass {
 
 		UserManagementPage.ClickNewUser();
 
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		String ActInvalidUIDAlertMsg = UserManagementPage.AlertMsg();
 
 		sa.assertEquals(ActInvalidUIDAlertMsg, ExpAlrtMsg, "FAIL: Not Matched");
@@ -735,7 +713,7 @@ public class UM1 extends BaseClass {
 
 		// System.out.println(UserID);
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		sa.assertEquals(UserManagementPage.UserLoginPopupVisible(), true);
 		sa.assertAll();
 	}
@@ -769,7 +747,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		UserManagementPage.ClickNewUser();
 
-		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, ConfirmPassword, Title, UserType);
+		UserManagementPage.UMCreation_MandatoryFields(Name, UserID, Password, Title, UserType);
 		String ActAlertMsg = UserManagementPage.AlertMsg();
 
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Alert message should be displayed");
@@ -787,8 +765,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("Aop", "A90", getPW("adminFull"), getPW("adminFull"), "Admin",
-				"Select");
+		UserManagementPage.UMCreation_MandatoryFields("Aop", "A90", getPW("adminFull"), "Admin", "Select");
 		String ExpAlrtMsg = "Please select valid user type";
 		String ActAlertMsg = UserManagementPage.AlertMsg();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,
@@ -1566,7 +1543,7 @@ public class UM1 extends BaseClass {
 				"ADMN042-Verify the functionality when disabled user credentials are given in authentication window of Admin screen");
 		SoftAssert sa = new SoftAssert();
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("Eqp3", getUID("SysAdmin"), "1Start@1AM", "1Start@1AM",
+		UserManagementPage.UMCreation_MandatoryFields("Eqp3", getUID("SysAdmin"), "1Start@1AM",
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
 		String ExpAlrtMsg = "User account has been disabled, please contact administrator";
@@ -1645,12 +1622,12 @@ public class UM1 extends BaseClass {
 	@Test(groups = { "Regression" }, description = "Verify User Creation for an Administator User")
 	public void ADMN044() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN044-Verify User Creation for an Administator User");
-
+		SoftAssert sa = new SoftAssert();
+		
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("TA13", getUID("TestAdmin"), "EStart@5AM", "EStart@5AM", "Admin",
+		UserManagementPage.UMCreation_MandatoryFields("TA13", getUID("TestAdmin"), "EStart@5AM", "Admin",
 				"System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		SoftAssert sa = new SoftAssert();
 		String Expalrt = "TA13";
 		String actalrt = UserManagementPage.AlertMsg();
 		System.out.println(actalrt);
@@ -1674,17 +1651,24 @@ public class UM1 extends BaseClass {
 	@Test(groups = { "Regression" }, description = "Verify Reset pwd functionality for second user-Admin")
 	public void ADMN045() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN045-Verify Reset pwd functionality for second user-Admin");
+		SoftAssert sa = new SoftAssert();
+		
+		UserManagementPage.ClickNewUser();
+		UserManagementPage.UMCreation_MandatoryFields("ADMN045", "045", "EStart@5AM", "Admin",
+				"System Administrator");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
-		LoginPage.EnterUserID(getUID("TestAdmin"));
+		LoginPage.EnterUserID("045");
 		LoginPage.EnterUserPW("EStart@5AM");
 		LoginPage.ClickLoginBtn();
-		MainHubPage = LoginPage.EnterNewPWtext("Start@5AM");
-		// System.out.println("Password Reset Successfully");
+		MainHubPage = LoginPage.EnterNewPWtext(getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		LoginPage = MainHubPage.UserSignOut();
-		MainHubPage = LoginPage.Login(getUID("TestAdmin"), getPW("TestAdmin"));
-		SoftAssert sa = new SoftAssert();
-		String ExpUname = "TA13";
+		MainHubPage = LoginPage.Login("045", getPW("adminFull"));
+
+		String ExpUname = "045";
 		String ActUname = MainHubPage.UserNameText();
 		sa.assertEquals(ActUname, ExpUname, "Fail-User Name should be available ");
 		sa.assertAll();
@@ -2055,7 +2039,7 @@ public class UM1 extends BaseClass {
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.InvalidLogin(getUID("TestAdmin"), getPW("TestAdmin"));
-		String ExpAlrtMsg = "Invalid Credential, Please try again.";
+		String ExpAlrtMsg = "Invalid Credential, Please try again";
 		String ActAlertMsg = LoginPage.AlertMsg();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Invalid Credential, Please try again message Not displaying");
 		sa.assertAll();
@@ -2068,7 +2052,7 @@ public class UM1 extends BaseClass {
 		extentTest = extent.startTest("ADMN129-Verify Create a new user by Entering already deleted  User ID");
 		SoftAssert s31 = new SoftAssert();
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("TA13", getUID("TestAdmin"), "EStart@5AM", "EStart@5AM", "Admin",
+		UserManagementPage.UMCreation_MandatoryFields("TA13", getUID("TestAdmin"), "EStart@5AM", "Admin",
 				"System Administrator");
 		String ExpAlrtMsg = "UserId already in use and in deleted list, Please try different UserID";
 		String ActAlertMsg = UserManagementPage.AlertMsg();

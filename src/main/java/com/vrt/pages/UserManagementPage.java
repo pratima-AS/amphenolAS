@@ -831,12 +831,12 @@ public class UserManagementPage extends BaseClass {
 	}
 
 	// User Management Creation with Mandatory fields
-	public void UMCreation_MandatoryFields(String UName, String UID, String Pwd, String Cpwd, String Titl, String Utype)
+	public void UMCreation_MandatoryFields(String UName, String UID, String Pwd, String Titl, String Utype)
 			throws InterruptedException {
 		enterNewUserName(UName);
 		enterNewUserID(UID);
 		enterNewUserPW(Pwd);
-		enterNewUserConfPW(Cpwd);
+		enterNewUserConfPW(Pwd);
 		enterNewUserTitle(Titl);
 		select_UserType(Utype);
 		Thread.sleep(1000);
