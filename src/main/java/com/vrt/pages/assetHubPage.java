@@ -1,7 +1,7 @@
 /**
- * @author manoj.ghadei
- *
- */
+* @author manoj.ghadei
+*
+*/
 
 package com.vrt.pages;
 
@@ -28,7 +28,7 @@ public class assetHubPage extends BaseClass {
 	WebElement ManufacturerBtn = null;
 	WebElement LocationBtn = null;
 	WebElement BackBtn = null;
-	WebElement SearchBtn = null;	
+	WebElement SearchBtn = null;
 	WebElement AssetHub_BackButton = null;
 
 	// Page element Initialize method
@@ -40,7 +40,7 @@ public class assetHubPage extends BaseClass {
 		ManufacturerBtn = driver.findElementByAccessibilityId("ManufacturerButton");
 		LocationBtn = driver.findElementByAccessibilityId("LocationButton");
 		BackBtn = driver.findElementByAccessibilityId("BackButton");
-		SearchBtn = driver.findElementByAccessibilityId("SearchAssetsButton");		
+		SearchBtn = driver.findElementByAccessibilityId("SearchAssetsButton");
 		AssetHub_BackButton = driver.findElementByAccessibilityId("BackButton");
 
 	}
@@ -63,11 +63,12 @@ public class assetHubPage extends BaseClass {
 		SearchBtn = null;
 	}
 
-	//Wait for page to load
+	// Wait for page to load
 	public void waitforAssetHubPageLoad() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Assets")));		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Assets")));
 	}
+
 	// Get the Asset Page title
 	public String assetPageTitle() {
 		return FetchText(AssetPageTitle);
@@ -110,16 +111,15 @@ public class assetHubPage extends BaseClass {
 		clickOn(SearchBtn);
 		Thread.sleep(500);
 	}
-	
-	//Click on back btn
-	
-	
+
+	// Click on back btn
+
 	public MainHubPage click_BackBtn() throws InterruptedException, IOException {
 		clickOn(BackBtn);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		return new MainHubPage();
 	}
-	
+
 	// Verify the presence of Search Asset Text field
 	public boolean searchAstTxtfiled_state() {
 		WebElement searchAst_textbx = driver.findElementByAccessibilityId("searchTextBox");
@@ -134,13 +134,12 @@ public class assetHubPage extends BaseClass {
 		enterText(searchAst_textbx, AstName);
 		Thread.sleep(1000);
 	}
-	
-	
+
 	// Verify the presence of No record found
-		public boolean IsNoRecordFoundVisible() {
-			WebElement NoRecordFoundMSG = driver.findElementByName("No record found");
-			return IsElementVisibleStatus(NoRecordFoundMSG);
-		}
+	public boolean IsNoRecordFoundVisible() {
+		WebElement NoRecordFoundMSG = driver.findElementByName("No record found");
+		return IsElementVisibleStatus(NoRecordFoundMSG);
+	}
 
 	// Verify the presence of Add Asset Button
 	public boolean addAst() {
@@ -501,7 +500,7 @@ public class assetHubPage extends BaseClass {
 
 	// Click on ADD(+) icon
 	public assetCreationPage Click_AddAssetButton() throws IOException {
-		clickOn(AddAssetBtn);		
+		clickOn(AddAssetBtn);
 		return new assetCreationPage();
 	}
 
@@ -528,14 +527,10 @@ public class assetHubPage extends BaseClass {
 		Thread.sleep(1000);
 		return FetchText(Msg);
 	}
-	
 
 	public String getAssetIDvalue() {
-			WebElement AssetIDvalue = driver.findElementByAccessibilityId("AssetIdTextBlock");
-			return FetchText(AssetIDvalue);
-		}
+		WebElement AssetIDvalue = driver.findElementByAccessibilityId("AssetIdTextBlock");
+		return FetchText(AssetIDvalue);
+	}
 
 }
-
-
-

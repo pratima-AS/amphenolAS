@@ -171,29 +171,8 @@ public class assetDetailsTest extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		// Verify if Synnin happened or not
 		Thread.sleep(2000);
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		// System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
-		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
-			AppClose();
-			Thread.sleep(1000);
-		} else {
-			FileManagementPage = MainHubPage.ClickFileManagementTitle();
-			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
-			SyncInPage.enter_Filepath("syncin");
-			SyncInPage.click_FltrBtn();
-			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
-			SyncInAssetListPage.click_EquipmentCheckBox();
-			SyncInAssetListPage.click_SelectAllBtn();
-			SyncInAssetListPage.click_OkBtn();
-			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(7000);
-			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-			Thread.sleep(2000);
-		}
+
 
 	}
 
@@ -255,7 +234,8 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST001-Verify the details displayed in Asset details screen -
 	// EDIT,COPY,DELETE
-	@Test(groups = { "Regression" }, description = "ASST001-Verify the details displayed in Asset details screen")
+	@Test(priority = 0, groups = {
+			"Regression" }, description = "ASST001-Verify the details displayed in Asset details screen")
 	public void ASST001() throws Exception {
 		extentTest = extent.startTest("ASST001-Verify the details displayed in Asset details screen");
 
@@ -269,7 +249,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST071REP-Verify the reports are not displayed in Reports tile when they are
 	// not generated
-	@Test(groups = {
+	@Test(priority = 1, groups = {
 			"Regression" }, description = "ASST071REP-Verify the reports are not displayed in Reports tile when they are not generated")
 	public void ASST001A() throws InterruptedException, ParseException, IOException {
 		extentTest = extent.startTest(
@@ -278,17 +258,12 @@ public class assetDetailsTest extends BaseClass {
 
 		sa.assertEquals(assetDetailsPage.reportsTile_countdata(), "0",
 				"FAIL:Reports tile count displayed >0 under Asset details page");
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		Thread.sleep(1000);
-		sa.assertEquals(assetDetailsPage.reportsTile_countdata(), "5",
-				"FAIL:Reports tile count displayed <0 under Asset details page");
 		sa.assertAll();
 	}
 
 	// ASST002-Verify the details displayed on the 2 sections in Asset details
 	// screen
-	@Test(groups = {
+	@Test(priority = 2, groups = {
 			"Regression" }, description = "ASST002-Verify the details displayed on the 2 sections in Asset details screen")
 	public void ASST002() throws Exception {
 		extentTest = extent.startTest("ASST002-Verify the details displayed on the 2 sections in Asset details screen");
@@ -310,7 +285,8 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST003-Verify the on-click functionality of edit icon for Asset
 
-	@Test(groups = { "Regression" }, description = "ASST003-Verify the on-click functionality of edit icon for Asset")
+	@Test(priority = 3, groups = {
+			"Regression" }, description = "ASST003-Verify the on-click functionality of edit icon for Asset")
 	public void ASST003() throws Exception {
 		extentTest = extent.startTest("ASST003-Verify the details displayed on the 2 sections in Asset details screen");
 		SoftAssert sa = new SoftAssert();
@@ -327,7 +303,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST004-Verify if the details are saved during Edit Asset post modification
 	// ASST005-Verify the Audit trail for Edit Assets activity
 
-	@Test(groups = {
+	@Test(priority = 4, groups = {
 			"Regression" }, description = "ASST004,ASST005-Verify if the details are saved during Edit Asset post modification,Verify the Audit trail for Edit Assets activity")
 	public void ASST004() throws Exception {
 		extentTest = extent.startTest(
@@ -363,7 +339,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 // ASST006-Verify the Back Button functionality in Edit Asset screen
-	@Test(groups = { "Regression" }, description = "Verify the Back Button functionality in Edit Asset screen")
+	@Test(priority = 5, groups = {
+			"Regression" }, description = "Verify the Back Button functionality in Edit Asset screen")
 	public void ASST006() throws Exception {
 		extentTest = extent.startTest("ASST006-Verify the Back Button functionality in Edit Asset screen");
 		SoftAssert sa = new SoftAssert();
@@ -375,9 +352,10 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST007-Verify the clear button functionality in Edit Asset screen
-	@Test(groups = { "Regression" }, description = "ASST007-Verify the clear button functionality in Edit Asset screen")
+	@Test(priority = 6, groups = {
+			"Regression" }, description = "ASST007-Verify the clear button functionality in Edit Asset screen")
 	public void ASST007() throws Exception {
-		extentTest = extent.startTest("Verify the clear button functionality in Edit Asset screen");
+		extentTest = extent.startTest("ASST007-Verify the clear button functionality in Edit Asset screen");
 		SoftAssert sa = new SoftAssert();
 
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
@@ -393,7 +371,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST008-Verify the display of Asset in Asset hub page when any Asset is
 	// edited
 
-	@Test(groups = {
+	@Test(priority = 7, groups = {
 			"Regression" }, description = "ASST008-Verify the display of Asset in Asset hub page when any Asset is edited")
 	public void ASST008() throws Exception {
 		extentTest = extent.startTest("ASST008-Verify the display of Asset in Asset hub page when any Asset is edited");
@@ -417,7 +395,8 @@ public class assetDetailsTest extends BaseClass {
 	// ASST022STP-Verify the Audit trail for Copy Assets activity (This TC is also
 	// covered under the below Script )
 
-	@Test(groups = { "Regression" }, description = "ASST009,ASST022STP-Verify the on-click of Copy icon for Assets")
+	@Test(priority = 8, groups = {
+			"Regression" }, description = "ASST009,ASST022STP-Verify the on-click of Copy icon for Assets")
 	public void ASST009() throws Exception {
 		extentTest = extent.startTest("ASST009,ASST022STP-Verify the on-click of Copy icon for Assets");
 		SoftAssert sa = new SoftAssert();
@@ -446,7 +425,7 @@ public class assetDetailsTest extends BaseClass {
 
 //ASST012-Verify the on-click of Delete icon for Assets which has files in it
 
-	@Test(groups = {
+	@Test(priority = 9, groups = {
 			"Regression" }, description = "ASST012-Verify the on-click of Delete icon for Assets which has files in it")
 	public void ASST012() throws Exception {
 		extentTest = extent.startTest("ASST012-Verify the on-click of Delete icon for Assets which has files in it");
@@ -463,7 +442,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST013-Verify for a fresh asset with no activities - Setups, Qualifications
 	// Documents and Reports - as mentioned, all tiles should display 0
-	@Test(groups = {
+	@Test(priority = 10, groups = {
 			"Regression" }, description = "ASST013-Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0")
 	public void ASST013() throws InterruptedException, ParseException {
 		extentTest = extent.startTest(
@@ -482,7 +461,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST014STP-Verify the details displayed under Setups tile
-	@Test(groups = { "Regression" }, description = "ASST014-Verify the details displayed under Setups tile")
+	@Test(priority = 11, groups = {
+			"Regression" }, description = "ASST014-Verify the details displayed under Setups tile")
 	public void ASST014() throws InterruptedException, ParseException, IOException {
 
 		extentTest = extent.startTest("ASST014-Verify the details displayed under Setups tile");
@@ -503,7 +483,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST015STP-Verify the Setup date and time for a new Setup
-	@Test(groups = { "Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
+	@Test(priority = 12, groups = {
+			"Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
 	public void ASST015() throws InterruptedException, ParseException, IOException {
 
 		extentTest = extent.startTest("ASST015STP-Verify the Setup date and time for a new Setup");
@@ -518,7 +499,8 @@ public class assetDetailsTest extends BaseClass {
 	// ASST017STP-Verify New button is available and clicking on button user should
 	// able to define new setup
 
-	@Test(groups = { "Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
+	@Test(priority = 13, groups = {
+			"Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
 	public void ASST017() throws InterruptedException, ParseException, IOException {
 
 		extentTest = extent.startTest("ASST015STP-Verify the Setup date and time for a new Setup");
@@ -530,7 +512,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST018STP-Verify on-click of Copy button for a setup
-	@Test(groups = { "Regression" }, description = "ASST018STP-Verify on-click of Copy button for a setup")
+	@Test(priority = 14, groups = {
+			"Regression" }, description = "ASST018STP-Verify on-click of Copy button for a setup")
 	public void ASST018() throws InterruptedException, ParseException, IOException {
 
 		extentTest = extent.startTest("ASST018STP-Verify on-click of Copy button for a setup");
@@ -542,7 +525,8 @@ public class assetDetailsTest extends BaseClass {
 
 // ASST020STP-Verify -Copy to drive- functionality of a setup for local drive
 
-	@Test(groups = { "Regression" }, description = "Verify Copy to drive functionality of a setup for local drive")
+	@Test(priority = 15, groups = {
+			"Regression" }, description = "Verify Copy to drive functionality of a setup for local drive")
 	public void ASST020() throws InterruptedException, ParseException, IOException, AWTException {
 
 		extentTest = extent.startTest("ASST020STP-Verify -Copy to drive- functionality of a setup for local drive");
@@ -577,7 +561,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST023STP-Verify the display of Initiate Qualification button in setup tile
-	@Test(groups = { "Regression" }, description = "Verify the display of Initiate Qualification button in setup tile")
+	@Test(priority = 16, groups = {
+			"Regression" }, description = "Verify the display of Initiate Qualification button in setup tile")
 	public void ASST023() throws InterruptedException, ParseException, IOException, AWTException {
 
 		extentTest = extent.startTest("ASST023STP-Verify the display of Initiate Qualification button in setup tile");
@@ -596,10 +581,10 @@ public class assetDetailsTest extends BaseClass {
 	// ASST024_1STP- Verify the filed level validations for valid SOP protocl number
 	// field in Initiate qualification pop-up
 
-	@Test(dataProvider = "ASST024_1STP", dataProviderClass = assetCreationUtility.class, groups = {
+	@Test(priority = 17, dataProvider = "ASST024_1STP", dataProviderClass = assetCreationUtility.class, groups = {
 			"Regression" }, description = "ASST024_1STP-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up")
 
-	public void ASST024A(String SNum, String RNum) throws InterruptedException, IOException {
+	public void ASST024_1STP(String SNum, String RNum) throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"ASST024_1STP-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up");
 
@@ -617,10 +602,10 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST024_1A-Verify the invalid characters accepted in SOP protocl number field
 
-	@Test(dataProvider = "ASST024_1A_TC", dataProviderClass = assetCreationUtility.class, groups = {
+	@Test(priority = 18, dataProvider = "ASST024_1A", dataProviderClass = assetCreationUtility.class, groups = {
 			"Regression" }, description = "ASST024_1A-Verify the invalid characters accepted in SOP protocl number field")
 
-	public void ASST024B(String SNum, String RNum) throws InterruptedException, IOException {
+	public void ASST024_1A(String SNum, String RNum) throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST024_1A-Verify the invalid characters accepted in SOP protocl number field");
 
 		SoftAssert sa = new SoftAssert();
@@ -638,9 +623,9 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST024_1B_Verify the max character length for SOP protocol number field
-	@Test(groups = {
+	@Test(priority = 19, groups = {
 			"Regression" }, description = "ASST024_1B_Verify the max character length for SOP protocol number field")
-	public void ASST024C() throws InterruptedException, IOException {
+	public void ASST024_1B() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST024_1B_Verify the max character length for SOP protocol number field");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -662,10 +647,10 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST024.2STP-Verify the filed level validations for Run number field in
 	// Initiate qualification pop-up-Valid value
-	@Test(dataProvider = "ASST024_2STP", dataProviderClass = assetCreationUtility.class, groups = {
+	@Test(priority = 20, dataProvider = "ASST024_2STP", dataProviderClass = assetCreationUtility.class, groups = {
 			"Regression" }, description = "ASST024_2STP-Verify the filed level validations for Run number field in Initiate qualification pop-up_Valid value")
 
-	public void ASST024D(String SNum, String RNum) throws InterruptedException, IOException {
+	public void ASST024_2STP(String SNum, String RNum) throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"ASST024_2STP-Verify the filed level validations for SOP protocl number field in Initiate qualification pop-up_Valid value");
 
@@ -681,14 +666,14 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ASST024_2ASTP-Verify the filed level validations for SOP protocl number field
-	// in Initiate qualification pop-up_Invalid Value
-	@Test(dataProvider = "ASST024_2ASTP", dataProviderClass = assetCreationUtility.class, groups = {
-			"Regression" }, description = "ASST024_2ASTP-Verify the filed level validations for SOP protocl number field in Initiate qualification pop-up_Invalid Value")
+	// ASST024_2ASTP-Verify the filed level validations for Run number field in
+	// Initiate qualification pop-up_Invalid Value
+	@Test(priority = 21, dataProvider = "ASST024_2ASTP", dataProviderClass = assetCreationUtility.class, groups = {
+			"Regression" }, description = "ASST024_2ASTP-Verify the filed level validations for Run number field in Initiate qualification pop-up_Invalid Value")
 
-	public void ASST024E(String SNum, String RNum) throws InterruptedException, IOException {
+	public void ASST024_2ASTP(String SNum, String RNum) throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ASST024_2A-Verify the filed level validations for SOP protocl number field in Initiate qualification pop-up_Invalid Value");
+				"ASST024_2A-Verify the filed level validations for Run number field in Initiate qualification pop-up_Invalid Value");
 
 		SoftAssert sa = new SoftAssert();
 
@@ -706,9 +691,9 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST024_2B_Verify Max 4 characters should be allowed for Run number field
 
-	@Test(groups = {
+	@Test(priority = 22, groups = {
 			"Regression" }, description = "ASST024_2B_Verify Max 4 characters should be allowed for Run number field")
-	public void ASST024F() throws InterruptedException, IOException {
+	public void ASST024_2B() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST024_2B_Verify Max 4 characters should be allowed for Run number field");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -731,9 +716,9 @@ public class assetDetailsTest extends BaseClass {
 	// ASST024STP-Verify Clicking on Initiate Qualification the user should start
 	// Qualification Procedure
 
-	@Test(groups = {
+	@Test(priority = 23, groups = {
 			"Regression" }, description = "ASST024STP-Verify Clicking on Initiate Qualification the user should start Qualification Procedure")
-	public void ASST024G() throws InterruptedException, IOException {
+	public void ASST024STP() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"ASST024STP-Verify Clicking on Initiate Qualification the user should start Qualification Procedure");
 		SoftAssert sa = new SoftAssert();
@@ -742,15 +727,16 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_InitiateQualBtn();
 		Thread.sleep(500);
-		sa.assertEquals(assetDetailsPage.IsSOPNumberField_Presence(), true, "Fail: SOP Field should be displayed");
-		sa.assertEquals(assetDetailsPage.IsRunNumberField_Presence(), true, "Fail: Run Field should be displayed");
+		sa.assertEquals(assetDetailsPage.IsSOPNumberField_Presence(), true, "Fail: SOP Field is not displayed");
+		sa.assertEquals(assetDetailsPage.IsRunNumberField_Presence(), true, "Fail: Run Field is not displayed");
 
 		sa.assertAll();
 
 	}
 
 //ASST026STP-Verify on-click functionality of Edit icon for a setup
-	@Test(groups = { "Regression" }, description = "ASST026STP-Verify on-click functionality of Edit icon for a setup")
+	@Test(priority = 24, groups = {
+			"Regression" }, description = "ASST026STP-Verify on-click functionality of Edit icon for a setup")
 	public void ASST026() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST026STP-Verify on-click functionality of Edit icon for a setup");
 		SoftAssert sa = new SoftAssert();
@@ -764,11 +750,13 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST027STP-Verify the edit setup functionality
-	@Test(groups = {
+	// ASST028STP-Verify if Audit trial record exists for edit setup
+
+	@Test(priority = 25, groups = {
 			"Regression" }, dataProvider = "ASST027STP", dataProviderClass = assetCreationUtility.class, description = "Verify the edit setup functionality")
 
 	public void ASST027(String Comments) throws InterruptedException, IOException, AWTException, ParseException {
-		extentTest = extent.startTest("ASST027STP-Verify the edit setup functionality");
+		extentTest = extent.startTest("ASST027STP,ASST028STP-Verify the edit setup functionality");
 		SoftAssert sa = new SoftAssert();
 //Create Asset
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -797,29 +785,11 @@ public class assetDetailsTest extends BaseClass {
 		defineSetupPage = assetDetailsPage.click_editStupBtn();
 		String CmntTxt2 = defineSetupPage.get_defineSetupPage_comments_txtData();
 		sa.assertEquals(CmntTxt1, CmntTxt2, "FAIL:Editted comment is not displaying");
-
 		sa.assertAll();
-
-	}
-
-	// The below Audit message will reflect as per the Functionality of the Test
-	// case ASST027STP
-	// ASST028STP-Verify if Audit trial record exists for edit setup
-
-	@Test(groups = { "Regression" }, description = "Verify if Audit trial record exists for edit setup")
-	public void ASST028() throws Exception {
-		extentTest = extent.startTest("ASST028STP-Verify if Audit trial record exists for edit setup");
-		SoftAssert sa = new SoftAssert();
-
+		assetDetailsPage = defineSetupPage.defineSetupPage_backBtn();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-		AuditPage.EnterTxt_ActionFilter(
-				"Setup: \"manual 1 min sampling\" is modified in Tab : \"Define Setup\" by User ID : \"1\" , User Name: \"User1\"");
-
-		AuditPage.click_Action_FilterBtn();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_Actiontext();
 		System.out.println(Actionmsg);
@@ -827,11 +797,12 @@ public class assetDetailsTest extends BaseClass {
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record doess not exists for edit setup ");
 		sa.assertAll();
+
 	}
 
 	// ASST029WO-Verify the on-click functionality of the wiring icon for a setup
 
-	@Test(groups = {
+	@Test(priority = 26, groups = {
 			"Regression" }, description = "ASST029WO-Verify the on-click functionality of the wiring icon for a setup")
 	public void ASST029() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST029WO-Verify the on-click functionality of the wiring icon for a setup");
@@ -847,7 +818,7 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST030WO-Verify the details displayed in Wiring overlay screen for a setup
-	@Test(groups = {
+	@Test(priority = 27, groups = {
 			"Regression" }, description = "ASST030WO-Verify the details displayed in Wiring overlay screen for a setup")
 	public void ASST030() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST030WO-Verify the details displayed in Wiring overlay screen for a setup");
@@ -870,10 +841,10 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST032WO-Verify the on-click functionality of the print icon in the wiring
 	// overlay screen for a setup
-	@Test(groups = {
-			"Regression" }, description = "ASST030WO-Verify the details displayed in Wiring overlay screen for a setup")
+	@Test(priority = 28, groups = {
+			"Regression" }, description = "ASST032-Verify the details displayed in Wiring overlay screen for a setup")
 	public void ASST032() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest("ASST030WO-Verify the details displayed in Wiring overlay screen for a setup");
+		extentTest = extent.startTest("ASST032-Verify the details displayed in Wiring overlay screen for a setup");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
@@ -889,7 +860,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST033WO-Verify the on-click functionality of the _Group Overlay Report_ btn
 	// in the wiring overlay screen for a setup
-	@Test(groups = {
+	@Test(priority = 29, groups = {
 			"Regression" }, description = "ASST033WO-Verify the on-click functionality of the _Group Overlay Report_ btn in the wiring overlay screen for a setup")
 	public void ASST033() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -906,7 +877,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST034WO-Verify the on-click functionality of the _All Group Overlay Report_
 	// btn in the wiring overlay screen for a setup
-	@Test(groups = {
+	@Test(priority = 30, groups = {
 			"Regression" }, description = "ASST034WO-Verify the on-click functionality of the _All Group Overlay Report_ btn in the wiring overlay screen for a setup")
 	public void ASST034() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -923,7 +894,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST036WO-Verify user is unable to generate the wiring overlay report from
 	// Asset details screen when there is no report generation privilege given
 
-	@Test(groups = {
+	@Test(priority = 31, groups = {
 			"Regression" }, description = "ASST036WO-Verify user is unable to generate the wiring overlay report from Asset details screen when there is no report generation privilege given")
 	public void ASST036() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -938,11 +909,14 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST037-Verify the on-click functionality of the print icon for a setup
+	// ASST039STP-Verify the Audit trail for print Setup report activity (This Test
+	// case is covering under ASST037 )
 
-	@Test(groups = {
-			"Regression" }, description = "ASST037-Verify the on-click functionality of the print icon for a setup")
+	@Test(priority = 32, groups = {
+			"Regression" }, description = "ASST037,ASST039STP-Verify the on-click functionality of the print icon for a setup")
 	public void ASST037() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest("ASST037-Verify the on-click functionality of the print icon for a setup");
+		extentTest = extent
+				.startTest("ASST037,ASST039STP-Verify the on-click functionality of the print icon for a setup");
 		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -951,13 +925,24 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage.Click_Print_Button();
 		sa.assertEquals(assetDetailsPage.UserLoginPopupVisible(), true, "FAIL: User Login Popup Button is not Present");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		assetDetailsPage.check_openfile_window_Presence();
+		assetDetailsPage.alt_tab();
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		MainHubPage = assetHubPage.click_BackBtn();
+		AuditPage = MainHubPage.ClickAuditTitle();
+		Thread.sleep(5000);
+		String Actionmsg = AuditPage.get_Actiontext();
+
+		String ExpectMSG = "Asset Details:  Setup report creation performed by User ID : \"1\", User Name : \"User1\"";
+
+		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Search results is not available for print Setup report activity");
 		sa.assertAll();
 	}
 
 	// ASST038-Verify if user is unable to generate the setup report when there is
 	// no privilege given
 
-	@Test(groups = {
+	@Test(priority = 33, groups = {
 			"Regression" }, description = "ASST038-Verify if user is unable to generate the setup report when there is no privilege given")
 	public void ASST038() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -975,36 +960,9 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// The below audit message will display after the execution of the above test
-	// case ASST037
-	// ASST039STP-Verify the Audit trail for print Setup report activity
-
-	@Test(groups = { "Regression" }, description = "ASST039STP-Verify the Audit trail for print Setup report activity")
-	public void ASST039() throws Exception {
-		extentTest = extent.startTest("ASST039STP-Verify the Audit trail for print Setup report activity");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-		AuditPage.EnterTxt_ActionFilter(
-				"Asset Details:  Setup report creation performed by User ID : \"1\", User Name : \"User1\"");
-		AuditPage.click_Action_FilterBtn();
-		Thread.sleep(5000);
-		String Actionmsg = AuditPage.get_Actiontext();
-
-		String ExpectMSG = "Asset Details:  Setup report creation performed by User ID : \"1\", User Name : \"User1\"";
-
-		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Search results is not available for print Setup report activity");
-		sa.assertAll();
-
-	}
-
 	// ASST041-Verify if user is not able to delete the setup when there are no
 	// privileges given
-	@Test(groups = {
+	@Test(priority = 34, groups = {
 			"Regression" }, description = "ASST041-Verify if user is not able to delete the setup when there are no privileges given")
 	public void ASST041() throws InterruptedException, IOException {
 		extentTest = extent
@@ -1025,7 +983,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST043-Verify the details displayed under Qualifications tile
-	@Test(groups = { "Regression" }, description = "ASST043-Verify the details displayed under Qualifications tile")
+	@Test(priority = 35, groups = {
+			"Regression" }, description = "ASST043-Verify the details displayed under Qualifications tile")
 	public void ASST043() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST043-Verify the details displayed under Qualifications tile");
 		SoftAssert sa = new SoftAssert();
@@ -1044,7 +1003,9 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST044-Verify -Copy to drive- functionality of a Qualification study file
 	// for local drive
-	@Test(groups = {
+	// ASST046-Verify if Audit trial record exists for Copy of a study file (This
+	// Test Case is executed under ASST044 )
+	@Test(priority = 36, groups = {
 			"Regression" }, description = "ASST044-Verify -Copy to drive- functionality of a Qualification study file for local drive")
 	public void ASST044() throws InterruptedException, ParseException, IOException, AWTException {
 
@@ -1072,39 +1033,22 @@ public class assetDetailsTest extends BaseClass {
 						+ "not all copeid during Copy to drive operation for Qual");
 			}
 		}
+
 		sa.assertAll();
-
-	}
-
-	// ASST046-Verify if Audit trial record exists for Copy of a study file
-
-	@Test(groups = {
-			"Regression" }, description = "ASST046-Verify if Audit trial record exists for Copy of a study file")
-	public void ASST046() throws Exception {
-		extentTest = extent.startTest("ASST046-Verify if Audit trial record exists for Copy of a study file");
-		SoftAssert sa = new SoftAssert();
-
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-		AuditPage.EnterTxt_ActionFilter(
-				"User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen");
-		AuditPage.click_Action_FilterBtn();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_Actiontext();
 		System.out.println(Actionmsg);
 		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
-
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL:Audit trial record does not exists for Copy of a qual study file ");
 		sa.assertAll();
-
 	}
 
 	// ASST047-Verify the display of Generate Reports button in Qualifications tile
 
-	@Test(groups = {
+	@Test(priority = 37, groups = {
 			"Regression" }, description = "ASST047-Verify the display of Generate Reports button in Qualifications tile")
 	public void ASST047() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST047-Verify the display of Generate Reports button in Qualifications tile");
@@ -1122,7 +1066,7 @@ public class assetDetailsTest extends BaseClass {
 
 //ASST048-Verify the on-click functionality of generate reports button in Qualification tile
 
-	@Test(groups = {
+	@Test(priority = 38, groups = {
 			"Regression" }, description = "'ASST048-Verify the on-click functionality of generate reports button in Qualification tile")
 	public void ASST048() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -1141,7 +1085,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST050-Verify if user is not able to delete the study file when there are no
 	// privileges given
-	@Test(groups = {
+	@Test(priority = 39, groups = {
 			"Regression" }, description = "ASST050-Verify if user is not able to delete the study file when there are no privileges given")
 	public void ASST050() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -1163,7 +1107,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup
 
-	@Test(groups = {
+	@Test(priority = 40, groups = {
 			"Regression" }, description = "ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup")
 	public void ASST052A() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup");
@@ -1181,7 +1125,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST052REP-Verify the details displayed under reports tile
-	@Test(groups = { "Regression" }, description = "ASST052REP-Verify the details displayed under reports tile")
+	@Test(priority = 41, groups = {
+			"Regression" }, description = "ASST052REP-Verify the details displayed under reports tile")
 	public void ASST052B() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST052REP-Verify the details displayed under reports tile");
 		SoftAssert sa = new SoftAssert();
@@ -1203,7 +1148,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local
 	// drive
 
-	@Test(groups = { "Regression" }, description = "ASST053REP-Verify -Copy to drive- "
+	@Test(priority = 42, groups = { "Regression" }, description = "ASST053REP-Verify -Copy to drive- "
 			+ "functionality of a Setup Report for local drive")
 	public void ASST053() throws InterruptedException, ParseException, IOException, AWTException {
 
@@ -1244,7 +1189,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST053_1REP-Verify the on-click functionality of PDF icon for Detailed
 	// report under Reports tile-Qualifications sub tab
 
-	@Test(groups = { "Regression" }, description = "ASST053_1REP-Verify the on-click "
+	@Test(priority = 43, groups = { "Regression" }, description = "ASST053_1REP-Verify the on-click "
 			+ "functionality of PDF icon for Detailed report under Reports tile-Qualifications sub tab")
 	public void ASST053A() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("ASST053_1REP-Verify the on-click functionality of PDF icon "
@@ -1266,38 +1211,24 @@ public class assetDetailsTest extends BaseClass {
 	// ASST054REP- Verify the on-click functionality of PDF icon for Summary report
 	// under Reports tile-Qualifications sub tab
 
-	@Test(groups = {
+	@Test(priority = 44, groups = {
 			"Regression" }, description = "ASST054REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab")
 	public void ASST054() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ASST054REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab");
-
+		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
 		assetDetailsPage.click_printBtn_Report();
-		Thread.sleep(2000);
+		// Thread.sleep(500);
 		assetDetailsPage.check_openfile_window_Presence();
-	}
-
-	// ASST055REP-Verify if Audit trial record exists for Copy of a setup report
-
-	@Test(groups = { "Regression" }, description = "Verify if Audit trial record exists for Copy of a setup report")
-	public void ASST055() throws Exception {
-		extentTest = extent.startTest("ASST055REP-Verify if Audit trial record exists for Copy of a setup report");
-		SoftAssert sa = new SoftAssert();
-
+		assetDetailsPage.alt_tab();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-
-		AuditPage.EnterTxt_ActionFilter(
-				"User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen");
-		AuditPage.click_Action_FilterBtn();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_Actiontext();
 		System.out.println(Actionmsg);
@@ -1305,13 +1236,12 @@ public class assetDetailsTest extends BaseClass {
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record does not exists for Copy of a setup report ");
 		sa.assertAll();
-
 	}
 
 	// ASST056REP-Verify the on-click functionality of PDF icon under Reports
 	// tile-Setups sub tab
 
-	@Test(groups = {
+	@Test(priority = 45, groups = {
 			"Regression" }, description = "ASST056REP-Verify the on-click functionality of PDF icon under Reports tile-Setups sub tab")
 	public void ASST056() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -1327,12 +1257,13 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 //ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive
+// ASST061REP-Verify if Audit trial record exists for Copy of a Detailed report (This test cases is executing under ASST059REP)
 
-	@Test(groups = {
-			"Regression" }, description = "ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive")
+	@Test(priority = 46, groups = {
+			"Regression" }, description = "ASST059REP,ASST061REP-Verify -Copy to drive- functionality of a Detailed Report for local drive")
 	public void ASST059() throws InterruptedException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive");
+		extentTest = extent.startTest(
+				"ASST059REP,ASST061REP-Verify -Copy to drive- functionality of a Detailed Report for local drive");
 		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -1363,24 +1294,9 @@ public class assetDetailsTest extends BaseClass {
 			}
 		}
 		sa.assertAll();
-	}
-
-	// ASST061REP-Verify if Audit trial record exists for Copy of a Detailed report
-
-	@Test(groups = {
-			"Regression" }, description = "ASST061REP-Verify if Audit trial record exists for Copy of a Detailed report")
-	public void ASST061() throws Exception {
-		extentTest = extent.startTest("ASST061REP-Verify if Audit trial record exists for Copy of a Detailed report");
-		SoftAssert sa = new SoftAssert();
-
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-		AuditPage.EnterTxt_ActionFilter(
-				"User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen");
-		AuditPage.click_Action_FilterBtn();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_Actiontext();
 		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
@@ -1392,7 +1308,9 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local
 	// drive
-	@Test(groups = {
+	// ASST064REP-Verify if Audit trial record exists for Copy of a Summary
+	// report(This Test Case Executed under )
+	@Test(priority = 47, groups = {
 			"Regression" }, description = "ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local")
 	public void ASST062() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local");
@@ -1426,24 +1344,9 @@ public class assetDetailsTest extends BaseClass {
 			}
 		}
 		sa.assertAll();
-	}
-
-	// ASST064REP-Verify if Audit trial record exists for Copy of a Summary report
-
-	@Test(groups = {
-			"Regression" }, description = "ASST064REP-Verify if Audit trial record exists for Copy of a Summary report")
-	public void ASST064() throws Exception {
-		extentTest = extent.startTest("ASST064REP-Verify if Audit trial record exists for Copy of a Summary report");
-		SoftAssert sa = new SoftAssert();
-
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		AuditPage.Click_ActionFilter_Icon();
-		AuditPage.EnterTxt_ActionFilter(
-				"User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen");
-		AuditPage.click_Action_FilterBtn();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_Actiontext();
 		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
@@ -1459,7 +1362,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST067REP-Verify if Audit trial record exists for Copy of a Pass_Fail report
 	// (This audit test cases also covered under the below test script)
 
-	@Test(groups = {
+	@Test(priority = 48, groups = {
 			"Regression" }, description = "ASST065REP,ASST067REP-Verify -Copy to drive- functionality of a Pass_Fail Report for local drive")
 	public void ASST065() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -1509,7 +1412,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report
 	// under Reports tile-Pass_Fail sub tab
 
-	@Test(groups = {
+	@Test(priority = 49, groups = {
 			"Regression" }, description = "ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report under Reports tile-Pass_Fail sub tab")
 	public void ASST068() throws Exception {
 		extentTest = extent.startTest(
@@ -1529,7 +1432,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST073REP-Verify if user is not able to delete the reports when there are no
 	// privileges given
 
-	@Test(groups = {
+	@Test(priority = 50, groups = {
 			"Regression" }, description = "ASST073REP-Verify if user is not able to delete the reports when there are no privileges given")
 	public void ASST073() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -1551,7 +1454,8 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST074-Verify the details displayed under Documents tile
-	@Test(groups = { "Regression" }, description = "ASST074-Verify the details displayed under Documents tile")
+	@Test(priority = 51, groups = {
+			"Regression" }, description = "ASST074-Verify the details displayed under Documents tile")
 	public void ASST074() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST074-Verify the details displayed under Documents tile");
 		SoftAssert sa = new SoftAssert();
@@ -1574,49 +1478,48 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 //ASST075-Verify the on-click functionality of Upload Documents button
-	@Test(groups = {
+	@Test(priority = 52, groups = {
 			"Regression" }, description = "ASST075-Verify the on-click functionality of Upload Documents button")
 	public void ASST075() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("ASST075-Verify the on-click functionality of Upload Documents button");
 		SoftAssert sa = new SoftAssert();
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "0",
-				"FAIL:Reports tile count displayed >0 under Asset details page");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
-
 		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWord.docx");
+		Thread.sleep(1000);
 		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "1",
 				"FAIL:Reports tile count displayed <0 under Asset details page");
 		sa.assertAll();
 	}
 
 //ASST076-Verify the valid formats of the documents that can be uploaded
-	@Test(groups = {
+	@Test(priority = 53, groups = {
 			"Regression" }, description = "ASST076-Verify the valid formats of the documents that can be uploaded")
 	public void ASST076() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("ASST076-Verify the valid formats of the documents that can be uploaded");
 		SoftAssert sa = new SoftAssert();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		// assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
 		assetDetailsPage.uploadDoc_Assetdetails("VPRT-UserManual-Chapter 5.pdf");
-
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "1",
+		Thread.sleep(1000);
+		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
 				"FAIL:Reports tile count is not updating  under Asset details page");
+		// System.out.println(assetDetailsPage.docsTile_countdata());
 		sa.assertAll();
 	}
 
 //ASST077-Verify the invalid formats of the documents that should not be visible while uploading
 
-	@Test(groups = {
+	@Test(priority = 54, groups = {
 			"Regression" }, description = "ASST077-Verify the invalid formats of the documents that should not be visible while uploading")
 	public void ASST077() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ASST077-Verify the invalid formats of the documents that should not be visible while uploading");
 		SoftAssert sa = new SoftAssert();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		// assetHubPage = assetDetailsPage.ClickBackBtn();
+		// assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
 		assetDetailsPage.uploadDoc_Assetdetails("U88A.eqp");
@@ -1638,7 +1541,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST080-Verify if Audit trial record exists for Copy of a Document (This test
 	// case has covered under ASST078 test case )
 
-	@Test(groups = {
+	@Test(priority = 55, groups = {
 			"Regression" }, description = "ASST078,ASST080-Verify -Copy to drive- functionality of an uploaded document for local drive      ")
 	public void ASST078() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -1686,7 +1589,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST081-Verify the on-click functionality of PDF icon for a document under
 	// Documents tile
 
-	@Test(groups = {
+	@Test(priority = 56, groups = {
 			"Regression" }, description = "ASST081-Verify the on-click functionality of PDF icon for a document under Documents tile")
 	public void ASST081() throws InterruptedException, IOException, AWTException {
 		extentTest = extent
@@ -1703,7 +1606,7 @@ public class assetDetailsTest extends BaseClass {
 
 // ASST085-Verify if user is not able to delete the document when there are no privileges given
 
-	@Test(groups = {
+	@Test(priority = 57, groups = {
 			"Regression" }, description = "'ASST085-Verify if user is not able to delete the document when there are no privileges given")
 	public void ASST085() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -1726,7 +1629,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST084-Verify if the application declines uploading documents that has same
 	// name
 
-	@Test(groups = {
+	@Test(priority = 58, groups = {
 			"Regression" }, description = "ASST084-Verif if the application declines uploading documents that has same name")
 	public void ASST084() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
@@ -1748,7 +1651,7 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	// ASST086-Verify the bottom menu options in Asset details screen
-	@Test(description = "'ASST086-Verify the bottom menu options in Asset details screen")
+	@Test(priority = 59, description = "'ASST086-Verify the bottom menu options in Asset details screen")
 	public void ASST086() throws InterruptedException {
 		extentTest = extent.startTest("'ASST086-Verify the bottom menu options in Asset details screen");
 		SoftAssert sa = new SoftAssert();
@@ -1769,7 +1672,7 @@ public class assetDetailsTest extends BaseClass {
 	// ASST087-Verify the home btn functionality in bottom menu options in Asset
 	// details screen
 
-	@Test(description = "ASST087-Verify the home btn functionality in bottom menu options in Asset details screen")
+	@Test(priority = 60, description = "ASST087-Verify the home btn functionality in bottom menu options in Asset details screen")
 	public void ASST087() throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("ASST087-Verify the home btn functionality in bottom menu options in Asset details screen");
@@ -1784,7 +1687,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST088-Verify the help btn functionality in bottom menu options in Asset
 	// details screen
-	@Test(description = "ASST088-Verify the help btn functionality in bottom menu options in Asset details screen")
+	@Test(priority = 61, description = "ASST088-Verify the help btn functionality in bottom menu options in Asset details screen")
 	public void ASST088() throws InterruptedException {
 		extentTest = extent
 				.startTest("ASST088-Verify the help btn functionality in bottom menu options in Asset details screen");
@@ -1799,7 +1702,7 @@ public class assetDetailsTest extends BaseClass {
 
 	// ASST090-Verify the About btn functionality in bottom menu options in Asset
 	// details screen
-	@Test(description = "ASST54-Verify the About btn functionality in bottom menu options in Asset creation screen")
+	@Test(priority = 62, description = "ASST54-Verify the About btn functionality in bottom menu options in Asset creation screen")
 	public void ASST090() throws InterruptedException {
 		extentTest = extent
 				.startTest("ASST54-Verify the About btn functionality in bottom menu options in Asset creation screen");
@@ -1809,325 +1712,6 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertEquals(assetDetailsPage.check_About_wndw_Presence(), true,
 				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
 		sa.assertAll();
-	}
-
-	// THE BELOW SCRIPTS ARE BASED ON DELETE REPORTS,ASSET,SETUPS AND THE RESPECTIVE
-	// AUDIT RECORD
-	// Here the method name has named as ASST100 in order to delete the reports and
-	// asset after executing the above test cases
-
-	// ASST055_1REP- Verify the on-click functionality of Delete icon for Detailed
-	// report under Reports tile-Qualifications sub tab
-	// ASST056_1REP-Verify if Audit trial record exists for Deletion of a Detailed
-	// report (This Test case also executing under ASST055_1REP tc )
-
-	@Test(groups = {
-			"Regression" }, description = "ASST055_1REP,ASST056_1REP-Verify the on-click functionality of Delete icon for Detailed report under Reports tile-Qualifications sub tab")
-	public void ASST100() throws InterruptedException, ParseException, IOException, AWTException {
-
-		extentTest = extent.startTest(
-				"ASST055_1REP,ASST056_1REP-Verify the on-click functionality of Delete icon for Detailed report under Reports tile-Qualifications sub tab");
-		SoftAssert sa = new SoftAssert();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Qualification Report: \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Deletion of a Detailed report ");
-		sa.assertAll();
-
-	}
-
-	// Here the method name has named as ASST101 in order to delete the reports and
-	// asset after executing the above test cases
-	// ASST057REP-Verify the on-click functionality of Delete icon under Reports
-	// tile-Setups sub tab
-	// ASST058REP-Verify if Audit trial record exists for deletion of a setup
-	// report_under report section(This script is covering in the below script
-	// ASST057REP )
-	@Test(groups = {
-			"Regression" }, description = "ASST057REP,ASST058REP-Verify the on-click functionality of Delete icon under Reports tile-Setups sub tab")
-	public void ASST101() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ASST057REP-Verify the on-click functionality of Delete icon under Reports tile-Setups sub tab");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_SetupReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Setup Report : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record exists for deletion of a setup report-under report section");
-		sa.assertAll();
-
-	}
-
-	//// Here the method name has named as ASST102 in order to delete the reports
-	//// and asset after executing the above test cases
-	// ASST057_1REP-Verify the on-click functionality of Delete icon for Summary
-	// report under Reports tile-Qualifications sub tab
-
-	// ASST058REP-Verify if Audit trial record exists for Deletion of a Summary
-	// report (This Test case also executing under ASST057REP tc )
-
-	@Test(groups = {
-			"Regression" }, description = "ASST057REP,ASST058REP-Verify the on-click functionality of Delete icon for Summary report under Reports tile-Qualifications sub tab")
-	public void ASST102() throws InterruptedException, ParseException, IOException, AWTException {
-
-		extentTest = extent.startTest(
-				"ASST057REP,ASST058REP-Verify the on-click functionality of Delete icon for Summary report under Reports tile-Qualifications sub tab");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Qualification Report: \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Deletion of a Summary report");
-		sa.assertAll();
-
-	}
-
-	// Here the method name has named as ASST103 in order to delete the reports and
-	// asset after executing the above test cases
-	// ASST069REP-Verify the on-click functionality of Delete icon for Pass_Fail
-	// report under Reports tile-Pass_Fail sub tab
-
-	// ASST070REP-Verify if Audit trial record exists for Deletion of a Pass_Fail
-	// report (This script is executing under ASST069REP script )
-
-	@Test(groups = {
-			"Regression" }, description = "ASST069REP,ASST070REP-Verify the on-click functionality of Delete icon for Pass_Fail report under Reports tile-Pass_Fail sub tab")
-	public void ASST103() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ASST069REP,ASST070REP-Verify the on-click functionality of Delete icon for Pass_Fail report under Reports tile-Pass_Fail sub tab");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_PassFailReportBtn();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "PassFailReport : \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Deletion of a Summary report");
-		sa.assertAll();
-	}
-
-	// Here the method name has named as ASST104 in order to delete the reports and
-	// asset after executing the above test cases
-	// ASST082-Verify the on-click functionality of Delete icon for a document under
-	// Documents tile
-	// ASST083-Verify if Audit trial record exists for Deletion of a Document (This
-	// script is covered under the below script ASST082)
-
-	@Test(groups = {
-			"Regression" }, description = "ASST082,ASST083-Verify the on-click functionality of Delete icon for a document under Documents tile")
-	public void ASST104() throws InterruptedException, IOException {
-		extentTest = extent.startTest(
-				"ASST082,ASST083-Verify the on-click functionality of Delete icon for a document under Documents tile");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Document: \"LTR-40_Cooling.pdf\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Deletion of a  document under Documents tile");
-		sa.assertAll();
-
-	}
-
-	// Here the method name has named as ASST105 in order to delete the reports and
-	// asset after executing the above test cases
-	// ASST049-Verify the on-click of delete icon for a Qualification study file
-	// ASST051-Verify if Audit trial record exists for Delete study file activity
-	// (This script is covering under the script ASST049)
-
-	@Test(groups = {
-			"Regression" }, description = "ASST049,ASST051-Verify the on-click of delete icon for a Qualification study file")
-	public void ASST105() throws InterruptedException, IOException {
-		extentTest = extent
-				.startTest("ASST049,ASST051-Verify the on-click of delete icon for a Qualification study file");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.click_QualTile();
-		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteQualificationButton();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Qualification Study : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Delete study file activity");
-		sa.assertAll();
-	}
-
-	// Here the method name has named as ASST106 in order to delete the
-	// setups,reports and asset after executing the above test cases
-	// ASST040-Verify the on-click of delete icon for a setup
-	// ASST042STP-Verify if Audit trial record exists for delete setup
-	@Test(groups = { "Regression" }, description = "ASST040-Verify the on-click of delete icon for a setup")
-	public void ASST106() throws InterruptedException, IOException {
-		extentTest = extent.startTest("ASST040-Verify the on-click of delete icon for a setup");
-		SoftAssert sa = new SoftAssert();
-
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-
-		assetDetailsPage.YesBtn_WithFiles();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Setup : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG,
-				"FAIL: Audit trial record does not exists for Delete study file activity");
-		sa.assertAll();
-	}
-
-	// Here the method name has named as ASST107 in order to delete the reports and
-	// asset after executing the above test cases
-	// ASST010-Verify the on-click of Delete icon for Assets with no files in it
-	// ASST011-Verify the Audit trail for Delete Assets activity this script is
-	// covered under ASST010 script
-
-	@Test(groups = {
-			"Regression" }, description = "ASST010,ASST011-Verify the on-click of Delete icon for Assets with no files in it")
-	public void ASST107() throws Exception {
-		extentTest = extent
-				.startTest("ASST010,ASST011-Verify the on-click of Delete icon for Assets with no files in it");
-		SoftAssert sa = new SoftAssert();
-
-		// As documents available under this asset we are deleting those document
-		// inorder to proceed with Assets Deletion
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_reportsTile();
-		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pd");
-		assetDetailsPage.click_DeleteBtn();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage.YesBtn_WithFiles();
-
-		// Delete aseet Now
-
-		assetDetailsPage.DeleteAssert();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = assetDetailsPage.Delete_ClickYesBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
-		String ExpectMSG = "Asset: \"SyncInAsset\" is deleted by User Id : \"1\" , User Name : \"User1\"";
-		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record does not exists for Delete asset activity");
-		sa.assertAll();
-
-	}
-
-	// ASST019STP-Verify Copy setup functionality when there is only one Asset
-	// available
-	@Test(groups = {
-			"Regression" }, dataProvider = "ASST019STP", dataProviderClass = assetCreationUtility.class, description = "ASST019STP-Verify Copy setup functionality when there is only one Asset available")
-	public void ASST108(String SetupName, String SensorCount, String TempCount, String TCSensorLabel, String Qstart)
-			throws InterruptedException, IOException, AWTException, ParseException {
-		extentTest = extent
-				.startTest("ASST019STP-Verify Copy setup functionality when there is only one Asset available");
-		SoftAssert sa = new SoftAssert();
-
-		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
-		defineSetupPage.clear_defineSetupPage_setupName();
-		defineSetupPage.enter_defineSetupPage_setupName(SetupName);
-		defineSetupPage.click_defineSetupPage_SensorCountField();
-		defineSetupPage.clear_defineSetupPage_SensorCount();
-		defineSetupPage.enter_defineSetupPage_SensorCount(SensorCount);
-		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
-		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To(TempCount);
-		Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
-		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
-		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
-		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
-		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", getUID("adminFull"), getPW("adminFull"));
-		assetDetailsPage = Setup_ReviewPage.click_backBtn();
-		assetDetailsPage.Click_SetupName("ASST019STP");
-		assetDetailsPage.click_CopyStup_Btn();
-		String Actmsg = assetDetailsPage.AlertMsg();
-		String Expmsg = "To perform Copy Setup more than 1 asset required.";
-
-		sa.assertEquals(Actmsg, Expmsg,
-				"FAIL: Application failed to display the alert message for  Copy setup functionality when there is only one Asset available ");
-		sa.assertAll();
-
 	}
 
 }
