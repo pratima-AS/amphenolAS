@@ -146,11 +146,13 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Check the presence of AssetID field
+
 	public boolean AssetIDPresence() {
 		return IsElementEnabledStatus(AssetID);
 	}
 
 // Check the presence of AssetID field
+
 	public boolean ModelPresence() {
 		return IsElementEnabledStatus(Model);
 	}
@@ -609,10 +611,18 @@ public class assetDetailsPage extends BaseClass {
 		return FetchText(Msg);
 	}
 
+	// Alert meg for copy setup
+	public boolean CopySetup_AlertMsg() {
+
+		WebElement CopysetupMsg = driver.findElementByAccessibilityId("Content_String");
+		return IsElementVisibleStatus(CopysetupMsg);
+
+	}
+
 // Click the Back Button
 	public assetHubPage ClickBackBtn() throws InterruptedException, IOException {
 		clickOn(BackBtn);
-		// Thread.sleep(1000);
+		Thread.sleep(1000);
 		return new assetHubPage();
 	}
 
@@ -652,7 +662,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// Click Copy Setup button functionality when there is only one Asset available
-	public void CopyStupBtn_oneAsset() throws InterruptedException, IOException {
+	public void CopyStupBtn_WITH_oneAsset() throws InterruptedException, IOException {
 		clickOn(CopySetup_Btn);
 		Thread.sleep(500);
 	}
@@ -788,6 +798,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // select any setup from asset details page
+
 	public void Click_SetupName(String SN) throws InterruptedException, IOException {
 
 		List<WebElement> SetupList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
@@ -811,8 +822,15 @@ public class assetDetailsPage extends BaseClass {
 		}
 	}
 
+// ||Hard code || Select and click on the mentioned set up file
+
+	public void ClickSetup_file() throws InterruptedException, IOException {
+		WebElement Setupname = driver.findElementByName("Qual_case_51");
+		clickOn(Setupname);
+	}
 
 // click on the Print_Button
+
 	public void Click_Print_Button() throws AWTException, IOException, InterruptedException {
 		Print_Button = driver.findElementByAccessibilityId("PrintButton");
 		Thread.sleep(2000);
@@ -820,6 +838,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Select any qual file and click on that
+
 	public void Select_QualFile(String SN) throws InterruptedException, IOException {
 		List<WebElement> QUALList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
 				.findElements(By.className("TextBlock"));
@@ -847,6 +866,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// Select any report file and click on that
+
 	public void Select_ReportFile(String SN) throws InterruptedException, IOException {
 
 		List<WebElement> REPORTList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
@@ -983,6 +1003,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // check the Login Popup presence when user  click upon print icon
+
 	public boolean UserLoginPopupVisible() throws InterruptedException {
 		WebElement LgInPopup = driver.findElementByName("Enter User Credentials");
 		return IsElementVisibleStatus(LgInPopup);
@@ -997,6 +1018,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Check on-click functionality of PDF icon for Detailed report under Reports tile-Qualifications sub tab
+
 	public boolean ReportView_Popupvisible() throws InterruptedException {
 		driver.switchTo().activeElement();
 		// Thread.sleep(500);
@@ -1012,6 +1034,16 @@ public class assetDetailsPage extends BaseClass {
 		r.keyPress(KeyEvent.VK_ENTER);
 		r.keyRelease(KeyEvent.VK_ENTER);
 
+	}
+
+	// Verify Application switch from PDF window to Application
+	public void alt_tab() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_ALT);
+		robot.keyPress(KeyEvent.VK_TAB);
+		// robot.delay(100);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_ALT);
 	}
 
 	// Right click on the Asset Creation page to invoke the bottom apps bar

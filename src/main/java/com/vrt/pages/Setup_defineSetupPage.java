@@ -61,6 +61,13 @@ public class Setup_defineSetupPage extends BaseClass {
 		Thread.sleep(1000);
 	}
 
+	// Click the Define Setup page Back button to navigate Asset Details
+	public assetDetailsPage defineSetupPage_backBtn() throws InterruptedException, IOException {
+		clickOn(DefineSetup_backBtn);
+		Thread.sleep(1000);
+		return new assetDetailsPage();
+	}
+
 	// Check the presence of Alert message on clicking the Setup Back Button
 	public boolean visible_AlertMsg_state() {
 		WebElement alrtmsg = driver.findElementByName("You are about to lose your changes.Do you want to continue ?");
@@ -264,7 +271,7 @@ public class Setup_defineSetupPage extends BaseClass {
 	public boolean visible_SensConfig_NxtBtn() {
 		return IsElementVisibleStatus(SensorConfiguration_Btn);
 	}
-	
+
 	// Click the Next button in the Define Setup page to move to Sensor Config page
 	public Setup_SensorConfigPage click_defineSetupPage_nxtBtn() throws InterruptedException, IOException {
 		clickOn(SensorConfiguration_Btn);

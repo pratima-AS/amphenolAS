@@ -901,7 +901,7 @@ public class UserManagementPage extends BaseClass {
 		select_UserType(Utype);
 		enterNewUserPhone(phno);
 		enterNewUserEmail(Email);
-		selectUserImg(ImageName);
+		//selectUserImg(ImageName);
 		Thread.sleep(500);
 		ClickNewUserSaveButton();
 	}

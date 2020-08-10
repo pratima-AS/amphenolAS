@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="AsseTDetailsTestSuite" parallel="false" verbose="5">
-	<listeners>		
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UMRegressionSuite" parallel="false" verbose="5">
+	<listeners>
 		<listener class-name="com.vrt.Listners.ExtentReporterNG" ></listener>
-		<listener class-name="com.vrt.Listners.RetryTransformer" ></listener>
+<!-- 		<listener class-name="com.vrt.Listners.AllureReportListner" /> -->
+		<listener class-name="com.vrt.Listners.RetryTransformer"></listener>
 	</listeners>
-	<test thread-count="5" name="assetDetailsFunctionalityTest">
-<!-- 		<groups>
-			<run>
-				<include name="Sanity"></include>
-			</run>
-		</groups> -->
-
+	<test thread-count="5" name="UMTestRegression" preserve-order="true">
 		<classes>
 			<class name="com.vrt.testcases.assetDetailsTest" ></class>
+			<class name="com.vrt.testcases.assetDetailsTest2" ></class>
+				
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test> <!-- assetDetailsTestSanity -->
+</suite> <!-- assetDetailsTestSuite -->

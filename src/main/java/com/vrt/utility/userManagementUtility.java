@@ -224,7 +224,19 @@ public class userManagementUtility extends BaseClass{
 		return data;
 	}
 	
-
+	@DataProvider(name = "maxuser")
+	public static Object[][] maxuser() {
+		String sheetName = "maxuser";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+	
+	@DataProvider(name = "maxuser2")
+	public static Object[][] maxuser2() {
+		String sheetName = "maxuser2";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
 	
 	
 }
