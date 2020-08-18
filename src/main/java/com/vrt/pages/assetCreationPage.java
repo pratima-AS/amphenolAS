@@ -207,7 +207,8 @@ public class assetCreationPage extends BaseClass{
 	
 	//Enter Asset Type
 	public void enterAssetType(String Atype) {
-		ClearText(AssetEditBox.get(0));
+		clickOn(AssetEditBox.get(0));
+		//ClearText(AssetEditBox.get(0));
 		AssetEditBox.get(0).sendKeys(Atype);		
 	}
 	

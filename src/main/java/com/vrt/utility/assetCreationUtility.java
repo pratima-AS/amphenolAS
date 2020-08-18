@@ -50,7 +50,7 @@ public class assetCreationUtility extends BaseClass {
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
 			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
 				data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
-				// System.out.println(data[i][j]);
+				 //System.out.println(data[i][j]);
 			}
 		}
 		return data;
@@ -286,16 +286,9 @@ public class assetCreationUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "ASSTHB012a")
-	public static Object[][] ASSTHB012a() {
-		String sheetName = "ASSTHB012a";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "ASSTHB012b")
-	public static Object[][] ASSTHB012b() {
-		String sheetName = "ASSTHB012b";
+	@DataProvider(name = "maxASST")
+	public static Object[][] maxASST() {
+		String sheetName = "200ASSTs";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}

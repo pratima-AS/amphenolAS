@@ -48,7 +48,6 @@ public class assetCreationTest extends BaseClass{
 	
 	public assetCreationTest() throws IOException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ExtentReports extent;
@@ -76,7 +75,7 @@ public class assetCreationTest extends BaseClass{
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("AssetCreation Test in Progress..");		
-		
+		/*
 		//Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -86,7 +85,6 @@ public class assetCreationTest extends BaseClass{
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");		
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		//Thread.sleep(1000);
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
@@ -96,18 +94,14 @@ public class assetCreationTest extends BaseClass{
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 
-		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
 		UserManagementPage.clickPrivCreateEditSetup();
-		UserManagementPage.clickPrivRunCal();
-
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		MainHubPage = UserManagementPage.ClickBackButn();
 
 		AppClose();
 		Thread.sleep(1000);
-		
+		*/
 	}
 		
 	//After All the tests are conducted
@@ -123,7 +117,6 @@ public class assetCreationTest extends BaseClass{
 	@BeforeMethod(alwaysRun=true)
 	public void Setup() throws InterruptedException, IOException {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		//Thread.sleep(1000);
 		LoginPage= new LoginPage();
 		MainHubPage=LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage=MainHubPage.ClickAssetTile();
@@ -152,6 +145,7 @@ public class assetCreationTest extends BaseClass{
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
 		assetCreationPage.resetWebElements();
 		driver.quit();
+		driver = null;
 	}
 
 	//~~~~~~~~~~
@@ -179,16 +173,9 @@ public class assetCreationTest extends BaseClass{
 	//ASST02-Verify the valid inputs accepted in Asset name field
 	@Test(dataProvider="ASST02", dataProviderClass=assetCreationUtility.class, groups = {"Sanity"}, 
 			description="ASST02-Verify the valid inputs accepted in Asset name field")
-	public void ASST02(Object ...dataProvider) throws InterruptedException {
+	public void ASST02(String Name, String ID, String Type, String Manufacturer, String Location) throws InterruptedException {
 		extentTest = extent.startTest("ASST02-Verify the valid inputs accepted in Asset name field");
 		SoftAssert sa = new SoftAssert();
-		
-		String Name = (String) dataProvider[0]; 
-		String ID = (String) dataProvider[1];
-		String Type = (String) dataProvider[2]; 
-		String Manufacturer = (String) dataProvider[3];
-		String Location = (String) dataProvider[4]; 
-
 		
 		assetCreationPage.assetCreation(Name, ID, Type, Manufacturer, Location);	
 		
@@ -219,7 +206,7 @@ public class assetCreationTest extends BaseClass{
 	}
 	
 	
-	//ASST04-Verify if 15 max characters allowed in Asset ID field
+	//ASST04-Verify if 15 max characters allowed in Asset ID field	
 	@Test(groups = {"Sanity", "Regression"}, 
 			description="ASST04-Verify if 15 max characters allowed in Asset ID field")
 	public void ASST04() throws InterruptedException {
