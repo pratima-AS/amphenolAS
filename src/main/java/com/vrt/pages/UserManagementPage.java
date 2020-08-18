@@ -387,6 +387,14 @@ public class UserManagementPage extends BaseClass {
 		clickOn(BackUMBtn);
 		return new MainHubPage();
 	}
+	
+	
+	// Click Userlist window of UM Page
+	public void click_UsrLstBx() throws IOException {
+		WebElement usrListBox = driver.findElementByAccessibilityId("UsersListBox");
+		clickOn(usrListBox);
+		
+	}
 
 	// Select/Click any User in the UserList Panel
 	public void clickAnyUserinUserList(String UN) throws InterruptedException {

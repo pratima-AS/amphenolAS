@@ -141,7 +141,6 @@ public class UM1 extends BaseClass {
 		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), 
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		//tu.click_Close_alertmsg();
 		UserManagementPage.clickAnyUserinUserList("dsbl1");
 		UserManagementPage.Select_DisableUserCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
@@ -149,8 +148,8 @@ public class UM1 extends BaseClass {
 		//Create a New Admin User but do not change its PW
 		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "NewU1", getUID("Newuser"),
 				getPW("Newuser"), "Admin", "12324", "abc@gmail.com");
-		UserManagementPage.click_Close_alertmsg();
-				MainHubPage = UserManagementPage.ClickBackButn();
+		//tu.click_Close_alertmsg();
+		MainHubPage = UserManagementPage.ClickBackButn();
 		//Conduct a Syncin operation
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
@@ -164,7 +163,7 @@ public class UM1 extends BaseClass {
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();		
 		Thread.sleep(2000);
-
+		
 		
 	}
 
@@ -1647,49 +1646,60 @@ public class UM1 extends BaseClass {
 
 	}
 
-	// ADMN045	
-	@Test(groups = { "Regression" }, description = "Verify Reset pwd functionality for second user-Admin")
-	public void ADMN045() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN045-Verify Reset pwd functionality for second user-Admin");
+	// ADMN045A	
+	@Test(groups = { "Regression" }, dataProvider = "ADMIN045A", dataProviderClass = userManagementUtility.class,
+			description = "ADMN045A-Verify Reset pwd functionality for second user-Admin")
+	public void ADMN045A(String UN, String UID, String PWD, String UTitle, String UType) 
+			throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest("ADMN045A-Verify Reset pwd functionality for second user-Admin");
 		SoftAssert sa = new SoftAssert();
 		
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("ADMN045", "045", "EStart@5AM", "Admin",
-				"System Administrator");
+		UserManagementPage.UMCreation_MandatoryFields(UN, UID, PWD, UTitle, UType);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		tu.click_Close_alertmsg();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
-		LoginPage.EnterUserID("045");
-		LoginPage.EnterUserPW("EStart@5AM");
+		LoginPage.EnterUserID("045A");
+		LoginPage.EnterUserPW(PWD);
 		LoginPage.ClickLoginBtn();
-		MainHubPage = LoginPage.EnterNewPWtext(getPW("adminFull"));
-		tu.click_Close_alertmsg();
-		LoginPage = MainHubPage.UserSignOut();
-		MainHubPage = LoginPage.Login("045", getPW("adminFull"));
-
-		String ExpUname = "045";
-		String ActUname = MainHubPage.UserNameText();
-		sa.assertEquals(ActUname, ExpUname, "Fail-User Name should be available ");
+		sa.assertEquals(LoginPage.ChangePWCheckBoxEnableStatus(), false, "FAIL: PW change text box enabled");
+		sa.assertEquals(LoginPage.NewPWFieldPresence(), true, "FAIL: New password text box not visible");
 		sa.assertAll();
 	}
 
-	// ADMN045A	
+	// ADMN045B
 	@Test(groups = {
-			"Regression" }, description = "Verify user should not be able to login with the Pre-Reset password")
-	public void ADMN045A() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN045A-Verify user should not be able to login with the Pre-Reset password");
+			"Regression" }, dataProvider = "ADMIN045B", dataProviderClass = userManagementUtility.class,
+					description = "ADMN045B-Verify user should not be able to login with the Pre-Reset password")
+	public void ADMN045B(String UN, String UID, String PWD, String UTitle, String UType) 
+			throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest("ADMN045B-Verify user should not be able to login with the Pre-Reset password");
+		SoftAssert sa = new SoftAssert();
+		UserManagementPage.ClickNewUser();
+		UserManagementPage.UMCreation_MandatoryFields(UN, UID, PWD, UTitle, UType);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
-		LoginPage.EnterUserID(getUID("TestAdmin"));
-		LoginPage.EnterUserPW("EStart@5AM");
+		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(UID, PWD, getPW("adminFull"));
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage.clickAnyUserinUserList(UN);
+		UserManagementPage.clickPrivRunQual();
+		UserManagementPage.ClickNewUserSaveButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		tu.click_Close_alertmsg();
+		MainHubPage = UserManagementPage.ClickBackButn();
+		LoginPage = MainHubPage.UserSignOut();
+		LoginPage.EnterUserID(UID);
+		LoginPage.EnterUserPW(getPW("adminFull"));
 		LoginPage.ClickLoginBtn();
-		String ExptedAlert = "Invalid Credential, Please try again";
-		String ActAlert = LoginPage.AlertMsg();
-		SoftAssert sa26 = new SoftAssert();
-		sa26.assertEquals(ActAlert, ExptedAlert,
-				"FAIL:Invalid Credential, Please try again message should be displayed");
-		sa26.assertAll();
+		
+		sa.assertEquals(LoginPage.ChangePWCheckBoxEnableStatus(), false, "FAIL: PW change text box enabled");
+		sa.assertEquals(LoginPage.NewPWFieldPresence(), true, "FAIL: New password text box not visible");
+		sa.assertAll();
+	
+
 	}
 
 	

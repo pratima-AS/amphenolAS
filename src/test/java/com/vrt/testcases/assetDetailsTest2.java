@@ -85,7 +85,7 @@ public class assetDetailsTest2 extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "_AssetDetailsTest2" + ".html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "AssetDetailsTest2" + ".html",
 				true);
 		extent.addSystemInfo("TestSuiteName", "AssetDetailsTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
@@ -151,29 +151,8 @@ public class assetDetailsTest2 extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		// Verify if Synnin happened or not
 		Thread.sleep(2000);
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		// System.out.println(MainHubPage.AssetCountInAssetTileOfMainHubPage());
-		if (!(MainHubPage.AssetCountInAssetTileOfMainHubPage().contains("0"))) {
-			AppClose();
-			Thread.sleep(1000);
-		} else {
-			FileManagementPage = MainHubPage.ClickFileManagementTitle();
-			SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
-			SyncInPage.enter_Filepath("syncin");
-			SyncInPage.click_FltrBtn();
-			SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
-			SyncInAssetListPage.click_EquipmentCheckBox();
-			SyncInAssetListPage.click_SelectAllBtn();
-			SyncInAssetListPage.click_OkBtn();
-			SyncInAssetListPage.click_AlrtYesBtn();
-			Thread.sleep(7000);
-			SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-			Thread.sleep(2000);
-		}
+
 
 	}
 

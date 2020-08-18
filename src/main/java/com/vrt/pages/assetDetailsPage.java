@@ -12,17 +12,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 
 import com.vrt.base.BaseClass;
 import com.vrt.utility.TestUtilities;
@@ -193,7 +186,7 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Check the presence of Asset DeleteIcon button
-	public boolean DeleteIcon_state() {
+	public boolean assetDeleteIcon_state() {
 		return IsElementVisibleStatus(DeleteIcon);
 	}
 

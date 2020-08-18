@@ -3,11 +3,13 @@ package com.vrt.testcases;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -96,7 +98,7 @@ public class assetDetailsTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "_AssetDetailsTest" + ".html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "AssetDetailsTest1" + ".html",
 				true);
 		extent.addSystemInfo("TestSuiteName", "AssetDetailsTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
@@ -104,6 +106,10 @@ public class assetDetailsTest extends BaseClass {
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("assetDetailsTest in Progress..");
+		//Delete all files from the AutoLogs folder
+		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\AutoLogs";
+		tu.DeleteFiles(path);
+		System.out.println(" AutoLogs Folder is cleared now ");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -113,6 +119,7 @@ public class assetDetailsTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 
+		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
@@ -171,6 +178,7 @@ public class assetDetailsTest extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+		// Verify if Synnin happened or not
 		Thread.sleep(2000);
 
 
@@ -227,9 +235,7 @@ public class assetDetailsTest extends BaseClass {
 	}
 
 	/******************************
-	 * Asset Details Test cases/scripts
-	 * 
-	 * @throws AWTException
+	 * Asset Details Test cases/scripts	 
 	 ******************************/
 
 	// ASST001-Verify the details displayed in Asset details screen -
@@ -241,16 +247,16 @@ public class assetDetailsTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(assetDetailsPage.assetEditBtn_state(), true, "FAIL: No UName field present");
-		sa.assertEquals(assetDetailsPage.DeleteIcon_state(), true, "FAIL: No UName field present");
+		sa.assertEquals(assetDetailsPage.assetDeleteIcon_state(), true, "FAIL: No UName field present");
 		sa.assertEquals(assetDetailsPage.CopyAsset_state(), true, "FAIL: No UName field present");
 		sa.assertAll();
-
 	}
 
 	// ASST071REP-Verify the reports are not displayed in Reports tile when they are
 	// not generated
 	@Test(priority = 1, groups = {
-			"Regression" }, description = "ASST071REP-Verify the reports are not displayed in Reports tile when they are not generated")
+			"Regression" }, description = "ASST071REP-Verify the reports are not displayed "
+					+ "in Reports tile when they are not generated")
 	public void ASST001A() throws InterruptedException, ParseException, IOException {
 		extentTest = extent.startTest(
 				"ASST071REP-Verify the reports are not displayed in Reports tile when they are not generated");
@@ -500,10 +506,11 @@ public class assetDetailsTest extends BaseClass {
 	// able to define new setup
 
 	@Test(priority = 13, groups = {
-			"Regression" }, description = "ASST015STP-Verify the Setup date and time for a new Setup")
+			"Regression" }, description = "ASST017STP-Verify New button is available and clicking on button user should able to define new setup")
 	public void ASST017() throws InterruptedException, ParseException, IOException {
 
-		extentTest = extent.startTest("ASST015STP-Verify the Setup date and time for a new Setup");
+		extentTest = extent.startTest(
+				"ASST017STP-Verify New button is available and clicking on button user should able to define new setup");
 		SoftAssert sa = new SoftAssert();
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		sa.assertEquals(defineSetupPage.defineSetupPage_state(), true, "FAIL:The setup define page is not  displayed ");
@@ -923,8 +930,8 @@ public class assetDetailsTest extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_Print_Button();
-		sa.assertEquals(assetDetailsPage.UserLoginPopupVisible(), true, "FAIL: User Login Popup Button is not Present");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		Thread.sleep(4000);
 		assetDetailsPage.check_openfile_window_Presence();
 		assetDetailsPage.alt_tab();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -937,6 +944,7 @@ public class assetDetailsTest extends BaseClass {
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Search results is not available for print Setup report activity");
 		sa.assertAll();
+
 	}
 
 	// ASST038-Verify if user is unable to generate the setup report when there is
@@ -1194,17 +1202,36 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST053A() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("ASST053_1REP-Verify the on-click functionality of PDF icon "
 				+ "for Detailed report under Reports tile-Qualifications sub tab");
-		// SoftAssert sa = new SoftAssert();
+		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		String downloadPath1 = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f1 = new File(downloadPath1);
+		f1.delete();
+
 		assetDetailsPage.click_printBtn_Report();
-		Thread.sleep(2000);
-		// UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		Thread.sleep(1000);
 		assetDetailsPage.check_openfile_window_Presence();
+		Thread.sleep(3000);
+		String downloadPath = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f = new File(downloadPath);
+		if (f.exists()) {
+			sa.assertEquals(f.getName(), "D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf",
+					" File is not available");
+			sa.assertAll();
+			// System.out.println("success");
+		} else {
+			sa.assertEquals(f.getName(), "D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf",
+					" File is not available");
+			sa.assertAll();
+			System.out.println("fail to find the File");
+		}
 
 	}
 
@@ -1246,14 +1273,37 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST056() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ASST056REP-Verify the on-click functionality of PDF icon under Reports tile-Setups sub tab");
+		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
+		String downloadPath1 = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f1 = new File(downloadPath1);
+		f1.delete();
+
 		assetDetailsPage.click_printBtn_Report();
+		Thread.sleep(1000);
 		assetDetailsPage.check_openfile_window_Presence();
+		Thread.sleep(3000);
+		String downloadPath = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\Se=(manual 1 min sampling)=()=0=10-Aug-2020 20-57-33=.pdf";
+		File f = new File(downloadPath);
+		if (f.exists()) {
+			sa.assertEquals(f.getName(), "Se=(manual 1 min sampling)=()=0=10-Aug-2020 20-57-33=.pdf",
+					" File is not available");
+			sa.assertAll();
+			// System.out.println("success");
+		} else {
+			sa.assertEquals(f.getName(), "Se=(manual 1 min sampling)=()=0=10-Aug-2020 20-57-33=.pdf",
+					" File has not downloded");
+			sa.assertAll();
+			System.out.println("fail to find the File");
+		}
+
 	}
 
 //ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive
@@ -1417,16 +1467,36 @@ public class assetDetailsTest extends BaseClass {
 	public void ASST068() throws Exception {
 		extentTest = extent.startTest(
 				"ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report under Reports tile-Pass_Fail sub tab");
+		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		String downloadPath1 = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f1 = new File(downloadPath1);
+		f1.delete();
+
 		assetDetailsPage.click_printBtn_Report();
 		Thread.sleep(1000);
 		assetDetailsPage.check_openfile_window_Presence();
-
+		Thread.sleep(3000);
+		String downloadPath = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\P=(manual 1 min samplin)=(1 min sampling with )=1=19-Mar-2020 13-51-43=.pdf";
+		File f = new File(downloadPath);
+		if (f.exists()) {
+			sa.assertEquals(f.getName(), "P=(manual 1 min samplin)=(1 min sampling with )=1=19-Mar-2020 13-51-43=.pdf",
+					" File is not available");
+			sa.assertAll();
+			// System.out.println("success");
+		} else {
+			sa.assertEquals(f.getName(), "P=(manual 1 min samplin)=(1 min sampling with )=1=19-Mar-2020 13-51-43=.pdf",
+					" File is not available");
+			sa.assertAll();
+			System.out.println("fail to find the File");
+		}
 	}
 
 	// ASST073REP-Verify if user is not able to delete the reports when there are no
@@ -1714,4 +1784,45 @@ public class assetDetailsTest extends BaseClass {
 		sa.assertAll();
 	}
 
+	// ASST053_1REP-Verify the on-click functionality of PDF icon for Detailed
+	// report under Reports tile-Qualifications sub tab
+	@Test(groups = { "Regression" }, description = "ASST053_1REP-Verify the on-click "
+			+ "functionality of PDF icon for Detailed report under Reports tile-Qualifications sub tab")
+	public void ASST053_1REP() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest("ASST053_1REP-Verify the on-click functionality of PDF icon "
+				+ "for Detailed report under Reports tile-Qualifications sub tab");
+		SoftAssert sa = new SoftAssert();
+
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+
+		assetDetailsPage.Click_reportsTile();
+		assetDetailsPage.Click_QualReportsButton();
+		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+
+		String downloadPath1 = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f1 = new File(downloadPath1);
+		f1.delete();
+
+		assetDetailsPage.click_printBtn_Report();
+		Thread.sleep(1000);
+		assetDetailsPage.check_openfile_window_Presence();
+		Thread.sleep(3000);
+		String downloadPath = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
+		File f = new File(downloadPath);
+		if (f.exists()) {
+			sa.assertEquals(f.getName(), "D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf",
+					" File is not available");
+			sa.assertAll();
+			// System.out.println("success");
+		} else {
+			sa.assertEquals(f.getName(), "D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf",
+					" File is not available");
+			sa.assertAll();
+			System.out.println("fail to find the File");
+		}
+
+	}
 }

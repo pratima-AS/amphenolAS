@@ -273,7 +273,7 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.click_qualstudy_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
 				"Fail: Admin User not allowed to delete Qual Study file");
@@ -472,7 +472,7 @@ public class UM4 extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.click_qualstudy_DeleteBtn();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();

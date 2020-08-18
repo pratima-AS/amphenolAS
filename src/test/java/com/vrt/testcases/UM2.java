@@ -742,12 +742,13 @@ public class UM2 extends BaseClass {
 	}
 
 	// ADMN082
-
 	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups")
+			"Regression" }, description = "ADMN082-Verify if Administrator is able "
+					+ "to access the default privilege-Copy Files_Reports - Copy Setups")
 	public void ADMN082() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ADMN067-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
+				"ADMN082-Verify if Administrator is able to access the default privilege-"
+				+ "Copy Files_Reports - Copy Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
