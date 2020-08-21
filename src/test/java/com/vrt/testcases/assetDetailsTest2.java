@@ -42,7 +42,7 @@ import com.vrt.pages.RWFileSelctionPage;
 import com.vrt.pages.AuditPage;
 
 import com.vrt.utility.TestUtilities;
-
+import com.vrt.utility.assetCreationUtility;
 
 public class assetDetailsTest2 extends BaseClass {
 
@@ -83,16 +83,16 @@ public class assetDetailsTest2 extends BaseClass {
 	// Before All the tests are conducted
 	// @BeforeTest
 	@BeforeClass
-	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "AssetDetailsTest2" + ".html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "assetDetailsTest2" + ".html",
 				true);
-		extent.addSystemInfo("TestSuiteName", "AssetDetailsTest");
+		extent.addSystemInfo("TestSuiteName", "assetDetailsTest2");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("assetDetailsTest2 in Progress..");
+		System.out.println("AssetCreation Test in Progress..");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -152,8 +152,6 @@ public class assetDetailsTest2 extends BaseClass {
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
-
-
 	}
 
 	// After All the tests are conducted
@@ -211,11 +209,51 @@ public class assetDetailsTest2 extends BaseClass {
 	 * 
 	 * @throws AWTException
 	 ******************************/
+
+	// ASST016STP-Verify the Setup date and time for an edited Setup
+
+	@Test(groups = {
+			"Regression" }, dataProvider = "ASST016STP", dataProviderClass = assetCreationUtility.class, description = "Verify the Setup date and time for an edited Setup")
+
+	public void ASST001(String Comments) throws InterruptedException, IOException, AWTException, ParseException {
+		extentTest = extent.startTest("ASST016STP-Verify the Setup date and time for an edited Setup");
+		SoftAssert sa = new SoftAssert();
+
+		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+
+		String Earlierdate = assetDetailsPage.get_DateUnder_Setup();
+
+		defineSetupPage = assetDetailsPage.editStupBtn_Position_0();
+//Define Setup
+		defineSetupPage.click_defineSetupPage_commentsField();
+		defineSetupPage.clear_defineSetupPage_comments();
+		defineSetupPage.enter_defineSetupPage_comments(Comments);
+		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
+
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
+
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
+
+		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1", getPW("adminFull"));
+		assetDetailsPage = Setup_ReviewPage.click_backBtn();
+
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		String Currentdate = tu.get_CurrentDateandTimeStamp();
+
+		sa.assertNotEquals(Earlierdate, Currentdate, "FAIL: Earlier time stamp and current time stamp is same");
+		sa.assertAll();
+
+	}
+
 	// ASST019STP-Verify Copy setup functionality when there is only one Asset
 	// available
 	@Test(groups = {
 			"Regression" }, description = "ASST019STP-Verify Copy setup functionality when there is only one Asset")
-	public void ASST001() throws InterruptedException, ParseException, IOException, AWTException {
+	public void ASST001A() throws InterruptedException, ParseException, IOException, AWTException {
 
 		extentTest = extent.startTest("ASST019STP-Verify Copy setup functionality when there is only one Asset");
 		SoftAssert sa = new SoftAssert();
@@ -246,14 +284,14 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Qualification Report: \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Deletion of a Detailed report ");
@@ -280,14 +318,14 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Setup Report : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record exists for deletion of a setup report-under report section");
@@ -316,14 +354,14 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Qualification Report: \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Deletion of a Summary report");
@@ -351,14 +389,14 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "PassFailReport : \"manual 1 min samplin\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Deletion of a Summary report");
@@ -383,14 +421,14 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Document: \"LTR-40_Cooling.pdf\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Deletion of a  document under Documents tile");
@@ -404,7 +442,7 @@ public class assetDetailsTest2 extends BaseClass {
 	// ASST051-Verify if Audit trial record exists for Delete study file activity
 	// (This script is covering under the script ASST049)
 
-	@Test(priority = 6, groups = {
+	@Test(groups = {
 			"Regression" }, description = "ASST049,ASST051-Verify the on-click of delete icon for a Qualification study file")
 	public void ASST007() throws InterruptedException, IOException {
 		extentTest = extent
@@ -422,7 +460,7 @@ public class assetDetailsTest2 extends BaseClass {
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Qualification Study : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Delete study file activity");
@@ -433,8 +471,7 @@ public class assetDetailsTest2 extends BaseClass {
 	// setups,reports and asset after executing the above test cases
 	// ASST040-Verify the on-click of delete icon for a setup
 	// ASST042STP-Verify if Audit trial record exists for delete setup
-	@Test(priority = 7, groups = {
-			"Regression" }, description = "ASST040-Verify the on-click of delete icon for a setup")
+	@Test(groups = { "Regression" }, description = "ASST040-Verify the on-click of delete icon for a setup")
 	public void ASST008() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST040-Verify the on-click of delete icon for a setup");
 		SoftAssert sa = new SoftAssert();
@@ -442,7 +479,7 @@ public class assetDetailsTest2 extends BaseClass {
 		// assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		assetDetailsPage.YesBtn_WithFiles();
@@ -450,7 +487,7 @@ public class assetDetailsTest2 extends BaseClass {
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Setup : \"manual 1 min sampling\"  deleted by User ID : \"1\", User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Delete study file activity");
@@ -463,7 +500,7 @@ public class assetDetailsTest2 extends BaseClass {
 	// ASST011-Verify the Audit trail for Delete Assets activity this script is
 	// covered under ASST010 script
 
-	@Test(priority = 8, groups = {
+	@Test(groups = {
 			"Regression" }, description = "ASST010,ASST011-Verify the on-click of Delete icon for Assets with no files in it")
 	public void ASST009() throws Exception {
 		extentTest = extent
@@ -477,19 +514,19 @@ public class assetDetailsTest2 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage.YesBtn_WithFiles();
 
-		// Delete aseet Now
+		// Delete asset Now
 
-		assetDetailsPage.DeleteAssert();
+		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetDetailsPage.Delete_ClickYesBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
-		String Actionmsg = AuditPage.get_Actiontext();
+		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Asset: \"SyncInAsset\" is deleted by User Id : \"1\" , User Name : \"User1\"";
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record does not exists for Delete asset activity");
 		sa.assertAll();

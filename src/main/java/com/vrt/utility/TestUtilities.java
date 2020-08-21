@@ -383,7 +383,7 @@ public class TestUtilities extends BaseClass {
 		for (File f : files) {
 			if (f.isFile() && f.exists()) {
 				f.delete();
-				System.out.println("successfully deleted");
+				//System.out.println("successfully deleted");
 			} else {
 				System.out.println("cant delete a file due to open or error");
 			}

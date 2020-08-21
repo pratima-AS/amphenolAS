@@ -1,7 +1,7 @@
 /**
- * @author ruchika.behura
- *
- */
+* @author ruchika.behura
+*
+*/
 package com.vrt.testcases;
 
 import java.awt.AWTException;
@@ -38,11 +38,10 @@ import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
 
-
 import bsh.ParseException;
 
 public class UM4 extends BaseClass {
-	
+
 	public UM4() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,35 +66,36 @@ public class UM4 extends BaseClass {
 	Setup_defineSetupPage Setup_defineSetupPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	
 
-	//@BeforeTest
+	// @BeforeTest
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM4_DeleteStudyAndReportAcessTest"+".html", true);
+		extent = new ExtentReports(
+				System.getProperty("user.dir") + "/test-output/ER_" + "UM4_DeleteStudyAndReportAcessTest" + ".html",
+				true);
 		extent.addSystemInfo("TestSuiteName", "UM4_DeleteStudyAndReportAcessTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("UM4_DeleteStudyAndReportAcessTest in Progress..");
-		
-		//Rename the User file (NgvUsers.uxx) if exists
+
+		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		
+
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
 				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));		
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 		UserManagementPage.clickPrivCreateEditAsset();
@@ -108,7 +108,7 @@ public class UM4 extends BaseClass {
 		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "Admintest1", getUID("SysAdmin"),
 				"1Start@1AM", "AdminNew", "123345678", "newAdmin@gmail.com");
 		UserManagementPage.clickAnyUserinUserList("Admintest1");
-		//UserManagementPage.Click_AllCheckBox();
+		// UserManagementPage.Click_AllCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -123,7 +123,7 @@ public class UM4 extends BaseClass {
 		UserManagementPage.CreateSupervisorUser(getUID("adminFull"), getPW("adminFull"), "Suptest1",
 				getUID("SysSupervisor"), "3Welcome3@AM", "SUpNew", "123345678", "newSup@gmail.com");
 		UserManagementPage.clickAnyUserinUserList("Suptest1");
-		//UserManagementPage.Click_AllCheckBox();
+		// UserManagementPage.Click_AllCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -139,7 +139,7 @@ public class UM4 extends BaseClass {
 		UserManagementPage.CreateOperatorUser(getUID("adminFull"), getPW("adminFull"), "OPE1", getUID("SysOperator"),
 				"4Welcome4@AM", "OperatorNew", "12345678", "newOpe@gmail.com");
 		UserManagementPage.clickAnyUserinUserList("OPE1");
-		//UserManagementPage.Click_AllCheckBox();
+		// UserManagementPage.Click_AllCheckBox();
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
@@ -149,11 +149,11 @@ public class UM4 extends BaseClass {
 				getPW("SysOperator"));
 		LoginPage = MainHubPage.UserSignOut();
 		Thread.sleep(500);
-		
-		//SyncIn Assets method
+
+		// SyncIn Assets method
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
-		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));		
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
 		SyncInPage.enter_Filepath("syncin");
 		SyncInPage.click_FltrBtn();
 		SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
@@ -164,12 +164,11 @@ public class UM4 extends BaseClass {
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
-		
-		
+
 	}
 
 	// After All the tests are conducted
-	//@AfterTest
+	// @AfterTest
 	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
@@ -181,12 +180,12 @@ public class UM4 extends BaseClass {
 	// Before Method
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws InterruptedException, IOException {
-		//System.out.println("Synin Process check in UM4");
+		// System.out.println("Synin Process check in UM4");
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 	}
 
-	//@AfterMethod
+	// @AfterMethod
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
@@ -207,25 +206,23 @@ public class UM4 extends BaseClass {
 		driver.quit();
 	}
 
-	//***************
-	//Tests
-	//***************
-	
-	/*// Check
-	@Test(description = "check for SyncIn im UM1")
-	public void Check() throws Exception {
-		extentTest = extent.startTest("Syncin Process check in UM1");
-		System.out.println("Syncin Process check in UM1");
-	}*/
-	
-	
-	// ADMN051	
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to "
-					+ "access the default privilege-Delete  Pass_Fail reports")
+	// ***************
+	// Tests
+	// ***************
+
+	/*
+	 * // Check
+	 * 
+	 * @Test(description = "check for SyncIn im UM1") public void Check() throws
+	 * Exception { extentTest = extent.startTest("Syncin Process check in UM1");
+	 * System.out.println("Syncin Process check in UM1"); }
+	 */
+
+	// ADMN051
+	@Test(groups = { "Regression" }, description = "Verify if Administrator is able to "
+			+ "access the default privilege-Delete  Pass_Fail reports")
 	public void ADMN051() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN051_Verify if Administrator is able to access the default "
+		extentTest = extent.startTest("ADMN051_Verify if Administrator is able to access the default "
 				+ "privilege-Delete Delete Pass_Fail reports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -234,13 +231,13 @@ public class UM4 extends BaseClass {
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
 		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
+		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
 				"Fail: Admin User not allowed to delete Pass-Fail Report");
 		s.assertAll();
 	}
-	
+
 	// ADMN063
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is able to access the default privilege-Delete Setups")
@@ -251,19 +248,17 @@ public class UM4 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage. Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
+		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
 				"Fail: Admin User not allowed to delete Setup file under Steup tile");
 		s.assertAll();
 	}
-		
-	
-	//ADMN065A
-	@Test(groups = {
-			"Regression" }, description = "ADMN065A-Verify if Administrator is able to access"
-					+ " the default privilege-Delete StudyFiles")
+
+	// ADMN065A
+	@Test(groups = { "Regression" }, description = "ADMN065A-Verify if Administrator is able to access"
+			+ " the default privilege-Delete StudyFiles")
 	public void ADMN065A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN065A_Verify if Administrator is able to access the default privilege-Delete StudyFiles");
@@ -275,37 +270,34 @@ public class UM4 extends BaseClass {
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
 		assetDetailsPage.click_qualstudy_DeleteBtn();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
-		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, 
+		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
 				"Fail: Admin User not allowed to delete Qual Study file");
 		s.assertAll();
 	}
-	
-	//ADMN065B
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access "
-					+ "the default privilege-Delete Reports_qualification sub bar")
+
+	// ADMN065B
+	@Test(groups = { "Regression" }, description = "Verify if Administrator is able to access "
+			+ "the default privilege-Delete Reports_qualification sub bar")
 	public void ADMN065B() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ADMN065B_Verify if Administrator is able to access the default "
-						+ "privilege-Delete Reports_qualification sub bar");
+		extentTest = extent.startTest("ADMN065B_Verify if Administrator is able to access the default "
+				+ "privilege-Delete Reports_qualification sub bar");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
-						"Fail: Admin User not allowed to delete Study file reports");
+				"Fail: Admin User not allowed to delete Study file reports");
 		s.assertAll();
-					
-	}	
-	
+
+	}
+
 	// ADMN065C
-	@Test(groups = {
-			"Regression" }, description = "ADMN065C-Verify if Administrator is able to access "
-					+ "the default privilege-Delete_SetUpReports")
+	@Test(groups = { "Regression" }, description = "ADMN065C-Verify if Administrator is able to access "
+			+ "the default privilege-Delete_SetUpReports")
 	public void ADMN065C() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN065C_Verify if Administrator is able to access the default privilege-Delete_SetUpReports");
@@ -315,33 +307,32 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
 				"Fail: Admin User not allowed to delete Setup file reports");
 		s.assertAll();
 	}
-	
+
 	// ADMN065D
 	@Test(groups = { "Regression" }, description = "ADMN065D-Verify if Administrator is able to Delete documents"
 			+ "from Asset Details-Documents tile")
 	public void ADMN065D() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN065E-Verify if Administrator is able to Delete documents"
-				+ " from Asset Details-Documents tile");
+		extentTest = extent.startTest(
+				"ADMN065E-Verify if Administrator is able to Delete documents" + " from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true,
 				"Fail: Admin User not allowed to delete document files");
 		s.assertAll();
 	}
 
-
-	// ADMN079	
+	// ADMN079
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is unable to access the non-default privilege-Delete Setups")
 	public void ADMN079() throws InterruptedException, ParseException, IOException, AWTException {
@@ -351,21 +342,18 @@ public class UM4 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage. Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
-		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, 
-				"FAIL:Supervisor should be unable to access- Delete Setups");
+		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Supervisor should be unable to access- Delete Setups");
 		sa.assertAll();
 	}
 
-
-	// ADMN081A	
-	@Test(groups = {
-			"Regression" }, description = "ADMN081A-Verify Supervisor is unable to access the "
-					+ "non-default privilege-Delete StudyFiles")
+	// ADMN081A
+	@Test(groups = { "Regression" }, description = "ADMN081A-Verify Supervisor is unable to access the "
+			+ "non-default privilege-Delete StudyFiles")
 	public void ADMN081A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ADMN081A_Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles");
@@ -395,7 +383,7 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -415,14 +403,14 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Supervisor should be unable to access- Delete setup pdf reports");
 		s.assertAll();
 	}
-	
+
 	// ADMN081D
 	@Test(groups = {
 			"Regression" }, description = "ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report")
@@ -435,7 +423,7 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -444,23 +432,24 @@ public class UM4 extends BaseClass {
 	}
 
 	// ADMN081E
-	@Test(groups = { "Regression" }, description = "ADMN081E-Verify if Supervisor is unable to Delete documents from -Documents tile")
+	@Test(groups = {
+			"Regression" }, description = "ADMN081E-Verify if Supervisor is unable to Delete documents from -Documents tile")
 	public void ADMN081E() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN081E_Verify if Supervisor is unable to Delete documents from -Documents tile");
+		extentTest = extent
+				.startTest("ADMN081E_Verify if Supervisor is unable to Delete documents from -Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Supervisor should be unable to access-Delete Pass_Fail reports");
 		s.assertAll();
 	}
-	
-	
+
 	// ADMN103A
 	@Test(groups = {
 			"Regression" }, description = "ADMN103A-Verify Operator is unable to access the non-default privilege-Delete StudyFiles")
@@ -480,22 +469,20 @@ public class UM4 extends BaseClass {
 		sa.assertAll();
 
 	}
-	
 
 	// ADMN103B
-	@Test(groups = {
-			"Regression" }, description = "ADMN103B-Verify Operator is unable to access the "
-					+ "non-default privilege-Delete Reports-Qual")
+	@Test(groups = { "Regression" }, description = "ADMN103B-Verify Operator is unable to access the "
+			+ "non-default privilege-Delete Reports-Qual")
 	public void ADMN103B() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ADMN103B-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual");
+		extentTest = extent.startTest(
+				"ADMN103B-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -515,7 +502,7 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -523,26 +510,26 @@ public class UM4 extends BaseClass {
 		s.assertAll();
 	}
 
-	// ADMN103D	
+	// ADMN103D
 	@Test(groups = {
 			"Regression" }, description = "ADMN103D-Verify if Operator is unable to Delete documents from Asset Details-Documents tile")
 	public void ADMN103D() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest("ADMN103D_Verify if Operator is unable to Delete documents from Asset Details-Documents tile");
+		extentTest = extent.startTest(
+				"ADMN103D_Verify if Operator is unable to Delete documents from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Operator should not be able to access-Delete Pass_Fail reports");
 		s.assertAll();
 	}
-	
-	
-	// ADMN103E	
+
+	// ADMN103E
 	@Test(groups = {
 			"Regression" }, description = "ADMN103E-Verify if Operator is able to access the default privilege-Delete Pass_Fail Report")
 	public void ADMN103E() throws InterruptedException, ParseException, IOException, AWTException {
@@ -554,7 +541,7 @@ public class UM4 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
@@ -564,7 +551,7 @@ public class UM4 extends BaseClass {
 
 	// ADMN120
 	@Test(groups = {
-			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Setups",alwaysRun = true)
+			"Regression" }, description = "Verify Operator is unable to access the non-default privilege-Delete Setups", alwaysRun = true)
 	public void ADMN120() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN120_Verify Operator is unable to access the non-default privilege-Delete Setups");
@@ -573,12 +560,12 @@ public class UM4 extends BaseClass {
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_SetupTile();
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		String ExpAlrtMsg = "User do not have permission to perform this operation";
 		String ActAlertMsg = assetDetailsPage.AlertMsg();
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Operator should be unable to access- Delete Setups");
 		sa.assertAll();
 	}
-	
+
 }

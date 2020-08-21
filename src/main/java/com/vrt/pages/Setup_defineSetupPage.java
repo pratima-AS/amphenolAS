@@ -107,6 +107,11 @@ public class Setup_defineSetupPage extends BaseClass {
 		return IsElementVisibleStatus(DefineSetup_SetupName_txtBx);
 	}
 
+	// click Setup Name
+	public void click_defineSetupPage_setupName() {
+		clickOn(DefineSetup_SetupName_txtBx);
+	}
+
 	// Clear Setup Name
 	public void clear_defineSetupPage_setupName() {
 		ClearText(DefineSetup_SetupName_txtBx);
@@ -276,6 +281,14 @@ public class Setup_defineSetupPage extends BaseClass {
 	public Setup_SensorConfigPage click_defineSetupPage_nxtBtn() throws InterruptedException, IOException {
 		clickOn(SensorConfiguration_Btn);
 		Thread.sleep(1000);
+		return new Setup_SensorConfigPage();
+	}
+
+	// click YES (less number of sensor config)
+	public Setup_SensorConfigPage click_Nxt_WithalertYes() throws InterruptedException, IOException {
+		clickOn(SensorConfiguration_Btn);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
 		return new Setup_SensorConfigPage();
 	}
 

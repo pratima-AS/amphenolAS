@@ -50,7 +50,7 @@ public class assetCreationUtility extends BaseClass {
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
 			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
 				data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
-				 //System.out.println(data[i][j]);
+				// System.out.println(data[i][j]);
 			}
 		}
 		return data;
@@ -286,9 +286,16 @@ public class assetCreationUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "maxASST")
-	public static Object[][] maxASST() {
-		String sheetName = "200ASSTs";
+	@DataProvider(name = "ASSTHB012a")
+	public static Object[][] ASSTHB012a() {
+		String sheetName = "ASSTHB012a";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "ASSTHB012b")
+	public static Object[][] ASSTHB012b() {
+		String sheetName = "ASSTHB012b";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -300,37 +307,52 @@ public class assetCreationUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "ASST024_1STP")
-	public static Object[][] ASST024_1STP() {
-		String sheetName = "ASST024_1STP";
+	@DataProvider(name = "ASST024_A")
+	public static Object[][] ASST024_A() {
+		String sheetName = "ASST024_A";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "ASST024_1A")
-	public static Object[][] ASST024_1A() {
-		String sheetName = "ASST024_1A";
+	@DataProvider(name = "ASST024_B")
+	public static Object[][] ASST024_B() {
+		String sheetName = "ASST024_B";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "ASST024_2STP")
-	public static Object[][] ASST024_2STP() {
-		String sheetName = "ASST024_2STP";
+	@DataProvider(name = "ASST024_D")
+	public static Object[][] ASST024_D() {
+		String sheetName = "ASST024_D";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "ASST024_2ASTP")
-	public static Object[][] ASST024_2ASTP() {
-		String sheetName = "ASST024_2ASTP";
+	@DataProvider(name = "ASST024_E")
+	public static Object[][] ASST024_E() {
+		String sheetName = "ASST024_E";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "ASST019STP")
-	public static Object[][] ASST019STP() {
-		String sheetName = "ASST019STP";
+	@DataProvider(name = "ASST001B")
+	public static Object[][] ASST001B() {
+		String sheetName = "ASST001B";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "ASST025STP")
+	public static Object[][] ASST025STP() {
+		String sheetName = "ASST025STP";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	// ASST026STP
+	@DataProvider(name = "ASST026STP")
+	public static Object[][] ASST026STP() {
+		String sheetName = "ASST026STP";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -341,4 +363,12 @@ public class assetCreationUtility extends BaseClass {
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
+	
+	@DataProvider(name = "maxASST")
+	public static Object[][] maxASST() {
+		String sheetName = "maxASST";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 }
