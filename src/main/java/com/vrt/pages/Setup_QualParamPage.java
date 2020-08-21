@@ -14,8 +14,8 @@ import com.vrt.base.BaseClass;
 
 public class Setup_QualParamPage extends BaseClass {
 	TestUtilities tu = new TestUtilities();
-	
-	// Qualification Parameters page element variable declaration definition	
+
+	// Qualification Parameters page element variable declaration definition
 	WebElement QualParamsPageTitle = null;
 	WebElement QStart_text = null;
 	WebElement QStart_DrpDwn = null;
@@ -42,8 +42,7 @@ public class Setup_QualParamPage extends BaseClass {
 		RFT_text = driver.findElementByName("RF Transmit Threshold");
 		RFT_DrpDwn = driver.findElementByAccessibilityId("_rfCommToggleThresholdSettingsComboBox");
 		NxtBtn = driver.findElementByAccessibilityId("NextButton");
-		
-		
+
 	}
 
 	Setup_QualParamPage() throws IOException {
@@ -109,6 +108,34 @@ public class Setup_QualParamPage extends BaseClass {
 		}
 	}
 
+	// fetch date from Time Of The Day window
+
+	public String fetch_Date() {
+		WebElement date = driver.findElementByAccessibilityId("PART_PickerButton");
+		return FetchText(date);
+	}
+
+	// fetch Hour from Time Of The Day window
+
+	public String fetch_Hour() {
+		WebElement Hr = driver.findElementByAccessibilityId("Hours");
+		return FetchText(Hr);
+	}
+
+	// fetch Minute from Time Of The Day window
+
+	public String fetch_Min() {
+		WebElement Mn = driver.findElementByAccessibilityId("Min");
+		return FetchText(Mn);
+	}
+
+	// fetch Second from Time Of The Day window
+
+	public String fetch_Sec() {
+		WebElement Sc = driver.findElementByAccessibilityId("Sec");
+		return FetchText(Sc);
+	}
+
 	// Enter default time of the day by adding 1 Hr to QStart parameter
 	public void enter_TOD_QualStart(int dt, int mnth, int Yr, int hr, int mnt, int sec)
 			throws InterruptedException, ParseException {
@@ -120,11 +147,11 @@ public class Setup_QualParamPage extends BaseClass {
 		Actions ac = new Actions(driver);
 		WebElement TOD_DtPkr = driver.findElementByAccessibilityId("PART_PickerButton");
 		String TOD_DtTxt11 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
-		////System.out.println("TOD_DtTxt11: " + TOD_DtTxt11);
+		//// System.out.println("TOD_DtTxt11: " + TOD_DtTxt11);
 		String TOD_dd1 = TOD_DtTxt11.split("-")[0];
-		////System.out.println("TOD_dd1: " + TOD_dd1);
+		//// System.out.println("TOD_dd1: " + TOD_dd1);
 		String TOD_mm1 = TOD_DtTxt11.split("-")[1];
-		////System.out.println("TOD_mm1: " + TOD_mm1);
+		//// System.out.println("TOD_mm1: " + TOD_mm1);
 
 		if (TOD_dd1.equals("31") && TOD_mm1.equals("12")) {
 			clickOn(TOD_DtPkr);
@@ -136,13 +163,13 @@ public class Setup_QualParamPage extends BaseClass {
 			Thread.sleep(500);
 
 			String TOD_DtTxt22 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
-			////System.out.println("TOD_DtTxt22:" + TOD_DtTxt22);
+			//// System.out.println("TOD_DtTxt22:" + TOD_DtTxt22);
 			String TOD_dd2 = TOD_DtTxt22.split("-")[0];
-			//System.out.println("TOD_dd2:" + TOD_dd2);
+			// System.out.println("TOD_dd2:" + TOD_dd2);
 			String TOD_mm2 = TOD_DtTxt22.split("-")[1];
-			//System.out.println("TOD_mm2: " + TOD_mm2);
+			// System.out.println("TOD_mm2: " + TOD_mm2);
 
-			//System.out.println("Is TOD_dd1 = TOD_dd2: " + TOD_dd1.equals(TOD_dd2));
+			// System.out.println("Is TOD_dd1 = TOD_dd2: " + TOD_dd1.equals(TOD_dd2));
 
 			if (!TOD_dd1.equals(TOD_dd2) && TOD_mm2.equals(TOD_mm1)) {
 				clickOn(TOD_DtPkr);
@@ -154,20 +181,20 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 
 				String TOD_DtTxt33 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
-				//System.out.println("TOD_DtTxt33: " + TOD_DtTxt33);
+				// System.out.println("TOD_DtTxt33: " + TOD_DtTxt33);
 				String TOD_dd3 = TOD_DtTxt33.split("-")[0];
-				//System.out.println("TOD_dd3: " + TOD_dd3);
+				// System.out.println("TOD_dd3: " + TOD_dd3);
 				String TOD_mm3 = TOD_DtTxt33.split("-")[1];
-				//System.out.println("TOD_mm3: " + TOD_mm3);
+				// System.out.println("TOD_mm3: " + TOD_mm3);
 				String TOD_yy3 = TOD_DtTxt33.split("-")[2];
-				//System.out.println("TOD_yy3: " + TOD_yy3);
+				// System.out.println("TOD_yy3: " + TOD_yy3);
 
 				String newDtTime = tu.add_to_Crrnt_DateandTimeStamp(dt, mnth, Yr, hr, mnt, sec);
-				//System.out.println("Expected newDtTime: " + newDtTime);
+				// System.out.println("Expected newDtTime: " + newDtTime);
 				String[] newDtTime1 = newDtTime.split(":");
-				//System.out.println("New Day: " + newDtTime1[0]);
-				//System.out.println("New Mnth: " + newDtTime1[1]);
-				//System.out.println("New Yr: " + newDtTime1[2]);
+				// System.out.println("New Day: " + newDtTime1[0]);
+				// System.out.println("New Mnth: " + newDtTime1[1]);
+				// System.out.println("New Yr: " + newDtTime1[2]);
 				String final_dd = TOD_dd3;
 				String final_mm = TOD_mm3;
 				String final_yy = TOD_yy3;
@@ -180,7 +207,7 @@ public class Setup_QualParamPage extends BaseClass {
 					Thread.sleep(500);
 					String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 					final_yy = f_TOD_DtTxt.split("-")[2];
-					//System.out.println("final_yy: " + final_yy);
+					// System.out.println("final_yy: " + final_yy);
 				}
 				// Change the Month
 				for (int i = 1; i <= 12; i++) {
@@ -192,7 +219,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_mm = f_TOD_DtTxt.split("-")[1];
-						//System.out.println("final_mm: " + final_mm);
+						// System.out.println("final_mm: " + final_mm);
 					}
 				}
 				// Change the Date
@@ -205,7 +232,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_dd = f_TOD_DtTxt.split("-")[0];
-						//System.out.println("final_dd: " + final_dd);
+						// System.out.println("final_dd: " + final_dd);
 					}
 				}
 
@@ -224,12 +251,13 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(1000);
 				String TOD_DtTxt4 = TOD_DtPkr.getText();
 				String TOD_DtTxt44 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt4);
-				//System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" + TOD_Hr.getText() + ":"
-				//		+ TOD_Mnt.getText() + ":" + TOD_Sec.getText());
+				// System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" +
+				// TOD_Hr.getText() + ":"
+				// + TOD_Mnt.getText() + ":" + TOD_Sec.getText());
 				clickOn(QStart_text);
-				
+
 			} else {
-				//System.out.println("else H1 TOD_DtPkr:" + TOD_DtPkr.getText());
+				// System.out.println("else H1 TOD_DtPkr:" + TOD_DtPkr.getText());
 				clickOn(TOD_DtPkr);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
@@ -240,20 +268,20 @@ public class Setup_QualParamPage extends BaseClass {
 
 				String TOD_DtTxt3 = TOD_DtPkr.getText();
 				String TOD_DtTxt33 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt3);
-				//System.out.println(TOD_DtTxt33);
+				// System.out.println(TOD_DtTxt33);
 				String TOD_dd3 = TOD_DtTxt33.split("-")[0];
-				//System.out.println(TOD_dd3);
+				// System.out.println(TOD_dd3);
 				String TOD_mm3 = TOD_DtTxt33.split("-")[1];
-				//System.out.println(TOD_mm3);
+				// System.out.println(TOD_mm3);
 				String TOD_yy3 = TOD_DtTxt33.split("-")[2];
-				//System.out.println(TOD_yy3);
+				// System.out.println(TOD_yy3);
 
 				String newDtTime = tu.add_to_Crrnt_DateandTimeStamp(dt, mnth, Yr, hr, mnt, sec);
-				//System.out.println("Expected newDtTime: " + newDtTime);
+				// System.out.println("Expected newDtTime: " + newDtTime);
 				String[] newDtTime1 = newDtTime.split(":");
-				//System.out.println("New Day: " + newDtTime1[0]);
-				//System.out.println("New Mnth: " + newDtTime1[1]);
-				//System.out.println("New Yr: " + newDtTime1[2]);
+				// System.out.println("New Day: " + newDtTime1[0]);
+				// System.out.println("New Mnth: " + newDtTime1[1]);
+				// System.out.println("New Yr: " + newDtTime1[2]);
 				String final_dd = TOD_dd3;
 				String final_mm = TOD_mm3;
 				String final_yy = TOD_yy3;
@@ -266,7 +294,7 @@ public class Setup_QualParamPage extends BaseClass {
 					Thread.sleep(500);
 					String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 					final_yy = f_TOD_DtTxt.split("-")[2];
-					//System.out.println(final_yy);
+					// System.out.println(final_yy);
 				}
 				// Change the Month
 				for (int i = 1; i <= 12; i++) {
@@ -278,7 +306,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_mm = f_TOD_DtTxt.split("-")[1];
-						//System.out.println(final_mm);
+						// System.out.println(final_mm);
 					}
 				}
 				// Change the Date
@@ -291,7 +319,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_dd = f_TOD_DtTxt.split("-")[0];
-						//System.out.println(final_dd);
+						// System.out.println(final_dd);
 					}
 				}
 
@@ -310,8 +338,9 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(1000);
 				String TOD_DtTxt4 = TOD_DtPkr.getText();
 				String TOD_DtTxt44 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt4);
-				//System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" + TOD_Hr.getText() + ":"
-				//		+ TOD_Mnt.getText() + ":" + TOD_Sec.getText());
+				// System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" +
+				// TOD_Hr.getText() + ":"
+				// + TOD_Mnt.getText() + ":" + TOD_Sec.getText());
 				clickOn(QStart_text);
 			}
 
@@ -327,13 +356,13 @@ public class Setup_QualParamPage extends BaseClass {
 			Thread.sleep(500);
 
 			String TOD_DtTxt22 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
-			//System.out.println("TOD_DtTxt22:" + TOD_DtTxt22);
+			// System.out.println("TOD_DtTxt22:" + TOD_DtTxt22);
 			String TOD_dd2 = TOD_DtTxt22.split("-")[0];
-			//System.out.println("TOD_dd2:" + TOD_dd2);
+			// System.out.println("TOD_dd2:" + TOD_dd2);
 			String TOD_mm2 = TOD_DtTxt22.split("-")[1];
-			//System.out.println("TOD_mm2: " + TOD_mm2);
+			// System.out.println("TOD_mm2: " + TOD_mm2);
 
-			//System.out.println("Is TOD_dd1 = TOD_dd2: " + TOD_dd1.equals(TOD_dd2));
+			// System.out.println("Is TOD_dd1 = TOD_dd2: " + TOD_dd1.equals(TOD_dd2));
 
 			if (!TOD_dd1.equals(TOD_dd2) && TOD_mm2.equals(TOD_mm1)) {
 				clickOn(TOD_DtPkr);
@@ -342,20 +371,20 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 
 				String TOD_DtTxt33 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
-				//System.out.println("TOD_DtTxt33: " + TOD_DtTxt33);
+				// System.out.println("TOD_DtTxt33: " + TOD_DtTxt33);
 				String TOD_dd3 = TOD_DtTxt33.split("-")[0];
-				//System.out.println("TOD_dd3: " + TOD_dd3);
+				// System.out.println("TOD_dd3: " + TOD_dd3);
 				String TOD_mm3 = TOD_DtTxt33.split("-")[1];
-				//System.out.println("TOD_mm3: " + TOD_mm3);
+				// System.out.println("TOD_mm3: " + TOD_mm3);
 				String TOD_yy3 = TOD_DtTxt33.split("-")[2];
-				//System.out.println("TOD_yy3: " + TOD_yy3);
+				// System.out.println("TOD_yy3: " + TOD_yy3);
 
 				String newDtTime = tu.add_to_Crrnt_DateandTimeStamp(dt, mnth, Yr, hr, mnt, sec);
-				//System.out.println("Expected newDtTime: " + newDtTime);
+				// System.out.println("Expected newDtTime: " + newDtTime);
 				String[] newDtTime1 = newDtTime.split(":");
-				//System.out.println("New Day: " + newDtTime1[0]);
-				//System.out.println("New Mnth: " + newDtTime1[1]);
-				//System.out.println("New Yr: " + newDtTime1[2]);
+				// System.out.println("New Day: " + newDtTime1[0]);
+				// System.out.println("New Mnth: " + newDtTime1[1]);
+				// System.out.println("New Yr: " + newDtTime1[2]);
 				String final_dd = TOD_dd3;
 				String final_mm = TOD_mm3;
 				String final_yy = TOD_yy3;
@@ -368,7 +397,7 @@ public class Setup_QualParamPage extends BaseClass {
 					Thread.sleep(500);
 					String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 					final_yy = f_TOD_DtTxt.split("-")[2];
-					//System.out.println(final_yy);
+					// System.out.println(final_yy);
 				}
 				// Change the Month
 				for (int i = 1; i <= 12; i++) {
@@ -380,7 +409,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_mm = f_TOD_DtTxt.split("-")[1];
-						//System.out.println(final_mm);
+						// System.out.println(final_mm);
 					}
 				}
 				// Change the Date
@@ -393,7 +422,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_dd = f_TOD_DtTxt.split("-")[0];
-						//System.out.println(final_dd);
+						// System.out.println(final_dd);
 					}
 				}
 
@@ -412,11 +441,12 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(1000);
 				String TOD_DtTxt4 = TOD_DtPkr.getText();
 				String TOD_DtTxt44 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt4);
-				//System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" + TOD_Hr.getText() + ":"
-				//		+ TOD_Mnt.getText() + ":" + TOD_Sec.getText());
+				// System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" +
+				// TOD_Hr.getText() + ":"
+				// + TOD_Mnt.getText() + ":" + TOD_Sec.getText());
 				clickOn(QStart_text);
 			} else {
-				//System.out.println("else part-TOD_DtPkr:" + TOD_DtPkr.getText());
+				// System.out.println("else part-TOD_DtPkr:" + TOD_DtPkr.getText());
 				clickOn(TOD_DtPkr);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
@@ -424,20 +454,20 @@ public class Setup_QualParamPage extends BaseClass {
 
 				String TOD_DtTxt3 = TOD_DtPkr.getText();
 				String TOD_DtTxt33 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt3);
-				//System.out.println(TOD_DtTxt33);
+				// System.out.println(TOD_DtTxt33);
 				String TOD_dd3 = TOD_DtTxt33.split("-")[0];
-				//System.out.println(TOD_dd3);
+				// System.out.println(TOD_dd3);
 				String TOD_mm3 = TOD_DtTxt33.split("-")[1];
-				//System.out.println(TOD_mm3);
+				// System.out.println(TOD_mm3);
 				String TOD_yy3 = TOD_DtTxt33.split("-")[2];
-				//System.out.println(TOD_yy3);
+				// System.out.println(TOD_yy3);
 
 				String newDtTime = tu.add_to_Crrnt_DateandTimeStamp(dt, mnth, Yr, hr, mnt, sec);
-				//System.out.println("Expected newDtTime: " + newDtTime);
+				// System.out.println("Expected newDtTime: " + newDtTime);
 				String[] newDtTime1 = newDtTime.split(":");
-				//System.out.println("New Day: " + newDtTime1[0]);
-				//System.out.println("New Mnth: " + newDtTime1[1]);
-				//System.out.println("New Yr: " + newDtTime1[2]);
+				// System.out.println("New Day: " + newDtTime1[0]);
+				// System.out.println("New Mnth: " + newDtTime1[1]);
+				// System.out.println("New Yr: " + newDtTime1[2]);
 				String final_dd = TOD_dd3;
 				String final_mm = TOD_mm3;
 				String final_yy = TOD_yy3;
@@ -450,7 +480,7 @@ public class Setup_QualParamPage extends BaseClass {
 					Thread.sleep(500);
 					String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 					final_yy = f_TOD_DtTxt.split("-")[2];
-					//System.out.println(final_yy);
+					// System.out.println(final_yy);
 				}
 				// Change the Month
 				for (int i = 1; i <= 12; i++) {
@@ -462,7 +492,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_mm = f_TOD_DtTxt.split("-")[1];
-						//System.out.println(final_mm);
+						// System.out.println(final_mm);
 					}
 				}
 				// Change the Date
@@ -475,7 +505,7 @@ public class Setup_QualParamPage extends BaseClass {
 						Thread.sleep(500);
 						String f_TOD_DtTxt = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtPkr.getText());
 						final_dd = f_TOD_DtTxt.split("-")[0];
-						//System.out.println(final_dd);
+						// System.out.println(final_dd);
 					}
 				}
 
@@ -494,8 +524,9 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(1000);
 				String TOD_DtTxt4 = TOD_DtPkr.getText();
 				String TOD_DtTxt44 = tu.convert_StringDate_to_ActualDate_inCertainFormat3(TOD_DtTxt4);
-				//System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" + TOD_Hr.getText() + ":"
-				//		+ TOD_Mnt.getText() + ":" + TOD_Sec.getText());
+				// System.out.println("Final TOD selection:" + TOD_DtTxt44 + ":" +
+				// TOD_Hr.getText() + ":"
+				// + TOD_Mnt.getText() + ":" + TOD_Sec.getText());
 				clickOn(QStart_text);
 			}
 		}
@@ -537,19 +568,20 @@ public class Setup_QualParamPage extends BaseClass {
 		clickOn(CT_Sec);
 		ClearText(CT_Sec);
 		enterText(CT_Sec, Secs);
-		//System.out.println("Final CT selection: " + CT_Hr.getText() + ":" + CT_Mnt.getText() + ":" + CT_Sec.getText());
+		// System.out.println("Final CT selection: " + CT_Hr.getText() + ":" +
+		// CT_Mnt.getText() + ":" + CT_Sec.getText());
 		clickOn(QStop_text);
 	}
-	
+
 	// Click the Sampling Rate dropdown box
 	public void click_SR_DrpDwnBox() {
 		clickOn(SR_DrpDwn);
-	}	
+	}
 
 	// Select Sampling Rate
 	public void select_SR(String SR) throws InterruptedException {
 
-		//System.out.println("SRField default data: " + SR_DrpDwn.getText());
+		// System.out.println("SRField default data: " + SR_DrpDwn.getText());
 		Actions ac = new Actions(driver);
 
 		if (SR.equals("1 Second") || SR.equals("2 Seconds") || SR.equals("3 Seconds")) {
@@ -563,11 +595,11 @@ public class Setup_QualParamPage extends BaseClass {
 					break;
 				}
 			}
-			//System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
-			//System.out.println("------------");
-		} else if (SR.equals("5 Seconds")){
-			//System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
-			//System.out.println("------------");
+			// System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
+			// System.out.println("------------");
+		} else if (SR.equals("5 Seconds")) {
+			// System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
+			// System.out.println("------------");
 			Thread.sleep(500);
 		} else {
 			for (int i = 0; i <= 7; i++) {
@@ -575,14 +607,14 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("SR Field data: " + FetchText(SR_DrpDwn));				
+				// System.out.println("SR Field data: " + FetchText(SR_DrpDwn));
 				if (FetchText(SR_DrpDwn).contains(SR)) {
 					clickOn(SR_text);
 					break;
-				}				
+				}
 			}
-			//System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
-			//System.out.println("------------");
+			// System.out.println("SR Field selected data: " + FetchText(SR_DrpDwn));
+			// System.out.println("------------");
 		}
 	}
 
@@ -590,12 +622,12 @@ public class Setup_QualParamPage extends BaseClass {
 	public void click_TR_DrpDwnBox() {
 		clickOn(TR_DrpDwn);
 	}
-	
+
 	// Select Transmission Rate based on Sampling Rate selction
 	public void select_TR(String SR, String TR) throws InterruptedException {
-		//System.out.println("SR excel data: " + SR);
-		//System.out.println("tr excel data: " + TR);
-		//System.out.println("TRField default data: " + TR_DrpDwn.getText());
+		// System.out.println("SR excel data: " + SR);
+		// System.out.println("tr excel data: " + TR);
+		// System.out.println("TRField default data: " + TR_DrpDwn.getText());
 		Actions ac = new Actions(driver);
 
 		if (SR.equals("1 Second")) {
@@ -605,7 +637,7 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(1000);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "5 Seconds":
@@ -613,21 +645,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(1000);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("2 Seconds")) {
-			//System.out.println("In SR 2 sec & TR selection");
+			// System.out.println("In SR 2 sec & TR selection");
 			switch (TR) {
 			case "6 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(1000);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "10 Seconds":
@@ -635,21 +667,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(1000);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("3 Seconds")) {
-			//System.out.println("In SR 3 sec & TR selection");
+			// System.out.println("In SR 3 sec & TR selection");
 			switch (TR) {
 			case "6 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "12 Seconds":
@@ -657,21 +689,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("5 Seconds")) {
-			//System.out.println("In SR 5 sec & TR selection");
+			// System.out.println("In SR 5 sec & TR selection");
 			switch (TR) {
 			case "5 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(1000);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "20 Seconds":
@@ -679,21 +711,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("10 Seconds")) {
-			//System.out.println("In SR 10 sec & TR selection");
+			// System.out.println("In SR 10 sec & TR selection");
 			switch (TR) {
 			case "20 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -701,21 +733,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("20 Seconds")) {
-			//System.out.println("In SR 20 sec & TR selection");
+			// System.out.println("In SR 20 sec & TR selection");
 			switch (TR) {
 			case "20 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -723,21 +755,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("30 Seconds")) {
-			//System.out.println("In SR 30 sec & TR selection");
+			// System.out.println("In SR 30 sec & TR selection");
 			switch (TR) {
 			case "20 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -745,21 +777,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("1 Minute")) {
-			//System.out.println("In SR 1 mnt & TR selection");
+			// System.out.println("In SR 1 mnt & TR selection");
 			switch (TR) {
 			case "10 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -767,21 +799,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("2 Minutes")) {
-			//System.out.println("In SR 2 mnt & TR selection");
+			// System.out.println("In SR 2 mnt & TR selection");
 			switch (TR) {
 			case "10 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -789,21 +821,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("3 Minutes")) {
-			//System.out.println("In SR 3 mnt & TR selection");
+			// System.out.println("In SR 3 mnt & TR selection");
 			switch (TR) {
 			case "10 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -811,21 +843,21 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
 				break;
 			}
 		} else if (SR.equals("5 Minutes")) {
-			//System.out.println("In SR 5 mnt & TR selection");
+			// System.out.println("In SR 5 mnt & TR selection");
 			switch (TR) {
 			case "10 Seconds":
 				clickOn(TR_DrpDwn);
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -833,7 +865,7 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
@@ -846,7 +878,7 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			case "30 Seconds":
@@ -854,7 +886,7 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
+				// System.out.println("TR Field selected data: " + FetchText(TR_DrpDwn));
 				clickOn(TR_text);
 				break;
 			default:
@@ -870,22 +902,22 @@ public class Setup_QualParamPage extends BaseClass {
 	public void click_RFT_DrpDwnBox() {
 		clickOn(RFT_DrpDwn);
 	}
-	
+
 	// Select RF Threshold
 	public void select_RFT(String RFT) throws InterruptedException {
 		int rft = Integer.parseInt(RFT.split(",")[0]);
-		//System.out.println("rft excel data: " + rft);
+		// System.out.println("rft excel data: " + rft);
 		int RFTField = Integer.parseInt(RFT_DrpDwn.getText().split(",")[0]);
-		//System.out.println("RFTField default data: " + RFTField);
+		// System.out.println("RFTField default data: " + RFTField);
 		Actions ac = new Actions(driver);
 
 		if (rft > RFTField) {
 			click_RFT_DrpDwnBox();
 			Thread.sleep(500);
-			ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();	
+			ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN).build().perform();
 			clickOn(RFT_text);
 			Thread.sleep(500);
-			//System.out.println("RFT Field selected data: " + FetchText(RFT_DrpDwn));
+			// System.out.println("RFT Field selected data: " + FetchText(RFT_DrpDwn));
 
 		} else if (rft < RFTField) {
 			for (int i = 0; i <= 2; i++) {
@@ -893,7 +925,7 @@ public class Setup_QualParamPage extends BaseClass {
 				Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
 				Thread.sleep(500);
-				//System.out.println("RFT Field selected data: " + FetchText(RFT_DrpDwn));
+				// System.out.println("RFT Field selected data: " + FetchText(RFT_DrpDwn));
 				if (FetchText(RFT_DrpDwn).contains(RFT)) {
 					clickOn(RFT_text);
 					break;

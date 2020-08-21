@@ -57,7 +57,7 @@ public class AuditPage extends BaseClass {
 	public void Click_ActionFilter_Icon() {
 
 		List<WebElement> filtericon = driver.findElementsByAccessibilityId("PART_FilterButton");
-
+		System.out.println(filtericon.size());
 		filtericon.get(3).click();
 	}
 
@@ -86,7 +86,7 @@ public class AuditPage extends BaseClass {
 
 	// Verify that the below details is displaying when user filter the paticular
 	// action
-	public String get_Actiontext() {
+	public String get_auditEvent_text() {
 		List<WebElement> Act_Txt = driver.findElementByAccessibilityId("PART_ScrollViewer")
 				.findElements(By.className("TextBlock"));
 		return FetchText(Act_Txt.get(3));

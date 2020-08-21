@@ -1,13 +1,11 @@
 /**
- * @author ruchika.behura
- *
- */
+* @author ruchika.behura
+*
+*/
 package com.vrt.testcases;
 
 import java.awt.AWTException;
 import java.io.IOException;
-
-import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -44,7 +42,7 @@ import com.vrt.pages.SyncOutPage;
 import com.vrt.pages.SyncInAssetListPage;
 
 public class UM3 extends BaseClass {
-	
+
 	public UM3() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -72,27 +70,28 @@ public class UM3 extends BaseClass {
 	SyncOutPage SyncOutPage;
 	SyncInAssetListPage SyncInAssetListPage;
 
-	//@BeforeTest
+	// @BeforeTest
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir")+"/test-output/ER_"+"UM3_customized_UserPrivilagesTest"+".html", true);
+		extent = new ExtentReports(
+				System.getProperty("user.dir") + "/test-output/ER_" + "UM3_customized_UserPrivilagesTest" + ".html",
+				true);
 		extent.addSystemInfo("TestSuiteName", "UM3_customized_UserPrivilagesTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
-		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));		
+		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("UM3_customized_UserPrivilagesTest in Progress..");
-		
-		
-		//Rename the User file (NgvUsers.uxx) if exists
+
+		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		
+
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
@@ -111,7 +110,7 @@ public class UM3 extends BaseClass {
 		UserManagementPage.ClickNewUser();
 		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "Admintest1", getUID("SysAdmin"),
 				"1Start@1AM", "AdminNew", "123345678", "newAdmin@gmail.com");
-		
+
 		UserManagementPage.clickAnyUserinUserList("Admintest1");
 		Thread.sleep(1000);
 		UserManagementPage.Click_AllCheckBox();
@@ -154,8 +153,8 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.ChangeNewPWwithoutPWCheckBox(getUID("SysOperator"), "4Welcome4@AM",
 				getPW("SysOperator"));
 		LoginPage = MainHubPage.UserSignOut();
-		
-		//Conduct a Syncin operation		
+
+		// Conduct a Syncin operation
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
@@ -169,13 +168,13 @@ public class UM3 extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		//Verify if Syncin happened or not
+		// Verify if Syncin happened or not
 		Thread.sleep(2000);
 
 	}
 
 	// After All the tests are conducted
-    //@AfterTest
+	// @AfterTest
 	@AfterClass
 	public void endReport() throws InterruptedException {
 		extent.flush();
@@ -187,12 +186,12 @@ public class UM3 extends BaseClass {
 	// Before Method
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws InterruptedException, IOException {
-		//System.out.println("Synin Process check in UM3");
+		// System.out.println("Synin Process check in UM3");
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 	}
 
-	//After Method
+	// After Method
 	@AfterMethod(alwaysRun = true)
 	public void Teardown(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
@@ -211,15 +210,15 @@ public class UM3 extends BaseClass {
 		driver.quit();
 	}
 
-	/*// Check
-	@Test(description = "check for SyncIn im UM1")
-	public void Check() throws Exception {
-		extentTest = extent.startTest("Syncin Process check in UM1");
-		System.out.println("Syncin Process check in UM1");
-	}*/
-	
-	
-	//CADMN1
+	/*
+	 * // Check
+	 * 
+	 * @Test(description = "check for SyncIn im UM1") public void Check() throws
+	 * Exception { extentTest = extent.startTest("Syncin Process check in UM1");
+	 * System.out.println("Syncin Process check in UM1"); }
+	 */
+
+	// CADMN1
 	@Test(groups = { "Regression" }, description = "Verify the customized (non defult) "
 			+ "privileges for Administrator")
 	public void CADMN1() throws Exception {
@@ -258,7 +257,7 @@ public class UM3 extends BaseClass {
 				"FAIL: Audittrailstatus CheckBox should be Checked");
 		sa1.assertAll();
 	}
-	
+
 	// CADMN2
 	@Test(groups = { "Regression" }, description = "Verify the customized default privileges for Administrator")
 	public void CADMN2() throws Exception {
@@ -275,13 +274,11 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN058A
-	@Test(groups = {
-			"Regression" }, description = "ADMN058A-Verify if Administrator is Unable to access the "
-					+ "customized unchecked privilege-Create_Equipment")
+	// ADMN058A
+	@Test(groups = { "Regression" }, description = "ADMN058A-Verify if Administrator is Unable to access the "
+			+ "customized unchecked privilege-Create_Equipment")
 	public void ADMN058A() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN058A-Verify if Administrator is Unable to access customized unchecked "
+		extentTest = extent.startTest("ADMN058A-Verify if Administrator is Unable to access customized unchecked "
 				+ "privilege-Create_Equipment");
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
@@ -292,14 +289,12 @@ public class UM3 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User should not able to create Equipment");
 		s.assertAll();
 	}
-	
-	//ADMN058B
-	@Test(groups = {
-			"Regression" }, description = "ADMN058B-Verify Administrator is unable to access the "
-					+ "customized unchecked privilege-Edit Equipment")
+
+	// ADMN058B
+	@Test(groups = { "Regression" }, description = "ADMN058B-Verify Administrator is unable to access the "
+			+ "customized unchecked privilege-Edit Equipment")
 	public void ADMN058B() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"ADMN058B-Verify if Administrator is able to access the customized "
+		extentTest = extent.startTest("ADMN058B-Verify if Administrator is able to access the customized "
 				+ "unchecked privilege-Edit_ Equipment");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -312,12 +307,10 @@ public class UM3 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User should not able to edit Equipment");
 		s.assertAll();
 	}
-	
-	
-	//CADMN5
-	@Test(groups = {
-			"Regression" }, description = "CADMN5-Verify Admin is unable to access the customized unchecked "
-					+ "privilege-Delete Equipments")
+
+	// CADMN5
+	@Test(groups = { "Regression" }, description = "CADMN5-Verify Admin is unable to access the customized unchecked "
+			+ "privilege-Delete Equipments")
 	public void CADMN5() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN5_Verify Admin is unable to access the customized unchecked privilege-Delete Equipments");
@@ -334,11 +327,10 @@ public class UM3 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Alert message Not Matched");
 		s.assertAll();
 	}
-	
+
 	// CADMN6
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is unable to access the "
-					+ "customized unchecked privilege-Archive")
+	@Test(groups = { "Regression" }, description = "Verify if Administrator is unable to access the "
+			+ "customized unchecked privilege-Archive")
 	public void CADMN6() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN6-Verify if Administrator is unable to access the customized unchecked privilege-Archive");
@@ -353,10 +345,9 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN7
-	@Test(groups = {
-			"Regression" }, description = "Verify if Administrator is able to access the "
-					+ "customized unchecked privilege-SyncIn")
+	// CADMN7
+	@Test(groups = { "Regression" }, description = "Verify if Administrator is able to access the "
+			+ "customized unchecked privilege-SyncIn")
 	public void CADMN7() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN7_Verify if Administrator is able to access the customized unchecked privilege-Sync In");
@@ -371,9 +362,8 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN8
-	@Test(groups = {
-			"Regression" }, description = "CADMN8-Verify if Administrator is able to access the "
-					+ "customized unchecked privilege-SyncOut")
+	@Test(groups = { "Regression" }, description = "CADMN8-Verify if Administrator is able to access the "
+			+ "customized unchecked privilege-SyncOut")
 	public void CADMN8() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN8_Verify if Administrator is able to access the customized unchecked privilege-SyncOut");
@@ -387,13 +377,11 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN9
-	@Test(groups = {
-			"Regression" }, description = "CADMN9-Verify if Administrator is able to access the "
-					+ "customized unchecked privilege-Access Audit Trail")
+	// CADMN9
+	@Test(groups = { "Regression" }, description = "CADMN9-Verify if Administrator is able to access the "
+			+ "customized unchecked privilege-Access Audit Trail")
 	public void CADMN9() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"CADMN9-Verify if Administrator is able to access the customized unchecked "
+		extentTest = extent.startTest("CADMN9-Verify if Administrator is able to access the customized unchecked "
 				+ "privilege-Access Audit Trail");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -405,9 +393,8 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN10
-	@Test(groups = {
-			"Regression" }, description = "CADMN10-Verify Administrator is able to access the "
-					+ "Customized checked privilege-Create Asset")
+	@Test(groups = { "Regression" }, description = "CADMN10-Verify Administrator is able to access the "
+			+ "Customized checked privilege-Create Asset")
 	public void CADMN10() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN10_Verify Administrator is able to access the Customized checked privilege-Create Asset");
@@ -423,10 +410,9 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN11
-	@Test(groups = {
-			"Regression" }, description = "CADMN11-Verify Administrator is able to access the "
-					+ "Customized chcked privilege-Edit Asset")
+	// CADMN11
+	@Test(groups = { "Regression" }, description = "CADMN11-Verify Administrator is able to access the "
+			+ "Customized chcked privilege-Edit Asset")
 	public void CADMN11() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN11_Verify Administrator is able to access the Customized checked privilege-Edit Asset");
@@ -441,9 +427,8 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN12
-	@Test(groups = {
-			"Regression" }, description = "CADMN12-Verify if Administrator is unable to access the "
-					+ "Customized unchecked privilege-Camera Access in edit asset")
+	@Test(groups = { "Regression" }, description = "CADMN12-Verify if Administrator is unable to access the "
+			+ "Customized unchecked privilege-Camera Access in edit asset")
 	public void CADMN12() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN12_Verify if Administrator is unable to access the Customized unchecked privilege-Camera Access");
@@ -460,11 +445,10 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//dependsOnMethods = "CADMN10",
-	//ADMN060
-	@Test(groups = {
-			"Regression" }, description = "Verify Administrator is able to access the "
-					+ "customized privilege-Create Setups")
+	// dependsOnMethods = "CADMN10",
+	// ADMN060
+	@Test(groups = { "Regression" }, description = "Verify Administrator is able to access the "
+			+ "customized privilege-Create Setups")
 	public void ADMN060() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN060_Verify Administrator is able to access the customized privilege-Create Setups");
@@ -477,8 +461,8 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//dependsOnMethods = "CADMN10",
-	//CADMN14 
+	// dependsOnMethods = "CADMN10",
+	// CADMN14
 	@Test(groups = {
 			"Regression" }, description = "Verify if Administrator is unable to access the Customized non default privilege-Delete Assets")
 	public void CADMN14() throws InterruptedException, ParseException, IOException, AWTException {
@@ -497,19 +481,19 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN15
-	@Test(groups = { "Regression" }, description = "CADMN15-Verify the Customized checked privileges for Supervisor User")
+	// CADMN15
+	@Test(groups = {
+			"Regression" }, description = "CADMN15-Verify the Customized checked privileges for Supervisor User")
 	public void CADMN15() throws Exception {
 		extentTest = extent.startTest("CADMN15-Verify the Customized default privileges  for Supervisor User");
 		SoftAssert sa = new SoftAssert();
-		
+
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("Suptest1");
-		
+
 		// Validate check boxes are checked
-		sa.assertEquals(UserManagementPage.Adminstatus(), true, 
-				"FAIL:Adminstatus checkbox should be Checked");
+		sa.assertEquals(UserManagementPage.Adminstatus(), true, "FAIL:Adminstatus checkbox should be Checked");
 		sa.assertEquals(UserManagementPage.CreateAndEditEquipmentstatus(), true,
 				"FAIL:CreateAndEditEquipmentstatus CheckBox should  be Checked");
 
@@ -529,7 +513,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN16	
+	// CADMN16
 	@Test(groups = { "Regression" }, description = "Verify the Customized Non-default privileges  for Supervisor User")
 	public void CADMN16() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("CADMN16-Verify Customized Non-default privileges for Supervisor User");
@@ -564,14 +548,12 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN085A
-	@Test(groups = {
-			"Regression" }, description = "ADMN085A-Verify Supervisor is Unable to access the "
-					+ "customized  privilege-Create Assets")
+	// ADMN085A
+	@Test(groups = { "Regression" }, description = "ADMN085A-Verify Supervisor is Unable to access the "
+			+ "customized  privilege-Create Assets")
 	public void ADMN085A() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
-				.startTest("ADMN085A if Supervisor is Unable to access the "
-						+ "customized  privilege-Create Assets");
+				.startTest("ADMN085A if Supervisor is Unable to access the " + "customized  privilege-Create Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
@@ -582,10 +564,9 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//ADMN085B
-	@Test(groups = {
-			"Regression" }, description = "ADMN085B-Verify Supervisor is unable to "
-					+ "access the customized privilege-Edit Asset")
+	// ADMN085B
+	@Test(groups = { "Regression" }, description = "ADMN085B-Verify Supervisor is unable to "
+			+ "access the customized privilege-Edit Asset")
 	public void ADMN085B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ADMN085B-Verify Supervisor is unable to access the customized privilege-Edit Asset");
@@ -601,7 +582,7 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//	CADMN19
+	// CADMN19
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is able to access the customized default privilege-Delete Asset")
 	public void CADMN19() throws InterruptedException, ParseException, IOException, AWTException {
@@ -625,7 +606,7 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//	CADMN20
+	// CADMN20
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the customized unchecked privilege-Camera Access")
 	public void CADMN20() throws InterruptedException, ParseException, IOException, AWTException {
@@ -643,11 +624,10 @@ public class UM3 extends BaseClass {
 				"FAIL: Operator should be unable to access the customized unchecked privilege-Camera Access");
 		s.assertAll();
 	}
-	
-	//CADMN21 
-	@Test(groups = {
-			"Regression" }, description = "CADMN21-Verify Supervisor is able to access the "
-					+ "customized non-default privilege-Create Equipment")
+
+	// CADMN21
+	@Test(groups = { "Regression" }, description = "CADMN21-Verify Supervisor is able to access the "
+			+ "customized non-default privilege-Create Equipment")
 	public void CADMN21() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN21-Verify Supervisor is able to access the customized non-default privilege-Create Equipment");
@@ -661,16 +641,14 @@ public class UM3 extends BaseClass {
 		String ActAlertMsg = tu.get_AlertMsg_text();
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Equipment should be created successfully");
 		s.assertAll();
-	}	
-		
-	//CADMN22
-	@Test(groups = {
-			"Regression" }, description = "CADMN22-Verify Supervisor is able to access the "
-					+ "customized non-default privilege-Edit Equipment")
+	}
+
+	// CADMN22
+	@Test(groups = { "Regression" }, description = "CADMN22-Verify Supervisor is able to access the "
+			+ "customized non-default privilege-Edit Equipment")
 	public void CADMN22() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"CADMN22-Verify Supervisor is able to access the customized "
-				+ "non-default privilege-Edit Equipment");
+				"CADMN22-Verify Supervisor is able to access the customized " + "non-default privilege-Edit Equipment");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
@@ -690,12 +668,10 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN23A
-	@Test(groups = {
-			"Regression" }, description = "CADMN23A-Verify Supervisor is able to access the "
-					+ "customized non-default privilege-Delete Equipments")
+	@Test(groups = { "Regression" }, description = "CADMN23A-Verify Supervisor is able to access the "
+			+ "customized non-default privilege-Delete Equipments")
 	public void CADMN23A() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"CADMN23A_Verify Supervisor is able to access the customized "
+		extentTest = extent.startTest("CADMN23A_Verify Supervisor is able to access the customized "
 				+ "non-default privilege-Delete Equipments");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -708,15 +684,13 @@ public class UM3 extends BaseClass {
 		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN23A");
 		IRTDHubPage = IRTDDetailspage.delete_IRTD(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN23"));
-		sa.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN23A"), false, 
-				"FAIL:Supervisor Unable to delete IRTD");
+		// System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN23"));
+		sa.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN23A"), false, "FAIL:Supervisor Unable to delete IRTD");
 		sa.assertAll();
 	}
-	
+
 	// CADMN23B
-	@Test(groups = {
-	"Regression" }, description = "CADMN23B-Verify Supervisor is able to access the "
+	@Test(groups = { "Regression" }, description = "CADMN23B-Verify Supervisor is able to access the "
 			+ "customized default privilege-Archive")
 	public void CADMN23B() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
@@ -731,9 +705,8 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN24
-	@Test(groups = {
-			"Regression" }, description = "CADMN24-Verify Supervisor is able to access the customized "
-					+ "non-default privilege-Manual sync In")
+	@Test(groups = { "Regression" }, description = "CADMN24-Verify Supervisor is able to access the customized "
+			+ "non-default privilege-Manual sync In")
 	public void CADMN24() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN24-Verify Supervisor is able to access the customized non-default privilege-Manual sync In");
@@ -747,7 +720,7 @@ public class UM3 extends BaseClass {
 				"FAIL: Operator is able to access the non-default privilege-Manual sync In");
 		s.assertAll();
 	}
-	
+
 	// CADMN25
 	@Test(groups = {
 			"Regression" }, description = "Verify Supervisor is able to access the customized non-default privilege-Manual sync Out")
@@ -758,7 +731,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		FileManagementPage.ClickSyncInBtn(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		//UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
+		// UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		String ExpAlrtMsgForSyncOut = "User do not have permission to perform this operation";
 		String ActAlertMsgForSyncOut = FileManagementPage.AlertMsg();
 		s.assertEquals(ExpAlrtMsgForSyncOut, ActAlertMsgForSyncOut,
@@ -766,13 +739,11 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN26
-	@Test(groups = {
-			"Regression" }, description = "CADMN26-Verify if Supervisor is unable to access the "
-					+ "customized Non-default privilege-Access Audit Trail")
+	// CADMN26
+	@Test(groups = { "Regression" }, description = "CADMN26-Verify if Supervisor is unable to access the "
+			+ "customized Non-default privilege-Access Audit Trail")
 	public void CADMN26() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"CADMN26-Verify if Supervisor is able to access the customized Non-default "
+		extentTest = extent.startTest("CADMN26-Verify if Supervisor is able to access the customized Non-default "
 				+ "privilege-Access Audit Trail");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -787,7 +758,7 @@ public class UM3 extends BaseClass {
 
 	}
 
-	//CADMN27
+	// CADMN27
 	@Test(groups = { "Regression" }, description = "Verify customized checked privileges  for Operator User")
 	public void CADMN27() throws Exception {
 		extentTest = extent.startTest("CADMN27-Verify customized checked privileges  for Operator User");
@@ -818,7 +789,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN28
+	// CADMN28
 	@Test(groups = { "Regression" }, description = "Verify customized unchecked privileges for Operator User")
 	public void CADMN28() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("CADMN28-Verify customized unchecked privileges for Operator User");
@@ -842,7 +813,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN29
+	// CADMN29
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is able to access the customized checked privileges-Admin")
 	public void CADMN29() throws Exception {
@@ -855,11 +826,10 @@ public class UM3 extends BaseClass {
 				"FAIL: User Management screen should be displayed");
 		sa.assertAll();
 	}
-	
-	//CADMN30
-	@Test(groups = {
-			"Regression" }, description = "CADMN30-Verify Operator is able to access the "
-					+ "customized checked privileges-Create Equipment")
+
+	// CADMN30
+	@Test(groups = { "Regression" }, description = "CADMN30-Verify Operator is able to access the "
+			+ "customized checked privileges-Create Equipment")
 	public void CADMN30() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN30-Verify Operator is able to access the customized checked privilege-Create Equipment");
@@ -874,21 +844,20 @@ public class UM3 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Equipment should be created successfully");
 		EquipmentHubPage = EquipmentPage.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN30"));
-		s.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN30"), true, "FAIL:IRTD_is not created");		
+		// System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN30"));
+		s.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN30"), true, "FAIL:IRTD_is not created");
 		s.assertAll();
 
 	}
 
-	//CADMN31
-	@Test(groups = {
-			"Regression" }, description = "CADMN31-Verify Operator is able to access the "
-					+ "customized checked privilege-Edit Equipment")
+	// CADMN31
+	@Test(groups = { "Regression" }, description = "CADMN31-Verify Operator is able to access the "
+			+ "customized checked privilege-Edit Equipment")
 	public void CADMN31() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent
 				.startTest("CADMN31-Verify Operator is able to access the customized checked-Edit Equipment");
 		SoftAssert s = new SoftAssert();
-		
+
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
@@ -902,9 +871,8 @@ public class UM3 extends BaseClass {
 	}
 
 	// CADMN32
-	@Test(groups = {
-			"Regression" }, description = "CADMN32-Verify Operator is able to access the "
-					+ "customized checked privilege-Delete Equipments")
+	@Test(groups = { "Regression" }, description = "CADMN32-Verify Operator is able to access the "
+			+ "customized checked privilege-Delete Equipments")
 	public void CADMN32() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"CADMN32_Verify Operator is able to access the customized checked privilege-Delete Equipments");
@@ -919,12 +887,12 @@ public class UM3 extends BaseClass {
 		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("CADMN32");
 		IRTDHubPage = IRTDDetailspage.delete_IRTD(getUID("SysOperator"), getPW("SysOperator"));
-		//System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN32"));
+		// System.out.println(IRTDHubPage.Is_Irtd_visible("CADMN32"));
 		s.assertEquals(IRTDHubPage.Is_Irtd_visible("CADMN32"), false, "FAIL:Operator unable to delete equipment");
 		s.assertAll();
 	}
-	
-	//ADMN111	
+
+	// ADMN111
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is unable to access the customized unchecked-Create Asset")
 	public void ADMN111() throws InterruptedException, ParseException, IOException, AWTException {
@@ -941,7 +909,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//ADMN111A
+	// ADMN111A
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is unable to access the customized Unchecked privilege-Edit Assets")
 	public void ADMN111A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -968,8 +936,8 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//dependsOnMethods = "CADMN34", 
-	//CADMN35
+	// dependsOnMethods = "CADMN34",
+	// CADMN35
 	@Test(groups = {
 			"Regression" }, description = "Verify if Operator is able to access the customized checked privilege-Delete Assets")
 	public void CADMN35() throws InterruptedException, ParseException, IOException, AWTException {
@@ -986,7 +954,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN36
+	// CADMN36
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is able to access the customized checked privilege -Archive")
 	public void CADMN36() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1001,7 +969,7 @@ public class UM3 extends BaseClass {
 		sa.assertAll();
 	}
 
-	//CADMN37
+	// CADMN37
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is able to access the customized checked privilege-SyncIn")
 	public void CADMN37() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1011,12 +979,12 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("SysOperator"), getPW("SysOperator"));
-		//UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
+		// UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		s.assertEquals(SyncInPage.SyncInTextBoxVisible(), true, "FAIL:Sync In TextBox should be Visible");
 		s.assertAll();
 	}
 
-	//CADMN38
+	// CADMN38
 	@Test(groups = {
 			"Regression" }, description = "Verify Operator is able to access the customized checked privilege-SyncOut")
 	public void CADMN38() throws InterruptedException, ParseException, IOException, AWTException {
@@ -1026,8 +994,10 @@ public class UM3 extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncOutPage = FileManagementPage.ClickSyncOutBtn_SyncOutPage(getUID("SysOperator"), getPW("SysOperator"));
-		//SyncOutPage = FileManagementPage.ClickSyncOutBtn_SyncOutPage(getUID("SysOperator"), getPW("SysOperator"));
-		//UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
+		// SyncOutPage =
+		// FileManagementPage.ClickSyncOutBtn_SyncOutPage(getUID("SysOperator"),
+		// getPW("SysOperator"));
+		// UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		s.assertEquals(SyncOutPage.SyncOutTextBoxVisible(), true, "FAIL:Sync Out TextBox should be Visible");
 		s.assertAll();
 	}
@@ -1051,7 +1021,7 @@ public class UM3 extends BaseClass {
 		s.assertAll();
 	}
 
-	//CADMN40
+	// CADMN40
 	@Test(groups = {
 			"Regression" }, description = "Verify operator  is unable to access the customized unchecked privilege-Access Audit Trail")
 	public void CADMN40() throws InterruptedException, IOException, AWTException {
@@ -1067,43 +1037,39 @@ public class UM3 extends BaseClass {
 		s.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: User should not able to access for Audit Trail");
 		s.assertAll();
 	}
- 
-	//ADMN087
-	@Test(groups = {
-			"Regression" }, description = "ADMN087-Verify if Supervisor is able to access "
-					+ "the customised non-default privilege-Delete setup")
+
+	// ADMN087
+	@Test(groups = { "Regression" }, description = "ADMN087-Verify if Supervisor is able to access "
+			+ "the customised non-default privilege-Delete setup")
 	public void ADMN087() throws InterruptedException, IOException, AWTException {
-		extentTest = extent
-				.startTest("Verify if Supervisor is able to access the customised "
-						+ "non-default privilege-Delete setup");
+		extentTest = extent.startTest(
+				"Verify if Supervisor is able to access the customised " + "non-default privilege-Delete setup");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, "FAIL: User should able to delete");
 		s.assertAll();
-	} 
-	
+	}
+
 	// ADMN112
-	@Test(groups = {
-			"Regression" }, description = "ADMN112-Verify Operator is able to access the "
-					+ "customised non-default privilege-Delete setup")
+	@Test(groups = { "Regression" }, description = "ADMN112-Verify Operator is able to access the "
+			+ "customised non-default privilege-Delete setup")
 	public void ADMN112() throws InterruptedException, IOException, AWTException {
 		extentTest = extent
-				.startTest("Verify Operator is able to access the customised "
-						+ "non-default privilege-Delete setup");
+				.startTest("Verify Operator is able to access the customised " + "non-default privilege-Delete setup");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
-		assetDetailsPage.click_DeleteBtn();
+		assetDetailsPage.Click_DeleteBtn_report();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
 		s.assertEquals(assetDetailsPage.DeletePopupWindowVisible(), true, "FAIL: User should able to delete");
 		s.assertAll();
 	}
-		
+
 }

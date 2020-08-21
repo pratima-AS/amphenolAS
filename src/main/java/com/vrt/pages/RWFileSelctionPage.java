@@ -1,7 +1,7 @@
 /**
- * @author manoj.ghadei
- *
- */
+* @author manoj.ghadei
+*
+*/
 
 package com.vrt.pages;
 
@@ -21,11 +21,13 @@ import com.vrt.utility.TestUtilities;
 public class RWFileSelctionPage extends BaseClass {
 
 	// Page element variable declaration definition
-	WebElement AssetsName_Textfield = null;
+	WebElement AssetsName = null;
+	WebElement AssetsID = null;
 
 	// Page element Initialize method
 	private void initElements() {
-		AssetsName_Textfield = driver.findElementByAccessibilityId("AssetsNameTextBlock");
+		AssetsName = driver.findElementByAccessibilityId("AssetsNameTextBlock");
+		AssetsID = driver.findElementByAccessibilityId("EqIdTextBox");
 
 	}
 
@@ -35,17 +37,39 @@ public class RWFileSelctionPage extends BaseClass {
 		initElements();
 	}
 
-	// Release memory
+// Release memory
 	public void resetWebElements() {
-		AssetsName_Textfield = null;
+		AssetsName = null;
+		AssetsID = null;
 
 	}
-	// verify the presence of ExportToExcel Btn
+
+// verify the presence of  Asset Name
 
 	public boolean assetDetailTitle_Visible() {
-		return IsElementVisibleStatus(AssetsName_Textfield);
+		return IsElementVisibleStatus(AssetsName);
+	}
+
+// verify the presence of Asset Id
+
+	public boolean assetID_Visible() {
+		return IsElementVisibleStatus(AssetsID);
+	}
+
+// verify the presence of Asset Type (HARD CODE because This asset  has sync In through application)
+
+	public boolean assetType_Visible() {
+		WebElement AssetsType = driver.findElementByName("HeatBath");
+
+		return IsElementVisibleStatus(AssetsType);
+	}
+
+// verify the presence of Manufacturer  (HARD CODE because This asset  has sync In through application)
+
+	public boolean assetManufacturer_Visible() {
+		WebElement AssetsManufacturer = driver.findElementByName("Kaye");
+
+		return IsElementVisibleStatus(AssetsManufacturer);
 	}
 
 }
-		
-	
