@@ -271,7 +271,6 @@ public class assetCreationTest extends BaseClass{
 				"FAIL: Select is not the default Asset Type selected data");
 		sa6.assertAll();
 	}
-
 	
 	//ASST08-Verify if 50 max character length for Asset Type field
 	@Test(groups = {"Sanity", "Regression"}, 
@@ -309,7 +308,7 @@ public class assetCreationTest extends BaseClass{
 	@Test(dataProvider="ASST10", dataProviderClass=assetCreationUtility.class, groups = {"Sanity"},
 			description="ASST10-Verify the invalid inputs in Asset Type field")
 	public void ASST10(String Name, String ID, String Type, String Manufacturer, 
-			String Location, String ExpAlrtMsg, String UserName, String Password) throws InterruptedException {
+			String Location, String ExpAlrtMsg) throws InterruptedException {
 		extentTest = extent.startTest("ASST10-Verify the invalid inputs in Asset Type field");
 		SoftAssert sa9 = new SoftAssert();
 		assetCreationPage.assetCreationWithType(Name, ID, Type, Manufacturer, Location);		
@@ -319,7 +318,6 @@ public class assetCreationTest extends BaseClass{
 		sa9.assertAll();
 	}
 		
-	
 	//ASST11-Verify if the Asset types are sorted in alphabetic order 
 	@Test(groups = {"Sanity", "Functional"},
 			description="ASST11-Verify if the Asset types are sorted in alphabetic order")
@@ -361,7 +359,6 @@ public class assetCreationTest extends BaseClass{
 		sa11.assertEquals(OriginalList, SortedNewList);
 		sa11.assertAll();
 	}
-
 	
 	//ASST12-Verify the drop down list values for Manufacturer field
 	@Test(groups = {"Sanity" }, 

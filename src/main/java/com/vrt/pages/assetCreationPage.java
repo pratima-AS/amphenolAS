@@ -129,6 +129,7 @@ public class assetCreationPage extends BaseClass{
 	public void enterAssetID(String AID) {
 		ClearText(AssetIDTxtBox);
 		enterText(AssetIDTxtBox, AID);
+		clickOn(AssetIDTxtBox);
 	}
 	
 	//Fetch the Asset/Eqp ID text
@@ -209,7 +210,8 @@ public class assetCreationPage extends BaseClass{
 	public void enterAssetType(String Atype) {
 		clickOn(AssetEditBox.get(0));
 		//ClearText(AssetEditBox.get(0));
-		AssetEditBox.get(0).sendKeys(Atype);		
+		AssetEditBox.get(0).sendKeys(Atype);
+		clickOn(AssetEditBox.get(0));
 	}
 	
 	//Get Asset Type
