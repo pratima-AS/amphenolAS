@@ -113,7 +113,7 @@ public class SyncInAssetListPage  extends BaseClass{
 	public void click_Success_alrtMeg_OkBtn() {		
 		WebElement Success_alrtMeg_OkBtn = driver.findElementByAccessibilityId("Button0");
 		try {
-			checkingElementClickable(Success_alrtMeg_OkBtn, 10).click();
+			checkingElementClickable(Success_alrtMeg_OkBtn, 20).click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

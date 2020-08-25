@@ -109,21 +109,18 @@ public class Setup_QualParamPage extends BaseClass {
 	}
 
 	// fetch date from Time Of The Day window
-
 	public String fetch_Date() {
 		WebElement date = driver.findElementByAccessibilityId("PART_PickerButton");
 		return FetchText(date);
 	}
 
 	// fetch Hour from Time Of The Day window
-
 	public String fetch_Hour() {
 		WebElement Hr = driver.findElementByAccessibilityId("Hours");
 		return FetchText(Hr);
 	}
 
 	// fetch Minute from Time Of The Day window
-
 	public String fetch_Min() {
 		WebElement Mn = driver.findElementByAccessibilityId("Min");
 		return FetchText(Mn);

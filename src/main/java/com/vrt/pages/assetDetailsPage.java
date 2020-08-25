@@ -267,24 +267,28 @@ public class assetDetailsPage extends BaseClass {
 
 	// Study file name
 	public String qual_StudyFilename_text() {
-		WebElement Qual_StudyFilename = driver.findElementByName("manual 1 min sampling");
-		return FetchText(Qual_StudyFilename);
+		List<WebElement> Qual_StudyFilename = driver.findElementByClassName("ListViewItem")
+				.findElements(By.className("TextBlock"));
+		return FetchText(Qual_StudyFilename.get(0));
+
 	}
 
-	/*
-	 * //Run number field for the study file public boolean
-	 * qual_StudyFile_Runnumberfield_state() { WebElement runstate =
-	 * driver.findElementByName("| Run#:"); return IsElementVisibleStatus(runstate);
-	 * }
-	 */
+	// Run number field for the study file
+	public String get_QualStudyFile_Runnumberfield_() {
+		List<WebElement> runstate = driver.findElementByClassName("ListViewItem")
+				.findElements(By.className("TextBlock"));
+		return FetchText(runstate.get(3));
+	}
+
 	// Comments given during saving the study
 
 	public String qual_StudyFile_Comments_txt() {
-		WebElement studyCom = driver.findElementByName("1 min sampling with lethality");
-		return FetchText(studyCom);
+		List<WebElement> comment = driver.findElementByClassName("ListViewItem")
+				.findElements(By.className("TextBlock"));
+		return FetchText(comment.get(5));
 	}
 
-//click on DeleteQualificationButton  
+	// click on DeleteQualificationButton
 	public void click_DeleteQualificationButton() {
 		WebElement DeleteBtn_Qual = driver.findElementByAccessibilityId("DeleteQualificationButton");
 		clickOn(DeleteBtn_Qual);
@@ -380,9 +384,15 @@ public class assetDetailsPage extends BaseClass {
 		return new SelectBaseStationPage();
 	}
 
+	// Time of the day window will display
+	public void SOP_Next(String SNum) throws InterruptedException, IOException {
+		Enter_SOPNum(SNum);
+		StartQual_OKButton();
+	}
+
 	// SOP Invalid value where application should not move to next page and should
 	// give an error message
-	public void SOP_InvalidData(String SNum) throws InterruptedException, IOException {
+	public void enter_SOP_InvalidData(String SNum) throws InterruptedException, IOException {
 		Enter_SOPNum(SNum);
 		StartQual_OKButton();
 	}
@@ -992,6 +1002,38 @@ public class assetDetailsPage extends BaseClass {
 
 			}
 		}
+	}
+
+//Select Detailed Report
+	public void Select_DetailedReport() throws InterruptedException, IOException {
+
+		List<WebElement> DRList = driver.findElementByClassName("ListView").findElements(By.className("ListViewItem"));
+
+		// Loop for the different serial number created
+		for (int i = 0; i < DRList.size(); i++) {
+			List<WebElement> DREPORTList = DRList.get(i).findElements(By.name("D"));
+
+			for (int j = 0; j < DREPORTList.size(); j++) {
+				DREPORTList.get(0).click();
+			}
+		}
+
+	}
+	// Select Summary Report
+
+	public void Select_SummaryReport() throws InterruptedException, IOException {
+
+		List<WebElement> SRList = driver.findElementByClassName("ListView").findElements(By.className("ListViewItem"));
+
+		// Loop for the different serial number created
+		for (int i = 0; i < SRList.size(); i++) {
+			List<WebElement> SREPORTList = SRList.get(i).findElements(By.name("S"));
+
+			for (int j = 0; j < SREPORTList.size(); j++) {
+				SREPORTList.get(0).click();
+			}
+		}
+
 	}
 
 	// Get the setup report count

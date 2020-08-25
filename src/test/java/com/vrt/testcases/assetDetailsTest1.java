@@ -43,6 +43,7 @@ import com.vrt.pages.FileManagementPage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.CopySetuppage;
+import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.SelectBaseStationPage;
 import com.vrt.pages.Setup_CalculationsPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
@@ -110,8 +111,7 @@ public class assetDetailsTest1 extends BaseClass {
 		// Delete all files from the AutoLogs folder
 		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\AutoLogs";
 		tu.DeleteFiles(path);
-
-		// System.out.println(" AutoLogs Folder is cleared now ");
+		System.out.println(" AutoLogs Folder is cleared now ");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -191,7 +191,7 @@ public class assetDetailsTest1 extends BaseClass {
 		extent.flush();
 		extent.close();
 		assetDetailsPage.resetWebElements();
-		System.out.println("assetDetails Test  Completed.");
+		System.out.println("assetDetails1 Test  Completed.");
 	}
 
 	// Before Method(Test) method
@@ -712,7 +712,7 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_InitiateQualBtn();
-		assetDetailsPage.SOP_InvalidData(SNum);
+		assetDetailsPage.enter_SOP_InvalidData(SNum);
 
 		String ExpAlrtMsg = "SOP Protocol Number accepts alpha numeric and special characters like space,-,_ ,.,?,slash (forward and backward).";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -835,14 +835,21 @@ public class assetDetailsTest1 extends BaseClass {
 	@Test(dataProvider = "ASST025STP", dataProviderClass = assetCreationUtility.class, groups = {
 			"Regression" }, description = "ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is defined as _Start on date and time_")
 
-	public void ASST025STP(String SetupName, String SensorCount, String TempCount, String TCSensorLabel, String Qstart,
-			String TOD) throws InterruptedException, IOException, AWTException, ParseException {
+	public void ASST025STP(String AName, String AID, String AType, String AManufaturer, String ALocation,
+			String SetupName, String SensorCount, String TempCount, String TCSensorLabel, String Qstart, String TOD)
+			throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
 				"ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is defined as _Start on date and time_");
 		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
-		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
+		assetCreationPage = assetHubPage.ClickAddAssetBtn();
+
+		assetCreationPage.assetCreation(AName, AID, AType, AManufaturer, ALocation);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		assetHubPage = assetCreationPage.clickBackBtn();
+		assetDetailsPage = assetHubPage.click_assetTile(AName);
+		// Define Setup
 //Define Setup
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
@@ -884,14 +891,12 @@ public class assetDetailsTest1 extends BaseClass {
 		// Thread.sleep(1000);
 		assetDetailsPage = Setup_ReviewPage.click_backBtn();
 		assetDetailsPage.Click_SetupName(SetupName);
-		defineSetupPage = assetDetailsPage.editStupBtn_Position_0();
-		assetDetailsPage = defineSetupPage.defineSetupPage_backBtn();
-		assetDetailsPage.Click_SetupName(SetupName);
 		assetDetailsPage.click_InitiateQualBtn();
-		assetDetailsPage.StartQual_OKButton();
-		Thread.sleep(1000);
+
+		assetDetailsPage.SOP_Next("1");
 		sa.assertEquals(assetDetailsPage.isTimeOfTheDay_alertbox_visible(), true,
 				"Fail: time of the day is not visible");
+		Thread.sleep(2000);
 
 		String Date_TOD = assetDetailsPage.fetch_Date_TOD();
 		String Hour_TOD = assetDetailsPage.fetch_Hour_TOD();
@@ -1152,7 +1157,7 @@ public class assetDetailsTest1 extends BaseClass {
 		File f1 = new File(downloadPath1);
 		f1.delete();
 		OverlayWiringImagePage.click_GroupOverlayRprtGenerate_Popup();
-		//Thread.sleep(3000);
+		Thread.sleep(3000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\WiringLayOut.pdf";
 		File f = new File(downloadPath);
@@ -1185,7 +1190,7 @@ public class assetDetailsTest1 extends BaseClass {
 		File f1 = new File(downloadPath1);
 		f1.delete();
 		OverlayWiringImagePage.click_GroupOverlayRprtGenerate_Popup();
-		//Thread.sleep(3000);
+		Thread.sleep(3000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\GroupWiringLayOut.pdf";
 		File f = new File(downloadPath);
@@ -1205,7 +1210,7 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST036WO-Verify user is unable to generate the wiring overlay report from
 	// Asset details screen when there is no report generation privilege given
-//This test cases is not implimented yet and not valid for build 1.1.0.8
+	// This test cases is not implemented yet and not valid for build 1.1.0.8
 
 	// ASST037-Verify the on-click functionality of the print icon for a setup
 	// ASST039STP-Verify the Audit trail for print Setup report activity (This Test
@@ -1338,12 +1343,10 @@ public class assetDetailsTest1 extends BaseClass {
 				"FAIL: Qual Study File name is not Present");
 		sa.assertEquals(assetDetailsPage.get_DateUnder_Qual(), "18-Mar-2020 13:12:41",
 				"FAIL: Date under Qual Study File name is not displaying");
-
-		// sa.assertEquals(assetDetailsPage.qual_StudyFile_Runnumberfield_state(), true,
-		// "FAIL: Run Number# under Qual Study File name is not available ");
+		sa.assertEquals(assetDetailsPage.get_QualStudyFile_Runnumberfield_(), "1",
+				"FAIL: Run Number# under Qual Study File name is not available ");
 		sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), "1 min sampling with lethality",
 				"FAIL: Comments under Qual Study File name is not displaying");
-
 		sa.assertEquals(assetDetailsPage.Qual_DeleteBtn_state(), true, "FAIL: Qual Delete Button is not Present");
 		sa.assertEquals(assetDetailsPage.IsGenerateReportsBtn_Visible(), true,
 				"FAIL: Generate Reports Btn is not Present");
@@ -1504,7 +1507,7 @@ public class assetDetailsTest1 extends BaseClass {
 		sa.assertEquals(assetDetailsPage.ReportsHeaderText_state(), true, "FAIL: Report Heaser  is not Present");
 		sa.assertEquals(assetDetailsPage.Get_ReportFile_Name(), "manual 1 min sampling",
 				"FAIL: Report Heaser  is not Present");
-		sa.assertEquals(assetDetailsPage.setupReport_Count(), 2, "FAIL: Report Header  count has not fetched");
+		sa.assertEquals(assetDetailsPage.setupReport_Count(), 1, "FAIL: Report Header  count has not fetched");
 		sa.assertEquals(assetDetailsPage.get_Date_SetupReport(), "19-Mar-2020 13:52:45",
 				"FAIL: Date under Qual Study File name is not displaying");
 
@@ -1536,13 +1539,15 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local
 	// drive
+	// ASST055REP-Verify if Audit trial record exists for Copy of a setup report
 
 	@Test(groups = { "Regression" }, description = "ASST053REP-Verify -Copy to drive- "
 			+ "functionality of a Setup Report for local drive")
 	public void ASST053A() throws InterruptedException, ParseException, IOException, AWTException {
 
-		extentTest = extent
-				.startTest("ASST053REP-Verify -Copy to drive- functionality " + "of a Setup Report for local drive");
+		extentTest = extent.startTest(
+				"ASST053REP,ASST055REP-Verify -Copy to drive- functionality of a Setup Report for local drive"
+						+ "Verify if Audit trial record exists for Copy of a setup report");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
@@ -1574,6 +1579,16 @@ public class assetDetailsTest1 extends BaseClass {
 
 		}
 
+		assetHubPage = assetDetailsPage.ClickBackBtn();
+		MainHubPage = assetHubPage.click_BackBtn();
+		AuditPage = MainHubPage.ClickAuditTitle();
+		Thread.sleep(5000);
+		String Actionmsg = AuditPage.get_auditEvent_text();
+		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
+
+		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record does not exists for Copy of a Detailed report");
+		sa.assertAll();
+
 	}
 
 	// ASST053_1REP-Verify the on-click functionality of PDF icon for Detailed
@@ -1590,7 +1605,7 @@ public class assetDetailsTest1 extends BaseClass {
 
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.Select_DetailedReport();
 
 		String downloadPath1 = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
@@ -1627,31 +1642,38 @@ public class assetDetailsTest1 extends BaseClass {
 	// under Reports tile-Qualifications sub tab
 
 	@Test(groups = {
-			"Regression" }, description = "ASST054REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab")
+			"Regression" }, description = "ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab")
 	public void ASST054A_REP() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ASST054REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab");
+				"ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
-		assetDetailsPage.Select_ReportFile("manual 1 min samplin");
+		assetDetailsPage.Select_SummaryReport();
 		assetDetailsPage.click_printBtn_Report();
 		Thread.sleep(4000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
-		assetDetailsPage.perform_alt_tab_OP();
-		assetHubPage = assetDetailsPage.ClickBackBtn();
-		MainHubPage = assetHubPage.click_BackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(5000);
-		String Actionmsg = AuditPage.get_auditEvent_text();
-		System.out.println(Actionmsg);
-		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
+		Thread.sleep(3000);
+		String downloadPath = System.getProperty("user.home")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\S=(manual 1 min samplin)=1=09-Jun-2020 15-27-34=.pdf";
+		File f = new File(downloadPath);
+		if (f.exists()) {
+			sa.assertEquals(f.getName(), "S=(manual 1 min samplin)=1=09-Jun-2020 15-27-34=.pdf",
+					" File is not available");
+			sa.assertAll();
+			// System.out.println("success");
+		} else {
+			sa.assertEquals(f.getName(), "S=(manual 1 min samplin)=1=09-Jun-2020 15-27-34=.pdf",
+					" File has not downloded");
+			sa.assertAll();
+			// System.out.println("fail to find the File");
+		}
 
-		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record does not exists for Copy of a setup report ");
-		sa.assertAll();
 	}
+	// ASST055REP-Verify if Audit trial record exists for Copy of a setup report
+	// ASST055REP is handling under ASST053REP
 
 	// ASST056REP-Verify the on-click functionality of PDF icon under Reports
 	// tile-Setups sub tab
@@ -1728,7 +1750,7 @@ public class assetDetailsTest1 extends BaseClass {
 			if (filename.contains(expFileName)) {
 				sa.assertEquals(filename, expFileName, "FAIL: Incorrect file is copied or "
 						+ "not all copeid during Copy to drive operation for report");
-
+				break;
 			}
 		}
 		sa.assertAll();
@@ -1778,10 +1800,10 @@ public class assetDetailsTest1 extends BaseClass {
 			if (filename.contains(expFileName)) {
 				sa.assertEquals(filename, expFileName, "FAIL: Incorrect file is copied or "
 						+ "not all copeid during Copy to drive operation for report");
+				sa.assertAll();
 
 			}
 		}
-		sa.assertAll();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
@@ -1794,6 +1816,8 @@ public class assetDetailsTest1 extends BaseClass {
 
 	}
 
+	// ASST063REP-Verify -Copy to drive- functionality of a Summary Report for USB
+	// drive This TC will handle Manually due to hard drive dependency
 	// ASST065REP-Verify -Copy to drive- functionality of a Pass_Fail Report for
 	// local drive
 
@@ -1831,6 +1855,7 @@ public class assetDetailsTest1 extends BaseClass {
 			if (filename.contains(expFileName)) {
 				sa.assertEquals(filename, expFileName, "FAIL: Incorrect file is copied or "
 						+ "not all copeid during Copy to drive operation for report");
+				sa.assertAll();
 
 			}
 		}
@@ -1846,6 +1871,10 @@ public class assetDetailsTest1 extends BaseClass {
 				"FAIL: Audit trial record does not exists for Copy of a Pass_Fail report");
 		sa.assertAll();
 	}
+////ASST066REP-Verify -Copy to drive- functionality of a Pass_Fail Report for USB drive
+	// This ASST066REP TC will handle manually as its depend on hard drive
+
+	// ASST067REP is handling under ASST065REP
 
 	// ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report
 	// under Reports tile-Pass_Fail sub tab
@@ -1886,7 +1915,11 @@ public class assetDetailsTest1 extends BaseClass {
 			System.out.println("fail to find the File");
 		}
 	}
+	// ASST069REP,ASST070REP is handling in AssetDetailsTest-2 class
 
+	// ASST072REP-Verify the reports are not displayed in Reports tile when the
+	// files are edited unless they are re-generated
+	// This ASST072REP will handel manually as its related to report
 	// ASST073REP-Verify if user is not able to delete the reports when there are no
 	// privileges given
 	// This test case similar as ADMN081B test case which is present in UM4 class
@@ -1967,13 +2000,17 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage.click_UploadDocsBtn();
 		assetDetailsPage.uploadDoc_Assetdetails("1065306A4C9C5E7376FC.cfg");
 
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "3",
+		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
 				"FAIL:Reports tile count is  increasing  under Asset details page");
 		sa.assertAll();
 	}
 
 	// ASST078-Verify -Copy to drive- functionality of an uploaded document for
 	// local drive
+
+	// ASST079-Verify -Copy to drive- functionality of an uploaded document for USB
+	// drive
+	// This TC will handel manuaaly
 
 	// ASST080-Verify if Audit trial record exists for Copy of a Document (This test
 	// case has covered under ASST078 test case )
@@ -2054,6 +2091,11 @@ public class assetDetailsTest1 extends BaseClass {
 		}
 
 	}
+
+	// ASST082-Verify the on-click functionality of Delete icon for a document under
+	// Documents tile
+	// ASST083-Verify if Audit trial record exists for Deletion of a Document
+	// This ASST082 and ASST083 are handled in AssetDetailsTest-2 class
 
 	// ASST084-Verify if the application declines uploading documents that has same
 	// name
@@ -2142,10 +2184,10 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST090-Verify the About btn functionality in bottom menu options in Asset
 	// details screen
-	@Test(description = "ASST54-Verify the About btn functionality in bottom menu options in Asset creation screen")
+	@Test(description = "ASST090-Verify the About btn functionality in bottom menu options in Asset creation screen")
 	public void ASST090() throws InterruptedException {
-		extentTest = extent
-				.startTest("ASST54-Verify the About btn functionality in bottom menu options in Asset creation screen");
+		extentTest = extent.startTest(
+				"ASST090-Verify the About btn functionality in bottom menu options in Asset creation screen");
 		SoftAssert sa = new SoftAssert();
 
 		assetDetailsPage.Click_About_Icon_AppBar();
