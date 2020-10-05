@@ -110,17 +110,17 @@ public class HitNTrialTests extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("UserManagementTest in Progress..");
 
-		/*
-		//Rename the User file (NgvUsers.uxx) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+		
+		//delete the User file (NgvUsers.uxx) if exists
+		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 		
 		
-		
+		/*
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
@@ -175,8 +175,8 @@ public class HitNTrialTests extends BaseClass {
 	// Before Method(Test) method
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws InterruptedException, IOException {
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
+		//LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		//LoginPage = new LoginPage();
 		//MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		//UserManagementPage = MainHubPage.ClickAdminTile_UMpage();		
 	}
@@ -234,18 +234,7 @@ public class HitNTrialTests extends BaseClass {
 			"Regression" }, description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
 	public void ADMN062() 
 			throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent
-				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
-
-		String filepath= System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\AutoLogs";
-		List<String> fn = tu.get_fileNamesList(filepath);
-		String expFileName= "1065306A4C9C5E7376FC.cfg";
-		for (String filename : fn) {
-			System.out.println(filename);
-			if (!filename.contains(expFileName)) {
-				System.out.println("Expected setup file is not copied to the destination folder");
-			}
-		}
+		System.out.println("check for file deletion");
 	}
 
 }

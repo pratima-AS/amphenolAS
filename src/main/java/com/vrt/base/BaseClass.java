@@ -280,6 +280,24 @@ public class BaseClass {
 		}				
 	}
 	
+	//File deleting method
+	public void deleteFile(String filePath, String fileName) throws IOException {
+
+		// File path
+		String filepath = filePath;
+		File file = new File(filepath + "/" + fileName);
+		
+		//System.out.println(file.exists());
+		if (!file.exists()) {
+			//file.createNewFile();
+			System.out.println("Target File: " +fileName+ " NOT present");
+		} else {
+			if (file.delete()) {
+				System.out.println(fileName+" file deleted");
+			}			
+		}				
+	}
+	
 	//Get the Sw version info from the About window on clicking About icon of the bottom apps bar
 		public String get_SWVersion_About_Text() throws InterruptedException {
 			Actions ac = new Actions(driver);
