@@ -265,7 +265,7 @@ public class assetDetailsPage extends BaseClass {
 		return QUALList.size();
 	}
 
-	// Study file name
+	// Study file name for syncIn Setup
 	public String qual_StudyFilename_text() {
 		List<WebElement> Qual_StudyFilename = driver.findElementByClassName("ListViewItem")
 				.findElements(By.className("TextBlock"));
@@ -273,14 +273,14 @@ public class assetDetailsPage extends BaseClass {
 
 	}
 
-	// Run number field for the study file
+	// Run number field for the study file for syncIn Setup
 	public String get_QualStudyFile_Runnumberfield_() {
 		List<WebElement> runstate = driver.findElementByClassName("ListViewItem")
 				.findElements(By.className("TextBlock"));
 		return FetchText(runstate.get(3));
 	}
 
-	// Comments given during saving the study
+	// Comments given during saving the study for syncIn Setup
 
 	public String qual_StudyFile_Comments_txt() {
 		List<WebElement> comment = driver.findElementByClassName("ListViewItem")
@@ -392,7 +392,7 @@ public class assetDetailsPage extends BaseClass {
 
 	// SOP Invalid value where application should not move to next page and should
 	// give an error message
-	public void enter_SOP_InvalidData(String SNum) throws InterruptedException, IOException {
+	public void SOP_InvalidData(String SNum) throws InterruptedException, IOException {
 		Enter_SOPNum(SNum);
 		StartQual_OKButton();
 	}
@@ -1338,4 +1338,30 @@ public class assetDetailsPage extends BaseClass {
 		return FetchText(REPORTList.get(0));
 
 	}
+
+	// Check is setup tile empty
+
+	public boolean IsSetupTile_Empty() throws IOException {
+		List<WebElement> SetupList = driver.findElementByClassName("ListView")
+				.findElements(By.className("ListViewItem"));
+		// WebElement SetupList = driver.findElementByClassName("ListViewItem");
+		return SetupList.isEmpty();
+	}
+
+	// Get Setup File name
+	public String Get_Setup_Name() throws InterruptedException, IOException {
+		List<WebElement> SetupList = driver.findElementByClassName("ListViewItem")
+				.findElements(By.className("TextBlock"));
+		return FetchText(SetupList.get(0));
+
+	}
+
+	// Get Setup created date File name
+	public String Get_Setup_Date() throws InterruptedException, IOException {
+		List<WebElement> SetupList = driver.findElementByClassName("ListViewItem")
+				.findElements(By.className("TextBlock"));
+		return FetchText(SetupList.get(1));
+
+	}
+
 }

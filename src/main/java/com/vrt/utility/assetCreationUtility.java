@@ -3,7 +3,6 @@ package com.vrt.utility;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.InvalidPropertiesFormatException;
 
 import org.apache.poi.ss.usermodel.Sheet;
@@ -70,7 +69,6 @@ public class assetCreationUtility extends BaseClass {
 
 	@DataProvider(name = "ASST02")
 	public static Object[][] getAstNameValidTestData() {
-
 		String sheetName = "ASST02";
 		Object[][] data = getTestData(sheetName);
 		return data;
@@ -363,7 +361,7 @@ public class assetCreationUtility extends BaseClass {
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
-	
+
 	@DataProvider(name = "maxASST")
 	public static Object[][] maxASST() {
 		String sheetName = "maxASST";
@@ -371,4 +369,73 @@ public class assetCreationUtility extends BaseClass {
 		return data;
 	}
 
+	@DataProvider(name = "ASST016STP")
+	public static Object[][] ASST016STP() {
+		String sheetName = "ASST016STP";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "ASST037")
+	public static Object[][] ASST037() {
+		String sheetName = "ASST037";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CA002")
+	public static Object[][] CA002() {
+		String sheetName = "CA002";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CA004")
+	public static Object[][] CA004() {
+		String sheetName = "CA004";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CA005")
+	public static Object[][] CA005() {
+		String sheetName = "CA005";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CA007")
+	public static Object[][] CA007() {
+		String sheetName = "CA007";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CA008")
+	public static Object[][] CA008() {
+		String sheetName = "CA008";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CS002")
+	public static Object[][] CS002() {
+		String sheetName = "CS002";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CS013")
+	public static Object[][] CS013() {
+		String sheetName = "CS013";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CS012")
+	public static Object[][] CS012() {
+		String sheetName = "CS012";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
 }

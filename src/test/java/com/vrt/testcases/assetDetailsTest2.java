@@ -92,7 +92,7 @@ public class assetDetailsTest2 extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("assetDetailsTest2 Test in Progress..");
+		System.out.println("AssetDetails Test in Progress..");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -152,6 +152,7 @@ public class assetDetailsTest2 extends BaseClass {
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
+
 	}
 
 	// After All the tests are conducted

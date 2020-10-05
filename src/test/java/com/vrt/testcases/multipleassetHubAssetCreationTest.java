@@ -71,6 +71,7 @@ public class multipleassetHubAssetCreationTest extends BaseClass{
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("Multi AssetCreation Test in Progress..");
 		
+		
 		//Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -168,11 +169,12 @@ public class multipleassetHubAssetCreationTest extends BaseClass{
 		System.out.println("Asset COunt: "+count);
 	}
 	
+	
 	//maxASST_creation-Verify 200 assets are created with each categories model, size, manufacturer,Location and Type
 	@Test(groups = {"Sanity", "Regression"}, 
 			description = "ASSTHB012-maxASST_creation-Verify 200 assets are created with each "
 			+ "categories model, size, manufacturer,Location and Type")
-	public void ASSTHB012()
+	public void ASSTHB012b()
 					throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASSTHB012: ASSTHB012-Verify 200 assets are created with each categories model, "
 				+ "size, manufacturer,Location and Type");

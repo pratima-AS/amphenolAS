@@ -107,11 +107,12 @@ public class assetDetailsTest1 extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("AssetCreation Test in Progress..");
+		System.out.println("AssetDetails Test in Progress..");
 		// Delete all files from the AutoLogs folder
 		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\AutoLogs";
 		tu.DeleteFiles(path);
-		System.out.println(" AutoLogs Folder is cleared now ");
+
+		// System.out.println(" AutoLogs Folder is cleared now ");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -167,7 +168,6 @@ public class assetDetailsTest1 extends BaseClass {
 		assetHubPage = assetCreationPage.clickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 
-		// Sync IN Assets and setups
 		FileManagementPage = MainHubPage.ClickFileManagementTitle();
 		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
 		SyncInPage.enter_Filepath("syncin");
@@ -179,7 +179,6 @@ public class assetDetailsTest1 extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(7000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		// Verify if Synnin happened or not
 		Thread.sleep(2000);
 
 	}
@@ -191,7 +190,7 @@ public class assetDetailsTest1 extends BaseClass {
 		extent.flush();
 		extent.close();
 		assetDetailsPage.resetWebElements();
-		System.out.println("assetDetails1 Test  Completed.");
+		System.out.println("assetDetails Test  Completed.");
 	}
 
 	// Before Method(Test) method
@@ -282,8 +281,6 @@ public class assetDetailsTest1 extends BaseClass {
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
 		defineSetupPage.enter_defineSetupPage_setupName(SetupName);
-		defineSetupPage.click_defineSetupPage_SensorCountField();
-		defineSetupPage.clear_defineSetupPage_SensorCount();
 		defineSetupPage.enter_defineSetupPage_SensorCount(SensorCount);
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -468,10 +465,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Copyassetpage.Enter_NewAssetIDField("19");
 		Copyassetpage.click_copy_Btn();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		Copyassetpage.clickBack_Button();
-		// This is related to BUG
-		assetDetailsPage = Copyassetpage.Yes_alert();
-
+		assetDetailsPage = Copyassetpage.clickBack_Button();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
@@ -712,7 +706,9 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.click_InitiateQualBtn();
-		assetDetailsPage.enter_SOP_InvalidData(SNum);
+		assetDetailsPage.SOP_InvalidData(SNum);
+
+		Thread.sleep(2000);
 
 		String ExpAlrtMsg = "SOP Protocol Number accepts alpha numeric and special characters like space,-,_ ,.,?,slash (forward and backward).";
 		String ActAlertMsg = tu.get_AlertMsg_text();
@@ -762,14 +758,14 @@ public class assetDetailsTest1 extends BaseClass {
 	}
 
 	// ASST024_E-Verify the filed level validations for Run number field in Initiate
-	// qualification pop-up-Valid value
+	// qualification pop-up-InValid value
 
 	@Test(dataProvider = "ASST024_E", dataProviderClass = assetCreationUtility.class, groups = {
-			"Regression" }, description = "ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value")
+			"Regression" }, description = "ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value")
 
 	public void ASST024_E(String RNum) throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value");
+				"ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value");
 
 		SoftAssert sa = new SoftAssert();
 
@@ -1189,7 +1185,7 @@ public class assetDetailsTest1 extends BaseClass {
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\GroupWiringLayOut.pdf";
 		File f1 = new File(downloadPath1);
 		f1.delete();
-		OverlayWiringImagePage.click_GroupOverlayRprtGenerate_Popup();
+		OverlayWiringImagePage.click_All_GroupOverlayReportGenerate_printOption();
 		Thread.sleep(3000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\GroupWiringLayOut.pdf";
@@ -2000,7 +1996,7 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage.click_UploadDocsBtn();
 		assetDetailsPage.uploadDoc_Assetdetails("1065306A4C9C5E7376FC.cfg");
 
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
+		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "3",
 				"FAIL:Reports tile count is  increasing  under Asset details page");
 		sa.assertAll();
 	}
