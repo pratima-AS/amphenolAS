@@ -1,3 +1,7 @@
+/*This script is designed particularly for creating multiple Assets & setups for the respective asset.
+This can be handy particular in Regression Testing
+*/
+
 package com.vrt.testcases;
 
 import java.awt.AWTException;
@@ -20,19 +24,18 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.vrt.base.BaseClass;
 import com.vrt.pages.LoginPage;
 import com.vrt.pages.MainHubPage;
-import com.vrt.pages.Setup_SensorConfigPage;
-import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.assetDetailsPage;
 import com.vrt.pages.assetHubPage;
+import com.vrt.pages.Setup_SensorConfigPage;
+import com.vrt.pages.Setup_SensorDescriptionPage;
+import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
 import com.vrt.pages.Setup_CalculationsPage;
 import com.vrt.pages.Setup_QualParamPage;
 import com.vrt.pages.Setup_ReviewPage;
 
-
-import com.vrt.utility.sensorCofigUtility;
 import com.vrt.utility.setupCreationUtility;
 import com.vrt.utility.userManagementUtility;
 import com.vrt.utility.TestUtilities;
@@ -59,6 +62,7 @@ public class setup_CreationTest extends BaseClass {
 	assetDetailsPage assetDetailsPage;
 	Setup_defineSetupPage defineSetupPage;
 	Setup_SensorConfigPage Setup_SensorConfigPage;
+	Setup_SensorDescriptionPage Setup_SensorDescriptionPage;
 	Setup_GroupSensorsPage Setup_GroupSensorsPage;
 	Setup_CalculationsPage Setup_CalculationsPage;
 	Setup_QualParamPage Setup_QualParamPage;
@@ -82,17 +86,17 @@ public class setup_CreationTest extends BaseClass {
 		
 		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
+		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		// Rename the cache Setup file (Asset.txt) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
+		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
 		// Rename the VRT Setups folder (Asset) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
-
+		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		// Method to Create Very 1st User with All privilege
 		UserManagementPage = LoginPage.DefaultLogin();
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
@@ -110,15 +114,6 @@ public class setup_CreationTest extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = UserManagementPage.ClickBackButn();
 
-		/*
-		// Method to Create 1st Asset
-		assetHubPage = MainHubPage.ClickAssetTile();
-		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-		assetCreationPage.assetCreationWithAllFieldEntry("AST050", "50", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
-				"cu", crntDate, "1", "Weeks", "1st Asset Creation");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		*/
 		AppClose();
 		Thread.sleep(500);
 		
@@ -141,8 +136,6 @@ public class setup_CreationTest extends BaseClass {
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		//assetDetailsPage = assetHubPage.click_assetTile("AST050");
-		//defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		
 	}
 
@@ -172,20 +165,21 @@ public class setup_CreationTest extends BaseClass {
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
 		driver.quit();
+		driver = null;
 	}
 
 	
 	// Create Multiple Setups
 	@Test(groups = {
-			"Regression" }, dataProvider = "SetupCreation_1", dataProviderClass = setupCreationUtility.class, 
+			"Regression" }, dataProvider = "SetupCreation_RT", dataProviderClass = setupCreationUtility.class, 
 					description = "Create Setups")
 
-	public void MultipleSETUP01(String AName, String AID, String AType, String AManufaturer, String ALocation, String SetupName, String SensorCount, String SOP, String LoadDescription, 
-			String Comments, String TempCount,	String PrsrCount, String TCSensorLabel, String PrSensorLabel, 
-			String BaseTemp, String AlethCondition, String Qstart, String TOD, String Qstop, String Hrs,String Mnts,String Secs,
-			String SR,	String TR, String RF_Transmitt, String count) throws InterruptedException, IOException, AWTException, ParseException {
-		extentTest = extent.startTest(
-				"Multiple Setup Creation");
+	public void MultipleSETUP01(String AName, String AID, String AType, String AManufaturer, String ALocation, String SetupName, 
+			String SensorCount, String SOP, String LoadDescription, String Comments, String TempCount,	String PrsrCount, 
+			String TCSensorLabel, String PrSensorLabel, String BaseTemp, String AlethCondition, String Qstart, String TOD, 
+			String Qstop, String Hrs,String Mnts,String Secs, String SR,	String TR, String RF_Transmitt, String count, 
+			String TCSensorDescription, String PrSensorDescription) throws InterruptedException, IOException, AWTException, ParseException {
+		extentTest = extent.startTest("Multiple Asset & Setup Creation");
 
 		//Create Asset
 		assetCreationPage.assetCreation(AName, AID, AType, AManufaturer, ALocation);
@@ -227,6 +221,18 @@ public class setup_CreationTest extends BaseClass {
 			Setup_SensorConfigPage.Enter_Num_To(PrsrCount);
 			Setup_SensorConfigPage.Enter_SensorLabel(PrSensorLabel);
 			Setup_SensorConfigPage.Click_assignBtn();
+			Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
+			Setup_SensorDescriptionPage.select_SensorTypee("Temperature");
+			Setup_SensorDescriptionPage.Enter_TxtTo("48");
+			Setup_SensorDescriptionPage.Enter_Description(TCSensorDescription);
+			Setup_SensorDescriptionPage.clickOk();
+			Thread.sleep(15000);
+			Setup_SensorDescriptionPage.select_SensorTypee("Pressure");
+			Setup_SensorDescriptionPage.Enter_TxtTo("2");
+			Setup_SensorDescriptionPage.Enter_Description(PrSensorDescription);
+			Setup_SensorDescriptionPage.clickOk();
+			Thread.sleep(3000);
+			Setup_SensorConfigPage = Setup_SensorDescriptionPage.clickClose();
 			
 		} else {
 			Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
@@ -235,6 +241,14 @@ public class setup_CreationTest extends BaseClass {
 			Setup_SensorConfigPage.Enter_Num_To(TempCount);
 			Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
 			Setup_SensorConfigPage.Click_assignBtn();
+			Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
+			Thread.sleep(2000);
+			Setup_SensorDescriptionPage.select_SensorTypee("Temperature");
+			Setup_SensorDescriptionPage.Enter_TxtTo("48");
+			Setup_SensorDescriptionPage.Enter_Description(TCSensorDescription);
+			Setup_SensorDescriptionPage.clickOk();
+			Thread.sleep(15000);
+			Setup_SensorConfigPage = Setup_SensorDescriptionPage.clickClose();
 		}		
 		
 		int SensorCnt = Integer.parseInt(SensorCount);
@@ -304,7 +318,7 @@ public class setup_CreationTest extends BaseClass {
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 
 		//Setup_Review page
-		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "adminFull", "adminFull");
+		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", getUID("adminFull"), getPW("adminFull"));
 		//Setup_ReviewPage.click_back_Btn();
 		System.out.println("Setup COunt: "+count);
 	}

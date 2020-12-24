@@ -77,10 +77,10 @@ public class assetHubTest extends BaseClass {
 
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");		
-		//Rename the cache Asset file (Asset.txt) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");		
-		//Rename the Asset folder (Asset) if exists
-		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		//Delete the cache Asset file (Asset.txt) if exists
+		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");		
+		//Delete the Asset folder (Asset) if exists
+		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");

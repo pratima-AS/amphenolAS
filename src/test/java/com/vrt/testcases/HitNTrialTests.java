@@ -29,6 +29,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -71,6 +72,7 @@ public class HitNTrialTests extends BaseClass {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	TestUtilities tu = new TestUtilities();
 	public ExtentReports extent;
 	public ExtentTest extentTest;
@@ -97,6 +99,19 @@ public class HitNTrialTests extends BaseClass {
 	CopySetuppage CopySetuppage;
 	Copyassetpage Copyassetpage;
 
+	static Process p;
+	
+	//BeforeSuite
+	@BeforeSuite
+	public void startWinAppDriver() throws IOException {
+	String command = "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe";
+	ProcessBuilder builder = new ProcessBuilder(command).inheritIO();
+	p = builder.start();
+	
+	// The other way is below  commented line of  code 
+	// Runtime.getRuntime().exec("C:\\Program Files (x86)\\Windows Application// Driver\\WinAppDriver.exe");
+	}
+	
 	//Before test/Class
 	@BeforeClass
 	private void testsetup() throws IOException, InterruptedException, AWTException {
@@ -120,9 +135,9 @@ public class HitNTrialTests extends BaseClass {
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
 		
 		
-		/*
+		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LoginPage = new LoginPage();
+	/*	LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
@@ -137,7 +152,7 @@ public class HitNTrialTests extends BaseClass {
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), getPW("Dsbluser"),
+		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"),
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		//tu.click_Close_alertmsg();
@@ -157,8 +172,8 @@ public class HitNTrialTests extends BaseClass {
 		SyncInAssetListPage.click_OkBtn();
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
-		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		*/
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();*/
+		
 		
 	}
 	
@@ -170,6 +185,7 @@ public class HitNTrialTests extends BaseClass {
 		//System.out.println("Check end");
 		extent.flush();
 		extent.close();
+		p.destroy();
 	}
 	
 	// Before Method(Test) method
@@ -234,6 +250,8 @@ public class HitNTrialTests extends BaseClass {
 			"Regression" }, description = "ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets")
 	public void ADMN062() 
 			throws InterruptedException, ParseException, IOException, AWTException {
+		extentTest = extent.startTest(
+				"check for file deletion");
 		System.out.println("check for file deletion");
 	}
 
