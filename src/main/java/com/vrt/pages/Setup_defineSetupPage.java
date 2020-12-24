@@ -179,8 +179,13 @@ public class Setup_defineSetupPage extends BaseClass {
 
 	// Get text of the Button Bar Alert message
 	public String get_ButtomBarAlertmsg_txt() {
-		WebElement alrtmsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(alrtmsg);
+		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
+		return FetchText(Msg);
+	}
+
+	public String AlertMsg() {
+		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
+		return FetchText(Msg);
 	}
 
 	// Check the presence of SOP field in Define Setup page
@@ -293,7 +298,7 @@ public class Setup_defineSetupPage extends BaseClass {
 	}
 
 	// Click the Next button in the Define Setup page for alert
-	public void Click_defineSetupPage_Alert() {
+	public void Click_defineSetupPage_Nxtbtn_Alert() {
 		clickOn(SensorConfiguration_Btn);
 	}
 

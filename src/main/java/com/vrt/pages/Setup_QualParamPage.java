@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -28,9 +29,18 @@ public class Setup_QualParamPage extends BaseClass {
 	WebElement RFT_DrpDwn = null;
 	WebElement RFT_text = null;
 	WebElement NxtBtn = null;
+	WebElement PreviousButton = null;
+	WebElement SetupHeaderTextBlock = null;
+	WebElement sub_header = null;
+	WebElement start_Stopcond = null;
+	WebElement Data_Storage = null;
+	WebElement RF_Transmit = null;
+	WebElement StartQualificationTextBlock = null;
+	WebElement StopQualificationTextBlock = null;
 
 	private void initializeEelements() {
 		QualParamsPageTitle = driver.findElementByName("Qualification Parameters");
+		SetupHeaderTextBlock = driver.findElementByAccessibilityId("SetupHeaderTextBlock");
 		QStart_text = driver.findElementByAccessibilityId("StartQualificationTextBlock");
 		QStart_DrpDwn = driver.findElementByAccessibilityId("StartQualificationComboBox");
 		QStop_text = driver.findElementByAccessibilityId("StopQualificationTextBlock");
@@ -42,6 +52,11 @@ public class Setup_QualParamPage extends BaseClass {
 		RFT_text = driver.findElementByName("RF Transmit Threshold");
 		RFT_DrpDwn = driver.findElementByAccessibilityId("_rfCommToggleThresholdSettingsComboBox");
 		NxtBtn = driver.findElementByAccessibilityId("NextButton");
+		PreviousButton = driver.findElementByAccessibilityId("PreviousButton");
+		start_Stopcond = driver.findElementByName("Start Stop Conditions:");
+		Data_Storage = driver.findElementByName("Data Storage");
+		RF_Transmit = driver.findElementByName("RF Transmit Threshold");
+		sub_header = driver.findElementByName("Define The Qualification Details");
 
 	}
 
@@ -64,6 +79,13 @@ public class Setup_QualParamPage extends BaseClass {
 		RFT_DrpDwn = null;
 		RFT_text = null;
 		NxtBtn = null;
+		SetupHeaderTextBlock = null;
+		sub_header = null;
+		start_Stopcond = null;
+		Data_Storage = null;
+		RF_Transmit = null;
+		StartQualificationTextBlock = null;
+		StopQualificationTextBlock = null;
 	}
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,7 +97,56 @@ public class Setup_QualParamPage extends BaseClass {
 		return IsElementVisibleStatus(QualParamsPageTitle);
 	}
 
+	// check the presence of start_Stopcond
+	public boolean start_Stopcond_state() {
+		return IsElementVisibleStatus(start_Stopcond);
+	}
+
+	// check the presence of start_Stopcond
+	public boolean Data_Storage_state() {
+		return IsElementVisibleStatus(Data_Storage);
+	}
+
+	// RF Transmit Threshold
+
+	public boolean RF_Transmit_state() {
+		return IsElementVisibleStatus(RF_Transmit);
+	}
+
+	// check presence of QStart_text
+
+	public boolean QStart_text_state() {
+		return IsElementVisibleStatus(QStart_text);
+	}
+
+	// check presence of QStop_text
+
+	public boolean QStop_text_state() {
+		return IsElementVisibleStatus(QStop_text);
+	}
+
+	// verify next btn state
+	public boolean NxtBtn_state() {
+		return IsElementVisibleStatus(NxtBtn);
+	}
+
+	// verify Previous Button state
+	public boolean PreviousButton_state() {
+		return IsElementVisibleStatus(PreviousButton);
+	}
+
+	// Get the SetupHeader title text
+	public String get_Setup_titletext() {
+		return FetchText(SetupHeaderTextBlock);
+	}
+
+	// Get the Subheader title text
+	public String get_SubHeader_titletext() {
+		return FetchText(sub_header);
+	}
+
 	// Get the Qualification Parameters page title text
+
 	public String get_QualParamsPage_titletext() {
 		return FetchText(QualParamsPageTitle);
 	}
@@ -85,9 +156,43 @@ public class Setup_QualParamPage extends BaseClass {
 		clickOn(QStart_DrpDwn);
 	}
 
+	// fetch text
+	public String get_Txt_QStartDrpDwn() {
+		return FetchText(QStart_DrpDwn);
+	}
+
 	// Click the Qual Stop dropdown box
 	public void click_Qstop_DrpDwnBox() {
 		clickOn(QStop_DrpDwn);
+	}
+
+	// Verify that first option as "Manual" displayed in Start Qualification drop
+	// down
+	public String Fetch_Firstoption_QStart_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(0));
+	}
+
+	// click on manual from start qualification drop down
+
+	public void select_Manual_QStart_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		itemlist.get(0).click();
+	}
+
+	// click on Time of the day from start qualification drop down
+
+	public void select_TOD_QStart_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		itemlist.get(1).click();
+	}
+
+	//// Verify that second option as "Time of the day" displayed in Start
+	//// Qualification drop down
+
+	public String Fetch_Secondoption_QStart_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(1));
 	}
 
 	// Select TOD Qual Start parameter with how much Date/time ahead one wants to
@@ -109,18 +214,35 @@ public class Setup_QualParamPage extends BaseClass {
 	}
 
 	// fetch date from Time Of The Day window
+
 	public String fetch_Date() {
 		WebElement date = driver.findElementByAccessibilityId("PART_PickerButton");
 		return FetchText(date);
 	}
 
+	// is date field visible
+	public boolean Is_DateField_Visible() {
+		WebElement date = driver.findElementByAccessibilityId("PART_PickerButton");
+		return date.isDisplayed();
+	}
+
+	// Select Date
+	public boolean Is_SelectDate_Visible() {
+		WebElement datefield = driver.findElementByAccessibilityId("PART_PickerButton");
+		clickOn(datefield);
+		WebElement Selectdate = driver.findElementByName("Select Date");
+		return Selectdate.isDisplayed();
+	}
+
 	// fetch Hour from Time Of The Day window
+
 	public String fetch_Hour() {
 		WebElement Hr = driver.findElementByAccessibilityId("Hours");
 		return FetchText(Hr);
 	}
 
 	// fetch Minute from Time Of The Day window
+
 	public String fetch_Min() {
 		WebElement Mn = driver.findElementByAccessibilityId("Min");
 		return FetchText(Mn);
@@ -131,6 +253,68 @@ public class Setup_QualParamPage extends BaseClass {
 	public String fetch_Sec() {
 		WebElement Sc = driver.findElementByAccessibilityId("Sec");
 		return FetchText(Sc);
+	}
+
+	// Enter hr to text fild
+
+	public void enter_Hour(String hr) {
+		WebElement Hr_textfield = driver.findElementByAccessibilityId("Hours");
+
+		clickOn(Hr_textfield);
+		ClearText(Hr_textfield);
+		enterText(Hr_textfield, hr);
+	}
+
+	// Enter sec to text fild
+
+	public void enter_Sec(String sc) {
+		WebElement Sec_textfield = driver.findElementByAccessibilityId("Sec");
+
+		clickOn(Sec_textfield);
+		ClearText(Sec_textfield);
+		enterText(Sec_textfield, sc);
+	}
+
+	// Enter min to text fild
+
+	public void enter_Min(String min) {
+		WebElement Mn_textfield = driver.findElementByAccessibilityId("Min");
+
+		clickOn(Mn_textfield);
+		ClearText(Mn_textfield);
+		enterText(Mn_textfield, min);
+	}
+
+	// click on MM
+	public void click_Min() {
+		WebElement Mn_textfield = driver.findElementByAccessibilityId("Min");
+
+		clickOn(Mn_textfield);
+	}
+
+	// click on ss
+	public void click_Sec() {
+		WebElement Sec_textfield = driver.findElementByAccessibilityId("Sec");
+
+		clickOn(Sec_textfield);
+	}
+
+	// Is_Hours_visible
+	public boolean Is_Hours_visible() {
+		WebElement Hr = driver.findElementByAccessibilityId("Hours");
+		return Hr.isDisplayed();
+	}
+
+	// Is_Min_visible
+	public boolean Is_Min_visible() {
+		WebElement Mn = driver.findElementByAccessibilityId("Min");
+		return Mn.isDisplayed();
+	}
+
+	// Is_Sec_visible
+	public boolean Is_Sec_visible() {
+		WebElement Sc = driver.findElementByAccessibilityId("Sec");
+		return Sc.isDisplayed();
 	}
 
 	// Enter default time of the day by adding 1 Hr to QStart parameter
@@ -936,6 +1120,24 @@ public class Setup_QualParamPage extends BaseClass {
 		clickOn(NxtBtn);
 		Thread.sleep(1000);
 		return new Setup_ReviewPage();
+	}
+
+	// click net btn to get alert msg
+	public void Click_NxtBtn_Alert() throws IOException, InterruptedException {
+		clickOn(NxtBtn);
+	}
+
+	// Click on back btn
+
+	public Setup_CalculationsPage click_Backbtn() throws IOException {
+		clickOn(PreviousButton);
+		return new Setup_CalculationsPage();
+	}
+
+	// Alert msg
+	public String AlertMsg() {
+		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
+		return FetchText(Msg);
 	}
 
 }
