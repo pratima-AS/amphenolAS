@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -20,8 +21,8 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.vrt.base.BaseClass;
 import com.vrt.pages.LoginPage;
 import com.vrt.pages.MainHubPage;
-import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.Setup_SensorConfigPage;
+import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.assetDetailsPage;
@@ -36,7 +37,7 @@ public class setup_DefineSetupTest extends BaseClass {
 
 	public setup_DefineSetupTest() throws IOException {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 
 	TestUtilities tu = new TestUtilities();
@@ -57,7 +58,7 @@ public class setup_DefineSetupTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER" + "_Setup_DefineSetupTest.html",
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER" + "_Setup_defineSetupTest.html",
 				true);
 		extent.addSystemInfo("TestSuiteName", "Setup_DefineSetupTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
@@ -68,48 +69,48 @@ public class setup_DefineSetupTest extends BaseClass {
 
 		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-        // Rename the cache Asset file (Asset.txt) if exists
-        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-        // Rename the Asset folder (Asset) if exists
-        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
-        // Rename the cache Setup file (Asset.txt) if exists
-        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
-        // Rename the VRT Setups folder (Asset) if exists
-        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+		// Rename the cache Asset file (Asset.txt) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
+		// Rename the Asset folder (Asset) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		// Rename the cache Setup file (Asset.txt) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
+		// Rename the VRT Setups folder (Asset) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 
-        LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-        LoginPage = new LoginPage();
-        extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
-        // Method to Create Very 1st User with All privilege
-        UserManagementPage=LoginPage.DefaultLogin();
-        LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
-                                        getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
-        MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-        UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
-        UserManagementPage.clickAnyUserinUserList("User1");
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		LoginPage = new LoginPage();
+		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
+		// Method to Create Very 1st User with All privilege
+		UserManagementPage = LoginPage.DefaultLogin();
+		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
+				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage.clickAnyUserinUserList("User1");
 
-        UserManagementPage.clickPrivCreateEditAsset();
-        UserManagementPage.clickPrivCreateEditSetup();
+		UserManagementPage.clickPrivCreateEditAsset();
+		UserManagementPage.clickPrivCreateEditSetup();
 
-        UserManagementPage.ClickNewUserSaveButton();
-        UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-        MainHubPage = UserManagementPage.ClickBackButn();
+		UserManagementPage.ClickNewUserSaveButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		MainHubPage = UserManagementPage.ClickBackButn();
 
-        // Method to Create 1st Asset 
-        assetHubPage=MainHubPage.ClickAssetTile();
-        assetCreationPage = assetHubPage.ClickAddAssetBtn();
-        String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-        assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
-                                        "cu", crntDate, "2", "Weeks", "1st Asset Creation");
-        UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		// Method to Create 1st Asset
+		assetHubPage = MainHubPage.ClickAssetTile();
+		assetCreationPage = assetHubPage.ClickAddAssetBtn();
+		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "2", "Weeks", "1st Asset Creation");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
-        AppClose();
-        Thread.sleep(500);
+		AppClose();
+		Thread.sleep(500);
 
 	}
 
 	// After All the tests are conducted
-	@AfterTest
+	@AfterClass
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
@@ -164,7 +165,7 @@ public class setup_DefineSetupTest extends BaseClass {
 
 	// SET 001-Verify the details displayed in _Define Setup_ screen
 	@Test(groups = { "Regression" }, description = "SET 001-Verify the details displayed in _Define Setup_ screen")
-	public void ESET002() throws InterruptedException, IOException {
+	public void SET001() throws InterruptedException, IOException {
 		extentTest = extent.startTest("SET 001-Verify the details displayed in _Define Setup_ screen");
 		SoftAssert sa = new SoftAssert();
 
@@ -201,7 +202,7 @@ public class setup_DefineSetupTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// SET002
+	// SET002-Verify that current Date and Time is the default value for Setup Name field
 	@Test(groups = { "Sanity",
 			"Regression" }, description = "SET002-Verify that current Date and Time is the default value for Setup Name field")
 	public void SET002() throws InterruptedException, ParseException, IOException {

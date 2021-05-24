@@ -28,6 +28,8 @@ public class Setup_CalculationsPage extends BaseClass {
 	WebElement BT_UnitsTextBlock = null;
 	WebElement Back_btn = null;
 
+	WebElement SaveSetupButton = null;
+
 	private void initializeEelements() {
 		CalculationPageTitle = driver.findElementByName("Calculations");
 		SetupHeaderTextBlock = driver.findElementByAccessibilityId("SetupHeaderTextBlock");
@@ -79,6 +81,11 @@ public class Setup_CalculationsPage extends BaseClass {
 	// Check the presence of leth_Btn state
 	public boolean leth_Btnstate() {
 		return IsElementVisibleStatus(leth_Btn);
+	}
+
+	// click on click on leth_Btn
+	public void click_leth_Btn() {
+		clickOn(leth_Btn);
 	}
 
 	// Check the presence of Statistical_CalculationBtn state
@@ -167,7 +174,6 @@ public class Setup_CalculationsPage extends BaseClass {
 
 	public void Enter_Dvalue_textfield(String Dval) {
 		clickOn(Dvalue_textfield);
-		clickOn(Dvalue_textfield);
 		ClearText(Dvalue_textfield);
 		enterText(Dvalue_textfield, Dval);
 
@@ -217,6 +223,11 @@ public class Setup_CalculationsPage extends BaseClass {
 
 	public String DValueField_text() {
 		return FetchText(Dvalue_textfield);
+	}
+
+	// click on Btemp
+	public void click_BTemp() {
+		clickOn(BTemp_textfield);
 	}
 
 	// Enter ALeth Base Temp data
@@ -296,6 +307,7 @@ public class Setup_CalculationsPage extends BaseClass {
 		clickOn(NxtBtn);
 	}
 
+	// Fetch alert msg
 	public String AlertMsg() {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
@@ -336,7 +348,7 @@ public class Setup_CalculationsPage extends BaseClass {
 		return new assetDetailsPage();
 	}
 
-	// Right click on the Asset Creation page to invoke the bottom apps bar
+	// Right click on the calcultion page to invoke the bottom apps bar
 	public void Rt_Click_Buttom_AppBar() {
 		Actions ac = new Actions(driver);
 		ac.contextClick().build().perform();

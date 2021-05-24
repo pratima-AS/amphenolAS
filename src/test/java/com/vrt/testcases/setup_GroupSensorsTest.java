@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -64,8 +66,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 	Setup_CalculationsPage Setup_CalculationsPage;
 
 	// Before All the tests are conducted
-	@BeforeTest
-	public void PreSetup() throws InterruptedException, IOException, AWTException {
+	//@BeforeTest
+	@BeforeClass
+	public void PreSetup() throws InterruptedException, IOException, AWTException, ParseException {
 
 		extent = new ExtentReports(
 				System.getProperty("user.dir") + "/test-output/ER_" + "setup_GroupSensorsTest" + ".html", true);
@@ -74,7 +77,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
-		System.out.println("setup_SensorConfigTest in Progress..");
+		System.out.println("setup_GroupSensorsTest in Progress..");
 
 		// Rename the User file (NgvUsers.uxx) if exists
 
@@ -110,8 +113,10 @@ public class setup_GroupSensorsTest extends BaseClass {
 		// Method to Create 1st Asset
 		assetHubPage = MainHubPage.ClickAssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
-				"cu", "11/20/2019", "5", "Weeks", "1st Asset Creation");
+		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+		System.out.println(crntDate);
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "2", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		AppClose();
@@ -120,13 +125,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 	}
 
 	// After All the tests are conducted
-	@AfterTest
+	//@AfterTest
+	@AfterClass
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
 		assetHubPage.resetWebElements();
 		// System.out.println("Reset Webelement memory released");
-		System.out.println("setup_SensorConfigTest Completed.");
+		System.out.println("setup_GroupSensorsTest Completed.");
 	}
 
 	// Before Method(Test) method
@@ -178,11 +184,11 @@ public class setup_GroupSensorsTest extends BaseClass {
 	}
 
 	// Test Cases
-	// SC001-Verify the details displayed in Sensor Configuration screen
+	// GS001-Verify the details displayed in Group Sensor screen
 
-	@Test(groups = { "Regression" }, description = "SC001-Verify the details displayed in Sensor Configuration screen")
-	public void SET002() throws InterruptedException, IOException {
-		extentTest = extent.startTest("SC001-Verify the details displayed in Sensor Configuration screen");
+	@Test(groups = { "Regression" }, description = "GS001-Verify the details displayed in Group Sensor screen")
+	public void GS001() throws InterruptedException, IOException {
+		extentTest = extent.startTest("GS001-Verify the details displayed in Group Sensor screen");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -192,7 +198,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("10");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		sa.assertEquals(Setup_GroupSensorsPage.get_Setup_titletext(), "test", "FAIL: Set up title is not available");
 		sa.assertEquals(Setup_GroupSensorsPage.get_GrpsensorPage_titletext(), "Group Sensors",
@@ -201,7 +207,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertEquals(Setup_GroupSensorsPage.DefaultGrp_Btn_state(), true,
 				"FAIL: Default Group Btn is not available");
 
-		sa.assertEquals(Setup_GroupSensorsPage.NewGroup_Btn_state(), true, "FAIL: New Group Btn is not available");
+		sa.assertEquals(Setup_GroupSensorsPage.NewGroup_Btn_State(), true, "FAIL: NewGroup Btn Is not visible ");
 
 		sa.assertEquals(Setup_GroupSensorsPage.SensorConfiguration_Tab_state(), true,
 				"FAIL: New Group Btn is not available");
@@ -243,7 +249,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.get_tempgroupTxt(), "Temperature",
@@ -290,7 +296,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		sa.assertEquals(Setup_GroupSensorsPage.Temp_Sensor_Txt(), Temp_SensorLabel,
 				"FAIL:the Temperature  sensors  is not displayed");
@@ -329,7 +335,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_prs_Group();
 		sa.assertEquals(Setup_GroupSensorsPage.Prs_Sensor_Txt(), Prsr_SensorLabel,
@@ -370,7 +376,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_hmd_Group();
 		sa.assertEquals(Setup_GroupSensorsPage.Hmd_Sensor_Txt(), Hmd_SensorLabel, "FAIL: ");
@@ -395,7 +401,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("60");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		sa.assertEquals(Setup_GroupSensorsPage.Temp_Sensor_Count(), 50,
@@ -441,7 +447,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -472,7 +478,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
@@ -507,13 +513,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("hmd");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
-		sa.assertEquals(Setup_GroupSensorsPage.Click_Is_6thSensor_selected(), false,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), false,
 				"FAIL:  the sensors of different sensor type are  selectable");
 
 	}
@@ -529,6 +535,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
+		Setup_SensorConfigPage.Enter_HumidityCount_textField("5");
 		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
 
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
@@ -537,11 +544,16 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
+		Setup_SensorConfigPage.select_Sensortype_Hmd();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("hmd");
+		Setup_SensorConfigPage.Click_assignBtn();
+
 		Setup_SensorConfigPage.select_Sensortype_Pr();
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("presr");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_prs_Group();
@@ -567,20 +579,16 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("2");
+		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
 		Setup_SensorConfigPage.select_Sensortype_Hmd();
-		Setup_SensorConfigPage.Enter_Num_To("2");
+		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("hmd");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_SensorConfigPage.select_Sensortype_Pr();
-		Setup_SensorConfigPage.Enter_Num_To("2");
-		Setup_SensorConfigPage.Enter_SensorLabel("prs");
-		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_hmd_Group();
@@ -622,7 +630,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -637,15 +645,16 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 	}
 
-	// GS013-Verify the valid inputs for Group name field
+// GS013-Verify the valid inputs for Group name field
 	@Test(groups = {
 			"Regression" }, dataProvider = "GS013", dataProviderClass = setupCreationUtility.class, description = "GS013-Verify the valid inputs for Group name field"
-					+ "accepted in Temperature field under Add Sensors section")
+					+ " accepted in Temperature field under Add Sensors section")
 
 	public void GS013(String GName) throws InterruptedException, IOException {
 		extentTest = extent.startTest("GS013-Verify the valid inputs for Group name field");
 
 		SoftAssert sa = new SoftAssert();
+
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
 		Setup_SensorConfigPage.Enter_HumidityCount_textField("5");
@@ -668,7 +677,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -707,7 +716,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -753,7 +762,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -798,7 +807,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		String Prsr_SensorLabel = Setup_SensorConfigPage.get_SensorLabel_text();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -821,7 +830,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 			"Regression" }, description = "GS009-Verify that when temperature group is in edit mode, the sensors of different sensor type are not selectable")
 	public void GS015() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS009-Verify that when temperature group is in edit mode, the sensors of different sensor type are not selectable");
+				"GS015-Verify that when temperature group is in edit mode, the sensors of different sensor type are not selectable");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -832,16 +841,16 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("2");
 		Setup_SensorConfigPage.Enter_SensorLabel("temp");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_tmp_Group();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
-		sa.assertEquals(Setup_GroupSensorsPage.is_1stSensor_selected(), true,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), true,
 				"FAIL:  the sensors of different sensor type are  selectable");
 		Setup_GroupSensorsPage.Click_1stSensor();
 
-		sa.assertEquals(Setup_GroupSensorsPage.is_1stSensor_selected(), false,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), false,
 				"FAIL:  the sensors of different sensor type are  selectable");
 
 	}
@@ -865,7 +874,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("60");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 		Setup_GroupSensorsPage.Click_Sensor51();
@@ -896,7 +905,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
@@ -923,7 +932,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
@@ -949,7 +958,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -976,7 +985,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
@@ -1014,11 +1023,11 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.Click_1stSensor();
 
-		sa.assertEquals(Setup_GroupSensorsPage.is_1stSensor_selected(), true,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), true,
 				"FAIL: first sensor of temperature sensor type is selected");
 
 		sa.assertEquals(Setup_GroupSensorsPage.Click_Is_6thSensor_selected(), false,
@@ -1047,14 +1056,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.Click_1stSensor();
-		sa.assertEquals(Setup_GroupSensorsPage.is_1stSensor_selected(), true,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), true,
 				"FAIL: first sensor of temperature sensor type is selected");
 
 		Setup_GroupSensorsPage.Click_1stSensor();
-		sa.assertEquals(Setup_GroupSensorsPage.is_1stSensor_selected(), false,
+		sa.assertEquals(Setup_GroupSensorsPage.Check_Is_1stSensor_selected(), false,
 				"FAIL: first sensor of temperature sensor type is selected");
 		sa.assertAll();
 
@@ -1086,7 +1095,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.Click_MoreThan50Sensors();
 		String ExpAlrtMsg = "Maximum(50) sensors selection has reached in this group";
@@ -1115,7 +1124,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
@@ -1144,7 +1153,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.clickOn_NewGroupButton();
 		Setup_GroupSensorsPage.click_EditIcon_TempGroup();
 
@@ -1170,7 +1179,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("SL");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 
 	}
@@ -1197,14 +1206,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.countOfgroups(), 2, "FAIL:Group are not displayed");
 
-		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Displayed(), false,
+		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Empty(), false,
 				"FAIL:list of sensors are not displayed");
 
 		sa.assertEquals(Setup_GroupSensorsPage.GroupWiring_Btn_IsEnable(), true, "FAIL:Group Wiring Btn Is not Enable");
@@ -1237,7 +1246,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1272,7 +1281,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1303,7 +1312,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1331,7 +1340,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1359,16 +1368,16 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 		Setup_GroupSensorsPage.click_1stImageBtn();
-		Setup_GroupSensorsPage.Click_ImgHoldr1_EditBtn();
-		Thread.sleep(4000);
+		Setup_GroupSensorsPage.click_EditImageBtn();
 		Setup_GroupSensorsPage.upload_Images("UserimageValid.jpg");
-		// Setup_GroupSensorsPage.click_1stImageBtn();
-		// Setup_GroupSensorsPage.click_RemoveImageBtn();
+		Thread.sleep(2000);
+		Setup_GroupSensorsPage.click_1stImageBtn();
+		Setup_GroupSensorsPage.click_RemoveImageBtn();
 	}
 
 //GS034-Verify that when selected any existing image in wiring overlay screen can be applied for any group
@@ -1389,11 +1398,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 		Setup_GroupSensorsPage.click_1stImageBtn();
+		Thread.sleep(1000);
 		Setup_GroupSensorsPage.click_EditImageBtn();
 		tu.uploadDoc("UserimageValid.jpg");
 		Setup_GroupSensorsPage.click_2ndImageBtn();
@@ -1419,16 +1429,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.First_groupname(), "Temperature", "FAIL:group name not displayed");
 
-		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Displayed(), true,
-				"FAIL:list of sensors are not displayed");
-		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Displayed(), true,
+		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Empty(), false,
 				"FAIL:list of sensors are not displayed");
 		sa.assertEquals(Setup_GroupSensorsPage.Sensor_Name(), "TMP1", "FAIL:lable name is not displaying");
 
@@ -1452,7 +1460,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1479,7 +1487,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1488,7 +1496,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		tu.uploadDoc("UserimageInValid.jpg");
 
 		String ExpAlrtMsg = "Select image file with size less than 5 mb";
-		String ActAlertMsg = UserManagementPage.AlertMsg();
+		String ActAlertMsg = Setup_GroupSensorsPage.AlertMsg();
 
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg,
 				"FAIL:Alert message should be displayed as-Select image file with size less than 5 mb ");
@@ -1518,7 +1526,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
@@ -1551,7 +1559,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.IsMoveBtn_Visible(), true, "FAIL: Move Btn  is not available");
@@ -1583,7 +1591,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1616,7 +1624,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1664,7 +1672,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1702,7 +1710,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1741,7 +1749,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1782,7 +1790,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1817,7 +1825,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1855,7 +1863,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
@@ -1900,7 +1908,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -1936,7 +1944,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
@@ -1979,7 +1987,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -2021,7 +2029,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
@@ -2069,7 +2077,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -2109,7 +2117,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -2145,7 +2153,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.Click_MoveIcon();
@@ -2180,7 +2188,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.DeleteGroup_Btn();
 
@@ -2219,7 +2227,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_ExpanderIcon();
 
 		sa.assertEquals(Setup_GroupSensorsPage.Is_AssetID_Visible(), true, "Fail: AssetID is not displaying");
@@ -2253,7 +2261,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_ExpanderIcon();
 
 		sa.assertEquals(Setup_GroupSensorsPage.Is_AssetID_Visible(), true, "Fail: AssetID is not displaying");
@@ -2288,9 +2296,10 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_ExpanderIcon();
-
+		Thread.sleep(1000);
 		sa.assertEquals(Setup_GroupSensorsPage.getTxt_from_AssetID(), "01",
 				"Fail:  Asset ID value is not pre populated from Define setup screen");
 		sa.assertEquals(Setup_GroupSensorsPage.getTxt_from_SOP(), "10",
@@ -2318,7 +2327,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_Dflt_TempGrp();
 		Setup_GroupSensorsPage.Click_tmp_Group();
@@ -2349,7 +2358,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_Dflt_TempGrp();
 		Setup_GroupSensorsPage.click_ExpanderIcon();
@@ -2380,7 +2389,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_GroupSensorsPage.click_Dflt_TempGrp();
 		Setup_GroupSensorsPage.Click_tmp_Group();
@@ -2415,7 +2424,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
 		sa.assertEquals(Setup_SensorConfigPage.sensorConfigPage_state(), true, "Fail: Landed to wrong page");
 		sa.assertAll();
@@ -2440,7 +2449,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 		sa.assertEquals(Setup_CalculationsPage.CalculationPage_state(), true, "Fail: Landed to wrong page");
@@ -2465,7 +2474,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		assetDetailsPage = Setup_GroupSensorsPage.Click_BackBtn();
 		sa.assertEquals(assetDetailsPage.assetDetailPageTitle_Visible(), true, "Fail: Landed to wrong page");
 		sa.assertAll();
@@ -2513,7 +2522,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 				"GS078-Verify that on-click of help btn in bottom menu options displays information about the Group sensors screen");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_GroupSensorsPage.Click_Help_Icon_AppBar();
+		Setup_SensorConfigPage.Click_Help_Icon_AppBar();
+
 		sa.assertEquals(Setup_GroupSensorsPage.get__HelpMenu_HdrText(), "Sensors Configuration",
 				"FAIL: Clicking Help icon/button in bottom app bar"
 						+ "do not display the Sensors Configuration Help context window");

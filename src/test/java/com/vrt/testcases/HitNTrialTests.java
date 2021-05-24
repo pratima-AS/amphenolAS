@@ -102,7 +102,7 @@ public class HitNTrialTests extends BaseClass {
 	static Process p;
 	
 	//BeforeSuite
-	@BeforeSuite
+/*	@BeforeSuite
 	public void startWinAppDriver() throws IOException {
 	String command = "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe";
 	ProcessBuilder builder = new ProcessBuilder(command).inheritIO();
@@ -111,6 +111,7 @@ public class HitNTrialTests extends BaseClass {
 	// The other way is below  commented line of  code 
 	// Runtime.getRuntime().exec("C:\\Program Files (x86)\\Windows Application// Driver\\WinAppDriver.exe");
 	}
+	*/
 	
 	//Before test/Class
 	@BeforeClass
@@ -132,11 +133,11 @@ public class HitNTrialTests extends BaseClass {
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
-		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");		
 		
-		
-		
-		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+	
+		//LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		LaunchApp("C:\\Program Files (x86)\\SyncTool\\Synctool.exe");
 	/*	LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();

@@ -40,7 +40,7 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		NewGroupButton = driver.findElementByAccessibilityId("NewGroupButton");
 		GroupsListButton = driver.findElementByAccessibilityId("GroupsListButton");
 		DeleteGroupButton = driver.findElementByAccessibilityId("DeleteGroupButton");
-		// PreviousButton = driver.findElementByAccessibilityId("PreviousButton");
+		PreviousButton = driver.findElementByAccessibilityId("PreviousButton");
 		CalculationsTab = driver.findElementByAccessibilityId("NextButton");
 		EditGrpHdrTextBlock = driver.findElementByAccessibilityId("EditGrpHdrTextBlock");
 	}
@@ -79,7 +79,7 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// Check the presence of Default Group btn
 
 	public boolean NewGroup_Btn_state() {
-		return IsElementVisibleStatus(NewGroupButton);
+		return IsElementEnabledStatus(NewGroupButton);
 	}
 
 	// Check if New Group btn is enable or not
@@ -87,6 +87,13 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	public boolean NewGroup_Btn_IsEnable() {
 		return IsElementEnabledStatus(NewGroupButton);
 	}
+
+	// NewGroupButton is displayed
+
+	public boolean NewGroup_Btn_State() {
+		return IsElementVisibleStatus(NewGroupButton);
+	}
+
 	// Check the presence of Default Group btn
 
 	public boolean DefaultGrp_Btn_state() {
@@ -186,12 +193,12 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		Thread.sleep(1000);
 	}
 
-	// Click Image edit icon for adding/replacing image
-	public void Click_ImgHoldr1_EditBtn() throws InterruptedException {
-		WebElement ImgHoldr_EditBtn = driver.findElementByAccessibilityId("ChangeImageBrowser");
-		clickOn(ImgHoldr_EditBtn);
-	}
-
+	/*
+	 * // Click Image edit icon for adding/replacing image public void
+	 * Click_ImgHoldr1_EditBtn() throws InterruptedException { WebElement
+	 * ImgHoldr_EditBtn = driver.findElementByAccessibilityId("ChangeImageBrowser");
+	 * clickOn(ImgHoldr_EditBtn); }
+	 */
 	// Upload Image for the image holder
 	public void select_Img(String filename) throws InterruptedException, AWTException {
 		// switch to the file upload window
@@ -281,6 +288,16 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		WebElement EditGroup_Btn = driver.findElementByAccessibilityId("EditGroupButton");
 
 		return IsElementVisibleStatus(EditGroup_Btn);
+	}
+
+	// Enter Text while creating new group
+
+	public void enter_groupname(String GN) {
+		WebElement EditGroup_Btn = driver.findElementByAccessibilityId("EditGroupButton");
+		clickOn(EditGroup_Btn);
+		WebElement Entertxt = driver.findElementByAccessibilityId("txtEditTemp");
+		enterText(Entertxt, GN);
+
 	}
 
 	// Verify when user click on Default Group button, Temperature group title
@@ -493,38 +510,38 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// Below we will click on the first sensor from Sensor groups page
 
 	public void Click_1stSensor() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid2")
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
 				.findElements(By.className("GridViewItem"));
 		snsrFields.get(0).click();
 	}
 
-	public boolean is_1stSensor_selected() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid2")
-				.findElements(By.className("GridViewItem"));
-		return snsrFields.get(0).isSelected();
-	}
+	/*
+	 * public boolean is_1stSensor_selected() { List<WebElement> snsrFields =
+	 * driver.findElementByAccessibilityId("SensorGrid2")
+	 * .findElements(By.className("GridViewItem")); return
+	 * snsrFields.get(0).isSelected(); }
+	 */
 
 	// //Click 6th sensor
 
 	public void Click_6thSensor() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid2")
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
 				.findElements(By.className("GridViewItem"));
 		snsrFields.get(5).click();
 	}
 
 	public boolean Click_Is_6thSensor_selected() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid2")
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
 				.findElements(By.className("GridViewItem"));
-		snsrFields.get(5).click();
+		// snsrFields.get(5).click();
 		return snsrFields.get(5).isSelected();
 	}
-	
+
 	public boolean Check_Is_1stSensor_selected() {
 		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
 				.findElements(By.className("GridViewItem"));
 		return snsrFields.get(0).isSelected();
 	}
-
 
 	public void Click_MoreThan50Sensors() {
 		List<WebElement> snsrFields = driver.findElementsByName("HMD");
@@ -537,7 +554,7 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// The list of sensors displayed below the groups on left pane in Group Wiring
 	// page
 
-	public boolean islistofsensors_Displayed() {
+	public boolean islistofsensors_Empty() {
 		List<WebElement> snsrFields = driver.findElementByClassName("ScrollViewer")
 				.findElements(By.className("TextBlock"));
 		return snsrFields.isEmpty();
@@ -603,20 +620,31 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	// click on EditImage
 	public void click_EditImageBtn() throws InterruptedException {
+		driver.switchTo().activeElement();
+		Thread.sleep(1000);
 		WebElement EditImage = driver.findElementByAccessibilityId("ChangeImageBrowser");
-
 		clickOn(EditImage);
 		Thread.sleep(2000);
 	}
 
 	// click on RemoveImageBtn
-	public void click_RemoveImageBtn() {
+	public void click_RemoveImageBtn() throws InterruptedException {
+		driver.switchTo().activeElement();
+		Thread.sleep(1000);
 		WebElement DeleteImage = driver.findElementByAccessibilityId("RemoveImageButton");
 		clickOn(DeleteImage);
 	}
 
+	// Fetch the Save Alert message
+	public String AlertMsg() {
+		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
+		return FetchText(Msg);
+	}
+
 	// click on camera btn
-	public void click_CameraBtn() {
+	public void click_CameraBtn() throws InterruptedException {
+		driver.switchTo().activeElement();
+		Thread.sleep(1000);
 		WebElement cameraIcon = driver.findElementByAccessibilityId("ChangeImageCamera");
 		clickOn(cameraIcon);
 	}
@@ -916,7 +944,7 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// Fetch Text from sop field
 	public String getTxt_from_SOP() {
 		List<WebElement> sop = driver.findElementsByClassName("TextBox");
-		return FetchText(sop.get(0));
+		return FetchText(sop.get(1));
 	}
 
 	// is Description field visible
@@ -1031,5 +1059,22 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	public String get_SWVersion_About_Text() {
 		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
 		return FetchText(SWVersion_About_info);
+	}
+
+	// 10 groups can be created when 10 is selected for _Max groups_ field in
+	// preference page
+
+	public void create_Group10(int numberofGroups) {
+		for (int i = 1; i <= numberofGroups; i++) {
+			clickOn_NewGroupButton();
+
+			String GroupName = "Programiz";
+			for (int j = 0; j < GroupName.length(); j++) {
+				enter_groupname(GroupName);
+
+				click_SaveBtn();
+			}
+			break;
+		}
 	}
 }

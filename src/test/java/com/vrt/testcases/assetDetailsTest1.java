@@ -1024,7 +1024,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		//Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 

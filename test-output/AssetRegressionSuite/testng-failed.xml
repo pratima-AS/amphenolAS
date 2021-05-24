@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [AssetRegressionSuite]">
+  <listeners>
+    <listener class-name="com.vrt.Listners.ExtentReporterNG"/>
+    <listener class-name="com.vrt.Listners.RetryTransformer"/>
+  </listeners>
+  <test thread-count="5" verbose="5" name="Asset(failed)">
+    <classes>
+      <class name="com.vrt.testcases.assetDetailsTest1">
+        <methods>
+          <include name="Teardown"/>
+          <include name="ASST077"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="Setup"/>
+          <include name="PreSetup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.assetDetailsTest1 -->
+      <class name="com.vrt.testcases.CopySetupTest">
+        <methods>
+          <include name="CS008"/>
+          <include name="CS019"/>
+          <include name="CS009"/>
+          <include name="CS002"/>
+          <include name="CS013"/>
+          <include name="CS003"/>
+          <include name="CS014"/>
+          <include name="Teardown"/>
+          <include name="CS006"/>
+          <include name="CS017"/>
+          <include name="CS012"/>
+          <include name="CS004"/>
+          <include name="Setup"/>
+          <include name="CS007"/>
+          <include name="CS015A"/>
+          <include name="CS0023"/>
+          <include name="CS010"/>
+          <include name="CS021"/>
+          <include name="CS018B"/>
+          <include name="PreSetup"/>
+          <include name="CS018A"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="CS015B"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.CopySetupTest -->
+      <class name="com.vrt.testcases.assetCreationTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="PreSetup"/>
+          <include name="Setup"/>
+          <include name="endReport"/>
+          <include name="ASST03"/>
+          <include name="ASST39" invocation-numbers="0 0 0"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.assetCreationTest -->
+    </classes>
+  </test> <!-- Asset(failed) -->
+</suite> <!-- Failed suite [AssetRegressionSuite] -->

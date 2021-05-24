@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>UMTestRegression</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>200/2/8</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Jul 18 16:42:02 IST 2020</td>
+<td>Started on:</td><td>Mon Oct 05 19:18:23 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>843 seconds (843477 ms)</td>
+<tr><td>Total time:</td><td>3693 seconds (3693445 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,274 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN045A()'><b>ADMN045A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN045A-Verify Reset pwd functionality for second user-Admin<br>Parameters: ADMN045A, 45A, 454545.0, Sr Manager, System Administrator</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: CB48A638-2505-4069-B2C9-2111644FD6D2
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1640)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace812362782", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace812362782'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: CB48A638-2505-4069-B2C9-2111644FD6D2
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1640)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>28</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069H()'><b>ADMN069H</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069H-Verify mandatory login for a new user before saving any changes-Admin screen-Edit</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: A08DDFD3-4DD6-45ED-B5DE-7515375676C7
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2116313521", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2116313521'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: A08DDFD3-4DD6-45ED-B5DE-7515375676C7
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>28</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,25 +343,1861 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.vrt.testcases.UM1.Check()'><b>Check</b><br>Test class: com.vrt.testcases.UM1<br>Test method: check for SyncIn im UM1</td>
+<td title='com.vrt.testcases.UM1.ADMN006()'><b>ADMN006</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN006-Verify that new user button is enabled</td>
 <td></td>
 <td>0</td>
-<td>com.vrt.testcases.UM1@4b5a5ed1</td></tr>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
 <tr>
-<td title='com.vrt.testcases.UM2.Check()'><b>Check</b><br>Test class: com.vrt.testcases.UM2<br>Test method: check for SyncIn im UM2</td>
+<td title='com.vrt.testcases.UM1.ADMN007()'><b>ADMN007</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN007-Verify if select the New User button and check if a form to fill in the Name, User ID, Password, Confirm Password, Title, User Type, Phone, Email and Assigning privileges is opened up for entries.</td>
 <td></td>
 <td>0</td>
-<td>com.vrt.testcases.UM2@59d016c9</td></tr>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
 <tr>
-<td title='com.vrt.testcases.UM3.Check()'><b>Check</b><br>Test class: com.vrt.testcases.UM3<br>Test method: check for SyncIn im UM3</td>
+<td title='com.vrt.testcases.UM1.ADMN008()'><b>ADMN008</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN008-Verify if mandatory fields are marked on the user management screen-Name, User ID, Password, Confirm Password, Title and User Type<br>Parameters: [Ljava.lang.Object;@5ee9b214</td>
 <td></td>
-<td>0</td>
-<td>com.vrt.testcases.UM3@3cc2931c</td></tr>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
 <tr>
-<td title='com.vrt.testcases.UM4.Check()'><b>Check</b><br>Test class: com.vrt.testcases.UM4<br>Test method: check for SyncIn im UM4</td>
+<td title='com.vrt.testcases.UM1.ADMN009()'><b>ADMN009</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN009-Verify the Valid inputs allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@273ea4ef</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN009A()'><b>ADMN009A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Name field at User Management screen accepts maximum of 35 characters</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@5737bb1b</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@4ad734d1</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@59bd568d</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@b769889</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@6173059f</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN010()'><b>ADMN010</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs that are not allowed  for User Name Field at User Management screen<br>Parameters: [Ljava.lang.Object;@12f1c4dc</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN011()'><b>ADMN011</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Valid inputs allowed for User ID Field at User management screen<br>Parameters: A, ABC, Welcome1@1AM, Welcome1@1AM, Sr Manager, System Administrator</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN011A()'><b>ADMN011A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify User ID field at User Management screen accepts maximum of 16 characters</td>
+<td></td>
+<td>1</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN012()'><b>ADMN012</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Invalid inputs that are not allowed for User ID Field at User management screen<br>Parameters: c_, @, Welcome5@AM, Welcome5@AM, Sr Manager, System Administrator, User ID must contain only letters and numbers</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN013()'><b>ADMN013</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Unique user ID functionality at User management screen</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN014()'><b>ADMN014</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Unique user Name functionality at User management screen</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN014A()'><b>ADMN014A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Save button before/After entering value to password field</td>
+<td></td>
+<td>15</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN014B()'><b>ADMN014B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Save button before/After entering value to Confirm password field</td>
+<td></td>
+<td>15</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN015A()'><b>ADMN015A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: UM confirm Password Count field should accept the data max 16 characters</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN016a()'><b>ADMN016a</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN016a-Verify when Password Field is blank,save button should not be enable</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN017a()'><b>ADMN017a</b><br>Test class: com.vrt.testcases.UM1<br>Test method: UM confirm Password Count field should accept the data max 16 characters</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN019()'><b>ADMN019</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the password mismatch functionality in User Management Screen</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN020()'><b>ADMN020</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the save btn is disabl when both password and confirm password are not entered in User Management Screen</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN021()'><b>ADMN021</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Valid inputs allowed for Title field validations<br>Parameters: ADMN021, 021, Welcome5@AM, Welcome5@AM, aaa, System Administrator</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN021A()'><b>ADMN021A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Valid inputs-Max Char allowed for Title field validations</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN022()'><b>ADMN022</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs not allowed for Title field validations<br>Parameters: AA, 12A, Welcome5@AM, Welcome5@AM, 324635.0, System Administrator, Title accepts only upper case , lower case and special character like hyphen, underscore and blank</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN024()'><b>ADMN024</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Invalid inputs for User type field validations</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN025()'><b>ADMN025</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Valid inputs for Phone number field<br>Parameters: [Ljava.lang.Object;@214be131</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN026()'><b>ADMN026</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN026-Verify the Invalid inputs for Phone number field<br>Parameters: Flag, AB34, Welcome5@AM, Welcome5@AM, Sr Manager, System Administrator, Abbsggsgs, Abc@gmail.com, Phone accepts only numbers</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN027()'><b>ADMN027</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify that  Email field is non-mandatory</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN028()'><b>ADMN028</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Invalid formats for Email Field at User Management Screen<br>Parameters: [Ljava.lang.Object;@1ec68741</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN029()'><b>ADMN029</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify valid formats for Email Field at User Management Screen<br>Parameters: [Ljava.lang.Object;@676026fb</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN030()'><b>ADMN030</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Valid validation for Photo field</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN031()'><b>ADMN031</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Invalid validation for Photo field</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN032()'><b>ADMN032</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the Disable User Account check Box validations</td>
 <td></td>
 <td>0</td>
-<td>com.vrt.testcases.UM4@20d28811</td></tr>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN032A()'><b>ADMN032A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Application should not allow to login with disable User id</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN033()'><b>ADMN033</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify if a user can not disable his own account</td>
+<td></td>
+<td>1</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN034()'><b>ADMN034</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of Equipment-Logger details screen - Copy to drive</td>
+<td></td>
+<td>17</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN034A()'><b>ADMN034A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN034A-Verify the functionality when disabled user credentials are given in authentication window of Equipment Logger details screen-Delete Icon</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN034B()'><b>ADMN034B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of delete at Equipment Logger details screen-under Report tile</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN034C()'><b>ADMN034C</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of  Equipment-under document tile</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN034D()'><b>ADMN034D</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN034D-Verify the functionality when disabled user credentials are given in authentication window of Equipment Logger details screen- Modification</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN035()'><b>ADMN035</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN035-Verify the functionality when disabled user credentials are given in authentication window of Equipment-Verification scree</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN036A()'><b>ADMN036A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN036A-Verify the functionality when disabled user credentials are given in authentication window of Assets screen</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN036B()'><b>ADMN036B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN036B-Verify the functionality when disabled user credentials are given in authentication window of Edit in Assets screen</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN036C()'><b>ADMN036C</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN036C-Verify the functionality when disabled user credentials are given in authentication window of delete Assets screen</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN036D()'><b>ADMN036D</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN036D-Verify the functionality when disabled user credentials are given in authentication window of copy Assets screen</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037A()'><b>ADMN037A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037A-Verify if a disabled User is not allowed to create a new Setup          <br>Parameters: SyncInAsset, Admin37A, 10, 10, TC, Manual</td>
+<td></td>
+<td>25</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037B()'><b>ADMN037B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037B-Verify if a disabled User is not allowed to edit an existing Setup and save the changes</td>
+<td></td>
+<td>21</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037C()'><b>ADMN037C</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037C-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _copy to drive</td>
+<td></td>
+<td>14</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037D()'><b>ADMN037D</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037D-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _Print_Button</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037E()'><b>ADMN037E</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037E-Verify the functionality when disabled user credentials are given in authentication window of Setups screen _Delete Set Up</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037F()'><b>ADMN037F</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037F-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_CopySetup_Button<br>Parameters: ADMIN037F, 037F, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN037G()'><b>ADMN037G</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN037G-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_Copy As New Setup_Button</td>
+<td></td>
+<td>21</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN039A()'><b>ADMN039A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN039A-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tile-Delete icon</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN039B()'><b>ADMN039B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN039B-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Qualification tile-CopyQualToDrive_Btn</td>
+<td></td>
+<td>15</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN040A()'><b>ADMN040A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN040A-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-Delete Btn</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN040B()'><b>ADMN040B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN040B-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Reports tile-Copy to Drive</td>
+<td></td>
+<td>16</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN041A()'><b>ADMN041A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN041A- Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents tile-click_DeleteBtn</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN041B()'><b>ADMN041B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN041B-Verify the functionality when disabled user credentials are given in authentication window of Asset Details-Documents -CopyToDrive</td>
+<td></td>
+<td>16</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN042()'><b>ADMN042</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of Admin screen</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN042A()'><b>ADMN042A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of Admin screen-Edit</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN042B()'><b>ADMN042B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of Admin screen-Delete</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN043()'><b>ADMN043</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of File Management screen</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN043A()'><b>ADMN043A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the functionality when disabled user credentials are given in authentication window of File Management screen</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN044()'><b>ADMN044</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify User Creation for an Administator User</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN045B()'><b>ADMN045B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN045B-Verify user should not be able to login with the Pre-Reset password<br>Parameters: ADMN045B, 45B, 454545.0, Sr Manager, System Administrator</td>
+<td></td>
+<td>31</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN046()'><b>ADMN046</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify the default privileges for Administrator</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN047()'><b>ADMN047</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify the non- default privileges for Administrator</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN048A()'><b>ADMN048A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN048A-Verify if Administrator is able to access the default privilege-Create Equipment</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN048B()'><b>ADMN048B</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN048B-Verify if Administrator is able to access the default privilege Edit Equipment</td>
+<td></td>
+<td>18</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN049()'><b>ADMN049</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-Archive</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN050()'><b>ADMN050</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-SyncIn</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN050A()'><b>ADMN050A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-SyncOut</td>
+<td></td>
+<td>12</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN051()'><b>ADMN051</b><br>Test class: com.vrt.testcases.UM4<br>Test method: Verify if Administrator is able to access the default privilege-Delete  Pass_Fail reports</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN052()'><b>ADMN052</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-Access Audit Trail</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN053()'><b>ADMN053</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-Camera Access</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN054()'><b>ADMN054</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Administrator is unable to access the non-default privilege-Create Asset</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN054A()'><b>ADMN054A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Administrator is unable to access the non-default privilege-Edit Asset</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN055()'><b>ADMN055</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Administrator is unable to access the non-default privilege-Create Setups</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN058A()'><b>ADMN058A</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN058A-Verify if Administrator is Unable to access the customized unchecked privilege-Create_Equipment</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN058B()'><b>ADMN058B</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN058B-Verify Administrator is unable to access the customized unchecked privilege-Edit Equipment</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN059()'><b>ADMN059</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Administrator is able to access the default privilege-Create Reports</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN060()'><b>ADMN060</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Administrator is able to access the customized privilege-Create Setups</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN062()'><b>ADMN062</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets<br>Parameters: ADMIN062, 062, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>20</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN063()'><b>ADMN063</b><br>Test class: com.vrt.testcases.UM4<br>Test method: Verify if Administrator is able to access the default privilege-Delete Setups</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN064()'><b>ADMN064</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN064-Verify if Administrator is able to access the default privilege-Delete Equipment</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN065A()'><b>ADMN065A</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN065A-Verify if Administrator is able to access the default privilege-Delete StudyFiles</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN065B()'><b>ADMN065B</b><br>Test class: com.vrt.testcases.UM4<br>Test method: Verify if Administrator is able to access the default privilege-Delete Reports_qualification sub bar</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN065C()'><b>ADMN065C</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN065C-Verify if Administrator is able to access the default privilege-Delete_SetUpReports</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN065D()'><b>ADMN065D</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN065D-Verify if Administrator is able to Delete documentsfrom Asset Details-Documents tile</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN067A()'><b>ADMN067A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN067A-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups<br>Parameters: ADMIN067A, 067A, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>24</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN067B()'><b>ADMN067B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN067B-Verify if Administrator is able to access the default privilege-Copy Files_Reports- copy Assets</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069A()'><b>ADMN069A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069A-Verify mandatory login before saving any changes  for any user type</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069B()'><b>ADMN069B</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069B-Verify mandatory login for a new user before saving any changes-Equipment Creation</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069C()'><b>ADMN069C</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069C-Verify mandatory login for a new user before saving any changes-Equipment Edit</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069D()'><b>ADMN069D</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069D-Verify mandatory login for a new user before saving any changes-Equipment Delete</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069E()'><b>ADMN069E</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069E-Verify mandatory login for a new user before saving any changes-Aseert Creation</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069F()'><b>ADMN069F</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069F-Verify mandatory login for a new user before saving any changes-Aseert Edit<br>Parameters: ADMIN069F, 069F, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069G()'><b>ADMN069G</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069G- Verify mandatory login for a new user before saving any changes-Aseert Delete<br>Parameters: ADMIN069G, 069G, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>16</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069I()'><b>ADMN069I</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069I-Verify mandatory login for a new user before saving any changes-Admin screen-Delete</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069J()'><b>ADMN069J</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069J-Verify mandatory login for a new user before saving any changes-File Management screen</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN072()'><b>ADMN072</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN072-Verify default privileges  for Supervisor User</td>
+<td></td>
+<td>14</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN073()'><b>ADMN073</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify the non- default privileges  for Supervisor User</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN074()'><b>ADMN074</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Create Assets<br>Parameters: ADMIN074, 074, HeatBath, Htc, Hyderabad</td>
+<td></td>
+<td>13</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN074A()'><b>ADMN074A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Edit Assets</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN075()'><b>ADMN075</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Audit Trail</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN076()'><b>ADMN076</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Camera Access</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN077A()'><b>ADMN077A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN077A-Verify Supervisor is unable to access the non-default privilege-Create Equipment</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN077B()'><b>ADMN077B</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN077B-Verify Supervisor is unable to access the non-default privilege-Edit Equipment</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN078()'><b>ADMN078</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Supervisor is unable to access the non-default privilege-Delete Asset</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN079()'><b>ADMN079</b><br>Test class: com.vrt.testcases.UM4<br>Test method: Verify Supervisor is unable to access the non-default privilege-Delete Setups</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN080()'><b>ADMN080</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Supervisor is unable to access the non-default privilege-Delete Equipments</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN081A()'><b>ADMN081A</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN081A-Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN081B()'><b>ADMN081B</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN081B-Verify Supervisor is unable to access the default privilege-Delete_Reports</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN081C()'><b>ADMN081C</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN081C-Verify Supervisor is unable to access the default privilege-Delete_SetUpReports</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN081D()'><b>ADMN081D</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN081E()'><b>ADMN081E</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN081E-Verify if Supervisor is unable to Delete documents from -Documents tile</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN082()'><b>ADMN082</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN082-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups</td>
+<td></td>
+<td>22</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN083()'><b>ADMN083</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify Supervisor is unable to access the non-default privilege-Archive data</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN084()'><b>ADMN084</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor user is unable to access Admin</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN085A()'><b>ADMN085A</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN085A-Verify Supervisor is Unable to access the customized  privilege-Create Assets</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN085B()'><b>ADMN085B</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN085B-Verify Supervisor is unable to access the customized privilege-Edit Asset</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN086()'><b>ADMN086</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Create Setups</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN087()'><b>ADMN087</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN087-Verify if Supervisor is able to access the customised non-default privilege-Delete setup</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN088()'><b>ADMN088</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-Create Reports</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN094()'><b>ADMN094</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-SyncIn</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN094A()'><b>ADMN094A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Supervisor is able to access the default privilege-SyncOut</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN096()'><b>ADMN096</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify the User Creation for Operator user from User management</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN097()'><b>ADMN097</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify default privileges  for Operator User</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN098()'><b>ADMN098</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify non-default privileges  for Operator User</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN099()'><b>ADMN099</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the default privilege-Create  Assets</td>
+<td></td>
+<td>13</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN100()'><b>ADMN100</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the default privilege-Edit Assets</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN101()'><b>ADMN101</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the default privilege-Create Reports</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN103A()'><b>ADMN103A</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN103A-Verify Operator is unable to access the non-default privilege-Delete StudyFiles</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN103B()'><b>ADMN103B</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN103B-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN103C()'><b>ADMN103C</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN103C-Verify Operator is unable to access the default privilege-Delete_SetUpReports</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN103D()'><b>ADMN103D</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN103D-Verify if Operator is unable to Delete documents from Asset Details-Documents tile</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN103E()'><b>ADMN103E</b><br>Test class: com.vrt.testcases.UM4<br>Test method: ADMN103E-Verify if Operator is able to access the default privilege-Delete Pass_Fail Report</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN105()'><b>ADMN105</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the default privilege-Camera access</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN106()'><b>ADMN106</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Delete Assets</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN107()'><b>ADMN107</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is  unable to access the non-default privilege-Archive data</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN108()'><b>ADMN108</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Admin</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN109()'><b>ADMN109</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the non-default privilege-Manual syncIn</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN109A()'><b>ADMN109A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the non-default privilege-Manual syncOut</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN111()'><b>ADMN111</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is unable to access the customized unchecked-Create Asset</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN111A()'><b>ADMN111A</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify if Operator is unable to access the customized Unchecked privilege-Edit Assets</td>
+<td></td>
+<td>25</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.ADMN112()'><b>ADMN112</b><br>Test class: com.vrt.testcases.UM3<br>Test method: ADMN112-Verify Operator is able to access the customised non-default privilege-Delete setup</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN115()'><b>ADMN115</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is able to access the default privilege-Access Audit trail</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN116()'><b>ADMN116</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify  Operator is unable to access the non-default privilege-Create Setups</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN117A()'><b>ADMN117A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN117A-Verify if Operator is unable to access the non-default privilege-Create- Equipments</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN117B()'><b>ADMN117B</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN117B-Verify if Operator is not able to access the non-default privilege-Edit Equipments</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN118()'><b>ADMN118</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Delete Equipments</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN119()'><b>ADMN119</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports</td>
+<td></td>
+<td>14</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN119A()'><b>ADMN119A</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport</td>
+<td></td>
+<td>15</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN119B()'><b>ADMN119B</b><br>Test class: com.vrt.testcases.UM2<br>Test method: Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports</td>
+<td></td>
+<td>15</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM4.ADMN120()'><b>ADMN120</b><br>Test class: com.vrt.testcases.UM4<br>Test method: Verify Operator is unable to access the non-default privilege-Delete Setups</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM4@59906517</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN126()'><b>ADMN126</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN126-Verify the delete btn functionality in user mgmt screen</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN126A()'><b>ADMN126A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify NO button functionality from the Delete confirmation pop-up</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN127()'><b>ADMN127</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify user is able to delete any selected account</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN128()'><b>ADMN128</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the deleted user should not be able to login to the application</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN129()'><b>ADMN129</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Create a new user by Entering already deleted  User ID</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN130()'><b>ADMN130</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify search functionality for valid input</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN132()'><b>ADMN132</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify the cancel button functionality</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN133()'><b>ADMN133</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN133-Verify the Save button functionality</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM2.ADMN133()'><b>ADMN133</b><br>Test class: com.vrt.testcases.UM2<br>Test method: ADMN071-Verify User Creation for Supervisor User</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM2@6043cd28</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN1()'><b>CADMN1</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify the customized (non defult) privileges for Administrator</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN10()'><b>CADMN10</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN10-Verify Administrator is able to access the Customized checked privilege-Create Asset</td>
+<td></td>
+<td>13</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN11()'><b>CADMN11</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN11-Verify Administrator is able to access the Customized chcked privilege-Edit Asset</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN12()'><b>CADMN12</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN12-Verify if Administrator is unable to access the Customized unchecked privilege-Camera Access in edit asset</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN14()'><b>CADMN14</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify if Administrator is unable to access the Customized non default privilege-Delete Assets</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN15()'><b>CADMN15</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN15-Verify the Customized checked privileges for Supervisor User</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN16()'><b>CADMN16</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify the Customized Non-default privileges  for Supervisor User</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN19()'><b>CADMN19</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Supervisor is able to access the customized default privilege-Delete Asset</td>
+<td></td>
+<td>26</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN2()'><b>CADMN2</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify the customized default privileges for Administrator</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN20()'><b>CADMN20</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is unable to access the customized unchecked privilege-Camera Access</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN21()'><b>CADMN21</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN21-Verify Supervisor is able to access the customized non-default privilege-Create Equipment</td>
+<td></td>
+<td>11</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN22()'><b>CADMN22</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN22-Verify Supervisor is able to access the customized non-default privilege-Edit Equipment</td>
+<td></td>
+<td>18</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN23A()'><b>CADMN23A</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN23A-Verify Supervisor is able to access the customized non-default privilege-Delete Equipments</td>
+<td></td>
+<td>17</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN23B()'><b>CADMN23B</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN23B-Verify Supervisor is able to access the customized default privilege-Archive</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN24()'><b>CADMN24</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN24-Verify Supervisor is able to access the customized non-default privilege-Manual sync In</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN25()'><b>CADMN25</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Supervisor is able to access the customized non-default privilege-Manual sync Out</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN26()'><b>CADMN26</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN26-Verify if Supervisor is unable to access the customized Non-default privilege-Access Audit Trail</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN27()'><b>CADMN27</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify customized checked privileges  for Operator User</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN28()'><b>CADMN28</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify customized unchecked privileges for Operator User</td>
+<td></td>
+<td>9</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN29()'><b>CADMN29</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is able to access the customized checked privileges-Admin</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN30()'><b>CADMN30</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN30-Verify Operator is able to access the customized checked privileges-Create Equipment</td>
+<td></td>
+<td>13</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN31()'><b>CADMN31</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN31-Verify Operator is able to access the customized checked privilege-Edit Equipment</td>
+<td></td>
+<td>10</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN32()'><b>CADMN32</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN32-Verify Operator is able to access the customized checked privilege-Delete Equipments</td>
+<td></td>
+<td>18</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN35()'><b>CADMN35</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify if Operator is able to access the customized checked privilege-Delete Assets</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN36()'><b>CADMN36</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is able to access the customized checked privilege -Archive</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN37()'><b>CADMN37</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is able to access the customized checked privilege-SyncIn</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN38()'><b>CADMN38</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is able to access the customized checked privilege-SyncOut</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN39()'><b>CADMN39</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify Operator is unable to access the customized unchecked privilege-Camera Access</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN40()'><b>CADMN40</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify operator  is unable to access the customized unchecked privilege-Access Audit Trail</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN5()'><b>CADMN5</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN5-Verify Admin is unable to access the customized unchecked privilege-Delete Equipments</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN6()'><b>CADMN6</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify if Administrator is unable to access the customized unchecked privilege-Archive</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN7()'><b>CADMN7</b><br>Test class: com.vrt.testcases.UM3<br>Test method: Verify if Administrator is able to access the customized unchecked privilege-SyncIn</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN8()'><b>CADMN8</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN8-Verify if Administrator is able to access the customized unchecked privilege-SyncOut</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM3.CADMN9()'><b>CADMN9</b><br>Test class: com.vrt.testcases.UM3<br>Test method: CADMN9-Verify if Administrator is able to access the customized unchecked privilege-Access Audit Trail</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.UM3@cb51256</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN015()'><b>ADMN015</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN015-Verify Valid inputs allowed for Password Field at User Management Screen</td>
+<td><div><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN015(userManagementUtility.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace847626561", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace847626561'><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN015(userManagementUtility.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div></td>
+<td>0</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN016()'><b>ADMN016</b><br>Test class: com.vrt.testcases.UM1<br>Test method: Verify Invalid inputs that are not allowed for Password Field at User Management Screen</td>
+<td><div><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN016(userManagementUtility.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace533011191", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace533011191'><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN016(userManagementUtility.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div></td>
+<td>0</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN017()'><b>ADMN017</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN017-Verify Valid inputs allowed for Confirm Password Field at User Management Screen</td>
+<td><div><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN017(userManagementUtility.java:120)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace902434220", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace902434220'><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN017(userManagementUtility.java:120)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div></td>
+<td>0</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN018()'><b>ADMN018</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN018-Verify Invalid inputs that are not allowed for Confirm Password Field at User Management Screen</td>
+<td><div><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN018(userManagementUtility.java:127)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace261855196", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace261855196'><pre>java.lang.RuntimeException: java.lang.NullPointerException
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:145)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:797)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:740)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:59)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:38)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:789)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+	at com.vrt.utility.userManagementUtility.getTestData(userManagementUtility.java:45)
+	at com.vrt.utility.userManagementUtility.ADMN018(userManagementUtility.java:127)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:76)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 25 more
+</pre></div></td>
+<td>0</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN045A()'><b>ADMN045A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN045A-Verify Reset pwd functionality for second user-Admin<br>Parameters: ADMN045A, 45A, 454545.0, Sr Manager, System Administrator</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 263A04B2-7FF8-405C-A25E-4BE333814A8F
+*** Element info: {Using=name, value=Change Password}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.pages.LoginPage.ChangePWCheckBoxEnableStatus(LoginPage.java:101)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1647)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1704845763", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1704845763'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 263A04B2-7FF8-405C-A25E-4BE333814A8F
+*** Element info: {Using=name, value=Change Password}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.pages.LoginPage.ChangePWCheckBoxEnableStatus(LoginPage.java:101)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1647)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>32</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN045A()'><b>ADMN045A</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN045A-Verify Reset pwd functionality for second user-Admin<br>Parameters: ADMN045A, 45A, 454545.0, Sr Manager, System Administrator</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 2B78A292-85E3-4CDD-BC40-8A65ADE18958
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1640)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace722064139", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace722064139'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 2B78A292-85E3-4CDD-BC40-8A65ADE18958
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN045A(UM1.java:1640)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>29</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069H()'><b>ADMN069H</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069H-Verify mandatory login for a new user before saving any changes-Admin screen-Edit</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 3DC16299-6651-4DA8-967E-EFDC253A4D67
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace653908863", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace653908863'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: 3DC16299-6651-4DA8-967E-EFDC253A4D67
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>26</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
+<tr>
+<td title='com.vrt.testcases.UM1.ADMN069H()'><b>ADMN069H</b><br>Test class: com.vrt.testcases.UM1<br>Test method: ADMN069H-Verify mandatory login for a new user before saving any changes-Admin screen-Edit</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: C11057C8-B488-41C4-B645-7416971E31D1
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace210998574", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace210998574'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.47.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
+Session ID: C11057C8-B488-41C4-B645-7416971E31D1
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.vrt.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.vrt.testcases.UM1.ADMN069H(UM1.java:1900)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>26</td>
+<td>com.vrt.testcases.UM1@42d8062c</td></tr>
 </table><p>
 </body>
 </html>

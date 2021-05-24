@@ -2,9 +2,7 @@ package com.vrt.testcases;
 
 import java.awt.AWTException;
 import java.io.IOException;
-import java.text.ParseException;
 
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -28,11 +26,7 @@ import com.vrt.pages.assetHubPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
 
 import com.vrt.utility.TestUtilities;
-import com.vrt.utility.assetCreationUtility;
 import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.userManagementUtility;
 import com.vrt.pages.Setup_SensorDescriptionPage;
 
 import com.vrt.pages.Setup_CalculationsPage;
@@ -166,7 +160,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
 		Setup_SensorConfigPage.Click_assignBtn();
 		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 
@@ -314,7 +308,7 @@ public class setup_CalculationTest extends BaseClass {
 		// Enter value more than 400
 		Setup_CalculationsPage.enter_bTemp("450");
 		Setup_CalculationsPage.click_Dvalue_textfield();
-		sa.assertEquals(Setup_CalculationsPage.BTemp_text(), "400",
+		sa.assertEquals(Setup_CalculationsPage.BTemp_text(), "400.0",
 				"Fail: Base Temp field accepting value more than 400 ");
 		sa.assertAll();
 	}
@@ -402,6 +396,7 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL010-Verify that max 5 characters are allowed in D Value field
+	// Enable the Editing Dvalue option in Policy page
 	@Test(groups = { "Regression" }, description = "CAL010-Verify that max 5 characters are allowed in D Value field")
 	public void CAL010() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL010-Verify that max 5 characters are allowed in D Value field");
@@ -409,6 +404,7 @@ public class setup_CalculationTest extends BaseClass {
 
 		// Enter more than 5 chars
 		Setup_CalculationsPage.Enter_Dvalue_textfield("123456");
+
 		String Dtxt = Setup_CalculationsPage.DValueField_text();
 		sa.assertEquals(Dtxt.length(), 5, " Fail:the default value is not displayed in BD Value field ");
 		sa.assertAll();
@@ -431,9 +427,9 @@ public class setup_CalculationTest extends BaseClass {
 
 	}
 
-	// CAL011-Verify that min 0.10 and max 99.99 are allowed in D Value field
+	// CAL011B-Verify that min 0.10 and max 99.99 are allowed in D Value field
 	@Test(groups = {
-			"Regression" }, dataProvider = "CAL011B", dataProviderClass = setupCreationUtility.class, description = "CAL011B-Verify that min 0.10 allowed in D Value field")
+			"Regression" }, dataProvider = "CAL011B", dataProviderClass = setupCreationUtility.class, description = "CAL011B-Verify that max 99.99  allowed in D Value field")
 
 	public void CAL011B(String DTempmax) throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL011B-Verify that max 99.99  allowed in D Value field");
@@ -441,9 +437,10 @@ public class setup_CalculationTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		Setup_CalculationsPage.Enter_Dvalue_textfield(DTempmax);
 		Setup_CalculationsPage.Click_Cleth_DrpDwn();
-
-		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "99.99",
-				"Fail:Minimum value 99.99 is not allowed in D Value field ");
+		Thread.sleep(1000);
+		String Dval = Setup_CalculationsPage.DValueField_text();
+		System.out.println(Dval);
+		sa.assertEquals(Dval, "99.99", "Fail:Minimum value 99.99 is not allowed in D Value field ");
 		sa.assertAll();
 
 	}
@@ -501,7 +498,7 @@ public class setup_CalculationTest extends BaseClass {
 
 		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
 
-		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "0.10",
+		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "1.00",
 				" Fail: Minimum value 0.10 is not allowed in D Value field");
 		sa.assertAll();
 
@@ -520,17 +517,17 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// CAL015-Verify that max 4 characters are allowed in Z Value field
+	// CAL015-Verify that max 5 characters are allowed in Z Value field
 
-	@Test(groups = { "Regression" }, description = "CAL015-Verify that max 4 characters are allowed in Z Value field")
+	@Test(groups = { "Regression" }, description = "CAL015-Verify that max 5 characters are allowed in Z Value field")
 	public void CAL015() throws InterruptedException, IOException {
-		extentTest = extent.startTest("CAL015-Verify that max 4 characters are allowed in Z Value field");
+		extentTest = extent.startTest("CAL015-Verify that max 5 characters are allowed in Z Value field");
 		SoftAssert sa = new SoftAssert();
 
 		// Enter more than 4 chars
 		Setup_CalculationsPage.enter_Zval("123456");
 		String Ztxt = Setup_CalculationsPage.ZValueField_text();
-		sa.assertEquals(Ztxt.length(), 4, " Fail:the default value is not displayed in  ZValue field ");
+		sa.assertEquals(Ztxt.length(), 5, " Fail:the default value is not displayed in  ZValue field ");
 		sa.assertAll();
 	}
 
@@ -752,7 +749,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 		Setup_CalculationsPage.click_SatTP_btn();
@@ -777,7 +774,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
 		Setup_SensorConfigPage.Enter_PressureCount_textField("0");
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 		Setup_CalculationsPage.click_SatTP_btn();
@@ -952,10 +949,6 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_CalculationsPage.Click_About_Icon_AppBar();
 		sa.assertEquals(Setup_CalculationsPage.check_About_wndw_Presence(), true,
 				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
-
-		sa.assertEquals(Setup_CalculationsPage.check_About_wndw_Presence(), true,
-				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
-
 		sa.assertAll();
 	}
 
@@ -973,7 +966,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 		Setup_CalculationsPage.select_AlethCondition("During Entire Study");
