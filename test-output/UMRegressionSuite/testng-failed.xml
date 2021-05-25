@@ -7,22 +7,18 @@
   </listeners>
   <test thread-count="5" verbose="5" name="UMTestRegression(failed)">
     <classes>
-      <class name="com.vrt.testcases.UM2">
-        <methods>
-          <include name="PreSetup"/>
-          <include name="Teardown"/>
-          <include name="Setup"/>
-          <include name="endReport"/>
-          <include name="Check"/>
-        </methods>
-      </class> <!-- com.vrt.testcases.UM2 -->
       <class name="com.vrt.testcases.UM1">
         <methods>
           <include name="Teardown"/>
           <include name="PreSetup"/>
+          <include name="ADMN069H"/>
+          <include name="ADMN016"/>
           <include name="endReport"/>
+          <include name="ADMN018"/>
+          <include name="ADMN045A" invocation-numbers="0 0 0"/>
+          <include name="ADMN015"/>
           <include name="Setup"/>
-          <include name="Check"/>
+          <include name="ADMN017"/>
         </methods>
       </class> <!-- com.vrt.testcases.UM1 -->
     </classes>

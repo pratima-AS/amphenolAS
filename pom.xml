@@ -27,9 +27,8 @@
 					<suiteXmlFiles>
 						<!-- <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile> -->
 						<!-- <suiteXmlFile>src/test/resources/RegressionTest.xml</suiteXmlFile> -->
-						<suiteXmlFile>src/test/resources/UMRegressionTest.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/LoginTest.xml</suiteXmlFile>
 					</suiteXmlFiles>
-
 				</configuration>
 			</plugin>
 

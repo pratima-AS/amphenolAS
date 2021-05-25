@@ -30,6 +30,7 @@ public class Setup_QualParamPage extends BaseClass {
 	WebElement RFT_text = null;
 	WebElement NxtBtn = null;
 	WebElement PreviousButton = null;
+	WebElement BackButton = null;
 	WebElement SetupHeaderTextBlock = null;
 	WebElement sub_header = null;
 	WebElement start_Stopcond = null;
@@ -53,6 +54,8 @@ public class Setup_QualParamPage extends BaseClass {
 		RFT_DrpDwn = driver.findElementByAccessibilityId("_rfCommToggleThresholdSettingsComboBox");
 		NxtBtn = driver.findElementByAccessibilityId("NextButton");
 		PreviousButton = driver.findElementByAccessibilityId("PreviousButton");
+
+		BackButton = driver.findElementByAccessibilityId("GoButton");
 		start_Stopcond = driver.findElementByName("Start Stop Conditions:");
 		Data_Storage = driver.findElementByName("Data Storage");
 		RF_Transmit = driver.findElementByName("RF Transmit Threshold");
@@ -79,6 +82,7 @@ public class Setup_QualParamPage extends BaseClass {
 		RFT_DrpDwn = null;
 		RFT_text = null;
 		NxtBtn = null;
+		BackButton = null;
 		SetupHeaderTextBlock = null;
 		sub_header = null;
 		start_Stopcond = null;
@@ -159,11 +163,6 @@ public class Setup_QualParamPage extends BaseClass {
 	// fetch text
 	public String get_Txt_QStartDrpDwn() {
 		return FetchText(QStart_DrpDwn);
-	}
-
-	// Click the Qual Stop dropdown box
-	public void click_Qstop_DrpDwnBox() {
-		clickOn(QStop_DrpDwn);
 	}
 
 	// Verify that first option as "Manual" displayed in Start Qualification drop
@@ -759,6 +758,177 @@ public class Setup_QualParamPage extends BaseClass {
 		clickOn(SR_DrpDwn);
 	}
 
+	// fetch default text from sample rate dropdown
+
+	public String fetch_DefaultTxt_SR() {
+		return FetchText(SR_DrpDwn);
+
+	}
+
+	// fetch first option from sample rate down
+
+	public String Fetch_1optn_SR_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(2));
+	}
+
+	// fetch second option from sample rate down
+
+	public String Fetch_2optn_SR_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(3));
+	}
+
+	// fetch seventh option from sample rate down
+
+	public String Fetch_7optn_SR_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(8));
+	}
+
+	// fetch eight option from sample rate down
+
+	public String Fetch_8optn_SR_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(9));
+	}
+
+	// fetch nine option from sample rate down
+
+	public String Fetch_9thoptn_SR_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(10));
+	}
+
+	// click on 1 sec from SR drop down n verify TR values in drop down
+	public void Select_1sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(2));
+	}
+
+	// verify 3secs is displaying in TR dropdown
+
+	public boolean is3secs_visible() {
+		WebElement Chk_3secs = driver.findElementByName("3 Seconds");
+		return Chk_3secs.isEnabled();
+	}
+
+	// verify 4secs is displaying in TR dropdown
+
+	public boolean is4secs_visible() {
+		WebElement Chk_4secs = driver.findElementByName("4 Seconds");
+		return Chk_4secs.isEnabled();
+	}
+
+	// verify 5secs is displaying in TR dropdown
+
+	public boolean is5secs_visible() {
+		WebElement Chk_5secs = driver.findElementByName("5 Seconds");
+		return Chk_5secs.isEnabled();
+	}
+
+	// click on 2 sec from SR drop down n verify TR values in drop down
+	public void Select_2sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(3));
+	}
+
+	// verify 6secs is displaying in TR dropdown
+
+	public boolean is6secs_visible() {
+		WebElement Chk_6secs = driver.findElementByName("6 Seconds");
+		return Chk_6secs.isEnabled();
+	}
+
+	// verify 8secs is displaying in TR dropdown
+
+	public boolean is8secs_visible() {
+		WebElement Chk_8secs = driver.findElementByName("8 Seconds");
+		return Chk_8secs.isEnabled();
+	}
+
+	// verify 10secs is displaying in TR dropdown
+
+	public boolean is10secs_visible() {
+		WebElement Chk_10secs = driver.findElementByName("10 Seconds");
+		return Chk_10secs.isEnabled();
+	}
+
+	// click on 3 sec from SR drop down n verify TR values in drop down
+	public void Select_3sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(4));
+	}
+
+	// verify 9secs is displaying in TR dropdown
+
+	public boolean is9secs_visible() {
+		WebElement Chk_9secs = driver.findElementByName("9 Seconds");
+		return Chk_9secs.isEnabled();
+	}
+
+	// verify 12secs is displaying in TR dropdown
+
+	public boolean is12secs_visible() {
+		WebElement Chk_12secs = driver.findElementByName("12 Seconds");
+		return Chk_12secs.isEnabled();
+	}
+
+	// click on 5 sec from SR drop down n verify TR values in drop down
+	public void Select_5sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(5));
+	}
+
+	// verify 12secs is displaying in TR dropdown
+
+	public boolean is20secs_visible() {
+		WebElement Chk_20secs = driver.findElementByName("20 Seconds");
+		return Chk_20secs.isEnabled();
+	}
+
+	// click on 10 sec from SR drop down n verify TR values in drop down
+	public void Select_10sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(6));
+	}
+
+	// verify 12secs is displaying in TR dropdown
+
+	public boolean is30secs_visible() {
+		WebElement Chk_30secs = driver.findElementByName("30 Seconds");
+		return Chk_30secs.isEnabled();
+	}
+
+	// click on 20 sec from SR drop down n verify TR values in drop down
+	public void Select_20sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(7));
+	}
+
+	// click on 30 sec from SR drop down n verify TR values in drop down
+	public void Select_30sec_SR() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(itemlist.get(8));
+	}
+
+	// click on 1 Min from SR drop down n verify TR values in drop down
+	public void Select_1min_SR() {
+		// List<WebElement> itemlist =
+		// driver.findElements(By.className("ComboBoxItem"));
+		// clickOn (itemlist.get(9));
+		WebElement OneminSR = driver.findElementByName("1 Minute");
+		clickOn(OneminSR);
+	}
+
+	// click on 2 Min from SR drop down n verify TR values in drop down
+	public void Select_2min_SR() {
+		// List<WebElement> itemlist =
+		// driver.findElements(By.className("ComboBoxItem"));
+		WebElement TWOminSR = driver.findElementByName("2 Minutes");
+		clickOn(TWOminSR);
+	}
+
 	// Select Sampling Rate
 	public void select_SR(String SR) throws InterruptedException {
 
@@ -802,6 +972,17 @@ public class Setup_QualParamPage extends BaseClass {
 	// Click the Transmission Rate dropdown box
 	public void click_TR_DrpDwnBox() {
 		clickOn(TR_DrpDwn);
+	}
+
+	// fetch default tet ftom TR dropdown
+
+	public String FetchDfltTxt_TR_DrpDwnBox() {
+		return FetchText(TR_DrpDwn);
+	}
+
+	// Fetch text from RFT_DrpDwn
+	public String FetchTxt_RFT_DrpDwn() {
+		return FetchText(RFT_DrpDwn);
 	}
 
 	// Select Transmission Rate based on Sampling Rate selction
@@ -1079,11 +1260,6 @@ public class Setup_QualParamPage extends BaseClass {
 
 	}
 
-	// Click the RFT dropdown box
-	public void click_RFT_DrpDwnBox() {
-		clickOn(RFT_DrpDwn);
-	}
-
 	// Select RF Threshold
 	public void select_RFT(String RFT) throws InterruptedException {
 		int rft = Integer.parseInt(RFT.split(",")[0]);
@@ -1118,7 +1294,6 @@ public class Setup_QualParamPage extends BaseClass {
 	// Click the Next button to move to Setup Review page
 	public Setup_ReviewPage Click_NxtBtn() throws IOException, InterruptedException {
 		clickOn(NxtBtn);
-		Thread.sleep(1000);
 		return new Setup_ReviewPage();
 	}
 
@@ -1134,10 +1309,288 @@ public class Setup_QualParamPage extends BaseClass {
 		return new Setup_CalculationsPage();
 	}
 
+	// click back btn to navigate Asset Details Page
+
+	public assetDetailsPage Click_back_Btn() throws IOException {
+		clickOn(BackButton);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+		return new assetDetailsPage();
+	}
+
 	// Alert msg
 	public String AlertMsg() {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
 	}
 
+	// Click the Qual Stop dropdown box
+	public void click_Qstop_DrpDwnBox() {
+		clickOn(QStop_DrpDwn);
+	}
+
+	// fetch text
+	public String get_Txt_Qstop_DrpDwnBox() {
+		return FetchText(QStop_DrpDwn);
+	}
+
+	// Verify that first option as "Manual" displayed in Stop Qualification drop
+	// down
+	public String Fetch_Firstoption_QStop_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(1));
+	}
+
+	// click on manual from stop qualification drop down
+
+	public void select_Manual_QStop_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		itemlist.get(1).click();
+	}
+
+	// click on Cycle Time from stop qualification drop down
+
+	public void select_CT_QStop_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		itemlist.get(2).click();
+	}
+
+	// Verify that second option as "Cycle Time" displayed in Start Qualification
+	// drop down
+
+	public String Fetch_Secondoption_QStop_DrpDwn() {
+		List<WebElement> itemlist = driver.findElements(By.className("ComboBoxItem"));
+		return FetchText(itemlist.get(2));
+	}
+
+	// Verify that Hours time fields for Cycle time Qualstop
+
+	public boolean HoursStopQual_State() {
+		WebElement hrs = driver.findElementByAccessibilityId("HoursStopQualification");
+		return hrs.isDisplayed();
+
+	}
+
+	// verify that Min time fields for Cycle time Qualstop
+	public boolean MinStopQual_State() {
+		WebElement min = driver.findElementByAccessibilityId("MinStopQualification");
+		return min.isDisplayed();
+
+	}
+
+	// verify that Sec time fields for Cycle time Qualstop
+	public boolean SecStopQual_State() {
+		WebElement sec = driver.findElementByAccessibilityId("SecStopQualification");
+		return sec.isDisplayed();
+
+	}
+
+	// verify that the HHMMSS_text is displaying
+
+	public boolean HHMMSS_text_State() {
+		WebElement HHMMSS_text = driver.findElementByName("HH:MM:SS");
+		return HHMMSS_text.isDisplayed();
+
+	}
+
+	// Verify that default value 00 is displaying in HH fields for Cycle time
+	// Qualstop
+
+	public String FetchTxt_HH_Stopqual() {
+		WebElement hrs = driver.findElementByAccessibilityId("HoursStopQualification");
+		return FetchText(hrs);
+
+	}
+
+//Fetch text from  MM field for Cycle time Qualstop 
+
+	public String FetchTxt_MM_Stopqual() {
+		WebElement min = driver.findElementByAccessibilityId("MinStopQualification");
+		return FetchText(min);
+
+	}
+
+//Fetch text from  SS field for Cycle time Qualstop 
+
+	public String FetchTxt_SS_Stopqual() {
+		WebElement sec = driver.findElementByAccessibilityId("SecStopQualification");
+		return FetchText(sec);
+
+	}
+
+// Enter HH to text fild
+
+	public void enterTxt_HH(String HH) {
+		WebElement HH_textfield = driver.findElementByAccessibilityId("HoursStopQualification");
+		clickOn(HH_textfield);
+		ClearText(HH_textfield);
+		enterText(HH_textfield, HH);
+	}
+// Enter MM to text fild
+
+	public void enterTxt_MM(String MM) {
+		WebElement MM_textfield = driver.findElementByAccessibilityId("MinStopQualification");
+		clickOn(MM_textfield);
+		ClearText(MM_textfield);
+		enterText(MM_textfield, MM);
+	}
+// Enter SS to text fild
+
+	public void enterTxt_SS(String SS) {
+		WebElement SS_textfield = driver.findElementByAccessibilityId("SecStopQualification");
+		clickOn(SS_textfield);
+		ClearText(SS_textfield);
+		enterText(SS_textfield, SS);
+	}
+
+	// Click on HH field
+	public void click_HH() {
+		WebElement HH_textfield = driver.findElementByAccessibilityId("HoursStopQualification");
+		clickOn(HH_textfield);
+	}
+
+	// Click on MM field
+	public void click_MM() {
+		WebElement MM_textfield = driver.findElementByAccessibilityId("MinStopQualification");
+		clickOn(MM_textfield);
+	}
+
+	// click on SS field
+	public void click_SS() {
+		WebElement SS_textfield = driver.findElementByAccessibilityId("SecStopQualification");
+		clickOn(SS_textfield);
+	}
+
+	// Click the RFT dropdown box
+	public void click_RFT_DrpDwnBox() {
+		clickOn(RFT_DrpDwn);
+	}
+
+	// fetchtext of first option in RFT_DrpDwnBox
+
+	public String fetch_1stoptionTxt_RFT() {
+		WebElement first = driver.findElementByName("-15,-10");
+		return FetchText(first);
+	}
+
+//fetchtext of second option in RFT_DrpDwnBox
+
+	public String fetch_2ndoptionTxt_RFT() {
+		WebElement sec = driver.findElementByName("-25,-20");
+		return FetchText(sec);
+	}
+
+//fetchtext of third option in RFT_DrpDwnBox
+
+	public String fetch_3rdoptionTxt_RFT() {
+		WebElement third = driver.findElementByName("-35,-30");
+		return FetchText(third);
+	}
+
+//fetchtext of fourth option in RFT_DrpDwnBox
+
+	public String fetch_4thoptionTxt_RFT() {
+		WebElement forth = driver.findElementByName("-45,-40");
+		return FetchText(forth);
+	}
+
+//fetchtext of five option in RFT_DrpDwnBox
+
+	public String fetch_5thoptionTxt_RFT() {
+		WebElement five = driver.findElementByName("-125,-120");
+		return FetchText(five);
+	}
+
+	// Right click on the Qual parameter page to invoke the bottom apps bar
+	public void Rt_Click_Buttom_AppBar() {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+	}
+
+	// Verify the presence of Home button in the bottom apps bar
+	public boolean check_Home_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_Home_Icon);
+	}
+
+	// Verify the presence of Apps Help icon/button in the bottom apps bar
+	public boolean check_Help_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_AppHelp_Icon);
+	}
+
+	// Verify the presence of WndsHelp Help icon/button in the bottom apps bar
+	public boolean check_WndsHelp_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
+	}
+
+	// Verify the presence of About Help icon/button in the bottom apps bar
+	public boolean check_About_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_About_Icon);
+	}
+
+	// Click on the Home icon of the bottom apps bar to move to Main Hub page
+	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		clickOn(bottomMenu_Home_Icon);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+		Thread.sleep(1000);
+		return new MainHubPage();
+	}
+
+	// Click on the Help icon of the bottom apps bar to move to Main Hub page
+	public void Click_Help_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
+		clickOn(bottomMenu_AppHelp_Icon);
+		Thread.sleep(500);
+	}
+
+	// Click on the WndsHelp icon of the bottom apps bar
+	public void Click_WndsHelp_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
+		clickOn(bottomMenu_WndsHelp_Icon);
+		Thread.sleep(500);
+	}
+
+	// Click on the About icon of the bottom apps bar to invoke the ABout window
+	public void Click_About_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
+		clickOn(bottomMenu_About_Icon);
+		Thread.sleep(500);
+	}
+
+	// Get the Help context header text on clicking Help icon of the bottom apps bar
+	public String get__HelpMenu_HdrText() {
+		WebElement HelpMenu = driver.findElementByAccessibilityId("helpHeader");
+		return FetchText(HelpMenu);
+	}
+
+	// Verify the presence of About window on clicking the ABout icon in the bottom
+	// apps bar
+	public boolean check_About_wndw_Presence() {
+		WebElement About_Wndw = driver.findElementByName("About");
+		return IsElementVisibleStatus(About_Wndw);
+	}
+
+	// Get the Sw version info from the About window on clicking About icon of the
+	// bottom apps bar
+	public String get_SWVersion_About_Text() {
+		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
+		return FetchText(SWVersion_About_info);
+	}
 }

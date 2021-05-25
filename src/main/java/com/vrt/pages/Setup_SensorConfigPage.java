@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.SendKeysAction;
 
 import com.vrt.base.BaseClass;
 
@@ -94,11 +95,30 @@ public class Setup_SensorConfigPage extends BaseClass {
 
 	// click GroupSensors_btn to navigate Group Sensors page click YES (less number
 	// of sensor config)
-	public Setup_GroupSensorsPage Click_nextbtn_withAlert() throws IOException {
+	public Setup_GroupSensorsPage Click_nextbtn_LessSnsrconfig() throws IOException {
 		clickOn(GroupSensors_btn);
+
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
 		return new Setup_GroupSensorsPage();
+	}
+
+	// While editing setup if user edit the temp count and click on net button
+	// application will display two alert message
+	// Click on Yes for first alert message i.e changing the existing sensor
+	// configuration
+	// then click yes for second alert message i.e Less number of sensors are
+	// configured than the definied
+
+	public Setup_GroupSensorsPage Click_nxtbtn_ForChangingExistingSC() throws IOException {
+		clickOn(GroupSensors_btn);
+
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+		WebElement Yesbtn1 = driver.findElementByName("Yes");
+		clickOn(Yesbtn1);
+		return new Setup_GroupSensorsPage();
+
 	}
 
 	// Fetch the alert text message for the less number of sensor configure
@@ -286,7 +306,7 @@ public class Setup_SensorConfigPage extends BaseClass {
 	}
 
 	// Check the presence of VerticalScrollBar field
-	public boolean IsDiaplayingVerticalScrollBar() {
+	public boolean IsDisplayingVerticalScrollBar() {
 		WebElement Vertical_ScrollBar = driver.findElementByAccessibilityId("VerticalScrollBar");
 		return IsElementVisibleStatus(Vertical_ScrollBar);
 	}
@@ -527,10 +547,11 @@ public class Setup_SensorConfigPage extends BaseClass {
 	public void Enter_Num_From(String Num) {
 		WebElement From_field = driver.findElementByAccessibilityId("txtFrom");
 		clickOn(From_field);
+		ClearText(From_field);
 		enterText(From_field, Num);
 	}
 
-	// Fetch the From field text
+	// Fetch the To field text
 	public String get_Tofield_text() {
 		WebElement Totxt_field = driver.findElementByAccessibilityId("txtTo");
 		return FetchText(Totxt_field);
@@ -620,6 +641,12 @@ public class Setup_SensorConfigPage extends BaseClass {
 		WebElement Description_Button = driver.findElementByAccessibilityId("DescriptionButton");
 		clickOn(Description_Button);
 		return new Setup_SensorDescriptionPage();
+	}
+
+	// Right click on the Asset Creation page to invoke the bottom apps bar
+	public void Right_Click__Buttom_Menuoptions() {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
 	}
 
 	// Verify the presence of Home button in the bottom apps bar

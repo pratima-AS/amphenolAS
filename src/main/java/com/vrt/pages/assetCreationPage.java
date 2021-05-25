@@ -212,7 +212,7 @@ public class assetCreationPage extends BaseClass {
 		clickOn(AssetEditBox.get(3));
 		ClearText(AssetEditBox.get(3));
 		enterText(AssetEditBox.get(3), AMN);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 	}
 
 	// Fetch default Asset Manufacturer data

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SetupRegressionSuite" parallel="false" verbose="5">
+       <listeners>
+              <listener class-name="com.vrt.Listners.ExtentReporterNG" ></listener>
+<!--         <listener class-name="com.vrt.Listners.AllureReportListner" /> -->
+              <listener class-name="com.vrt.Listners.RetryTransformer"></listener>
+       </listeners>
+       <test thread-count="5" name="Setup" preserve-order="true">
+              <classes>
+                     <class name="com.vrt.testcases.setup_DefineSetupTest" > </class>
+                     <class name="com.vrt.testcases.setup_SensorConfigTest" > </class>
+                     <class name="com.vrt.testcases.setup_GroupSensorsTest" ></class>
+                     <class name="com.vrt.testcases.setup_CalculationTest" ></class>
+                     <class name="com.vrt.testcases.setup_QualParametersTest" ></class>
+                     <class name="com.vrt.testcases.setup_ReviewTest" ></class>        
+              </classes>
+       </test> <!-- setupTestSanity -->
+</suite> <!-- setupTestSanity -->

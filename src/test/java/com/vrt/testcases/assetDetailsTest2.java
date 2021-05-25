@@ -172,7 +172,7 @@ public class assetDetailsTest2 extends BaseClass {
 		Thread.sleep(1000);
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		// assetDetailsPage = assetHubPage.click_assetTile("Asset01");
 		// Thread.sleep(500);
 	}

@@ -162,6 +162,7 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
+	
 	//LOGIN_001_2 -Verify the first time app install login credentials with incorrect password
 	@Test(groups = {"Regression"}, description="LOGIN_001_2 -Verify the first time app install"
 			+ " login credentials with incorrect password")
@@ -180,7 +181,7 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-
+/*
 	//LOGIN_002- Verify if clicking on the Kaye application tab opens the Login Screen of the application
 	@Test(groups = {"Regression", "Sanity"},description="LOGIN_002- Verify if clicking on the Kaye "
 			+ "application tab opens the Login Screen of the application")
@@ -211,7 +212,7 @@ public class LoginTest extends BaseClass{
 		sa.assertEquals(MainLoginPage.AppName(), expectedAppName, "FAIL: Invalid Product Name displayed");
 		
 		// Validate presence of UserID text field
-		sa.assertEquals(MainLoginPage.UserIDFieldPresence(), true, "FAIL: No UID field present");
+		sa.assertEquals(MainLoginPage.UserIDFieldPresence(), false, "FAIL: No UID field present");
 		
 		//Validate for Password text field presence
 		sa.assertEquals(MainLoginPage.UserPWFieldPresence(), true, "FAIL: No PW field present");
@@ -466,12 +467,7 @@ public class LoginTest extends BaseClass{
 		extentTest = extent.startTest("LOGIN_015- Verify if user can change the password by "
 				+ "entering new password and clicking on the OK button");
 		SoftAssert sa = new SoftAssert();
-		/*
-		//Login using Default Kaye/411
-		UserManagementPage=MainLoginPage.DefaultLogin();
-		//Create the 1st User
-		MainLoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
-				getPW("adminFull"), "FullAdmin", "123456789", "abc@gmail.com");*/
+
 		
 		//Login using very 1st User credentials
 		MainHubPage=MainLoginPage.Login(getUID("adminFull"), getPW("adminFull"));
@@ -733,13 +729,7 @@ public class LoginTest extends BaseClass{
 		extentTest = extent.startTest("LOGIN_024- Verify the password change in login screen "
 				+ "by using last 20 passwords");
 		SoftAssert sa = new SoftAssert();
-		/*
-		//Login using Default Kaye/411
-		UserManagementPage=MainLoginPage.DefaultLogin();
-		//Create the 1st User
-		MainLoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
-				getPW("adminFull"), "FullAdmin", "123456789", "abc@gmail.com");*/
-		
+				
 		MainHubPage=MainLoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage=MainHubPage.ClickAdminTile_UMpage();
 		
@@ -779,5 +769,6 @@ public class LoginTest extends BaseClass{
 		
 		sa.assertAll();
 	}
+	*/
 	
 }

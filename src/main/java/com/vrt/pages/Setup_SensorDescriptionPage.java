@@ -23,29 +23,28 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	private WebElement Close_button = null;
 	private WebElement Ok_button = null;
 	private WebElement AutoNumberCheckBox = null;
-	private WebElement SensorType_label = null;
 	private WebElement SensorType_ComboBox = null;
 	private WebElement Description_Txtfield = null;
 	private WebElement clear_btn = null;
 
-	private void initializeEelements() {
+	void initializeEelements() {
 		SensorDescriptionPageName = driver.findElementByName("Sensor Description");
 		SelectSensorTypeBy_field = driver.findElementByName("Select Sensor Type By :");
 		PageCloseIcon_field = driver.findElementByAccessibilityId("CloseButton");
 		SerialNo_field = driver.findElementByName("No.");
 		Label_field = driver.findElementByName("Label");
 		Type_field = driver.findElementByName("Type");
+		Type_field = driver.findElementByName("Type");
 		Description_Leftpanefield = driver.findElementByName("Description");
 		Description_rightpanefield = driver.findElementByName("Description: ");
 		Description_Txtfield = driver.findElementByAccessibilityId("ContentElement");
+
 		Close_button = driver.findElementByName("Close");
 		Ok_button = driver.findElementByName("OK");
 		AutoNumberCheckBox = driver.findElementByAccessibilityId("SensorLabelAutoNumberCheckBox");
-		SensorType_label = driver.findElementByName("Sensor Type");
-		//SensorType_ComboBox = driver.findElementByAccessibilityId("SensorTypeSimComboBox");
-		SensorType_ComboBox = driver.findElementByClassName("ComboBox");
+		SensorType_ComboBox = driver.findElementByAccessibilityId("SensorTypeSimComboBox");
+
 		clear_btn = driver.findElementByAccessibilityId("DescriptionClearButton");
-		
 
 	}
 
@@ -53,27 +52,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		super();
 		initializeEelements();
 	}
-	
-	// Release memory
-	public void resetWebElements() {
-		SensorDescriptionPageName = null;
-		SelectSensorTypeBy_field = null;
-		PageCloseIcon_field = null;
-		SerialNo_field = null;
-		Label_field = null;
-		SensorType_field = null;
-		Description_rightpanefield = null;
-		Description_Leftpanefield = null;
-		Type_field = null;
-		Close_button = null;
-		Ok_button = null;
-		AutoNumberCheckBox = null;
-		SensorType_label = null;
-		SensorType_ComboBox = null;
-		Description_Txtfield = null;
-		clear_btn = null;
-	}
-	
+
 	// Check the presence of SensorDescription page
 	public boolean IsSensorDescriptionTitle_Visible() {
 		return IsElementVisibleStatus(SensorDescriptionPageName);
@@ -124,6 +103,11 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		return IsElementVisibleStatus(Description_Txtfield);
 	}
 
+	// Check the presence of Right pane Description_Txtfield
+	public void Click_Description_Txtfield() {
+		clickOn(Description_Txtfield);
+	}
+
 	// Check is clear btn Enable
 	public boolean IsClear_btnEnable() {
 		return IsElementEnabledStatus(clear_btn);
@@ -132,11 +116,6 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	// Click on clear btn
 	public void clickOnClear_btn() {
 		clickOn(clear_btn);
-	}
-
-	// Check the presence of Right pane Description_Txtfield
-	public void Click_Description_Txtfield() {
-		clickOn(Description_Txtfield);
 	}
 
 	// Check the presence of Close_button
@@ -149,7 +128,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		return IsElementVisibleStatus(Ok_button);
 	}
 
-	// Check the presence of OK_button
+	// Check is OK_button enable
 	public boolean IsOk_btnEnable() {
 		return IsElementEnabledStatus(Ok_button);
 	}
@@ -176,8 +155,8 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	public boolean Is_SensorLabelAutoNumber_checked() {
 		return checkboxSelectStatus(AutoNumberCheckBox);
 	}
-	
-	// verify the state of AutoNumber check box
+
+	// verify the check box is checked in or not
 	public boolean Is_Autonumber_checkedIn() {
 		return checkboxSelectStatus(AutoNumberCheckBox);
 	}
@@ -193,6 +172,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// get text from type field
+
 	public String get_Typetext() {
 		List<WebElement> senrList = driver.findElementByAccessibilityId("PART_ScrollViewer")
 				.findElements(By.className("TextBlock"));
@@ -200,18 +180,18 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// get label name from label field
+
 	public String get_Labelext() {
 		List<WebElement> senrList = driver.findElementByAccessibilityId("PART_ScrollViewer")
 				.findElements(By.className("TextBlock"));
 		return FetchText(senrList.get(1));
 	}
-	
 
-	// Click on SensorType_ComboBox
-	public void click_SensorType_Field() throws InterruptedException {
-		List<WebElement> listof_Comboox = driver.findElementsByClassName("ComboBox");
-		listof_Comboox.get(1).click();
-		Thread.sleep(2000);
+	// Click on SensorType_ComboBox in description screen
+
+	public void click_SensorType_Field() {
+		List<WebElement> SensorType_ComboBox = driver.findElementsByAccessibilityId("SensorTypeSimComboBox");
+		SensorType_ComboBox.get(1).click();
 	}
 
 	// Check Temp displayed in combo box
@@ -233,28 +213,24 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		WebElement PressureIncombobox = driver.findElementByName("Pressure");
 		return PressureIncombobox.isEnabled();
 	}
-	
-	//Select sensor type from the drop down box
-	public void select_SensorTypee(String sensorType) throws InterruptedException {
-		clickOn(SelectSensorTypeBy_field);
-		Thread.sleep(2000);
-		click_SensorType_Field();
-		//WebElement Temperature_sensorType = driver.findElementByName("Temperature");
-		List<WebElement> sensorType_Comboox_items = driver.findElementsByClassName("ComboBoxItem");
-		//System.out.println(sensorType_Comboox_items.get(3).getText());
-		
-		/*for (WebElement sensorItems : sensorType_Comboox_items) {
-			System.out.println(sensorItems.getText());
-		}*/
 
-		if (sensorType.contains("Temperature")) {
-			sensorType_Comboox_items.get(2).click();
-			//clickOn(Temperature_sensorType);
-		} else if (sensorType.contains("Pressure")) {
-			sensorType_Comboox_items.get(3).click();
-		} else {
-			System.out.println("Incorrect sensor type selected");
-		}
+	// Click on pressure option
+
+	public void select_Sensortype_Pr() {
+		List<WebElement> SensorType_ComboBox = driver.findElementsByAccessibilityId("SensorTypeSimComboBox");
+		SensorType_ComboBox.get(1).click();
+		List<WebElement> PrInlist = driver.findElementsByClassName("ComboBoxItem");
+		PrInlist.get(3).click();
+	}
+
+	// get text
+	public String gettext_for_opt_2() {
+		List<WebElement> SensorType_ComboBox = driver.findElementsByAccessibilityId("SensorTypeSimComboBox");
+		SensorType_ComboBox.get(1).click();
+
+		List<WebElement> PrInlist = driver.findElementsByClassName("ComboBoxItem");
+		return PrInlist.get(3).getText();
+
 	}
 
 	// Presence of txtFrom Range box
@@ -270,6 +246,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// Enter num into textFrom
+
 	public void Enter_Num_From(String Num) {
 		List<WebElement> From_field = driver.findElementsByAccessibilityId("txtFrom");
 		From_field.get(1).clear();
@@ -278,6 +255,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// Enter num into textTo
+
 	public void Enter_TxtTo(String Num) {
 		List<WebElement> To_field = driver.findElementsByAccessibilityId("txtTo");
 		To_field.get(1).clear();
@@ -303,6 +281,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// Enter text into Description Field
+
 	public void Enter_Description(String Dsc) {
 		WebElement Description_field = driver.findElementByAccessibilityId("ContentElement");
 		clickOn(Description_field);
@@ -312,7 +291,9 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 
 	// Fetch data from txtTo field
 	public String get_Description_text() {
-		return FetchText(Description_Leftpanefield);
+		WebElement Description_field = driver.findElementByAccessibilityId("ContentElement");
+		// clickOn(Description_field);
+		return FetchText(Description_field);
 	}
 
 //Check Pressure displayed in combo box when only pressure added in Sensor config page
@@ -329,15 +310,20 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// Verify that by default first sensor should be selected on the left pane
-	public boolean Firstsensor_Selected() {
+	public boolean Firstsensor_Selected_default() {
 		List<WebElement> senrList = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
+				.findElement(By.name("TextBlock"));
 		return senrList.get(0).isEnabled();
 	}
 
 	public boolean Secondsensor_Selected() {
-		List<WebElement> senrList = driver.findElementByAccessibilityId("PART_ScrollViewer").findElements(By.name("2"));
-		return senrList.get(1).isSelected();
+		WebElement senr2 = driver.findElementByName("2");
+		return senr2.isEnabled();
+	}
+
+	public boolean Firstsensor_Selected() {
+		WebElement senr1 = driver.findElementByName("1");
+		return senr1.isEnabled();
 	}
 
 	// Click on First sensor
@@ -347,18 +333,21 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 	}
 
 	// Click on second sensor
+
 	public void Secondsensor_click() {
 		WebElement senr2 = driver.findElementByName("2");
 		clickOn(senr2);
 	}
 
 	// Click on fifth sensor
+
 	public void Fifthsensor_click() {
 		WebElement senr5 = driver.findElementByName("5");
 		clickOn(senr5);
 	}
 
 //Click on eight sensor   
+
 	public void Eightsensor_click() {
 		WebElement senrList = driver.findElementByName("8");
 		senrList.click();
@@ -417,7 +406,7 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		List<WebElement> To_field = driver.findElementsByAccessibilityId("txtTo");
 		return To_field.get(1).isEnabled();
 	}
-	
+
 	// Get text of the Button Bar Alert message
 	public String Alertmsg_txt() {
 		WebElement alrtmsg = driver.findElementByAccessibilityId("displayMessageTextBlock");

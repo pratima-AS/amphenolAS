@@ -209,7 +209,7 @@ public class assetHubPage extends BaseClass {
 	}
 
 	// Click/Select the target Asset tile in the Asset hub page
-	public assetDetailsPage click_assetTile(String AssetName) throws IOException {
+	public assetDetailsPage click_assetTile(String AssetName) throws IOException, InterruptedException {
 		List<WebElement> AssetList = driver.findElementByAccessibilityId("ItemGridView")
 				.findElements(By.className("GridViewItem"));
 		// System.out.println("Total Assets created: " + AssetList.size());
@@ -227,11 +227,39 @@ public class assetHubPage extends BaseClass {
 
 				if (AssetTileInfoList.get(j).getText().equals(AssetName)) {
 					clickOn(AssetTileInfoList.get(j));
+					Thread.sleep(1000);
 					break;
 				}
 			}
 		}
 		return new assetDetailsPage();
+	}
+	
+	// Click/Select the target Asset tile in the Asset hub page
+	public assetDetailsPage2 click_assetTile2(String AssetName) throws IOException, InterruptedException {
+		List<WebElement> AssetList = driver.findElementByAccessibilityId("ItemGridView")
+				.findElements(By.className("GridViewItem"));
+		// System.out.println("Total Assets created: " + AssetList.size());
+
+		// Loop for the different Asset tiles created
+		for (int i = 0; i < AssetList.size(); i++) {
+			// System.out.println("Asset type : " + AssetList.get(i).getText());
+
+			List<WebElement> AssetTileInfoList = AssetList.get(i).findElements(By.className("TextBlock"));
+			// System.out.println(" Asset tile info count: " + AssetTileInfoList.size());
+
+			// Fetch all the contents of the Asset tile
+			for (int j = 0; j < AssetTileInfoList.size(); j++) {
+				// System.out.println("AssetTileInfo: "+AssetTileInfoList.get(j).getText());
+
+				if (AssetTileInfoList.get(j).getText().equals(AssetName)) {
+					clickOn(AssetTileInfoList.get(j));
+					Thread.sleep(1000);
+					break;
+				}
+			}
+		}
+		return new assetDetailsPage2();
 	}
 
 	// Get the target Asset tile Height Width info in the Asset hub page

@@ -29,7 +29,6 @@ import com.vrt.pages.Setup_GroupSensorsPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.assetCreationUtility;
 import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.setupCreationUtility;
 import com.vrt.utility.userManagementUtility;
 import com.vrt.pages.Setup_SensorDescriptionPage;
 
@@ -73,48 +72,45 @@ public class setup_SensorConfigTest extends BaseClass {
 		System.out.println("setup_SensorConfigTest in Progress..");
 
 		// Rename the User file (NgvUsers.uxx) if exists
-		/*
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData"
-		 * , "NgvUsers.uux");
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache"
-		 * , "Asset.txt");
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles",
-		 * "Assets"); // Rename the cache Setup file (Asset.txt) if exists
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT"
-		 * , "Setup.txt"); // Rename the VRT Setups folder (Asset) if exists
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles",
-		 * "VRTSetups");
-		 * 
-		 * LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App"); //Thread.sleep(500);
-		 * LoginPage = new LoginPage();
-		 * 
-		 * // Method to Create Very 1st User with All privilege UserManagementPage =
-		 * LoginPage.DefaultLogin(); LoginPage =
-		 * UserManagementPage.FirstUserCreation("User1", getUID("adminFull"),
-		 * getPW("adminFull"), getPW("adminFull"), "FullAdmin", "12345678",
-		 * "abc@gmail.com"); MainHubPage = LoginPage.Login(getUID("adminFull"),
-		 * getPW("adminFull")); UserManagementPage =
-		 * MainHubPage.ClickAdminTile_UMpage();
-		 * UserManagementPage.clickAnyUserinUserList("User1");
-		 * 
-		 * UserManagementPage.clickPrivRunQual();
-		 * UserManagementPage.clickPrivCreateEditAsset();
-		 * UserManagementPage.clickPrivCreateEditSetup();
-		 * UserManagementPage.clickPrivRunCal();
-		 * 
-		 * UserManagementPage.ClickNewUserSaveButton();
-		 * UserLoginPopup(getUID("adminFull"), getPW("adminFull")); MainHubPage =
-		 * UserManagementPage.ClickBackButn();
-		 * 
-		 * // Method to Create 1st Asset assetHubPage = MainHubPage.ClickAssetTile();
-		 * assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		 * assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath",
-		 * "AAS", "Hyderabad", "VRT-RF", "2", "cu", "11/20/2019", "5", "Weeks",
-		 * "1st Asset Creation"); UserLoginPopup(getUID("adminFull"),
-		 * getPW("adminFull"));
-		 * 
-		 * AppClose(); Thread.sleep(500);
-		 */
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		// Rename the cache Setup file (Asset.txt) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
+		// Rename the VRT Setups folder (Asset) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		// Thread.sleep(500);
+		LoginPage = new LoginPage();
+
+		// Method to Create Very 1st User with All privilege
+		UserManagementPage = LoginPage.DefaultLogin();
+		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
+				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage.clickAnyUserinUserList("User1");
+
+		UserManagementPage.clickPrivRunQual();
+		UserManagementPage.clickPrivCreateEditAsset();
+		UserManagementPage.clickPrivCreateEditSetup();
+		UserManagementPage.clickPrivRunCal();
+
+		UserManagementPage.ClickNewUserSaveButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		MainHubPage = UserManagementPage.ClickBackButn();
+
+		// Method to Create 1st Asset
+		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetCreationPage = assetHubPage.ClickAddAssetBtn();
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
+				"cu", "11/20/2019", "5", "Weeks", "1st Asset Creation");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+
+		AppClose();
+		Thread.sleep(500);
+
 	}
 
 	// After All the tests are conducted
@@ -134,7 +130,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
@@ -173,10 +169,10 @@ public class setup_SensorConfigTest extends BaseClass {
 		driver.quit();
 	}
 
-	// Test Cases // SET001
+	// Test Cases // SC001
 
 	@Test(groups = { "Regression" }, description = "SC001-Verify the details displayed in Sensor Configuration screen")
-	public void SET002() throws InterruptedException {
+	public void SC001() throws InterruptedException {
 		extentTest = extent.startTest("SC001-Verify the details displayed in Sensor Configuration screen");
 		SoftAssert sa = new SoftAssert();
 
@@ -185,9 +181,9 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertEquals(Setup_SensorConfigPage.sensorConfigPage_state(), true, "FAIL: SC002- It should be available");
 		sa.assertEquals(Setup_SensorConfigPage.AddSensors_btn_state(), true, "FAIL: SC002- It should be available");
 		sa.assertEquals(Setup_SensorConfigPage.ConfigureSensors_btn_state(), true,
-				"FAIL: SC002- It should be available");
+				"FAIL: SC001- It should be available");
 		sa.assertEquals(Setup_SensorConfigPage.ConfigureSensors_btn_state(), true,
-				"FAIL: SC002- It should be available");
+				"FAIL: SC001- It should be available");
 		sa.assertAll();
 	}
 
@@ -283,7 +279,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		sa.assertEquals(Setup_SensorConfigPage.Temperature_Sensor_Titlestate(), true,
 				"FAIL: Temperature_Sensor_Title should be visible ");
 		sa.assertAll();
@@ -444,7 +440,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_HumidityCount_textField(HmdCount);
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		sa.assertEquals(Setup_SensorConfigPage.Humidity_Sensor_Titlestate(), true,
 				"FAIL: Humidity_Sensor_Title should be visible ");
 		sa.assertAll();
@@ -751,9 +747,9 @@ public class setup_SensorConfigTest extends BaseClass {
 				"SC028-Verify if Vertical scroll bar will be displayed when the number of rows exceeds the display view");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("300");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("299");
 
-		sa.assertEquals(Setup_SensorConfigPage.IsDiaplayingVerticalScrollBar(), true,
+		sa.assertEquals(Setup_SensorConfigPage.IsDisplayingVerticalScrollBar(), true,
 				"FAIL:Vertical scroll bar will be displayed as the number of rows exceeds the display view");
 		sa.assertAll();
 	}
@@ -798,7 +794,8 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// SC031
+	// SC031-Verify that on-click of the Down arrow icon for Configure Sensors
+	// section expands the section
 
 	@Test(groups = {
 			"Regression" }, description = "SC031-Verify that on-click of the Down arrow icon for Configure Sensors section expands the section")
@@ -811,7 +808,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// SC032
+	// SC032-Verify the details displayed under Configure sensors section
 
 	@Test(groups = { "Regression" }, description = "SC032-Verify the details displayed under Configure sensors section")
 	public void SC032() throws InterruptedException {
@@ -881,7 +878,7 @@ public class setup_SensorConfigTest extends BaseClass {
 	// SC036-Verify that user can do multiple selections of sensors of same type
 
 	@Test(groups = {
-			"Regression" }, description = "Verify that by clicking on the filters on the left pane for temp,pressure and humidity, the respective sensors are displayed")
+			"Regression" }, description = "SC036-Verify that by clicking on the filters on the left pane for temp,pressure and humidity, the respective sensors are displayed")
 	public void SC036() throws InterruptedException {
 		extentTest = extent.startTest(
 				"SC036-Verify that by clicking on the filters on the left pane for temp,pressure and humidity, the respective sensors are displayed");
@@ -909,7 +906,7 @@ public class setup_SensorConfigTest extends BaseClass {
 	// Configure sensors section
 
 	@Test(groups = {
-			"Regression" }, description = "Verify that by clicking on the filters on the left pane for temp,pressure and humidity, the respective sensors are displayed")
+			"Regression" }, description = "SC037 - Verify that by clicking on the filters on the left pane for temp,pressure and humidity, the respective sensors are displayed")
 
 	public void SC037() throws InterruptedException {
 		extentTest = extent.startTest(
@@ -944,10 +941,11 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// SC038
+	// SC038-Verify that the sensor type drop down displays Temperature only when
+	// temperature sensors are added
 
 	@Test(groups = {
-			"Regression" }, description = "Verify that the sensor type drop down displays Temperature only when temperature sensors are added")
+			"Regression" }, description = "SC038-Verify that the sensor type drop down displays Temperature only when temperature sensors are added")
 	public void SC038() throws InterruptedException {
 		extentTest = extent.startTest(
 				"SC038-Verify that the sensor type drop down displays Temperature only when temperature sensors are added");
@@ -978,10 +976,11 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// SC040
+	// SC040-Verify that the sensor type drop down displays Humidity only when
+	// humidity sensors are added
 
 	@Test(groups = {
-			"Regression" }, description = "Verify that the sensor type drop down displays Humidity only when humidity sensors are added")
+			"Regression" }, description = "SC040-Verify that the sensor type drop down displays Humidity only when humidity sensors are added")
 	public void SC040() throws InterruptedException {
 		extentTest = extent.startTest(
 				"SC040-Verify that the sensor type drop down displays Humidity only when humidity sensors are added");
@@ -1098,11 +1097,11 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_Temp_sensor();
 		Setup_SensorConfigPage.Click_Temp_sensor();
 		Setup_SensorConfigPage.Enter_Num_From(Fromcnt);
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		String Dis_FromTextBox = Setup_SensorConfigPage.get_Fromfield_text();
 		System.out.println(Dis_FromTextBox);
 
-		sa.assertEquals(Dis_FromTextBox, "1", "FAIL:  It should not accept invalid values");
+		sa.assertEquals(Dis_FromTextBox, "", "FAIL:  It should not accept invalid values");
 		sa.assertAll();
 	}
 
@@ -1503,7 +1502,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter__Num_SensorLabel(sensrlblno);
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 
 		sa.assertEquals(Setup_GroupSensorsPage.GrpsensorPage_state(), true,
 				"FAIL: Group Sensors pageName should be displayed");
@@ -1549,6 +1548,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
 		Setup_SensorConfigPage.Click_Temp_sensor();
 		Setup_SensorConfigPage.Enter__Num_SensorLabel("02");
+		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorConfigPage.Click_assignBtn();
 
 		String ActAlert = Setup_SensorConfigPage.Alertmsg_txt();
@@ -1730,28 +1730,34 @@ public class setup_SensorConfigTest extends BaseClass {
 				"SC071-Verify that on the left pane the sensor descriptions are displayed along with other details in Description screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("1");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("10");
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
 		Setup_SensorConfigPage.Enter_Num_To("5");
-		Setup_SensorConfigPage.Enter_SensorLabel("Sensor");
-		Setup_SensorConfigPage.Enter__Num_SensorLabel(" 11");
-
+		Setup_SensorConfigPage.Enter_SensorLabel("Sensorr");
+		Setup_SensorConfigPage.Enter__Num_SensorLabel("11");
+		Thread.sleep(3000);
 		String SensorTypeTxt_SCpage = Setup_SensorConfigPage.get_Sensortype_text();
 
-		String Label1 = Setup_SensorConfigPage.get_SensorLabel_text();
-		String Label2 = Setup_SensorConfigPage.get_SensorLabel_Num_text();
-		String LabelName_SCpage = Label1 + Label2;
-
+		System.out.println(SensorTypeTxt_SCpage);
+		String s1 = Setup_SensorConfigPage.get_SensorLabel_text();
+		String s2 = Setup_SensorConfigPage.get_SensorLabel_Num_text();
+		String LabelName_SCpage = s1.concat(s2);
+		// System.out.println(LabelName_SCpage);
+		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 
 		sa.assertEquals(Setup_SensorDescriptionPage.IsSerialNo_field_Visible(), true,
 				"FAIL: Serial number is not found");
 		String LabelName_SDpage = Setup_SensorDescriptionPage.get_Labelext();
+		// System.out.println("sd" +LabelName_SDpage);
 		String SensorTypeTxt_SDpage = Setup_SensorDescriptionPage.get_Typetext();
 
-		sa.assertEquals(LabelName_SCpage, LabelName_SDpage, "FAIL:Label name is not same");
-		sa.assertEquals(SensorTypeTxt_SCpage, SensorTypeTxt_SDpage, "FAIL: Sensor type is not same");
+		sa.assertEquals((LabelName_SCpage.contains(LabelName_SDpage)), true, "sensor type not matched");
+
+		sa.assertEquals((SensorTypeTxt_SCpage.contains(SensorTypeTxt_SDpage)), true, "sensor type not matched");
+		// sa.assertEquals(SensorTypeTxt_SCpage,SensorTypeTxt_SDpage ,"FAIL: Sensor type
+		// is not same");
 
 		sa.assertEquals(Setup_SensorDescriptionPage.IsPageCloseIcon_Visible(), true,
 				"FAIL: close button is not Visible");
@@ -1785,7 +1791,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertEquals(Setup_SensorDescriptionPage.IsRightpane_Description_field_Visible(), true,
 				"FAIL: Description_Txtfield is not Visible");
 
-		sa.assertEquals(Setup_SensorDescriptionPage.Is_SensorLabelAutoNumber_checked(), true,
+		sa.assertEquals(Setup_SensorDescriptionPage.Is_SensorLabelAutoNumber_checked(), false,
 				"FAIL: SensorLabelAutoNumber is not checked");
 
 		sa.assertEquals(Setup_SensorDescriptionPage.IsOk_buttonVisible(), true,
@@ -1925,7 +1931,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 
-		sa.assertEquals(Setup_SensorDescriptionPage.Firstsensor_Selected(), true);
+		// sa.assertEquals(Setup_SensorDescriptionPage.Firstsensor_Selected(), true);
 		sa.assertEquals(Setup_SensorDescriptionPage.get_from_text(), "1", "From text value is not displaying 1");
 		sa.assertEquals(Setup_SensorDescriptionPage.get_To_text(), "1", "To text value is not displaying 1");
 		sa.assertAll();
@@ -2651,7 +2657,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_Temp_sensor();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		sa.assertEquals(Setup_GroupSensorsPage.get_GrpsensorPage_titletext(), "Group Sensors",
 				"Fail: Group Sensors page name is not correct");
 		sa.assertAll();
@@ -2671,7 +2677,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_Temp_sensor();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		assetDetailsPage = Setup_GroupSensorsPage.Click_BackBtn();
 
 		sa.assertEquals(assetDetailsPage.assetDetail_PageTitle(), "HeatBath - Asset01",
@@ -2686,7 +2692,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		extentTest = extent.startTest("SC106-Verify the bottom menu options displayed in Sensor configuration screen");
 		SoftAssert sa = new SoftAssert();
 
-		assetCreationPage.Rt_Click_AstCreation_Buttom_AppBar();
+		Setup_SensorConfigPage.Right_Click__Buttom_Menuoptions();
 
 		sa.assertEquals(Setup_SensorConfigPage.check_Home_Buttom_AppBar_Presence(), true,
 				"FAIL: Home icon/button missing in bottom app bar");
@@ -2739,7 +2745,7 @@ public class setup_SensorConfigTest extends BaseClass {
 				"SC110-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address");
 		SoftAssert sa = new SoftAssert();
 
-		assetCreationPage.Click_About_Icon_AppBar();
+		Setup_SensorConfigPage.Click_About_Icon_AppBar();
 		sa.assertEquals(Setup_SensorConfigPage.check_About_wndw_Presence(), true,
 				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
 
@@ -2866,13 +2872,11 @@ public class setup_SensorConfigTest extends BaseClass {
 //SC117-Verify that Description should be clear on clicking on the Clear button when the sensor having the description
 
 	@Test(groups = {
-			"Regression" }, description = "SC117-Verify that Description should be clear on clicking on the "
-					+ "Clear button when the sensor having the description")
+			"Regression" }, description = "SC117-Verify that Description should be clear on clicking on the Clear button when the sensor having the description")
 
 	public void SC117() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"SC117-Verify that Description should be clear on clicking on the Clear button when the sensor "
-				+ "having the description");
+				"SC117-Verify that Description should be clear on clicking on the Clear button when the sensor having the description");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -2884,6 +2888,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorDescriptionPage.Enter_Description("ABC1");
 		Setup_SensorDescriptionPage.clickOk();
 		Setup_SensorDescriptionPage.clickOnClear_btn();
+		Thread.sleep(2000);
 		sa.assertEquals(Setup_SensorDescriptionPage.get_Description_text(), "",
 				"Fail : Clear button is not in enable mode when one sensor is selected");
 		sa.assertAll();
@@ -2891,14 +2896,13 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC118-Verify that Validation message should be displayed on clicking on the Clear button when the sensor does not having the description
+
 	@Test(groups = {
-			"Regression" }, description = "SC118-Verify that Validation message should be displayed on clicking "
-					+ "on the Clear button when the sensor does not having the description")
+			"Regression" }, description = "SC118-Verify that Validation message should be displayed on clicking on the Clear button when the sensor does not having the description")
 
 	public void SC118() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"SC118-Verify that Validation message should be displayed on clicking on the Clear button when the "
-				+ "sensor does not having the description");
+				"SC118-Verify that Validation message should be displayed on clicking on the Clear button when the sensor does not having the description");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -2937,7 +2941,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("pre");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-		Setup_SensorDescriptionPage.select_SensorTypee("Pressure");
+		Setup_SensorDescriptionPage.select_Sensortype_Pr();
 		// System.out.println(Setup_SensorDescriptionPage.gettext_for_opt_2());
 		Setup_SensorDescriptionPage.Enter_TxtTo("2");
 		Setup_SensorDescriptionPage.click_Description();

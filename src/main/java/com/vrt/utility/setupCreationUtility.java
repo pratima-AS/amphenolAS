@@ -61,16 +61,9 @@ public class setupCreationUtility extends BaseClass {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// SETUP Creation module related Test Data reference
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	@DataProvider(name = "SetupCreation_RT")
-	public static Object[][] SetupCreation_RT() {
-		String sheetName = "SetupCreation_RT";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-	
 	@DataProvider(name = "SetupCreation")
 	public static Object[][] SetupCreation() {
-		String sheetName = "SetupCreation";
+		String sheetName = "SetupCreation_RT";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -409,44 +402,51 @@ public class setupCreationUtility extends BaseClass {
 		return data;
 	}
 
+	@DataProvider(name = "GS013")
+	public static Object[][] GS013() {
+		String sheetName = "GS013";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "GS014")
+	public static Object[][] GS014() {
+		String sheetName = "GS014";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 	@DataProvider(name = "SC086")
 	public static Object[][] SC086() {
 		String sheetName = "SC086";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
-	
-    @DataProvider(name = "GS013")
-    public static Object[][] GS013() {
-                    String sheetName = "GS013";
-                    Object[][] data = getTestData(sheetName);
-                    return data;
-    }
-    
-    @DataProvider(name = "GS014")
-    public static Object[][] GS014() {
-                    String sheetName = "GS014";
-                    Object[][] data = getTestData(sheetName);
-                    return data;
-    }
-    
-    @DataProvider(name = "CAL007")
-    public static Object[][] CAL007() {
-                    String sheetName = "CAL007";
-                    Object[][] data = getTestData(sheetName);
-                    return data;
-    }
-    
-    @DataProvider(name = "CAL008")
-    public static Object[][] CAL008() {
-                    String sheetName = "CAL008";
-                    Object[][] data = getTestData(sheetName);
-                    return data;
-    }
+
+	@DataProvider(name = "CAL007")
+	public static Object[][] CAL007() {
+		String sheetName = "CAL007";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CAL008")
+	public static Object[][] CAL008() {
+		String sheetName = "CAL008";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
 
 	@DataProvider(name = "CAL011A")
 	public static Object[][] CAL011A() {
 		String sheetName = "CAL011A";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CAL011B")
+	public static Object[][] CAL011B() {
+		String sheetName = "CAL011B";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -489,6 +489,83 @@ public class setupCreationUtility extends BaseClass {
 	@DataProvider(name = "CAL017")
 	public static Object[][] CAL017() {
 		String sheetName = "CAL017";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "CAL018A")
+	public static Object[][] CAL018A() {
+		String sheetName = "CAL018A";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP011")
+	public static Object[][] QP011() {
+		String sheetName = "QP011";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP012")
+	public static Object[][] QP012() {
+		String sheetName = "QP012";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP014A")
+	public static Object[][] QP014A() {
+		String sheetName = "QP014A";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP016A")
+	public static Object[][] QP016A() {
+		String sheetName = "QP016A";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP018A")
+	public static Object[][] QP018A() {
+		String sheetName = "QP018A";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP028")
+	public static Object[][] QP028() {
+		String sheetName = "QP028";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP030")
+	public static Object[][] QP030() {
+		String sheetName = "QP030";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP032")
+	public static Object[][] QP032() {
+		String sheetName = "QP032";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QP034")
+	public static Object[][] QP034() {
+		String sheetName = "QP034";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "QUAL001")
+	public static Object[][] QUAL001() {
+		String sheetName = "QUAL001";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}

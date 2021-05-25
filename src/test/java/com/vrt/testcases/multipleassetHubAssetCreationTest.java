@@ -116,7 +116,7 @@ public class multipleassetHubAssetCreationTest extends BaseClass{
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		//assetHubPage.waitforAssetHubPageLoad();
 	}
 
