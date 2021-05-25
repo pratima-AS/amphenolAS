@@ -400,7 +400,7 @@ public class UM3 extends BaseClass {
 				"CADMN10_Verify Administrator is able to access the Customized checked privilege-Create Asset");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("CAssert22", "402A", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -418,7 +418,7 @@ public class UM3 extends BaseClass {
 				"CADMN11_Verify Administrator is able to access the Customized checked privilege-Edit Asset");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		s.assertEquals(assetCreationPage.IsEditAssetscreenDisplayed(), true,
@@ -434,7 +434,7 @@ public class UM3 extends BaseClass {
 				"CADMN12_Verify if Administrator is unable to access the Customized unchecked privilege-Camera Access");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.click_CameraIcon();
@@ -454,7 +454,7 @@ public class UM3 extends BaseClass {
 				.startTest("ADMN060_Verify Administrator is able to access the customized privilege-Create Setups");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Setup_defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		s.assertEquals(Setup_defineSetupPage.defineSetupPage_state(), true, "FAIL: setup page should be displayed");
@@ -470,7 +470,7 @@ public class UM3 extends BaseClass {
 				"CADMN14-Verify if Administrator is unable to access the Customized unchecked privilege-Delete Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
@@ -556,7 +556,7 @@ public class UM3 extends BaseClass {
 				.startTest("ADMN085A if Supervisor is Unable to access the " + "customized  privilege-Create Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetHubPage.Click_AddButton();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 		String ActAlertMsg = assetHubPage.AlertMsg();
@@ -572,7 +572,7 @@ public class UM3 extends BaseClass {
 				.startTest("ADMN085B-Verify Supervisor is unable to access the customized privilege-Edit Asset");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_assetEditBtn_alrt();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -590,7 +590,7 @@ public class UM3 extends BaseClass {
 				.startTest("CADMN19-Verify Supervisor is able to access the customized default privilege-Delete Asset");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("Supcas5", "503A", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -598,7 +598,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = assetHubPage.clickBackBtn();
 		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("Supcas5");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -900,7 +900,7 @@ public class UM3 extends BaseClass {
 				.startTest("CADMN33-Verify Operator is unable to access the customized unchecked-Create Asset");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetHubPage.Click_AddButton();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 		String ActAlertMsg = assetHubPage.AlertMsg();
@@ -917,7 +917,7 @@ public class UM3 extends BaseClass {
 				"CADMN34-Verify if Operator is unable to access the customized unchecked privilege-Edit Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("CuOpAst5", "73NB", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -925,7 +925,7 @@ public class UM3 extends BaseClass {
 		MainHubPage = assetHubPage.clickBackBtn();
 		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("CuOpAst5");
 		assetDetailsPage.click_assetEditBtn_alrt();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -945,7 +945,7 @@ public class UM3 extends BaseClass {
 				"CADMN35-Verify if Operator is able to access the customized checked privilege-Delete Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("CuOpAst5");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
@@ -1046,7 +1046,7 @@ public class UM3 extends BaseClass {
 				"Verify if Supervisor is able to access the customised " + "non-default privilege-Delete setup");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -1063,7 +1063,7 @@ public class UM3 extends BaseClass {
 				.startTest("Verify Operator is able to access the customised " + "non-default privilege-Delete setup");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_DeleteBtn_report();

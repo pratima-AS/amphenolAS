@@ -226,7 +226,7 @@ public class UM4 extends BaseClass {
 				+ "privilege-Delete Delete Pass_Fail reports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
@@ -246,7 +246,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN063_Verify if Administrator is able to access the default privilege-Delete Setups");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -264,7 +264,7 @@ public class UM4 extends BaseClass {
 				"ADMN065A_Verify if Administrator is able to access the default privilege-Delete StudyFiles");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -283,7 +283,7 @@ public class UM4 extends BaseClass {
 				+ "privilege-Delete Reports_qualification sub bar");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
@@ -303,7 +303,7 @@ public class UM4 extends BaseClass {
 				"ADMN065C_Verify if Administrator is able to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
@@ -322,7 +322,7 @@ public class UM4 extends BaseClass {
 				"ADMN065E-Verify if Administrator is able to Delete documents" + " from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -340,7 +340,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN079_Verify Supervisor is unable to access the non-default privilege-Delete Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -359,7 +359,7 @@ public class UM4 extends BaseClass {
 				"ADMN081A_Verify Supervisor is unable to access the non-default privilege-Delete StudyFiles");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.click_qualstudy_DeleteBtn();
@@ -379,7 +379,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN081B-Verify Supervisor is unable to access the default privilege-Delete_Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
@@ -399,7 +399,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN081C_Verify Supervisor is unable to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
@@ -419,7 +419,7 @@ public class UM4 extends BaseClass {
 				"ADMN081D-Verify if Supervisor is able to access the default privilege-Delete Pass_Fail Report");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
@@ -439,7 +439,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN081E_Verify if Supervisor is unable to Delete documents from -Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -458,7 +458,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN103A_Verify Operator is unable to access the non-default privilege-Delete StudyFiles");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.click_qualstudy_DeleteBtn();
@@ -478,7 +478,7 @@ public class UM4 extends BaseClass {
 				"ADMN103B-Verify Operator is unable to access the non-default privilege-Delete Reports-Qual");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
@@ -498,7 +498,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN103C_Verify Operator is unable to access the default privilege-Delete_SetUpReports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
@@ -518,7 +518,7 @@ public class UM4 extends BaseClass {
 				"ADMN103D_Verify if Operator is unable to Delete documents from Asset Details-Documents tile");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -537,7 +537,7 @@ public class UM4 extends BaseClass {
 				"ADMN103E-Verify if Operator is able to access the default privilege-Delete Pass_Fail Report");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
@@ -557,7 +557,7 @@ public class UM4 extends BaseClass {
 				.startTest("ADMN120_Verify Operator is unable to access the non-default privilege-Delete Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_SetupTile();
 		assetDetailsPage.Click_DeleteBtn_report();

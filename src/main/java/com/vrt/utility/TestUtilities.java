@@ -15,27 +15,20 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
-import java.util.Properties;
+import java.net.*;
 
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.DataProvider;
 
 import com.vrt.base.BaseClass;
 
@@ -121,6 +114,15 @@ public class TestUtilities extends BaseClass {
 		 * 1970, 00:00:00 GMT System.out.println(timestamp.getTime());
 		 */
 		// format timestamp
+		return sdf.format(timestamp);
+	}
+	
+	// get_CurrentDate & Tomestamp_in any Format like:dd-MM-yyyy-HH-mm-ss
+	public String get_CurrentDateandTimeStamp2(String DtTimeFormat) {
+		SimpleDateFormat sdf = new SimpleDateFormat(DtTimeFormat);
+
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		// System.out.println(timestamp);
 		return sdf.format(timestamp);
 	}
 
@@ -293,6 +295,19 @@ public class TestUtilities extends BaseClass {
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
 	}
+	
+	public static String captureFailedTCScreenshot(WebDriver driver, String screenshotName) throws IOException {
+		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		// after execution, you could see a folder "FailedTestsScreenshots"
+		// under src folder
+		String destination = System.getProperty("system.dir") + "/FailedTestsScreenshots/" + screenshotName + "_"
+				+ dateName + ".png";
+		File finalDestination = new File(destination);
+		FileUtils.copyFile(source, finalDestination);
+		return destination;
+	}
 
 	// Upload Documents method
 	public void uploadDoc(String filename) throws AWTException, IOException, InterruptedException {
@@ -376,7 +391,7 @@ public class TestUtilities extends BaseClass {
 		return results;
 	}
 
-//Clear/Delete all files from a directory/ folder
+	//Clear/Delete all files from a directory/ folder
 	public void DeleteFiles(String fldrPath) {
 		File file = new File(fldrPath);
 		File[] files = file.listFiles();
@@ -389,5 +404,42 @@ public class TestUtilities extends BaseClass {
 			}
 		}
 	}
+	
+	//Create a Folder/Directory in target location
+	public void create_Folder(String fldrPath) {
+		File file = new File(fldrPath);
+
+		if (file.mkdir()) {
+			//System.out.println("Folder is successfully created");
+		} else {
+			System.out.println("cant create a folder");
+		}
+	}
+	
+	//program to find IP address of your computer
+		public String system_IPadress() throws UnknownHostException {
+		    InetAddress localhost = InetAddress.getLocalHost();
+		   // System.out.println("System IP Address : " +
+		    //              (localhost.getHostAddress()).trim());
+		    return localhost.getHostAddress().trim();
+		}
+		
+	// program to find IP address from the About window of app
+	public String consoleIP_InAboutWndw() {
+		WebElement consoleIPText_InAboutWndw = driver.findElementByAccessibilityId("ConsoleIPTextBlock");
+		String CnslIP = consoleIPText_InAboutWndw.getText().split(":")[1];
+		
+		return CnslIP.substring(1);
+	}		
+	
+	// program to find IP address from the About window of app
+	public String SWversion_InAboutWndw() {
+		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
+		String SWVersionText = SWVersion_About_info.getText().split(":")[1];
+		
+		return SWVersionText;
+	}
+	
+	
 
 }

@@ -1,13 +1,11 @@
 /**
- * @author manoj.ghadei
- *
- */
+* @author manoj.ghadei
+*
+*/
 
 package com.vrt.pages;
 
 import java.io.IOException;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.vrt.base.BaseClass;
@@ -17,25 +15,27 @@ public class MainHubPage extends BaseClass {
 	// Main Hub Page Element definition
 	WebElement MainUILoggedinUserTitle = null;
 	WebElement MainUILoggedinUserName = null;
-	WebElement MainUIAdminTile = null;	
+	WebElement MainUIAdminTile = null;
 	WebElement AssetCountInfoInAsstTile = null;
 	WebElement MainUIPageTitle = null;
 	WebElement MainUIEquipmentTitle = null;
 	WebElement FileManagementTitle = null;
 	WebElement AuditTitle = null;
-	
+
 	private void initElements() {
 		// Main Hub Page Page Element definition
 		MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
 		MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
-		MainUIAdminTile = driver.findElementByName("Admin");	
+		MainUIAdminTile = driver.findElementByName("Admin");
 		AssetCountInfoInAsstTile = driver.findElementByAccessibilityId("TitleCountTextBlock");
 		MainUIPageTitle = driver.findElementByName("ValProbe RT System");
 		MainUIEquipmentTitle = driver.findElementByName("Equipment");
 		FileManagementTitle = driver.findElementByName("File Management");
 		AuditTitle = driver.findElementByName("Audit");
+		// Discover
+
 	}
-	
+
 	public MainHubPage() throws IOException {
 		super();
 		initElements();
@@ -45,13 +45,21 @@ public class MainHubPage extends BaseClass {
 	public void resetWebElements() {
 		MainUILoggedinUserTitle = null;
 		MainUILoggedinUserName = null;
-		MainUIAdminTile = null;	
+		MainUIAdminTile = null;
 		AssetCountInfoInAsstTile = null;
 		MainUIPageTitle = null;
 		MainUIEquipmentTitle = null;
 		FileManagementTitle = null;
 		AuditTitle = null;
-		//System.out.println("Login Page elements memory released");
+
+		// System.out.println("Login Page elements memory released");
+	}
+
+	// click on discover tile
+	public SelectBaseStationPage clickonDiscoverTile() throws InterruptedException, IOException {
+		WebElement DiscoverTile = driver.findElementByName("Discover");
+		clickOn(DiscoverTile);
+		return new SelectBaseStationPage();
 	}
 
 	// Verify the Main Hub Page title name
@@ -91,7 +99,6 @@ public class MainHubPage extends BaseClass {
 	public UserManagementPage ClickAdminTile_UMpage() throws InterruptedException, IOException {
 		clickOn(MainUIAdminTile);
 		Thread.sleep(500);
-		
 		return new UserManagementPage();
 	}
 
@@ -108,7 +115,15 @@ public class MainHubPage extends BaseClass {
 	}
 
 	// Click the Asset Tile
-	public assetHubPage ClickAssetTile() throws InterruptedException, IOException {
+	public assetHubPage Click_AssetTile() throws InterruptedException, IOException {
+		WebElement MainUIAssetTile = driver.findElementByName("Assets");
+		clickOn(MainUIAssetTile);
+		Thread.sleep(500);
+		return new assetHubPage();
+	}
+
+	// Click the Asset Tile
+	public assetHubPage Click_AssetTile2() throws InterruptedException, IOException {
 		WebElement MainUIAssetTile = driver.findElementByName("Assets");
 		clickOn(MainUIAssetTile);
 		Thread.sleep(500);
@@ -142,9 +157,18 @@ public class MainHubPage extends BaseClass {
 		Thread.sleep(500);
 		return new AuditPage();
 	}
+
 	// Click the Audit Title
-		public void Alert_AuditTitle() throws InterruptedException {
-			clickOn(AuditTitle);
-			Thread.sleep(500);
-		}
+	public void Alert_AuditTitle() throws InterruptedException {
+		clickOn(AuditTitle);
+		Thread.sleep(500);
+	}
+
+	// click on connection btn
+	public void click_connectBtn() {
+		WebElement btnConnect = driver.findElementByAccessibilityId("btnConnectIO");
+		clickOn(btnConnect);
+	}
 }
+
+

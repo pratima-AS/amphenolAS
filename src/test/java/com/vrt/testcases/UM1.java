@@ -1096,7 +1096,7 @@ public class UM1 extends BaseClass {
 				+ "given in authentication window of Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		assetCreationPage.assetCreation("DUAst2", "201A", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup("1D", getPW("Dsbluser"));
@@ -1114,7 +1114,7 @@ public class UM1 extends BaseClass {
 				+ " authentication window of Edit in Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.enterModelName("Test");
@@ -1134,7 +1134,7 @@ public class UM1 extends BaseClass {
 				+ "authentication window of delete Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("Dsbluser"), getPW("Dsbluser"));
@@ -1153,7 +1153,7 @@ public class UM1 extends BaseClass {
 				+ " authentication window of copy Assets screen");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Copyassetpage = assetDetailsPage.clickCopyasset();
 
@@ -1179,7 +1179,7 @@ public class UM1 extends BaseClass {
 
 		// Select Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
 		// Define Setup
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
@@ -1222,7 +1222,7 @@ public class UM1 extends BaseClass {
 
 		// Select Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		// Edit Setup
 		defineSetupPage = assetDetailsPage.click_editStupBtn();
@@ -1251,7 +1251,7 @@ public class UM1 extends BaseClass {
 						+ "window of Setups screen_copy to drive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.selectFolder_CopyToDrive("syncin", "setup");
@@ -1274,7 +1274,7 @@ public class UM1 extends BaseClass {
 						+ "of Setups screen_Print_Button ");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_Print_Button();
@@ -1295,7 +1295,7 @@ public class UM1 extends BaseClass {
 				"ADMN037E-Verify the functionality when disabled user credentials are given in authentication window of Setups screen_Delete Set Up Btn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName("manual 1 min sampling");
 		assetDetailsPage.Click_DeleteBtn_report();
@@ -1321,7 +1321,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		// Create Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -1353,7 +1353,7 @@ public class UM1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		// Select Asset
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		// Edit Setup
 		defineSetupPage = assetDetailsPage.click_editStupBtn();
@@ -1385,7 +1385,7 @@ public class UM1 extends BaseClass {
 						+ " window of Asset Details-Qualification tile-Delete icon");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -1408,7 +1408,7 @@ public class UM1 extends BaseClass {
 						+ " window of Asset Details-Qualification tile-CopyQualToDrive_Btn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -1432,7 +1432,7 @@ public class UM1 extends BaseClass {
 						+ "window of Asset Details-Reports tile-Delete Btn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		// assetDetailsPage.Click_SetupReportsButton();
@@ -1456,7 +1456,7 @@ public class UM1 extends BaseClass {
 						+ "window of Asset Details-Reports tile-Copy to Drive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Select_ReportFile("manual 1 min sampling");
@@ -1479,7 +1479,7 @@ public class UM1 extends BaseClass {
 						+ "window of Asset Details-Documents tile-click_DeleteBtn");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
@@ -1503,7 +1503,7 @@ public class UM1 extends BaseClass {
 						+ "window of Asset Details-Documents tile-CopyToDrive");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.Select_DocFile("LTR-40_Cooling.pdf");
@@ -1693,7 +1693,7 @@ public class UM1 extends BaseClass {
 				"ADMN067A-Verify if Administrator is able to access the default privilege-Copy Files_Reports - Copy Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -1723,7 +1723,7 @@ public class UM1 extends BaseClass {
 				+ "authentication window of Asset Details- Copy Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Copyassetpage = assetDetailsPage.clickCopyasset();
 		Copyassetpage.Enter_NewAssetNameField("ADMN067B");
@@ -1827,7 +1827,7 @@ public class UM1 extends BaseClass {
 				"ADMN069E-Verify mandatory login for a new user before " + "saving any changes-Aseert Creation");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("NWAst2", "201A", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("Newuser"), getPW("Newuser"));
@@ -1848,7 +1848,7 @@ public class UM1 extends BaseClass {
 				.startTest("ADMN069F-Verify mandatory login for a new user before " + "saving any changes-Assert Edit");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.enterModelName("abc");
@@ -1871,7 +1871,7 @@ public class UM1 extends BaseClass {
 				"ADMN069F-Verify mandatory login for a new user before saving " + "any changes-Aseert Delete");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = UserManagementPage.ClickBackButn();
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));

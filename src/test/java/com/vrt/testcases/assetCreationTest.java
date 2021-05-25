@@ -113,7 +113,7 @@ public class assetCreationTest extends BaseClass {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 	}
 
@@ -1680,7 +1680,7 @@ public class assetCreationTest extends BaseClass {
 		// System.out.println("AssetCountInMainHubPage_BeforeNewAssetCreation:
 		// "+AssetCountInMainHubPage_BeforeNewAssetCreation);
 
-		assetHubPage = MainHubPage.ClickAssetTile(); // Move to Asset Hub page
+		assetHubPage = MainHubPage.Click_AssetTile2(); // Move to Asset Hub page
 		// Asset creation method
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		assetCreationPage.assetCreationWithAllFieldEntry(Name, ID, Type, Manufacturer, Location, Model, Size, SizeUnit,

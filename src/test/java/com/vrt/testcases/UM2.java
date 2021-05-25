@@ -397,7 +397,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN054-Verify Administrator is unable to access the non-default privilege-Create Asset");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetHubPage.Click_AddButton();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
 		String ActAlertMsg = assetHubPage.AlertMsg();
@@ -414,7 +414,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN054A_Verify Administrator is unable to access the non-default privilege Edit Asset");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_assetEditBtn_alrt();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -432,7 +432,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN055-Verify Administrator is unable to access the non-default privilege-Create Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_NewStupCreateBtn_alert();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -451,7 +451,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN059-Verify if Administrator is able to access the default privilege-Create Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -471,7 +471,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN062-Verify if Administrator is able to access the default privilege-Delete Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -593,7 +593,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN074-Verify if Supervisor is able to access the default privilege-Create Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation(AName, AID, AType, AManufacturer, ALocation);
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -611,7 +611,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN074A-Verify if Supervisor is able to access the default privilege-Edit Access");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		sa.assertEquals(assetCreationPage.IsEditAssetscreenDisplayed(), true,
@@ -641,7 +641,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN076-Verify if Supervisor is able to access the default privilege-Camera Access");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.click_CameraIcon();
@@ -694,7 +694,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN078-Verify Supervisor is unable to access the non-default privilege-Delete Asset");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysSupervisor"), getPW("SysSupervisor"));
@@ -732,7 +732,7 @@ public class UM2 extends BaseClass {
 				+ "Copy Files_Reports - Copy Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("xAst1", "2B1", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -790,7 +790,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN086-_Verify if Supervisor is able to access the default privilege-Create Setups");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		Setup_defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		sa.assertEquals(Setup_defineSetupPage.defineSetupPage_state(), true, "FAIL: set up page should be displayed");
@@ -806,7 +806,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN088-Verify if Supervisor is able to access the default privilege-Create Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysSupervisor"), getPW("SysSupervisor"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -924,7 +924,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN099-Verify if Operator is able to access the default privilege-Create  Assets");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetCreationPage = assetHubPage.Click_AddAssetButton();
 		assetCreationPage.assetCreation("oppo2", "1012", "HeatBath", "HYdd", "Ind");
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
@@ -942,7 +942,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN100-Verify if Operator is able to access the default privilege-Edit  Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		s.assertEquals(assetCreationPage.IsEditAssetscreenDisplayed(), true,
@@ -958,7 +958,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN101-Verify if Operator is able to access the default privilege-Create Reports");
 		SoftAssert sa = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
@@ -976,7 +976,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN105-Verify if Operator is able to access the default privilege-Camera access");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
 		assetCreationPage.click_CameraIcon();
@@ -993,7 +993,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN106-Verify if Operator is unable to access the non-default privilege-Delete Assets");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.DeleteAsset();
 		UserLoginPopup(getUID("SysOperator"), getPW("SysOperator"));
@@ -1089,7 +1089,7 @@ public class UM2 extends BaseClass {
 				.startTest("ADMN116A- Verify Operator is unable to access the non-default privilege-Create Setups");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_NewStupCreateBtn_alert();
 		String ExpAlrtMsg = "User does not have sufficient privileges to perform this operation";
@@ -1162,7 +1162,7 @@ public class UM2 extends BaseClass {
 				+ "privilege-Copy Files_Reports_Setup reports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
@@ -1183,7 +1183,7 @@ public class UM2 extends BaseClass {
 				"ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_QualReport");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_QualReportsButton();
@@ -1204,7 +1204,7 @@ public class UM2 extends BaseClass {
 				"ADMN119-Verify if Operator is unable to access the non-default privilege-Copy Files_Reports_Setup reports");
 		SoftAssert s = new SoftAssert();
 		MainHubPage = LoginPage.Login(getUID("SysOperator"), getPW("SysOperator"));
-		assetHubPage = MainHubPage.ClickAssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_PassFailReportBtn();
