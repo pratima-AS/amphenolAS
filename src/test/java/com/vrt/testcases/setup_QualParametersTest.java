@@ -2,14 +2,13 @@ package com.vrt.testcases;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -69,8 +68,7 @@ public class setup_QualParametersTest extends BaseClass {
 	Setup_ReviewPage Setup_ReviewPage;
 
 	// Before All the tests are conducted
-	//@BeforeTest
-	@BeforeClass
+	@BeforeTest
 	public void PreSetup() throws InterruptedException, IOException, AWTException, ParseException {
 
 		extent = new ExtentReports(
@@ -83,7 +81,6 @@ public class setup_QualParametersTest extends BaseClass {
 		System.out.println("setup_QualParametersTest Test is  in Progress..");
 
 		// Rename the User file (NgvUsers.uxx) if exists
-
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
@@ -114,12 +111,11 @@ public class setup_QualParametersTest extends BaseClass {
 		MainHubPage = UserManagementPage.ClickBackButn();
 
 		// Method to Create 1st Asset
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetHubPage = MainHubPage.Click_AssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-		System.out.println(crntDate);
 		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
-				"cu", crntDate, "2", "Weeks", "1st Asset Creation");
+				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		AppClose();
@@ -128,14 +124,13 @@ public class setup_QualParametersTest extends BaseClass {
 	}
 
 	// After All the tests are conducted
-	//@AfterTest
-	@AfterClass
+	@AfterTest
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
 		// Setup_CalculationsPage.resetWebElements();
 		// System.out.println("Reset Webelement memory released");
-		System.out.println("setup_QualParametersTest Test Completed.");
+		System.out.println("Setup_Calculations Test Completed.");
 	}
 
 	// Before Method(Test) method
@@ -145,7 +140,7 @@ public class setup_QualParametersTest extends BaseClass {
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetHubPage = MainHubPage.Click_AssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
@@ -156,7 +151,7 @@ public class setup_QualParametersTest extends BaseClass {
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
-		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		//Setup_SensorConfigPage.Enter_PressureCount_textField("5");
 
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
@@ -164,14 +159,10 @@ public class setup_QualParametersTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		Setup_SensorConfigPage.select_Sensortype_Pr();
-		Setup_SensorConfigPage.Enter_Num_To("5");
-		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
-		Setup_SensorConfigPage.Click_assignBtn();
 		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 
 	}
@@ -201,21 +192,17 @@ public class setup_QualParametersTest extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-
 		driver.quit();
 	}
 
 	// Test Cases
 
 	// QP001-Verify the details displayed in Qualification Parameters screen
-
 	@Test(groups = {
 			"Regression" }, description = "QP001-Verify the details displayed in Qualification Parameters screen")
 	public void QP001() throws InterruptedException, IOException {
 		extentTest = extent.startTest("QP001-Verify the details displayed in Qualification Parameters screen");
 		SoftAssert sa = new SoftAssert();
-
-		System.out.println(Setup_QualParamPage.get_QualParamsPage_titletext());
 
 		sa.assertEquals(Setup_QualParamPage.get_QualParamsPage_titletext(), "Qualification Parameters",
 				"FAIL: Qualification Parameters is not displaying");
@@ -231,9 +218,9 @@ public class setup_QualParametersTest extends BaseClass {
 		sa.assertEquals(Setup_QualParamPage.Data_Storage_state(), true, "Data_Storage_state Btn is not available");
 		sa.assertEquals(Setup_QualParamPage.RF_Transmit_state(), true, "FAIL: RF_Transmit_state  is not available");
 
-		sa.assertEquals(Setup_QualParamPage.NxtBtn_state(), true, "FAIL: NxtBtn  is not available");
+		sa.assertEquals(Setup_QualParamPage.IsReviewTab_Visisble(), true, "FAIL: NxtBtn  is not available");
 
-		sa.assertEquals(Setup_QualParamPage.PreviousButton_state(), true, "FAIL: PreviousButton is not available");
+		sa.assertEquals(Setup_QualParamPage.IsCalculationTab_Visible(), true, "FAIL: PreviousButton is not available");
 
 		sa.assertAll();
 	}
@@ -242,17 +229,20 @@ public class setup_QualParametersTest extends BaseClass {
 	// _Start Stop Conditions_ section
 
 	@Test(groups = {
-			"Regression" }, description = "QP002-Verify that the Start and Stop Qual drop downs are displayed under _Start Stop Conditions_ section")
+			"Regression" }, description = "QP002-Verify that the Start and Stop Qual drop downs "
+					+ "are displayed under _Start Stop Conditions_ section")
 	public void QP002() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"QP002-Verify that the Start and Stop Qual drop downs are displayed under _Start Stop Conditions_ section");
+				"QP002-Verify that the Start and Stop Qual drop downs are displayed under _Start "
+				+ "Stop Conditions_ section");
 		SoftAssert sa = new SoftAssert();
 
-		sa.assertEquals(Setup_QualParamPage.QStart_text_state(), true,
-				"FAIL: Start Qualification text is not displaying");
+		sa.assertEquals(Setup_QualParamPage.IsQstart_DrpDwnBoxVisible(), true,
+				"FAIL: Start Qualification dropdown is not displaying");
 
-		sa.assertEquals(Setup_QualParamPage.QStop_text_state(), "Qualification Parameters",
-				"FAIL: Stop Qualification text is not displaying");
+		sa.assertEquals(Setup_QualParamPage.IsQstop_DrpDwnBoxVisible(), true,
+				"FAIL: Stop Qualification dropdown is not displaying");
+		sa.assertAll();
 	}
 
 	// QP002.1-Verify if the ‘Start Qualification’ drop down option displays
@@ -274,7 +264,8 @@ public class setup_QualParametersTest extends BaseClass {
 	// Start Qualification drop down
 
 	@Test(groups = {
-			"Regression" }, description = "QP003-Verify that _Manual_ and _Time of the day_ options are displayed in Start Qualification drop down")
+			"Regression" }, description = "QP003-Verify that _Manual_ and _Time of the day_ options are displayed"
+					+ " in Start Qualification drop down")
 	public void QP003() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"QP003-Verify that _Manual_ and _Time of the day_ options are displayed in Start Qualification drop down");
@@ -282,25 +273,25 @@ public class setup_QualParametersTest extends BaseClass {
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
 		// System.out.println(Setup_QualParamPage.Fetch_Firstoption_QStart_DrpDwn());
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_Firstoption_QStart_DrpDwn(), "Manual",
+		sa.assertEquals(Setup_QualParamPage.Fetchoptions_From_QStartDrpDwn(0), "Manual",
 				"FAIL: 'Manual' option is not available in Start Qualification drop down ");
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_Secondoption_QStart_DrpDwn(), "Time Of Day",
-				"FAIL: 'Manual' option is not available in Start Qualification drop down ");
+		sa.assertEquals(Setup_QualParamPage.Fetchoptions_From_QStartDrpDwn(1), "Time Of Day",
+				"FAIL: 'Time Of Day' option is not available in Start Qualification drop down ");
 		sa.assertAll();
 	}
 
 	// QP004-Verify that on-click of the _Manual_ option in the list, will display
 	// the Start Qual as Manual
 
-	@Test(groups = {
-			"Regression" }, description = "QP004-Verify that on-click of the _Manual_ option in the list, will display the Start Qual as Manual")
+	@Test(groups = { "Regression" }, description = "QP004-Verify that on-click of the _Manual_ option in the list, "
+			+ "will display the Start Qual as Manual")
 	public void QP004() throws InterruptedException, IOException {
-		extentTest = extent.startTest(
-				"QP004-Verify that on-click of the _Manual_ option in the list, will display the Start Qual as Manual");
+		extentTest = extent.startTest("QP004-Verify that on-click of the _Manual_ option in the list,"
+				+ " will display the Start Qual as Manual");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_Manual_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(0);
 		sa.assertEquals(Setup_QualParamPage.get_Txt_QStartDrpDwn(), "Manual",
 				"FAIL: In Start Qualification drop down 'Manual' is not displaying as the default selection");
 		sa.assertAll();
@@ -316,9 +307,9 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP005-Verify that on-click of the _Time of the Day_ option in the list, will display the date and time fields for Start Qual ");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		sa.assertEquals(Setup_QualParamPage.get_Txt_QStartDrpDwn(), "Time Of Day",
-				"FAIL: In Start Qualification drop down 'Manual' is not displaying as the default selection");
+				"FAIL: In Start Qualification drop down 'Time Of Day' is not displaying as the default selection");
 
 		sa.assertEquals(Setup_QualParamPage.Is_DateField_Visible(), true, "FAIL:Date field is not visible");
 
@@ -333,10 +324,10 @@ public class setup_QualParametersTest extends BaseClass {
 		extentTest = extent.startTest("QP006-Verify that the Date field for Start Qual displays the current date");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 
 		String crntDate = tu.get_CurrentDate_inCertainFormat("dd-MMM-yyyy");
-		System.out.println(crntDate);
+		// System.out.println(crntDate);
 		sa.assertEquals(Setup_QualParamPage.fetch_Date(), crntDate, "FAIL: Date is not matching ");
 
 		sa.assertAll();
@@ -352,7 +343,8 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP007-Verify that the Date selector is available for start qual-time of the day option");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
+		Thread.sleep(1000);
 		sa.assertEquals(Setup_QualParamPage.Is_SelectDate_Visible(), true, "FAIL: Date selector is not available  ");
 
 		sa.assertAll();
@@ -375,7 +367,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP009-Verify that the time field has three text boxes for Hours,Minutes and Seconds under time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		sa.assertEquals(Setup_QualParamPage.Is_Hours_visible(), true, "FAIL: Hours is not available");
 
 		sa.assertEquals(Setup_QualParamPage.Is_Min_visible(), true, "FAIL: minute is not available");
@@ -396,7 +388,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP010-Verify that the default value for time is 00 in all the three text boxes for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 
 		sa.assertEquals(Setup_QualParamPage.fetch_Hour(), "00", "FAIL: default value for hour time is not 00");
 		sa.assertEquals(Setup_QualParamPage.fetch_Min(), "00", "FAIL: default value for minute time is not 00");
@@ -414,7 +406,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP010_1-Verify that max 2 characters are allowed in HH MM SS time fields for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter more than 2 chars
 		Setup_QualParamPage.enter_Hour("1234");
 		String HrTxt = Setup_QualParamPage.fetch_Hour();
@@ -444,7 +436,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP011-Verify that only numbers are accepted in the time field in HH MM SS text boxes for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		Setup_QualParamPage.enter_Hour(HH);
 		Setup_QualParamPage.enter_Min(MM);
 		Setup_QualParamPage.enter_Sec(SS);
@@ -465,25 +457,26 @@ public class setup_QualParametersTest extends BaseClass {
 	// QP012-Verify that 24hr format is accepted in the time HH field for time of
 	// the day option
 	@Test(groups = {
-			"Regression" }, dataProvider = "QP012", dataProviderClass = setupCreationUtility.class, description = "QP012-Verify that 24hr format is accepted in the time HH field for time of the day option")
-	public void QP012(String HH) throws InterruptedException, IOException, ParseException {
+			"Regression" }, description = "QP012-Verify that 24hr format is accepted in the time HH field for time of the day option")
+	public void QP012() throws InterruptedException, IOException, ParseException {
 		extentTest = extent
 				.startTest("QP012-Verify that 24hr format is accepted in the time HH field for time of the day option");
 		SoftAssert sa = new SoftAssert();
-		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+        Setup_QualParamPage.click_Qstart_DrpDwnBox();
+        Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
+        
+        Setup_QualParamPage.enter_Hour("23");
+        Setup_QualParamPage.click_Min();
+        String HrTxt1 = Setup_QualParamPage.fetch_Hour();
+        sa.assertEquals(HrTxt1, "23", "FAIL:  HH value is not in 24 format");
+        Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
+        sa.assertEquals(Setup_ReviewPage.ReviewPage_state(), true, "Fail: ReviewPage is not available");
+        sa.assertAll();
 
-		Setup_QualParamPage.enter_Hour(HH);
-		Setup_QualParamPage.click_Min();
-		String HrTxt = Setup_QualParamPage.fetch_Hour();
-
-		sa.assertEquals(HrTxt.length(), 2, "FAIL: Incorrect format allowed in HH");
-		sa.assertAll();
 	}
 
-	// QP013-Verify that min 00 and max 23 is accepted in HH field for time of the
-	// day
 
+	// QP013-Verify that min 00 and max 23 is accepted in HH field for time of the day
 	@Test(groups = {
 			"Regression" }, description = "QP013-Verify that min 00 and max 23 is accepted in HH field for time of the day")
 	public void QP013() throws InterruptedException, IOException, ParseException {
@@ -491,39 +484,34 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP013-Verify that min 00 and max 23 is accepted in HH field for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter less than min val
-		Setup_QualParamPage.enter_Hour("0");
+		Setup_QualParamPage.enter_Hour("00");
 		Setup_QualParamPage.click_Min();
 
 		String HrTxt1 = Setup_QualParamPage.fetch_Hour();
 		sa.assertEquals(HrTxt1, "00", "FAIL:  minimum val is not  00 in HH");
 
-		// Enter more than max val
-		Setup_QualParamPage.enter_Hour("24");
-		Setup_QualParamPage.click_Min();
-		String HrTxt2 = Setup_QualParamPage.fetch_Hour();
-		sa.assertEquals(HrTxt2, "00",
-				"FAIL:  Application is not showing 00 when user entered more than maximum value in HH");
-
 		Setup_QualParamPage.enter_Hour("23");
 		Setup_QualParamPage.click_Min();
-		String HrTxt3 = Setup_QualParamPage.fetch_Hour();
-		sa.assertEquals(HrTxt3, "23", "FAIL:  Application is not accepting max value as 23 in HH");
+		String HrTxt2 = Setup_QualParamPage.fetch_Hour();
+		sa.assertEquals(HrTxt2, "23", "FAIL:  Application is not accepting max value as 23 in HH");
 
+		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
+		sa.assertEquals(Setup_ReviewPage.ReviewPage_state(), true, "Fail: ReviewPage is not available");
 		sa.assertAll();
 	}
 
 	// QP014A-Verify the invalid values for HH in time field for time of the day
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "QP014A", dataProviderClass = setupCreationUtility.class, description = "QP014A-Verify the invalid values for HH in time field for time of the day")
+			"Regression" }, dataProvider = "QP014A", dataProviderClass = setupCreationUtility.class, 
+					description = "QP014A-Verify the invalid values for HH in time field for time of the day")
 
 	public void QP014A(String HH) throws InterruptedException, IOException {
 		extentTest = extent.startTest("QP014A-Verify the invalid values for HH in time field for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 
 		Setup_QualParamPage.enter_Hour(HH);
 		Setup_QualParamPage.click_Min();
@@ -543,13 +531,33 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP014B-Do not enter anything in HH field and click on any other field or anywhere in the screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter less than min val
 		Setup_QualParamPage.enter_Hour("");
 		Setup_QualParamPage.click_Min();
 
 		String HrTxt1 = Setup_QualParamPage.fetch_Hour();
 		sa.assertEquals(HrTxt1, "00", "FAIL: The field did not get to set to 00 automatically");
+
+		sa.assertAll();
+	}
+	// QP014C- enter decimal value in HH field and click on any other field or
+	// anywhere in the screen
+
+	@Test(groups = { "Regression" }, description = "QP014C-enter decimal value  in HH field and"
+			+ " click on any other field or anywhere in the screen")
+	public void QP014C() throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest(
+				"QP014C-enter decimal value  in HH field and click on any other field or anywhere in the screen");
+		SoftAssert sa = new SoftAssert();
+		Setup_QualParamPage.click_Qstart_DrpDwnBox();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
+		// Enter less than min val
+		Setup_QualParamPage.enter_Hour("1.2");
+		Setup_QualParamPage.click_Min();
+
+		String HrTxt1 = Setup_QualParamPage.fetch_Hour();
+		sa.assertEquals(HrTxt1, "12", "FAIL: The field is accepting decimal numbers");
 
 		sa.assertAll();
 	}
@@ -563,7 +571,7 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP015-Verify that min 00 and max 59 is accepted in MM field for time of the day option");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter less than min val
 		Setup_QualParamPage.enter_Min("0");
 		Setup_QualParamPage.click_Sec();
@@ -571,16 +579,11 @@ public class setup_QualParametersTest extends BaseClass {
 		String MnTxt1 = Setup_QualParamPage.fetch_Min();
 		sa.assertEquals(MnTxt1, "00", "FAIL:  minimum val is not  00 in MM");
 
-		// Enter more than max val
-		Setup_QualParamPage.enter_Min("60");
-		Setup_QualParamPage.click_Sec();
-		String MnTxt2 = Setup_QualParamPage.fetch_Min();
-		sa.assertEquals(MnTxt2, "00", "FAIL: The MM field did not get to set to 00 automatically");
-
 		Setup_QualParamPage.enter_Min("59");
 		Setup_QualParamPage.click_Sec();
-		String MnTxt3 = Setup_QualParamPage.fetch_Min();
-		sa.assertEquals(MnTxt3, "59", "FAIL:  Application is not accepting max value as 59 in MM textfield");
+
+		String MnTxt2 = Setup_QualParamPage.fetch_Min();
+		sa.assertEquals(MnTxt2, "59", "FAIL:  Application is not accepting max value as 59 in MM textfield");
 
 		sa.assertAll();
 	}
@@ -588,13 +591,14 @@ public class setup_QualParametersTest extends BaseClass {
 	// QP016A-Verify the invalid values for MM in time field for time of the day
 
 	@Test(groups = {
-			"Regression" }, dataProvider = "QP016A", dataProviderClass = setupCreationUtility.class, description = "QP016A-Verify the invalid values for MM in time field for time of the day")
+			"Regression" }, dataProvider = "QP016A", dataProviderClass = setupCreationUtility.class, 
+					description = "QP016A-Verify the invalid values for MM in time field for time of the day")
 
 	public void QP016A(String MM) throws InterruptedException, IOException {
 		extentTest = extent.startTest("QP016A-Verify the invalid values for MM in time field for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 
 		Setup_QualParamPage.enter_Min(MM);
 		Setup_QualParamPage.click_Sec();
@@ -614,7 +618,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP016B-Do not enter anything in MM field and click on any other field or anywhere in the screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter less than min val
 		Setup_QualParamPage.enter_Min("");
 		Setup_QualParamPage.click_Sec();
@@ -622,6 +626,25 @@ public class setup_QualParametersTest extends BaseClass {
 		String MnTxt1 = Setup_QualParamPage.fetch_Min();
 		sa.assertEquals(MnTxt1, "00", "FAIL: The field did not get to set to 00 automatically");
 
+		sa.assertAll();
+	}
+	// QP016C-Enter more than max value in MM field and click on any other field or
+	// anywhere in the screen
+
+	@Test(groups = {
+			"Regression" }, description = " QP016C-Enter more than max value in MM field and click on any other field or anywhere in the screen")
+	public void QP016C() throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest(
+				" QP016C-Enter more than max value in MM field and click on any other field or anywhere in the screen");
+		SoftAssert sa = new SoftAssert();
+		Setup_QualParamPage.click_Qstart_DrpDwnBox();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
+		// Enter more than max val
+		Setup_QualParamPage.enter_Min("60");
+		Setup_QualParamPage.click_Sec();
+		String MnTxt2 = Setup_QualParamPage.fetch_Min();
+
+		sa.assertEquals(MnTxt2, "00", "FAIL: The MM field did not get to set to 00 automatically");
 		sa.assertAll();
 	}
 
@@ -634,19 +657,13 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP017-Verify that min 00 and max 59 is accepted in SS field for time of the day option");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		// Enter less than min val
 		Setup_QualParamPage.enter_Sec("0");
 		Setup_QualParamPage.click_Min();
 
 		String MnTxt1 = Setup_QualParamPage.fetch_Sec();
 		sa.assertEquals(MnTxt1, "00", "FAIL:  minimum val is not  00 in MM");
-
-		// Enter more than max val
-		Setup_QualParamPage.enter_Sec("60");
-		Setup_QualParamPage.click_Min();
-		String MnTxt2 = Setup_QualParamPage.fetch_Sec();
-		sa.assertEquals(MnTxt2, "00", "FAIL:   The SS field did not get to set to 00 automatically");
 
 		Setup_QualParamPage.enter_Sec("59");
 		Setup_QualParamPage.click_Min();
@@ -658,13 +675,14 @@ public class setup_QualParametersTest extends BaseClass {
 
 	// QP018-Verify the invalid values for SS in time field for time of the day
 	@Test(groups = {
-			"Regression" }, dataProvider = "QP018A", dataProviderClass = setupCreationUtility.class, description = "QP018-Verify the invalid values for SS in time field for time of the day")
+			"Regression" }, dataProvider = "QP018A", dataProviderClass = setupCreationUtility.class, 
+					description = "QP018-Verify the invalid values for SS in time field for time of the day")
 
 	public void QP018A(String SS) throws InterruptedException, IOException {
 		extentTest = extent.startTest("QP018A-Verify the invalid values for SS in time field for time of the day");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 
 		Setup_QualParamPage.enter_Sec(SS);
 		Setup_QualParamPage.click_Min();
@@ -683,13 +701,31 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP018B-Do not enter anything in MM field and click on any other field or anywhere in the screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		Setup_QualParamPage.enter_Sec("");
 		Setup_QualParamPage.click_Min();
 
 		String ScTxt1 = Setup_QualParamPage.fetch_Sec();
 		sa.assertEquals(ScTxt1, "00", "FAIL: The field did not get to set to 00 automatically");
 
+		sa.assertAll();
+	}
+	// QP018C-Enter more than max value in SS field and click on any other field or
+	// anywhere in the screen
+
+	@Test(groups = {
+			"Regression" }, description = "QP018C-Enter more than max value in SS field and click on any other field or anywhere in the screen")
+	public void QP018C() throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest(
+				"QP018C-Enter more than max value in SS field and click on any other field or anywhere in the screen");
+		SoftAssert sa = new SoftAssert();
+		Setup_QualParamPage.click_Qstart_DrpDwnBox();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
+		// Enter more than max val
+		Setup_QualParamPage.enter_Sec("60");
+		Setup_QualParamPage.click_Min();
+		String ssTxt1 = Setup_QualParamPage.fetch_Sec();
+		sa.assertEquals(ssTxt1, "00", "FAIL:   The SS field is accepting decimal values");
 		sa.assertAll();
 	}
 
@@ -703,7 +739,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP019-Verify that validation message is displayed when elapsed time is entered in time of the day field and proceeded to next step");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstart_DrpDwnBox();
-		Setup_QualParamPage.select_TOD_QStart_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStartDrpDwn(1);
 		Setup_QualParamPage.Click_NxtBtn_Alert();
 // Here we are moving with the default time as elapsed time
 		String Actmsg = Setup_QualParamPage.AlertMsg();
@@ -723,7 +759,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP020-Verify if the ‘Stop Qualification’ drop down option displays ‘Manual’ as the default selection.");
 		SoftAssert sa = new SoftAssert();
 
-		sa.assertEquals(Setup_QualParamPage.get_Txt_Qstop_DrpDwnBox(), "Manual",
+		sa.assertEquals(Setup_QualParamPage.getTxt_of_QstopDrpDwn(), "Manual",
 				"FAIL: In stop Qualification drop down 'Manual' is not displaying as the default selection");
 		sa.assertAll();
 	}
@@ -738,16 +774,16 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_Firstoption_QStop_DrpDwn(), "Manual",
-				"FAIL: 'Manual' option is not available in Start Qualification drop down ");
+		sa.assertEquals(Setup_QualParamPage.Fetchoptions_From_QStopDrpDwn(1), "Manual",
+				"FAIL: Manual option is not available in stop Qualification drop down ");
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_Secondoption_QStop_DrpDwn(), "Cycle Time",
-				"FAIL: 'Manual' option is not available in Start Qualification drop down ");
+		sa.assertEquals(Setup_QualParamPage.Fetchoptions_From_QStopDrpDwn(2), "Cycle Time",
+				"FAIL: Cycle Time option is not available in stop Qualification drop down ");
 		sa.assertAll();
 	}
 
 	// QP022-Verify that on-click of the _Manual_ option in the list, will display
-	// the Stop Quall as Manual
+	// the Stop Qual as Manual
 
 	@Test(groups = {
 			"Regression" }, description = "QP022-Verify that on-click of the _Manual_ option in the list, will display the Stop Quall as Manual")
@@ -756,9 +792,9 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP022-Verify that on-click of the _Manual_ option in the list, will display the Stop Quall as Manual");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_Manual_QStop_DrpDwn();
-		sa.assertEquals(Setup_QualParamPage.get_Txt_Qstop_DrpDwnBox(), "Manual",
-				"FAIL: In Start Qualification drop down 'Manual' is not displaying as the default selection");
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(1);
+		sa.assertEquals(Setup_QualParamPage.getTxt_of_QstopDrpDwn(), "Manual",
+				"FAIL: In Stop Qualification drop down 'Manual' is not displaying as the default selection");
 		sa.assertAll();
 	}
 
@@ -772,9 +808,9 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP023-Verify that on-click of the _Cycle Time_ option in the list, will display the time fields for Stop Qual");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
-		sa.assertEquals(Setup_QualParamPage.get_Txt_Qstop_DrpDwnBox(), "Cycle Time",
-				"FAIL: In Start Qualification drop down 'Cycle Time' is not displaying as the default selection");
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
+		sa.assertEquals(Setup_QualParamPage.getTxt_of_QstopDrpDwn(), "Cycle Time",
+				"FAIL: In Stop Qualification drop down 'Cycle Time' is not displaying as the default selection");
 
 		sa.assertEquals(Setup_QualParamPage.HoursStopQual_State(), true, "FAIL: Hours field is not visible");
 
@@ -795,7 +831,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP024-Verify that the time field has three text boxes for Hours,Minutes and Seconds under Cycle time option");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		sa.assertEquals(Setup_QualParamPage.HoursStopQual_State(), true, "FAIL: Hours field is not visible");
 
@@ -817,7 +853,7 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP025-Verify that the default value for time is 00 in all the three text boxes for Cycle time");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		sa.assertEquals(Setup_QualParamPage.FetchTxt_HH_Stopqual(), "0000",
 				"FAIL: Default value for  HH field is not set to 0000");
@@ -839,7 +875,7 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP026-Verify that max 4 characters are allowed in HH  time fields for Cycle time");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 		// Enter more than 4 chars
 		Setup_QualParamPage.enterTxt_HH("1234567");
 		String HHTxt = Setup_QualParamPage.FetchTxt_HH_Stopqual();
@@ -857,7 +893,7 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP027A-Verify that max 2 characters are allowed in MM and SS  time fields for Cycle time");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 		// Enter more than 2 chars
 		Setup_QualParamPage.enterTxt_MM("1234");
 		String MMTxt = Setup_QualParamPage.FetchTxt_MM_Stopqual();
@@ -875,7 +911,7 @@ public class setup_QualParametersTest extends BaseClass {
 				.startTest("QP027A-Verify that max 2 characters are allowed in SS  time fields for Cycle time");
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 		// Enter more than 2 chars
 		Setup_QualParamPage.enterTxt_SS("1234");
 		String SSTxt = Setup_QualParamPage.FetchTxt_SS_Stopqual();
@@ -895,7 +931,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		Setup_QualParamPage.enterTxt_HH(HH);
 		String HHTxt = Setup_QualParamPage.FetchTxt_HH_Stopqual();
@@ -911,6 +947,35 @@ public class setup_QualParametersTest extends BaseClass {
 		sa.assertAll();
 	}
 
+	// QP028A-Verify that Decimal numbers are not accepted in the time field in HH
+	// MM SS
+	// text boxes for Cycle time
+	@Test(groups = {
+			"Regression" }, description = "QP02A8-Verify that Decimal numbers are not accepted in the time field in "
+					+ "HH MM SSHH MM SS text boxes for Cycle time")
+
+	public void QP028A() throws InterruptedException, IOException {
+		extentTest = extent.startTest("QP028-Verify that Decimal numbers are not accepted in the time field in "
+				+ " HH MM SS text boxes for Cycle time");
+		SoftAssert sa = new SoftAssert();
+
+		Setup_QualParamPage.click_Qstop_DrpDwnBox();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
+
+		Setup_QualParamPage.enterTxt_HH("-1234");
+		String HHTxt = Setup_QualParamPage.FetchTxt_HH_Stopqual();
+		sa.assertEquals(HHTxt, "1234", "FAIL: HH field is accepting decimal numbers");
+
+		Setup_QualParamPage.enterTxt_MM("-12");
+		String MMTxt = Setup_QualParamPage.FetchTxt_MM_Stopqual();
+		sa.assertEquals(MMTxt, "12", "FAIL: MM field is accepting decimal numbers");
+
+		Setup_QualParamPage.enterTxt_SS("10");
+		String SSTxt = Setup_QualParamPage.FetchTxt_SS_Stopqual();
+		sa.assertEquals(SSTxt, "10", "FAIL: MM field is accepting decimal numbers");
+		sa.assertAll();
+	}
+
 	// QP029-Verify that min 0000 and max 9999 hrs are allowed in HH field of Cycle
 	// time
 	@Test(groups = {
@@ -921,7 +986,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		// Enter less than min val
 		Setup_QualParamPage.enterTxt_HH("000");
@@ -955,7 +1020,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		Setup_QualParamPage.enterTxt_HH(HH);
 		Setup_QualParamPage.click_MM();
@@ -964,22 +1029,22 @@ public class setup_QualParametersTest extends BaseClass {
 		sa.assertEquals(HrTxt1, "0000", "FAIL:  Application is not set back to  0000 in HH field");
 	}
 
-	// QP030A-Verify the negative value for HH field
+	// QP030A-Verify the negative value for HH field for Cycle time
 
 	@Test(groups = {
-			"Regression" }, description = "QP030A-Verify the invalid values for HH in time field for Cycle time")
-	public void QP030A() throws InterruptedException, IOException, ParseException {
-		extentTest = extent.startTest("QP030A-Verify the invalid values for HH in time field for Cycle time");
+			"Regression" }, dataProvider = "QP030A", dataProviderClass = setupCreationUtility.class, description = "QP030A-Verify the negative value for HH field for Cycle time")
+	public void QP030A(String HH, String ExpValue) throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest("QP030A-Verify the negative value for HH field for Cycle time");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
-		Setup_QualParamPage.enterTxt_HH("-1234");
+		Setup_QualParamPage.enterTxt_HH(HH);
 		Setup_QualParamPage.click_MM();
 
 		String HrTxt1 = Setup_QualParamPage.FetchTxt_HH_Stopqual();
-		sa.assertEquals(HrTxt1, "1234", "FAIL:  Application is accepting negative value in HH field");
+		sa.assertEquals(HrTxt1, ExpValue, "FAIL:  Application is accepting negative/ decimal value in HH field");
 		sa.assertAll();
 	}
 
@@ -993,7 +1058,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		// Enter less than min val
 		Setup_QualParamPage.enterTxt_MM("0");
@@ -1025,7 +1090,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		Setup_QualParamPage.enterTxt_MM(MM);
 		Setup_QualParamPage.click_SS();
@@ -1034,21 +1099,22 @@ public class setup_QualParametersTest extends BaseClass {
 		sa.assertEquals(mmTxt1, "00", "FAIL:  Application is not set back to  00 in MM field");
 	}
 
-	// QP032A-Verify the negative value for MM field
+	// QP032A-Verify the negative value for MM field in time field for Cycle time
 
-	@Test(groups = { "Regression" }, description = "QP032A-Verify the negative value for MM field")
-	public void QP032A() throws InterruptedException, IOException, ParseException {
-		extentTest = extent.startTest("QP032A-Verify the negative value for MM field");
+	@Test(groups = {
+			"Regression" }, dataProvider = "QP032A", dataProviderClass = setupCreationUtility.class, description = "QP032A-Verify the negative value for MM field in time field for Cycle time")
+	public void QP032A(String MM, String ExpValue) throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest("QP032A-Verify the negative value for MM field  in time field for Cycle time");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
-		Setup_QualParamPage.enterTxt_MM("-12");
+		Setup_QualParamPage.enterTxt_MM(MM);
 		Setup_QualParamPage.click_SS();
 
 		String mmtxt = Setup_QualParamPage.FetchTxt_MM_Stopqual();
-		sa.assertEquals(mmtxt, "12", "FAIL:  Application is accepting negative value in MM field");
+		sa.assertEquals(mmtxt, ExpValue, "FAIL:  Application is accepting negative/Decimal value in MM field");
 		sa.assertAll();
 	}
 
@@ -1063,7 +1129,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		// Enter less than min val
 		Setup_QualParamPage.enterTxt_SS("0");
@@ -1095,7 +1161,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		Setup_QualParamPage.enterTxt_SS(SS);
 		Setup_QualParamPage.click_MM();
@@ -1106,19 +1172,21 @@ public class setup_QualParametersTest extends BaseClass {
 
 	// QP034A-Verify the negative value for SS field
 
-	@Test(groups = { "Regression" }, description = "QP034A-Verify the negative value for SS field")
-	public void QP034A() throws InterruptedException, IOException, ParseException {
-		extentTest = extent.startTest("QP034A-Verify the negative value for SS field");
+	@Test(groups = {
+			"Regression" }, dataProvider = "QP034A", dataProviderClass = setupCreationUtility.class, description = "QP034A-Verify the negative value in SS time field for Cycle time")
+	public void QP034A(String SS, String ExpValue) throws InterruptedException, IOException, ParseException {
+		extentTest = extent.startTest("QP034A-Verify the negative value in SS time field for Cycle time");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
-		Setup_QualParamPage.enterTxt_SS("-12");
+		Setup_QualParamPage.enterTxt_SS(SS);
 		Setup_QualParamPage.click_MM();
 
 		String sstxt = Setup_QualParamPage.FetchTxt_SS_Stopqual();
-		sa.assertEquals(sstxt, "12", "FAIL:Application is accepting negative value in SS field");
+		sa.assertEquals(sstxt, ExpValue,
+				"FAIL:Application is accepting negative/Decimal value in SS time field for Cycle time");
 		sa.assertAll();
 	}
 
@@ -1133,7 +1201,7 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_Qstop_DrpDwnBox();
-		Setup_QualParamPage.select_CT_QStop_DrpDwn();
+		Setup_QualParamPage.selectOptions_From_QStopDrpDwn(2);
 
 		Setup_QualParamPage.enterTxt_SS("02");
 		Setup_QualParamPage.Click_NxtBtn_Alert();
@@ -1167,14 +1235,15 @@ public class setup_QualParametersTest extends BaseClass {
 		Thread.sleep(2000);
 		sa.assertEquals(Setup_QualParamPage.fetch_DefaultTxt_SR(), "5 Seconds",
 				"Fail:Incorrect default value  is displaying ");
+		// System.out.println(Setup_QualParamPage.Fetch_optnTxt_SRDD(1));
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_1optn_SR_DrpDwn(), "1 Second",
+		sa.assertEquals(Setup_QualParamPage.Fetch_optnTxt_SRDD(2), "1 Second",
 				"Fail:Incorrect default value  is displaying ");
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_2optn_SR_DrpDwn(), "2 Seconds",
+		sa.assertEquals(Setup_QualParamPage.Fetch_optnTxt_SRDD(3), "2 Seconds",
 				"Fail:Incorrect default value  is displaying ");
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_7optn_SR_DrpDwn(), "30 Seconds",
+		sa.assertEquals(Setup_QualParamPage.Fetch_optnTxt_SRDD(8), "30 Seconds",
 				"Fail:Incorrect default value  is displaying ");
 
 		sa.assertAll();
@@ -1183,24 +1252,25 @@ public class setup_QualParametersTest extends BaseClass {
 	// QP038-Verify if the application provides sampling rate Drop down list in
 	// Minutes as 1, 2, 3, 5, 10
 
-	@Test(groups = {
-			"Regression" }, description = "QP038-Verify if the application provides sampling rate Drop down list in Minutes as  1, 2, 3, 5, 10        ")
+	@Test(groups = { "Regression" }, description = "QP038-Verify if the application provides sampling rate "
+			+ "Drop down list in Minutes as  1, 2, 3, 5, 10")
 	public void QP038() throws InterruptedException, IOException, ParseException {
-		extentTest = extent.startTest(
-				"QP038-Verify if the application provides sampling rate Drop down list in Minutes as  1, 2, 3, 5, 10        ");
+		extentTest = extent.startTest("QP038-Verify if the application provides sampling rate"
+				+ " Drop down list in Minutes as  1, 2, 3, 5, 10");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_SR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.Fetch_8optn_SR_DrpDwn(), "1 Minute",
-				"Fail:Incorrect default value  is displaying ");
+		sa.assertEquals(Setup_QualParamPage.Fetch_optnTxt_SRDD(9), "1 Minute",
+				"Fail:Incorrect default value  is displaying");
 
-		sa.assertEquals(Setup_QualParamPage.Fetch_9thoptn_SR_DrpDwn(), "2 Minutes",
-				"Fail:Incorrect default value  is displaying ");
+		sa.assertEquals(Setup_QualParamPage.Fetch_optnTxt_SRDD(10), "2 Minutes",
+				"Fail:Incorrect default value  is displaying");
+
 		sa.assertAll();
 	}
 
-	// QP039-Verify that the default value for Transaction Rate is 10 sec
+// QP039-Verify that the default value for Transaction Rate is 10 sec
 
 	@Test(groups = { "Regression" }, description = "QP039-Verify that the default value for Transaction Rate is 10 sec")
 	public void QP039() throws InterruptedException, IOException, ParseException {
@@ -1211,7 +1281,7 @@ public class setup_QualParametersTest extends BaseClass {
 		Thread.sleep(2000);
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "10 Seconds",
 				"Fail: The default value for Transaction Rate is not 10 sec");
-
+//System.out.println(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox());
 		sa.assertAll();
 	}
 
@@ -1225,17 +1295,24 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP040-Verify that for 1 sec SR, the TR values in drop down are 3,4 and 5 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_1sec_SR();
+		Setup_QualParamPage.select_SR("1 Second");
+		// System.out.println(Setup_QualParamPage.fetch_DefaultTxt_SR());
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "4 Seconds",
-				"Fail: 4 sec is not selected by default");
+				"Fail: 4 sec is not selected by default in TR dropdown");
+
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is3secs_visible(), true, "Fail: 3 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is4secs_visible(), true, "Fail: 4 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is5secs_visible(), true, "Fail:5 sec is selected by default");
+		// System.out.println(Setup_QualParamPage.Fetch_TR_Values(1));
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "3 Seconds",
+				"Fail: 3 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "4 Seconds",
+				"Fail: 4 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "5 Seconds",
+				"Fail: 5 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
+
 	}
 
 	// QP041-Verify that for 2 sec SR, the TR values in drop down are 6,8 and 10 sec
@@ -1247,15 +1324,17 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP041-Verify that for 2 sec SR, the TR values in drop down are 6,8 and 10 sec and 8 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_2sec_SR();
+		Setup_QualParamPage.select_SR("2 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "8 Seconds",
 				"Fail: 8 sec is not selected by default");
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is6secs_visible(), true, "Fail: 6 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is8secs_visible(), true, "Fail: 8 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail: 10 sec is selected by default");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "6 Seconds",
+				"Fail: 6 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "8 Seconds",
+				"Fail: 8 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1269,15 +1348,17 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP042-Verify that for 3 sec SR, the TR values in drop down are 6,9 and 12 sec and 9 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_3sec_SR();
+		Setup_QualParamPage.select_SR("3 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "9 Seconds",
 				"Fail: 9 sec is not selected by default");
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is6secs_visible(), true, "Fail: 6 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is9secs_visible(), true, "Fail: 9 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is12secs_visible(), true, "Fail:12 sec is selected by default");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "6 Seconds",
+				"Fail: 6 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "9 Seconds",
+				"Fail: 9 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "12 Seconds",
+				"Fail: 12 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1292,15 +1373,17 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP043-Verify that for 5 sec SR, the TR values in drop down are 5,10 and 20 sec and 10 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_5sec_SR();
+		Setup_QualParamPage.select_SR("5 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "10 Seconds",
 				"Fail: 10 sec is not selected by default");
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is5secs_visible(), true, "Fail: 5 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail: 10 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail:20 sec is selected by default");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "5 Seconds",
+				"Fail: 5 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1314,15 +1397,17 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP044-Verify that for 10 sec SR, the TR values in drop down are 10,20 and 30 sec and 20 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_10sec_SR();
+		Setup_QualParamPage.select_SR("10 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "10 Seconds",
 				"Fail: 10 sec is not selected by default");
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail:  10 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail: 20 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is30secs_visible(), true, "Fail: 30 sec is selected by default");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "30 Seconds",
+				"Fail: 30 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1336,16 +1421,19 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP045-Verify that for 20 sec SR, the TR values in drop down are 10,20 and 30 sec and 20 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_20sec_SR();
+		Setup_QualParamPage.select_SR("20 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "10 Seconds",
 				"Fail: 10 sec is not selected by default");
 
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail:  10 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail: 20 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is30secs_visible(), true, "Fail: 30 sec is selected by default");
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "30 Seconds",
+				"Fail: 30 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1360,16 +1448,19 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP046-Verify that for 30 sec SR, the TR values in drop down are 10,20 and 30 sec and 10 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_30sec_SR();
+		Setup_QualParamPage.select_SR("30 Seconds");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "10 Seconds",
 				"Fail: 10 sec is not selected by default");
 
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(2000);
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail:  10 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail: 20 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is30secs_visible(), true, "Fail: 30 sec is selected by default");
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "30 Seconds",
+				"Fail: 30 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1383,16 +1474,19 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP047-Verify that for 1 min SR, the TR values in drop down are 10,20 and 30 sec and 20 sec is selected by default");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_1min_SR();
+		Setup_QualParamPage.select_SR("1 Minute");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "20 Seconds",
 				"Fail: 1 Minute is not selected by default");
 
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(3000);
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail:  10 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail: 20 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is30secs_visible(), true, "Fail: 30 sec is selected by default");
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "30 Seconds",
+				"Fail: 30 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 
@@ -1408,16 +1502,19 @@ public class setup_QualParametersTest extends BaseClass {
 				"QP048-Verify that for 2 mins SR, the TR values in drop down are 10,20 and 30 sec and 20 sec is selected by default               ");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.click_SR_DrpDwnBox();
-		Setup_QualParamPage.Select_2min_SR();
+		Setup_QualParamPage.select_SR("2 Minutes");
 		sa.assertEquals(Setup_QualParamPage.FetchDfltTxt_TR_DrpDwnBox(), "20 Seconds",
 				"Fail: 2 Minutes is not selected by default");
 
 		Setup_QualParamPage.click_TR_DrpDwnBox();
 		Thread.sleep(3000);
-		sa.assertEquals(Setup_QualParamPage.is10secs_visible(), true, "Fail:  10 sec is not selected by default");
-		sa.assertEquals(Setup_QualParamPage.is20secs_visible(), true, "Fail: 20 sec is selected by default");
-		sa.assertEquals(Setup_QualParamPage.is30secs_visible(), true, "Fail: 30 sec is selected by default");
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(0), "10 Seconds",
+				"Fail: 10 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(1), "20 Seconds",
+				"Fail: 20 sec is not available in  TR Dropdown");
+		sa.assertEquals(Setup_QualParamPage.Fetch_TR_Values(2), "30 Seconds",
+				"Fail: 30 sec is not available in  TR Dropdown");
 
 		sa.assertAll();
 	}
@@ -1433,16 +1530,18 @@ public class setup_QualParametersTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_QualParamPage.click_RFT_DrpDwnBox();
-		sa.assertEquals(Setup_QualParamPage.fetch_1stoptionTxt_RFT(), "-15,-10",
+
+		sa.assertEquals(Setup_QualParamPage.Fetch_RFT_Values(0), "-15,-10",
 				"Fail: -15,-10 is not displaying under RF Transmit Threshold section");
-		sa.assertEquals(Setup_QualParamPage.fetch_2ndoptionTxt_RFT(), "-25,-20",
+		sa.assertEquals(Setup_QualParamPage.Fetch_RFT_Values(1), "-25,-20",
 				"Fail: -25,-20 is not displaying under RF Transmit Threshold section");
-		sa.assertEquals(Setup_QualParamPage.fetch_3rdoptionTxt_RFT(), "-35,-30",
+		sa.assertEquals(Setup_QualParamPage.Fetch_RFT_Values(2), "-35,-30",
 				"Fail: -35,-30 is not displaying under RF Transmit Threshold section");
-		sa.assertEquals(Setup_QualParamPage.fetch_4thoptionTxt_RFT(), "-45,-40",
+		sa.assertEquals(Setup_QualParamPage.Fetch_RFT_Values(3), "-45,-40",
 				"Fail: -45,-40 is not displaying under RF Transmit Threshold section");
-		sa.assertEquals(Setup_QualParamPage.fetch_5thoptionTxt_RFT(), "-125,-120",
+		sa.assertEquals(Setup_QualParamPage.Fetch_RFT_Values(4), "-125,-120",
 				"Fail: -125,-120 is not displaying under RF Transmit Threshold section");
+
 		sa.assertAll();
 	}
 
@@ -1497,52 +1596,54 @@ public class setup_QualParametersTest extends BaseClass {
 	// screen
 
 	@Test(description = "QP056-Verify the bottom menu options displayed in Qualification Parameters screen")
-	public void SC106() throws InterruptedException {
+	public void QP056() throws InterruptedException {
 		extentTest = extent
 				.startTest("QP056-Verify the bottom menu options displayed in Qualification Parameters screen");
 		SoftAssert sa = new SoftAssert();
-		Setup_QualParamPage.Rt_Click_Buttom_AppBar();
+		tu.Right_Click__Buttom_Menuoptions();
 
-		sa.assertEquals(Setup_QualParamPage.check_Home_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Home_Buttom_AppBar_Presence(), true,
 				"FAIL: Home icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_QualParamPage.check_Help_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Help_Buttom_AppBar_Presence(), true,
 				"FAIL: Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_QualParamPage.check_WndsHelp_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_WndsHelp_Buttom_AppBar_Presence(), true,
 				"FAIL: Windows Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_QualParamPage.check_About_Buttom_AppBar_Presence(), true,
-				"FAIL: About icon/button missing in bottom app bar");
+		sa.assertEquals(tu.check_About_wndw_Presence(), true, "FAIL: About icon/button missing in bottom app bar");
 		sa.assertAll();
+
 	}
 
 	// QP057-Verify that on-click of home btn in bottom menu options is navigated to
 	// main hub page
 	@Test(description = "QP057-Verify that on-click of home btn in bottom menu options is navigated to main hub page")
-	public void CAL041() throws InterruptedException, IOException {
+	public void QP057() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"QP057-Verify that on-click of home btn in bottom menu options is navigated to main hub page");
 		SoftAssert sa = new SoftAssert();
 
-		MainHubPage = Setup_QualParamPage.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar();
 
 		sa.assertEquals(MainHubPage.mainPageTitle(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
 	}
 
-	// 'QP058-Verify that on-click of help btn in bottom menu options displays
+	// QP058-Verify that on-click of help btn in bottom menu options displays
 	// information about the Qualification parameters screen
-	@Test(description = "QP058-Verify that on-click of help btn in bottom menu options displays information about the Qualification parameters screen")
+	@Test(description = "QP058-Verify that on-click of help btn in bottom menu options displays "
+			+ "information about the Qualification parameters screen")
 	public void QP058() throws InterruptedException {
 		extentTest = extent.startTest(
-				"QP058-Verify that on-click of help btn in bottom menu options displays information about the Qualification parameters screen");
+				"QP058-Verify that on-click of help btn in bottom menu options displays information "
+				+ "about the Qualification parameters screen");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_QualParamPage.Click_Help_Icon_AppBar();
-
-		sa.assertEquals(Setup_QualParamPage.get__HelpMenu_HdrText(), "Qualification Parameters",
+		tu.Click_Help_Icon_AppBar();
+		sa.assertEquals(tu.get__HelpMenu_HdrText(), "Qualification Parameters",
 				"FAIL: Clicking Help icon/button in bottom app bar"
-						+ "do not display the Qualification Parameters Help context window");
+						+ "do not display the Sensors Configuration Help context window");
 		sa.assertAll();
+
 	}
 
 	// QP059-Verify that on-click of windows help btn in bottom menu options
@@ -1552,16 +1653,23 @@ public class setup_QualParametersTest extends BaseClass {
 	// QP060-Verify that on-click of About btn in bottom menu options displays the
 	// software version and the console IP address
 
-	@Test(description = "QP060-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address")
-	public void SC110() throws InterruptedException {
-		extentTest = extent.startTest(
-				"QP060-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address");
+	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, 
+			description = "QP060 - Verify that on-click of About btn in bottom menu options displays "
+			+ "the software version and the console IP address")
+	public void QP060(String SWVer) throws InterruptedException, UnknownHostException {
+		extentTest = extent.startTest("QP060-Verify that on-click of About btn in bottom menu options displays "
+				+ "the software version and the console IP address");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_CalculationsPage.Click_About_Icon_AppBar();
-		sa.assertEquals(Setup_QualParamPage.check_About_wndw_Presence(), true,
-				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
+		tu.Click_About_Icon_AppBar();
+
+		sa.assertEquals(tu.SWversion_InAboutWndw(), SWVer,
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
+
+		sa.assertEquals(tu.consoleIP_InAboutWndw(), tu.system_IPadress(),
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
 		sa.assertAll();
+
 	}
 
 }

@@ -165,6 +165,13 @@ public class setupCreationUtility extends BaseClass {
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
+	
+	@DataProvider(name = "SET033")
+	public static Object[][] SET033() {
+		String sheetName = "SET033";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
 
 	@DataProvider(name = "ADMN037A")
 	public static Object[][] ADMN037A() {
@@ -382,8 +389,8 @@ public class setupCreationUtility extends BaseClass {
 	}
 
 	@DataProvider(name = "SC083")
-	public static Object[][] SC081() {
-		String sheetName = "SC081";
+	public static Object[][] SC083() {
+		String sheetName = "SC083";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -398,6 +405,13 @@ public class setupCreationUtility extends BaseClass {
 	@DataProvider(name = "SC084_1")
 	public static Object[][] SC084_1() {
 		String sheetName = "SC084_1";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "SC110")
+	public static Object[][] SC110() {
+		String sheetName = "SC110";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -437,20 +451,6 @@ public class setupCreationUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "CAL011A")
-	public static Object[][] CAL011A() {
-		String sheetName = "CAL011A";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "CAL011B")
-	public static Object[][] CAL011B() {
-		String sheetName = "CAL011B";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
 	@DataProvider(name = "CAL012")
 	public static Object[][] CAL012() {
 		String sheetName = "CAL012";
@@ -458,30 +458,9 @@ public class setupCreationUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "CAL013A")
+	@DataProvider(name = "CAL013")
 	public static Object[][] CAL013A() {
-		String sheetName = "CAL013A";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "CAL013B")
-	public static Object[][] CAL013B() {
-		String sheetName = "CAL013B";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "CAL016A")
-	public static Object[][] CAL016A() {
-		String sheetName = "CAL016A";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "CAL016B")
-	public static Object[][] CAL016B() {
-		String sheetName = "CAL016B";
+		String sheetName = "CAL013";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}

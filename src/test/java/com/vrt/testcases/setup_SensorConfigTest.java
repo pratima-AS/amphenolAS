@@ -2,6 +2,7 @@ package com.vrt.testcases;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 
 import org.testng.ITestResult;
@@ -27,9 +28,7 @@ import com.vrt.pages.assetHubPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
 
 import com.vrt.utility.TestUtilities;
-import com.vrt.utility.assetCreationUtility;
 import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.userManagementUtility;
 import com.vrt.pages.Setup_SensorDescriptionPage;
 
 public class setup_SensorConfigTest extends BaseClass {
@@ -60,7 +59,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	// Before All the tests are conducted
 	@BeforeTest
-	public void PreSetup() throws InterruptedException, IOException, AWTException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException, ParseException {
 
 		extent = new ExtentReports(
 				System.getProperty("user.dir") + "/test-output/ER_" + "setup_SensorConfigTest" + ".html", true);
@@ -83,7 +82,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		// Thread.sleep(500);
 		LoginPage = new LoginPage();
-
+		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		// Method to Create Very 1st User with All privilege
 		UserManagementPage = LoginPage.DefaultLogin();
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
@@ -102,10 +101,11 @@ public class setup_SensorConfigTest extends BaseClass {
 		MainHubPage = UserManagementPage.ClickBackButn();
 
 		// Method to Create 1st Asset
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetHubPage = MainHubPage.Click_AssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "AAS", "Hyderabad", "VRT-RF", "2",
-				"cu", "11/20/2019", "5", "Weeks", "1st Asset Creation");
+		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		AppClose();
@@ -130,7 +130,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetHubPage = MainHubPage.Click_AssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
@@ -172,18 +172,28 @@ public class setup_SensorConfigTest extends BaseClass {
 	// Test Cases // SC001
 
 	@Test(groups = { "Regression" }, description = "SC001-Verify the details displayed in Sensor Configuration screen")
-	public void SC001() throws InterruptedException {
+	public void SC001() throws InterruptedException, IOException {
 		extentTest = extent.startTest("SC001-Verify the details displayed in Sensor Configuration screen");
 		SoftAssert sa = new SoftAssert();
+		defineSetupPage = Setup_SensorConfigPage.DefineSetup_back_btn();
+		String Sname_Definesetuppage = defineSetupPage.get_setupName_txtData();
+		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
+		String Sname_SensorConfigPage = Setup_SensorConfigPage.get_SensorConfigurationPage_titletext();
+		sa.assertEquals(Sname_Definesetuppage, Sname_SensorConfigPage,
+				"Fail: Wrong setup name is displayed as header on top left ");
+		sa.assertEquals(Setup_SensorConfigPage.SensorConfig_setupname_state(), true,
+				"FAIL: setup name as header is not available");
+		sa.assertEquals(Setup_SensorConfigPage.sensorConfigPage_state(), true, "FAIL: It should be available");
+		sa.assertEquals(Setup_SensorConfigPage.AddSensors_btn_state(), true,
+				"FAIL: AddSensors_button is not available");
+		sa.assertEquals(Setup_SensorConfigPage.ConfigureSensors_btn_state(), true,
+				"FAIL:ConfigureSensors_button is not available");
 
-		sa.assertEquals(Setup_SensorConfigPage.SensorConfig_assertname_state(), true,
-				"FAIL: SC001- It should be available");
-		sa.assertEquals(Setup_SensorConfigPage.sensorConfigPage_state(), true, "FAIL: SC002- It should be available");
-		sa.assertEquals(Setup_SensorConfigPage.AddSensors_btn_state(), true, "FAIL: SC002- It should be available");
-		sa.assertEquals(Setup_SensorConfigPage.ConfigureSensors_btn_state(), true,
-				"FAIL: SC001- It should be available");
-		sa.assertEquals(Setup_SensorConfigPage.ConfigureSensors_btn_state(), true,
-				"FAIL: SC001- It should be available");
+		sa.assertEquals(Setup_SensorConfigPage.DefineSetup_btn_state(), true,
+				"FAIL:DefineSetup_button is not available on the top left side");
+
+		sa.assertEquals(Setup_SensorConfigPage.GroupSensors_btn_state(), true,
+				"GroupSensors_button  is not available on the top right side");
 		sa.assertAll();
 	}
 
@@ -255,10 +265,9 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
-
-		String EnteredTempcount = Setup_SensorConfigPage.get_Temperature_text();
+		// More than 3 chars has
 		String DisplayedTempcount = Setup_SensorConfigPage.get_Temperature_text();
-		sa.assertEquals(EnteredTempcount, DisplayedTempcount,
+		sa.assertEquals(DisplayedTempcount.length(), 3,
 				"FAIL: Maximum 3 characters should be allowed in Temperature field ");
 		sa.assertAll();
 
@@ -1872,7 +1881,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	// screen
 	@Test(groups = {
 			"Regression" }, description = "SC076-Verify that the sensor type drop down displays All in Description screen")
-
 	public void SC076() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("SC076-Verify that the sensor type drop down displays All in Description screen");
 		SoftAssert sa = new SoftAssert();
@@ -1906,12 +1914,12 @@ public class setup_SensorConfigTest extends BaseClass {
 	// SC076.1-Verify that by default first sensor should be selected on the left
 	// pane and it should reflect range as 1 to 1 on right pane in Description
 	// screen
-	@Test(groups = {
-			"Regression" }, description = "SC076_1-Verify that by default first sensor should be selected on the left pane and it should reflect range as 1 to 1 on right pane in Description screen")
-
+	@Test(groups = { "Regression" }, description = "SC076_1-Verify that by default first sensor should be "
+			+ "selected on the left pane and it should reflect range as 1 to 1 on right pane in Description screen")
 	public void SC076_1() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"SC076_1-Verify that by default first sensor should be selected on the left pane and it should reflect range as 1 to 1 on right pane in Description screen");
+		extentTest = extent
+				.startTest("SC076_1-Verify that by default first sensor should be selected on the left pane and it "
+						+ "should reflect range as 1 to 1 on right pane in Description screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_AllSensortypes("1", "1", "1");
@@ -1936,13 +1944,11 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertEquals(Setup_SensorDescriptionPage.get_To_text(), "1", "To text value is not displaying 1");
 		sa.assertAll();
 	}
-	// 76.2
 
 	// SC077-Verify that the max char length for Range- first text box is 1 when the
 	// no. of sensors added are in single digit
-	@Test(groups = {
-			"Regression" }, description = "SC077-Verify that the max char length for Range- first text box is 1 when the no. of sensors added are in single digit")
-
+	@Test(groups = { "Regression" }, description = "SC077-Verify that the max char length for Range- first "
+			+ "text box is 1 when the no. of sensors added are in single digit")
 	public void SC077() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"SC077-Verify that the max char length for Range- first text box is 1 when the no. of sensors added are in single digit");
@@ -1958,8 +1964,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-//Enter 2 chars 
 
+		// Enter 2 chars
 		String Invalidvalue = "21";
 		Setup_SensorDescriptionPage.Enter_Num_From(Invalidvalue);
 		String FromVal_SD = Setup_SensorDescriptionPage.get_from_text();
@@ -1975,9 +1981,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	// SC078-Verify that the max char length for Range- first text box is 2 when the
 	// no. of sensors added are in double digit
-	@Test(groups = {
-			"Regression" }, description = "SC078-Verify that the max char length for Range- first text box is 2 when the no. of sensors added are in double digit")
-
+	@Test(groups = { "Regression" }, description = "SC078-Verify that the max char length for Range- first "
+			+ "text box is 2 when the no. of sensors added are in double digit")
 	public void SC078() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"SC078-Verify that the max char length for Range- first text box is 2 when the no. of sensors added are in double digit");
@@ -2008,8 +2013,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	// SC079-Verify that the max char length for Range- first text box is 3 when the
 	// no. of sensors added are in triple digit
-	@Test(groups = {
-			"Regression" }, description = "SC079-Verify that the max char length for Range- first text box is 3 when the no. of sensors added are in triple digit")
+	@Test(groups = { "Regression" }, description = "SC079-Verify that the max char length for Range- first "
+			+ "text box is 3 when the no. of sensors added are in triple digit")
 
 	public void SC079() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
@@ -2026,8 +2031,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-//Enter 4 chars 
 
+		// Enter 4 chars
 		String Invalidvalue = "3111";
 		Setup_SensorDescriptionPage.Enter_Num_From(Invalidvalue);
 		String FromVal_SD = Setup_SensorDescriptionPage.get_from_text();
@@ -2039,13 +2044,15 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	}
 
-//SC080-Verify that when a greater value is entered in From field than the To field the OK button is disabled and a validation message is displayed in Description screen
-	@Test(groups = {
-			"Regression" }, description = "SC080-Verify that when a greater value is entered in From field than the To field the OK button is disabled and a validation message is displayed in Description screen")
-
+	// SC080-Verify that when a greater value is entered in From field than the To
+	// field the OK button is
+	// disabled and a validation message is displayed in Description screen
+	@Test(groups = { "Regression" }, description = "SC080-Verify that when a greater value is entered in From field "
+			+ "than the To field, the OK button is disabled and a validation message is displayed in Description screen")
 	public void SC080() throws InterruptedException, ParseException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"SC080-Verify that when a greater value is entered in From field than the To field the OK button is disabled and a validation message is displayed in Description screen");
+		extentTest = extent
+				.startTest("SC080-Verify that when a greater value is entered in From field than the To field "
+						+ "the OK button is disabled and a validation message is displayed in Description screen");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -2071,9 +2078,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	// SC081-Verify that when a Range is entered for a sensor type, the sensors on
 	// the left pane within that range should be selected
-	@Test(groups = {
-			"Regression" }, description = "SC081-Verify that when a Range is entered for a sensor type, the sensors on the left pane within that range should be selected")
-
+	@Test(groups = { "Regression" }, description = "SC081-Verify that when a Range is entered for a sensor type, "
+			+ "the sensors on the left pane within that range should be selected")
 	public void SC081() throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"SC081-Verify that when a Range is entered for a sensor type, the sensors on the left pane within that range should be selected");
@@ -2096,11 +2102,12 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//SC082-Verify the valid inputs in Range- First text box field in Description screen
+	// SC082-Verify the valid inputs in Range- First text box field in Description
+	// screen
 	@Test(dataProvider = "SC082", dataProviderClass = setupCreationUtility.class, groups = {
 			"Regression" }, description = "SC082-Verify the valid inputs in Range- First text box field in Description screen")
-
-	public void SC082(String FromText) throws InterruptedException, IOException, AWTException, ParseException {
+	public void SC082(String FromText, String ExpAlrtMsg)
+			throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent
 				.startTest("SC082-Verify the valid inputs in Range- First text box field in Description screen");
 		SoftAssert sa = new SoftAssert();
@@ -2116,7 +2123,6 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorDescriptionPage.Enter_Num_From(FromText);
 		Setup_SensorDescriptionPage.Enter_TxtTo("10");
 		Setup_SensorDescriptionPage.clickOk();
-		String ExpAlrtMsg = "Please Give Description for Update";
 
 		String ActAlrtMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Valid inputs not accepted by first text field");
@@ -2144,7 +2150,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 		Setup_SensorDescriptionPage.Enter_Num_From(FromText);
 		Setup_SensorDescriptionPage.clickOk();
-		String ExpAlrtMsg = "Range field should not be empty";
+		String ExpAlrtMsg = "Range field should not be empty.";
 		String ActAlrtMsg = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: InValid inputs  accepted by first text field");
 
@@ -2154,7 +2160,6 @@ public class setup_SensorConfigTest extends BaseClass {
 
 // SC083A-Enter only space in From field and verify the Assign button
 	@Test(groups = { "Regression" }, description = "SC083A-Enter only space in From field and verify the Assign button")
-
 	public void SC083A() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest("SC083A-Enter only space in From field and verify the Assign button");
 		SoftAssert sa = new SoftAssert();
@@ -2180,7 +2185,6 @@ public class setup_SensorConfigTest extends BaseClass {
 //SC083B - Enter the value in From field more than defined in the Add sensors section
 	@Test(groups = {
 			"Regression" }, description = "SC083B - Enter the value in From field more than defined in the Add sensors section")
-
 	public void SC083B() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent
 				.startTest("SC083B - Enter the value in From field more than defined in the Add sensors section");
@@ -2231,6 +2235,38 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Valid inputs not accepted by first text field");
 
 		sa.assertAll();
+
+	}
+
+	// SC084A-Verify the valid inputs in Range- Second text box field in Description
+	// screen
+	@Test(groups = {
+			"Regression" }, description = "SC084A-Verify the valid inputs in Range- Second text box field in Description screen")
+	public void SC084A() throws InterruptedException, IOException, AWTException, ParseException {
+		extentTest = extent
+				.startTest("SC084A-Verify the valid inputs in Range- Second text box field in Description screen");
+		SoftAssert sa = new SoftAssert();
+
+		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("2");
+		Setup_SensorConfigPage.Enter_PressureCount_textField("2");
+		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
+		Setup_SensorConfigPage.select_Sensortype_temp();
+		Setup_SensorConfigPage.Enter_Num_To("2");
+		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
+		Setup_SensorConfigPage.Click_assignBtn();
+
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("2");
+		Setup_SensorConfigPage.Enter_SensorLabel("pre");
+		Setup_SensorConfigPage.Click_assignBtn();
+		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
+		Setup_SensorDescriptionPage.select_Sensortype_Pr();
+		// System.out.println(Setup_SensorDescriptionPage.gettext_for_opt_2());
+		Setup_SensorDescriptionPage.Enter_TxtTo("2");
+		Setup_SensorDescriptionPage.click_Description();
+		Setup_SensorDescriptionPage.Enter_Description("ABC1");
+		Setup_SensorDescriptionPage.clickOk();
 
 	}
 
@@ -2339,7 +2375,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC086-Verify the inputs in Description field
-
 	@Test(dataProvider = "SC086", dataProviderClass = setupCreationUtility.class, groups = {
 			"Regression" }, description = "SC086-Verify the inputs in Description field")
 
@@ -2355,8 +2390,8 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorDescriptionPage.click_Description();
 		Setup_SensorDescriptionPage.Enter_Description(Description);
 		Setup_SensorDescriptionPage.clickOk();
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row1(), Description,
-				"Description accepting more than 23 charatecrs");
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(1), Description,
+				"Description accepting invalid values");
 
 		sa.assertAll();
 	}
@@ -2371,20 +2406,28 @@ public class setup_SensorConfigTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
-		Setup_SensorConfigPage.Click_Temp_sensor();
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("10");
+		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
+		Setup_SensorConfigPage.select_Sensortype_temp();
+		Setup_SensorConfigPage.Enter_Num_To("10");
+		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
+		Setup_SensorDescriptionPage.Enter_TxtTo("5");
 		Setup_SensorDescriptionPage.click_Description();
-		Setup_SensorDescriptionPage.Enter_Description("ABC1");
+		Setup_SensorDescriptionPage.Enter_Description("ABC");
 		Setup_SensorDescriptionPage.clickOk();
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row1(), "ABC1", "Description text is not matching");
+		Setup_SensorDescriptionPage.Select_Row("2");
+		Setup_SensorDescriptionPage.click_Description();
+		Setup_SensorDescriptionPage.Enter_Description("NewDesc");
+		Setup_SensorDescriptionPage.clickOk();
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(2), "NewDesc2",
+				"Description text is not matching");
 
 		sa.assertAll();
 	}
 
 //SC088-Verify that when selected the sensors manually on the left pane will disable the two Range fields on the right pane
-
 	@Test(groups = {
 			"Regression" }, description = "SC088-Verify that when selected the sensors manually on the left pane will disable the two Range fields on the right pane")
 
@@ -2394,18 +2437,15 @@ public class setup_SensorConfigTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("10");
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("3");
+		Setup_SensorConfigPage.Enter_Num_To("10");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-		Setup_SensorDescriptionPage.Enter_TxtTo("3");
-		Setup_SensorDescriptionPage.click_Description();
-		Setup_SensorDescriptionPage.Enter_Description("ABC");
-		Setup_SensorDescriptionPage.clickOk();
-		Setup_SensorDescriptionPage.Secondsensor_click();
+
+		Setup_SensorDescriptionPage.Select_Row("4");
 		Thread.sleep(1000);
 		sa.assertEquals(Setup_SensorDescriptionPage.is_From_textEnable(), false,
 				"From field on the right pane is not disable");
@@ -2416,7 +2456,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC089-Verify that while adding the description to the sensors on the left pane, numbers from 1 will get appended to the description for the sensors
-
 	@Test(groups = {
 			"Regression" }, description = "SC089-Verify that while adding the description to the sensors on the left pane, numbers from 1 will get appended to the description for the sensors")
 
@@ -2426,34 +2465,33 @@ public class setup_SensorConfigTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("10");
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_Num_To("10");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 
-		Setup_SensorDescriptionPage.Enter_TxtTo("3");
-
-		Thread.sleep(1000);
+		Setup_SensorDescriptionPage.Enter_TxtTo("5");
 		Setup_SensorDescriptionPage.click_Description();
 		Setup_SensorDescriptionPage.Enter_Description("ABC");
 		Setup_SensorDescriptionPage.clickOk();
+		Thread.sleep(2000);
 
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row1(), "ABC1",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(1), "ABC1",
 				"Description text is not matching in first row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row2(), "ABC2",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(2), "ABC2",
 				"Description text is not matching is not matching in second row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row3(), "ABC3",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(3), "ABC3",
 				"Description text is not matching is not matching in third row");
 
 		sa.assertAll();
 
 	}
 
-//SC090-Verify that description gets assigned to the sensors on the left pane depending on the order of selection of the sensors
-
+	// SC090-Verify that description gets assigned to the sensors on the left pane
+	// depending on the order of selection of the sensors
 	@Test(groups = {
 			"Regression" }, description = "SC090-Verify that description gets assigned to the sensors on the left pane depending on the order of selection of the sensors")
 
@@ -2471,28 +2509,31 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 
-		Setup_SensorDescriptionPage.Firstsensor_click();
-		Setup_SensorDescriptionPage.Fifthsensor_click();
+		// By default first row will remain selected , so here we are clicking on 1st
+		// row to deselect it
+		Setup_SensorDescriptionPage.Select_Row("1");
 
-		Setup_SensorDescriptionPage.Secondsensor_click();
-		Setup_SensorDescriptionPage.Eightsensor_click();
+		Setup_SensorDescriptionPage.Select_Row("2");
+		Setup_SensorDescriptionPage.Select_Row("5");
+		Setup_SensorDescriptionPage.Select_Row("8");
 
 		Setup_SensorDescriptionPage.click_Description();
 		Setup_SensorDescriptionPage.Enter_Description("ABC");
 		Setup_SensorDescriptionPage.clickOk();
 
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row2(), "ABC2",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(2), "ABC1",
 				"Description text is not matching in second row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row5(), "ABC1",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(5), "ABC2",
 				"Description text is not matching is not matching with fifth row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row8(), "ABC3",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(8), "ABC3",
 				"Description text is not matching is not matching in eight row");
 
 		sa.assertAll();
+
 	}
 
-//SC091-Verify that description is added to the sensors based on the Range given
-
+	// SC091-Verify that description is added to the sensors based on the Range
+	// given
 	@Test(groups = {
 			"Regression" }, description = "SC091-Verify that description is added to the sensors based on the Range given")
 
@@ -2501,32 +2542,35 @@ public class setup_SensorConfigTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("20");
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_Num_To("10");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 
-		Setup_SensorDescriptionPage.Enter_TxtTo("4");
+		Setup_SensorDescriptionPage.Enter_TxtTo("10");
 		Setup_SensorDescriptionPage.click_Description();
 		Setup_SensorDescriptionPage.Enter_Description("ABC");
 		Setup_SensorDescriptionPage.clickOk();
 
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row1(), "ABC1",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(1), "ABC1",
 				"Description text is not matching in first row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row2(), "ABC2",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(2), "ABC2",
 				"Description text is not matching is not matching in second row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row3(), "ABC3",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(3), "ABC3",
 				"Description text is not matching is not matching in third row");
-		sa.assertEquals(Setup_SensorDescriptionPage.Description_txt_Row4(), "ABC4",
+		sa.assertEquals(Setup_SensorDescriptionPage.get_LeftpaneDescription_txt(4), "ABC4",
 				"Description text is not matching is not matching in fourth row");
 
 		sa.assertAll();
+
 	}
 
-//SC092-Verify that a validation message is displayed when trying to add description when no sensor is selected on the left pane and the range fields are empty
+	// SC092-Verify that a validation message is displayed when trying to add
+	// description when no sensor is selected on the left pane and the range fields
+	// are empty
 	@Test(groups = {
 			"Regression" }, description = "SC092-Verify that a validation message is displayed when trying to add description when no sensor is selected on the left pane and the range fields are empty")
 
@@ -2536,10 +2580,10 @@ public class setup_SensorConfigTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
+		Setup_SensorConfigPage.Enter_TemperatureCount_textField("10");
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_Num_To("10");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
@@ -2554,8 +2598,8 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	}
 
-//SC093-Verify that when description is not entered for any sensor a validation message is displayed
-
+	// SC093-Verify that when description is not entered for any sensor a validation
+	// message is displayed
 	@Test(groups = {
 			"Regression" }, description = "SC093-Verify that when description is not entered for any sensor a validation message is displayed")
 
@@ -2583,10 +2627,13 @@ public class setup_SensorConfigTest extends BaseClass {
 		sa.assertAll();
 
 	}
-//SC094 To SC100 will be handle manually as these test cases are related to Reports content .
+
+	/*****************************************
+	 * //SC094 To SC100 will be handle manually as these test cases are related to
+	 * Reports content .
+	 ******************************************/
 
 //SC101-Verify that when clicked on close button in description screen will close the window and sensor configuration is displayed
-
 	@Test(groups = {
 			"Regression" }, description = "SC101-Verify that when clicked on close button in description screen will close the window and sensor configuration is displayed")
 
@@ -2604,6 +2651,9 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 		Setup_SensorConfigPage = Setup_SensorDescriptionPage.clickClose();
+		sa.assertEquals(Setup_SensorConfigPage.get_SensorConfigurationPage_text(), "Sensors Configuration",
+				"Fil:Landed to wrong page");
+
 		sa.assertAll();
 	}
 
@@ -2625,11 +2675,13 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
 		Setup_SensorConfigPage = Setup_SensorDescriptionPage.click_PageCloseIcon();
+		sa.assertEquals(Setup_SensorConfigPage.get_SensorConfigurationPage_text(), "Sensors Configuration",
+				"Fil:Landed to wrong page");
+
 		sa.assertAll();
 	}
 
 //SC103-Verify that when clicked on Define Setup navigator on top left in sensor configuration screen will navigate to Define setup screen
-
 	@Test(groups = {
 			"Regression" }, description = "SC103-Verify that when clicked on Define Setup navigator on top left in sensor configuration screen will navigate to Define setup screen")
 
@@ -2664,7 +2716,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC105--Verify that on-click of the back icon on the screen will navigate to Asset details screen upon confirmation
-
 	@Test(groups = {
 			"Regression" }, description = "SC105--Verify that on-click of the back icon on the screen will navigate to Asset details screen upon confirmation")
 
@@ -2686,77 +2737,83 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC106-Verify the bottom menu options displayed in Sensor configuration screen
-
-	@Test(description = "SC106-Verify the bottom menu options displayed in Sensor configuration screen")
+	@Test(groups = {
+			"Regression" }, description = "SC106-Verify the bottom menu options displayed in Sensor configuration screen")
 	public void SC106() throws InterruptedException {
 		extentTest = extent.startTest("SC106-Verify the bottom menu options displayed in Sensor configuration screen");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_SensorConfigPage.Right_Click__Buttom_Menuoptions();
+		tu.Right_Click__Buttom_Menuoptions();
 
-		sa.assertEquals(Setup_SensorConfigPage.check_Home_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Home_Buttom_AppBar_Presence(), true,
 				"FAIL: Home icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_SensorConfigPage.check_Help_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Help_Buttom_AppBar_Presence(), true,
 				"FAIL: Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_SensorConfigPage.check_WndsHelp_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_WndsHelp_Buttom_AppBar_Presence(), true,
 				"FAIL: Windows Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_SensorConfigPage.check_About_Buttom_AppBar_Presence(), true,
-				"FAIL: About icon/button missing in bottom app bar");
+		sa.assertEquals(tu.check_About_wndw_Presence(), true, "FAIL: About icon/button missing in bottom app bar");
 		sa.assertAll();
 	}
 
 //SC107-Verify that on-click of home btn in bottom menu options is navigated to main hub page
-	@Test(description = "SC107-Verify that on-click of home btn in bottom menu options is navigated to main hub page")
+	@Test(groups = {
+			"Regression" }, description = "SC107-Verify that on-click of home btn in bottom menu options is navigated to main hub page")
 	public void SC107() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"SC107-Verify that on-click of home btn in bottom menu options is navigated to main hub page");
 		SoftAssert sa = new SoftAssert();
 
-		MainHubPage = Setup_SensorConfigPage.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar();
 
 		sa.assertEquals(MainHubPage.mainPageTitle(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
 	}
 
-//SC108-Verify that on-click of help btn in bottom menu options displays information about the Sensor configuration screen
-	@Test(description = "Verify that on-click of help btn in bottom menu options displays information about the Sensor configuration screen")
+	// SC108-Verify that on-click of help btn in bottom menu options displays
+	// information about the Sensor configuration screen
+	@Test(groups = {
+			"Regression" }, description = "Verify that on-click of help btn in bottom menu options displays information about the Sensor configuration screen")
 	public void SC108() throws InterruptedException {
 		extentTest = extent.startTest(
 				"SC108-Verify that on-click of help btn in bottom menu options displays information about the Sensor configuration screen");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_SensorConfigPage.Click_Help_Icon_AppBar();
-
-		sa.assertEquals(Setup_SensorConfigPage.get__HelpMenu_HdrText(), "Sensors Configuration",
+		tu.Click_Help_Icon_AppBar();
+		sa.assertEquals(tu.get__HelpMenu_HdrText(), "Sensors Configuration",
 				"FAIL: Clicking Help icon/button in bottom app bar"
 						+ "do not display the Sensors Configuration Help context window");
 		sa.assertAll();
 	}
 
-//SC109-Verify that on-click of windows help btn in bottom menu options generates a PDF with information
-//This TC will handle manually
+	// SC109-Verify that on-click of windows help btn in bottom menu options
+	// generates a PDF with information
+	// This TC will handle manually
 
-//SC110-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address
-
-	@Test(description = "SC110-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address")
-	public void SC110() throws InterruptedException {
-		extentTest = extent.startTest(
-				"SC110-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address");
+	// SC110-Verify that on-click of About btn in bottom menu options displays the
+	// software version and the console IP address
+	@Test(groups = {
+			"Regression" }, dataProvider = "SC110", dataProviderClass = setupCreationUtility.class, description = "Verify that on-click of About btn in bottom menu options displays "
+					+ "the software version and the console IP address")
+	public void SC110(String SWVer) throws InterruptedException, UnknownHostException {
+		extentTest = extent.startTest("SC110-Verify that on-click of About btn in bottom menu options displays "
+				+ "the software version and the console IP address");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_SensorConfigPage.Click_About_Icon_AppBar();
-		sa.assertEquals(Setup_SensorConfigPage.check_About_wndw_Presence(), true,
-				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
-
-		sa.assertEquals(Setup_SensorConfigPage.check_About_wndw_Presence(), true,
-				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
-
+		tu.Click_About_Icon_AppBar();
+		// System.out.println(SWVer);
+		// System.out.println(tu.SWversion_InAboutWndw());
+		sa.assertEquals(tu.SWversion_InAboutWndw(), SWVer,
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
+		// System.out.println("Console IP Address in About window:
+		// "+tu.consoleIP_InAboutWndw());
+		// System.out.println(tu.system_IPadress());
+		sa.assertEquals(tu.consoleIP_InAboutWndw(), tu.system_IPadress(),
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
 		sa.assertAll();
 	}
 
 //SC111-Verify that Auto Numbering field is in Disable Mode as Default
-
 	@Test(groups = {
 			"Regression" }, description = "SC111-Verify that Auto Numbering field is in Disable Mode as Default")
 
@@ -2775,6 +2832,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		sa.assertEquals(Setup_SensorDescriptionPage.IsAutoNumber_Enable(), false,
 				"Fail : Auto Numbering field is not in Disable Mode as Default");
+		sa.assertAll();
 	}
 
 //SC112-Verify that Auto Numbering Field should not be in checked when one sensor is selected
@@ -2817,7 +2875,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-		Setup_SensorDescriptionPage.Secondsensor_click();
+		Setup_SensorDescriptionPage.Select_Row("2");
 		sa.assertEquals(Setup_SensorDescriptionPage.Is_Autonumber_checkedIn(), true,
 				"Fail : Auto Numbering Field is not checked  when more than one sensor is selected");
 		sa.assertAll();
@@ -2840,14 +2898,13 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-		Setup_SensorDescriptionPage.Secondsensor_click();
+		Setup_SensorDescriptionPage.Select_Row("2");
 		sa.assertEquals(Setup_SensorDescriptionPage.IsClear_btnEnable(), false,
 				"Fail : Clear button is not in disable mode when more than one sensor is selected");
 		sa.assertAll();
 	}
 
 //SC116-Verify that Clear button should be in enable mode when one sensor is selected
-
 	@Test(groups = {
 			"Regression" }, description = "SC116-Verify that Clear button should be in enable mode when one sensor is selected")
 
@@ -2870,7 +2927,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC117-Verify that Description should be clear on clicking on the Clear button when the sensor having the description
-
 	@Test(groups = {
 			"Regression" }, description = "SC117-Verify that Description should be clear on clicking on the Clear button when the sensor having the description")
 
@@ -2896,7 +2952,6 @@ public class setup_SensorConfigTest extends BaseClass {
 	}
 
 //SC118-Verify that Validation message should be displayed on clicking on the Clear button when the sensor does not having the description
-
 	@Test(groups = {
 			"Regression" }, description = "SC118-Verify that Validation message should be displayed on clicking on the Clear button when the sensor does not having the description")
 
@@ -2919,34 +2974,4 @@ public class setup_SensorConfigTest extends BaseClass {
 
 	}
 
-//SC084A-Verify the valid inputs in Range- Second text box field in Description screen
-	@Test(groups = {
-			"Regression" }, description = "SC084A-Verify the valid inputs in Range- Second text box field in Description screen")
-	public void SC084A() throws InterruptedException, IOException, AWTException, ParseException {
-		extentTest = extent
-				.startTest("SC084A-Verify the valid inputs in Range- Second text box field in Description screen");
-		SoftAssert sa = new SoftAssert();
-
-		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("2");
-		Setup_SensorConfigPage.Enter_PressureCount_textField("2");
-		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
-		Setup_SensorConfigPage.select_Sensortype_temp();
-		Setup_SensorConfigPage.Enter_Num_To("2");
-		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
-		Setup_SensorConfigPage.Click_assignBtn();
-
-		Setup_SensorConfigPage.select_Sensortype_Pr();
-		Setup_SensorConfigPage.Enter_Num_To("2");
-		Setup_SensorConfigPage.Enter_SensorLabel("pre");
-		Setup_SensorConfigPage.Click_assignBtn();
-		Setup_SensorDescriptionPage = Setup_SensorConfigPage.Click_DescriptionButton();
-		Setup_SensorDescriptionPage.select_Sensortype_Pr();
-		// System.out.println(Setup_SensorDescriptionPage.gettext_for_opt_2());
-		Setup_SensorDescriptionPage.Enter_TxtTo("2");
-		Setup_SensorDescriptionPage.click_Description();
-		Setup_SensorDescriptionPage.Enter_Description("ABC1");
-		Setup_SensorDescriptionPage.clickOk();
-
-	}
 }

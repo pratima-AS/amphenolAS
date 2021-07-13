@@ -29,8 +29,10 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
+import com.vrt.pages.MainHubPage;
 
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
@@ -416,13 +418,94 @@ public class TestUtilities extends BaseClass {
 		}
 	}
 	
-	//program to find IP address of your computer
-		public String system_IPadress() throws UnknownHostException {
-		    InetAddress localhost = InetAddress.getLocalHost();
-		   // System.out.println("System IP Address : " +
-		    //              (localhost.getHostAddress()).trim());
-		    return localhost.getHostAddress().trim();
-		}
+
+	// Right click on the Asset Creation page to invoke the bottom apps bar
+	public void Right_Click__Buttom_Menuoptions() {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+	}
+
+	// Verify the presence of Home button in the bottom apps bar
+	public boolean check_Home_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_Home_Icon);
+	}
+
+	// Verify the presence of Apps Help icon/button in the bottom apps bar
+	public boolean check_Help_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_AppHelp_Icon);
+	}
+
+	// Verify the presence of WndsHelp Help icon/button in the bottom apps bar
+	public boolean check_WndsHelp_Buttom_AppBar_Presence() {
+		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
+		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
+	}
+	
+	// Verify the presence of About window on clicking the ABout icon in the bottom apps bar
+	public boolean check_About_wndw_Presence() {
+		WebElement About_Wndw = driver.findElementByName("About");
+		return IsElementVisibleStatus(About_Wndw);
+	}
+
+	// Click on the Home icon of the bottom apps bar to move to Main Hub page
+	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		clickOn(bottomMenu_Home_Icon);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+		Thread.sleep(1000);
+		return new MainHubPage();
+	}
+
+	// Click on the Help icon of the bottom apps bar to move to Main Hub page
+	public void Click_Help_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
+		clickOn(bottomMenu_AppHelp_Icon);
+		Thread.sleep(500);
+	}
+
+	// Click on the WndsHelp icon of the bottom apps bar
+	public void Click_WndsHelp_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
+		clickOn(bottomMenu_WndsHelp_Icon);
+		Thread.sleep(500);
+	}
+
+	
+	// Click on the About icon of the bottom apps bar to invoke the ABout window
+	public void Click_About_Icon_AppBar() throws InterruptedException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
+		clickOn(bottomMenu_About_Icon);
+		Thread.sleep(500);
+	}
+
+	// Get the Help context header text on clicking Help icon of the bottom apps bar
+	public String get__HelpMenu_HdrText() {
+		WebElement AsstCreation_HelpMenu = driver.findElementByAccessibilityId("helpHeader");
+		return FetchText(AsstCreation_HelpMenu);
+	}
+
+	// program to find IP address of your computer
+	public String system_IPadress() throws UnknownHostException {
+		InetAddress localhost = InetAddress.getLocalHost();
+		// System.out.println("System IP Address : " +
+		// (localhost.getHostAddress()).trim());
+		return localhost.getHostAddress().trim();
+	}
 		
 	// program to find IP address from the About window of app
 	public String consoleIP_InAboutWndw() {
@@ -432,7 +515,7 @@ public class TestUtilities extends BaseClass {
 		return CnslIP.substring(1);
 	}		
 	
-	// program to find IP address from the About window of app
+	// program to Get the Sw version info from the About window on clicking About icon of the bottom apps bar
 	public String SWversion_InAboutWndw() {
 		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
 		String SWVersionText = SWVersion_About_info.getText().split(":")[1];

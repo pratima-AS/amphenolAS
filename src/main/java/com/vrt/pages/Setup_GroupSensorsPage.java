@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
 import com.vrt.utility.TestUtilities;
@@ -23,7 +22,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	WebElement NxtBtn = null;
 	WebElement Back_Button = null;
 	WebElement SetupHeaderTextBlock = null;
-
 	WebElement NewGroupButton = null;
 	WebElement GroupsListButton = null;
 	WebElement DeleteGroupButton = null;
@@ -57,13 +55,11 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		NxtBtn = null;
 		Back_Button = null;
 		SetupHeaderTextBlock = null;
-
 		NewGroupButton = null;
 		GroupsListButton = null;
 		DeleteGroupButton = null;
 		PreviousButton = null;
 		CalculationsTab = null;
-
 		EditGrpHdrTextBlock = null;
 	}
 
@@ -127,12 +123,26 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	}
 
 	// Click on delete group btn
-	public void DeleteGroup_Btn() {
+	public void click_DeleteGroup_Btn() {
 		clickOn(DeleteGroupButton);
 	}
 
-	// Check the presence of back btn
+	// click on yes btn to delete the group
+	public void DeleteGroup_Yes() {
+		clickOn(DeleteGroupButton);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+	}
+	
+	// click on yes btn for the sensor not assigned message while moving to Calculation page after deleting a group
+	public Setup_CalculationsPage click_YesBtn_AlertMsg_for_DeleteGroup_SensorUnassigned() throws IOException, InterruptedException {
+		clickOn(CalculationsTab);
+		WebElement Yesbtn = driver.findElementByName("Yes");
+		clickOn(Yesbtn);
+		return new Setup_CalculationsPage();
+	}
 
+	// Check the presence of back btn
 	public boolean SensorConfiguration_Tab_state() {
 		return IsElementVisibleStatus(PreviousButton);
 	}
@@ -144,7 +154,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	}
 
 	// Check the presence of EditGrpHdrTextBlock
-
 	public boolean EditGrpHdr_state() {
 		return IsElementVisibleStatus(EditGrpHdrTextBlock);
 	}
@@ -244,13 +253,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	}
 
 	// Click the Next button to move to Setup Calculations page
-	public Setup_CalculationsPage Click_NxtBtn() throws InterruptedException, IOException {
-		clickOn(NxtBtn);
-		// Thread.sleep(1000);
-		return new Setup_CalculationsPage();
-	}
-
-	// Click the Next button to move to Setup Calculations page
 	public assetDetailsPage Click_BackBtn() throws InterruptedException, IOException {
 		clickOn(Back_Button);
 		WebElement Yesbtn = driver.findElementByName("Yes");
@@ -300,49 +302,12 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	}
 
-	// Verify when user click on Default Group button, Temperature group title
-	// displays
+	// fetch the title of the group
 
-	// fetch the title of temp group
-
-	public String get_tempgroupTxt() {
+	public String get_groupTitle(int index) {
 		List<WebElement> Ttxt = driver.findElementByAccessibilityId("GroupsListBox")
 				.findElements(By.className("TextBlock"));
-		return Ttxt.get(0).getText();
-	}
-
-	// fetch the title of hmd group
-
-	public String get_hmdgroupTxt() {
-		List<WebElement> Htxt = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.className("TextBlock"));
-		return Htxt.get(1).getText();
-	}
-
-	// fetch the title of temp group
-
-	public String get_PrsrgroupTxt() {
-		List<WebElement> Ptxt = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.className("TextBlock"));
-		return Ptxt.get(2).getText();
-	}
-
-	// Click on Pressure group
-	public void Click_tmp_Group() {
-		WebElement tgroup = driver.findElementByName("Temperature");
-		clickOn(tgroup);
-	}
-
-	// Click on Pressure group
-	public void Click_prs_Group() {
-		WebElement Pgroup = driver.findElementByName("Pressure");
-		clickOn(Pgroup);
-	}
-
-	// Click on Humidity group
-	public void Click_hmd_Group() {
-		WebElement Pgroup = driver.findElementByName("Humidity");
-		clickOn(Pgroup);
+		return Ttxt.get(index).getText();
 	}
 
 	// sensors list are displaying that were assigned under Temperature in group
@@ -373,10 +338,33 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	// Get count of temp sensors under temp group
 
-	public int Temp_Sensor_Count() {
+	public int GroupSensorCount() {
 		List<WebElement> senrList = driver.findElementByAccessibilityId("SensorGrid2")
 				.findElements(By.className("GridViewItem"));
 		return senrList.size();
+	}
+
+	// Group sensor count before clicking on the dafault group
+
+	public int SensorCount() {
+		List<WebElement> senrList = driver.findElementByAccessibilityId("SensorGrid1")
+				.findElements(By.className("GridViewItem"));
+		return senrList.size();
+	}
+
+	// Select any group
+	public void Selectgroup(int Groupnumber) {
+		List<WebElement> GroupList = driver.findElementByAccessibilityId("GroupsListBox")
+				.findElements(By.className("ListBoxItem"));
+		// System.out.println(GroupList.size());
+		GroupList.get(Groupnumber).click();
+	}
+
+	// Count of group
+	public int Countof_group() {
+		List<WebElement> GroupList = driver.findElementByAccessibilityId("GroupsListBox")
+				.findElements(By.className("ListBoxItem"));
+		return GroupList.size();
 	}
 
 	// Verify the second group title is displaying , when user add more than 50
@@ -387,48 +375,91 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	}
 
-	// Get count of second group sensors under temp group
+	// Verify the second group title is displaying , when user add more than 50
+	// sensors and click default group
+	public void Click_Temp_1_Group() {
+		WebElement groupList = driver.findElementByName("Temperature_1");
+		clickOn(groupList);
 
-	public int Temp2_Sensor_Count() {
-		List<WebElement> senrList = driver.findElementByAccessibilityId("SensorGrid2")
-				.findElements(By.className("GridViewItem"));
-		return senrList.size();
 	}
 
 	// Click edit icon for temp group
-	public void click_EditIcon_TempGroup() {
+	public void click_GroupEditIcon(int groupIndex) {
 		List<WebElement> Edit = driver.findElementByAccessibilityId("GroupsListBox")
 				.findElements(By.className("Image"));
-		Edit.get(0).click();
+		Edit.get(groupIndex).click();
 	}
 
-	//// Click edit icon for hmd group
-	public void click_EditIcon_HmdGroup() {
-		List<WebElement> Edit = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.className("Image"));
-		Edit.get(1).click();
+	// Sensor size when group is in edit mode
+	public int sensorSelected_Count() {
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
+				.findElements(By.className("GridViewItem"));
+
+		for (int i = 0; i < snsrFields.size(); i++) {
+			if (snsrFields.get(i).isSelected() == true) {
+				// System.out.println("SELECTED");
+
+				return snsrFields.size();
+
+			}
+
+		}
+		return 0;
 	}
 
-	//// Click edit icon for pressure group
-	public void click_EditIcon_prsrGroup() {
-		List<WebElement> Edit = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.className("Image"));
-		Edit.get(2).click();
+	// Fetch_NonSelected_Sensorname when group is in edit mode
+	public String Fetch_NonSelected_Sensorname() {
+
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
+				.findElements(By.className("GridViewItem"));
+
+		for (int i = 0; i < snsrFields.size(); i++) {
+			if (snsrFields.get(i).isSelected() == false) {
+				List<WebElement> TtxtList = snsrFields.get(i).findElements(By.className("TextBlock"));
+
+				for (int j = 0; j < TtxtList.size(); j++) {
+					String st = TtxtList.get(j).getText();
+					// System.out.println(st);
+					return st;
+
+				}
+			}
+		}
+		return null;
+
+	}
+
+//Search and click via sensor name
+
+	public void Click_Sensors_ByName(String SensorName) throws IOException {
+		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
+				.findElements(By.className("GridViewItem"));
+		for (int i = 0; i < snsrFields.size(); i++) {
+			List<WebElement> SensorTileInfoList = snsrFields.get(i).findElements(By.className("TextBlock"));
+
+			for (int j = 0; j < SensorTileInfoList.size(); j++) {
+
+				String st = SensorTileInfoList.get(j).getText();
+				if (st.equals(SensorName)) {
+					SensorTileInfoList.get(j).click();
+
+					break;
+				}
+			}
+		}
 	}
 
 	// Edit Temp group
 
-	public void Edit_TmpGrp_Title(String TempName) {
-		List<WebElement> TempFields = driver.findElementByAccessibilityId("GroupsListBox")
+	public void Edit_GrpTitle_Save(String GName) {
+		List<WebElement> Fields = driver.findElementByAccessibilityId("GroupsListBox")
 				.findElements(By.name(" Enter Text "));
-		TempFields.get(0).clear();
-		TempFields.get(0).sendKeys(TempName);
-
-		WebElement SaveBtn_Field = driver.findElementByAccessibilityId("SaveSelectedGroupButton");
-		clickOn(SaveBtn_Field);
+		Fields.get(0).clear();
+		Fields.get(0).sendKeys(GName);
+		click_SaveBtn();
 	}
 
-	public void EnterValue_Into_EditTmpGrp(String TempName) {
+	public void Edit_GrpTitle_DontClickSave(String TempName) {
 		List<WebElement> TempFields = driver.findElementByAccessibilityId("GroupsListBox")
 				.findElements(By.name(" Enter Text "));
 		TempFields.get(0).clear();
@@ -438,33 +469,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// Click on Save Btn
 
 	public void click_SaveBtn() {
-		WebElement SaveBtn_Field = driver.findElementByAccessibilityId("SaveSelectedGroupButton");
-		clickOn(SaveBtn_Field);
-	}
-
-	// Edit Hmd group
-
-	public void Edit_HmdGrp_Title(String HmdName) {
-
-		// List<WebElement> TempFields =
-		// driver.findElementByAccessibilityId("GroupsListBox").findElements(By.name("
-		// Enter Text "));
-		List<WebElement> TempFields = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.name(" Enter Text "));
-		TempFields.get(0).clear();
-		TempFields.get(0).sendKeys(HmdName);
-
-		WebElement SaveBtn_Field = driver.findElementByAccessibilityId("SaveSelectedGroupButton");
-		clickOn(SaveBtn_Field);
-	}
-	// Edit Prsr group
-
-	public void Edit_PrsrGrp_Title(String TempName) {
-		List<WebElement> PrsrFields = driver.findElementByAccessibilityId("GroupsListBox")
-				.findElements(By.name(" Enter Text "));
-		PrsrFields.get(2).clear();
-		PrsrFields.get(2).sendKeys(TempName);
-
 		WebElement SaveBtn_Field = driver.findElementByAccessibilityId("SaveSelectedGroupButton");
 		clickOn(SaveBtn_Field);
 	}
@@ -507,40 +511,14 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	}
 
-	// Below we will click on the first sensor from Sensor groups page
-
-	public void Click_1stSensor() {
+//select single / multiple sensors
+	public void clickon_Sensors(int count) {
 		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
 				.findElements(By.className("GridViewItem"));
-		snsrFields.get(0).click();
-	}
+		for (int i = 0; i <= count; i++) {
 
-	/*
-	 * public boolean is_1stSensor_selected() { List<WebElement> snsrFields =
-	 * driver.findElementByAccessibilityId("SensorGrid2")
-	 * .findElements(By.className("GridViewItem")); return
-	 * snsrFields.get(0).isSelected(); }
-	 */
-
-	// //Click 6th sensor
-
-	public void Click_6thSensor() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
-				.findElements(By.className("GridViewItem"));
-		snsrFields.get(5).click();
-	}
-
-	public boolean Click_Is_6thSensor_selected() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
-				.findElements(By.className("GridViewItem"));
-		// snsrFields.get(5).click();
-		return snsrFields.get(5).isSelected();
-	}
-
-	public boolean Check_Is_1stSensor_selected() {
-		List<WebElement> snsrFields = driver.findElementByAccessibilityId("SensorGrid1")
-				.findElements(By.className("GridViewItem"));
-		return snsrFields.get(0).isSelected();
+			snsrFields.get(i).click();
+		}
 	}
 
 	public void Click_MoreThan50Sensors() {
@@ -560,10 +538,18 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return snsrFields.isEmpty();
 	}
 
+	public int listofsensors_GrpWiringpage() {
+		List<WebElement> snsrFields = driver.findElementByClassName("ScrollViewer")
+				.findElements(By.className("TextBlock"));
+
+		return snsrFields.size();
+
+	}
+
 	// List of groups created in group sensors screen on the left pane in Group
 	// Wiring page
 
-	public int countOfgroups() {
+	public int countOfgroups_GroupWiringpage() {
 		List<WebElement> Groups = driver.findElementByClassName("ListBox").findElements(By.className("ListBoxItem"));
 		return Groups.size();
 	}
@@ -586,6 +572,14 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	public void Click_Print() {
 		WebElement print_Btn = driver.findElementByAccessibilityId("PrintButton");
 		clickOn(print_Btn);
+	}
+
+	// Verify Image1Button is enable and visible
+
+	public boolean Is_1stImageBtn_Visible() {
+		WebElement FirststImage = driver.findElementByAccessibilityId("Image1Button");
+
+		return FirststImage.isEnabled();
 	}
 
 	// click on Image1Button
@@ -627,6 +621,12 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		Thread.sleep(2000);
 	}
 
+	public boolean IsClosebtn_visible() {
+		WebElement alert = driver.switchTo().activeElement();
+		WebElement EditImage = driver.findElementByAccessibilityId("Close");
+		return EditImage.isEnabled();
+	}
+
 	// click on RemoveImageBtn
 	public void click_RemoveImageBtn() throws InterruptedException {
 		driver.switchTo().activeElement();
@@ -655,6 +655,14 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return Camera.isDisplayed();
 	}
 
+	// click on camera close button
+
+	public void click_Cameraclose_btn() {
+		WebElement closebtn = driver.findElementByAccessibilityId("Close");
+		clickOn(closebtn);
+
+	}
+
 	// click CaptureButton_0
 	public void click_CaptureBtn() {
 		WebElement CaptureBtn = driver.findElementByAccessibilityId("CaptureButton_0");
@@ -668,9 +676,9 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		clickOn(AcptBtn);
 	}
 
-	public String First_groupname() {
+	public String Fetchgroupname_GWpage(int index) {
 		List<WebElement> Groups = driver.findElementByClassName("ListBoxItem").findElements(By.className("TextBlock"));
-		return Groups.get(0).getText();
+		return Groups.get(index).getText();
 	}
 
 	public String Sensor_Name() {
@@ -695,9 +703,20 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		clickOn(grouplistbtn);
 	}
 
-	// is IsMoveBtn_Visible
-
+	// if IsMoveBtn Visible
 	public boolean IsMoveBtn_Visible() {
+		boolean status = false;
+		try {
+			status = driver.findElementByAccessibilityId("MoveSensorsButton").isDisplayed();
+		} catch (Exception e) {
+			System.out.println("Move Sensors Button is not available because of single group");
+		}
+		return status;
+	}
+
+//Is move icon visible 
+
+	public boolean is_MoveIconVisible() {
 		WebElement Move_Btn = driver.findElementByAccessibilityId("MoveSensorsButton");
 		return IsElementVisibleStatus(Move_Btn);
 
@@ -717,11 +736,29 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	}
 
-	// is from From drop down displayed
-
-	public boolean IsFrom_dropdown_Visible() {
+	// is From_dropdown visible in move sensor window
+	public boolean IsFromdropdown_Visible() {
 		WebElement from_dd = driver.findElementByAccessibilityId("FromGroupComboBox");
 		return IsElementVisibleStatus(from_dd);
+
+	}
+
+	// is To_dropdown visible in move sensor window
+	public boolean IsTodropdown_Visible() {
+		WebElement to_dd = driver.findElementByAccessibilityId("ToGroupComboBox");
+		return IsElementVisibleStatus(to_dd);
+
+	}
+
+	// is from From drop down displayed
+
+	public String fetchgroupname_fromDropdown(int index) {
+		click_On_From_dropdown();
+		List<WebElement> from_dd = driver.findElementByAccessibilityId("FromGroupComboBox")
+				.findElements(By.className("ComboBoxItem"));
+		// return from_dd.size();
+		return from_dd.get(index).getText();
+		// return FetchText(from_dd.get(index));
 
 	}
 
@@ -741,11 +778,13 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	}
 
-	// is to to drop down displayed
-
-	public boolean Is_To_dropdown_Visible() {
-		WebElement to_dd = driver.findElementByAccessibilityId("ToGroupComboBox");
-		return IsElementVisibleStatus(to_dd);
+	public String fetchgroupname_Todropdown(int index) {
+		click_On_To_dropdown();
+		List<WebElement> to_dd = driver.findElementByAccessibilityId("ToGroupComboBox")
+				.findElements(By.className("ComboBoxItem"));
+		// return from_dd.size();
+		return to_dd.get(index).getText();
+		// return FetchText(from_dd.get(index));
 
 	}
 
@@ -796,11 +835,13 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return items.size();
 	}
 
-	// Select Second option of from drop down list
-	public void click_2ndoption_from_DDL() {
+	// Select any option from from drop down list
+	public void select_options_fromDDL(int index) {
+		WebElement from_dd = driver.findElementByAccessibilityId("FromGroupComboBox");
+		clickOn(from_dd);
 		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupComboBox")
 				.findElements(By.className("ComboBoxItem"));
-		items.get(1).click();
+		items.get(index).click();
 	}
 
 	// Select Second option of To drop down list box
@@ -820,53 +861,54 @@ public class Setup_GroupSensorsPage extends BaseClass {
 
 	// fetch the label name ofsensors when user clicked on from Dropdown
 
-	public String get_1stsensortext_FromDD() {
+	public String get_sensortext_FromDD(int index) {
 		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
 				.findElements(By.className("TextBlock"));
-		return FetchText(items.get(0));
+		return FetchText(items.get(index));
 	}
 
-	// fetch the label name of sensors when user clickedon To Dropdown
-	public String get_1stsensortext_toDD() {
+	// fetch the label name of sensors when user clicked on To Dropdown
+	public String get_sensortext_ToDD(int index) {
 		List<WebElement> items = driver.findElementByAccessibilityId("ToGroupSensorsGridView")
 				.findElements(By.className("TextBlock"));
-		return FetchText(items.get(0));
+		return FetchText(items.get(index));
 	}
 
-	// Click on first sensor in left pane
-	public void Click_1stsensor_leftpane() {
+	// count of sensors in right pane
+
+	public int get_sensrCount_ToDD() {
+		List<WebElement> items = driver.findElementByAccessibilityId("ToGroupSensorsGridView")
+				.findElements(By.className("GridViewItem"));
+		return items.size();
+	}
+
+	// Click on sensors in left pane
+	public void Clicksensor_FromDD_leftpane(int Index) {
 		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
 				.findElements(By.className("GridViewItem"));
-		items.get(0).click();
+		items.get(Index).click();
 
 	}
 
 	// Click on second sensor in left pane
-	public void Click_2ndsensor_leftpane() {
+	public void ClickOnsensor_leftpane_Movewindow(int index) {
 		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
 				.findElements(By.className("GridViewItem"));
-		items.get(1).click();
+		items.get(index).click();
 
 	}
 
-	// Click on second sensor in left pane
-	public void Click_3rdsensor_leftpane() {
+	// click on the sensor and check weathe its selectable or not
+	public boolean is_sensor_selected_leftpane(int index) {
 		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
 				.findElements(By.className("GridViewItem"));
-		items.get(2).click();
-
-	}
-
-	// Is 1st sensor of left pane selected
-	public boolean is_1stsensor_selected_leftpane() {
-		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
-				.findElements(By.className("GridViewItem"));
-		return items.get(0).isSelected();
+		items.get(index).click();
+		return items.get(index).isSelected();
 
 	}
 
 	// Is 2nd sensor of right pane is displayed
-	public boolean is_2ndsensor_displayed_rightpane() {
+	public boolean is_sensor_displayed_rightpane() {
 		List<WebElement> items = driver.findElementByAccessibilityId("ToGroupSensorsGridView")
 				.findElements(By.className("GridViewItem"));
 		return items.get(1).isDisplayed();
@@ -877,15 +919,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	public String Alertmsg_txt() {
 		WebElement alrtmsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(alrtmsg);
-	}
-
-	/// Select all the available sensors
-	public void Click_AllSensors_leftpane() {
-		List<WebElement> items = driver.findElementByAccessibilityId("FromGroupSensorsGridView")
-				.findElements(By.className("GridViewItem"));
-		for (int i = 0; i < items.size(); i++) {
-			items.get(i).click();
-		}
 	}
 
 	// Get text of the Delete Alert message
@@ -906,7 +939,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		}
 	}
 
-	// ExpanderImage
 	// click on Expander icon
 
 	public void click_ExpanderIcon() {
@@ -914,11 +946,32 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		clickOn(Expander);
 	}
 
-	// is asset id visible
+	// is Is_AssetIDVisible
 
-	public boolean Is_AssetID_Visible() {
-		WebElement assetid = driver.findElementByName("Asset ID");
-		return assetid.isDisplayed();
+	public boolean Is_AssetIDVisible() {
+		boolean status = false;
+		try {
+			status = driver.findElementByName("Asset ID").isDisplayed();
+		} catch (Exception e) {
+			System.out.println("Asset ID Button is not available as the expander is closed");
+		}
+		return status;
+	}
+
+	// Verify asset ID is in non edit mode
+	// Value.IsReadOnly
+	public boolean IsAssetIDReadonlymode_ON() {
+		List<WebElement> assetid = driver.findElementsByClassName("TextBox");
+		// return assetid.get(0).IsReadOnly();
+		return assetid.get(0).getAttribute("Value.IsReadOnly").equals("True");
+
+	}
+
+	public boolean IsAssetIDReadonlymode_Off() {
+		List<WebElement> assetid = driver.findElementsByClassName("TextBox");
+		// return assetid.get(0).IsReadOnly();
+		return assetid.get(0).getAttribute("Value.IsReadOnly").equals("false");
+
 	}
 
 	// Fetch Text from asset id field
@@ -931,12 +984,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	public void Enter_Valuesinto_AssetID(String text) {
 		List<WebElement> assetid = driver.findElementsByClassName("TextBox");
 		assetid.get(0).clear();
-		assetid.get(0).click();
-		assetid.get(0).sendKeys(text);
-	}
-
-	public void Enter_AssetID(String text) {
-		List<WebElement> assetid = driver.findElementsByClassName("TextBox");
 		assetid.get(0).click();
 		assetid.get(0).sendKeys(text);
 	}
@@ -967,100 +1014,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return Comments.isDisplayed();
 	}
 
-	// Right click on the Asset Creation page to invoke the bottom apps bar
-	public void Rt_Click_Buttom_AppBar() {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-	}
-
-	// Verify the presence of Home button in the bottom apps bar
-	public boolean check_Home_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_Home_Icon);
-	}
-
-	// Verify the presence of Apps Help icon/button in the bottom apps bar
-	public boolean check_Help_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_AppHelp_Icon);
-	}
-
-	// Verify the presence of WndsHelp Help icon/button in the bottom apps bar
-	public boolean check_WndsHelp_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
-	}
-
-	// Verify the presence of About Help icon/button in the bottom apps bar
-	public boolean check_About_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_About_Icon);
-	}
-
-	// Click on the Home icon of the bottom apps bar to move to Main Hub page
-	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		clickOn(bottomMenu_Home_Icon);
-		WebElement Yesbtn = driver.findElementByName("Yes");
-		clickOn(Yesbtn);
-		Thread.sleep(1000);
-		return new MainHubPage();
-	}
-
-	// Click on the Help icon of the bottom apps bar to move to Main Hub page
-	public void Click_Help_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		clickOn(bottomMenu_AppHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the WndsHelp icon of the bottom apps bar
-	public void Click_WndsHelp_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		clickOn(bottomMenu_WndsHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the About icon of the bottom apps bar to invoke the ABout window
-	public void Click_About_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		clickOn(bottomMenu_About_Icon);
-		Thread.sleep(500);
-	}
-
-	// Get the Asset Creation Help context header text on clicking Help icon of the
-	// bottom apps bar
-	public String get__HelpMenu_HdrText() {
-		WebElement AsstCreation_HelpMenu = driver.findElementByAccessibilityId("helpHeader");
-		return FetchText(AsstCreation_HelpMenu);
-	}
-
-	// Verify the presence of About window on clicking the ABout icon in the bottom
-	// apps bar
-	public boolean check_About_wndw_Presence() {
-		WebElement About_Wndw = driver.findElementByName("About");
-		return IsElementVisibleStatus(About_Wndw);
-	}
-
-	// Get the Sw version info from the About window on clicking About icon of the
-	// bottom apps bar
-	public String get_SWVersion_About_Text() {
-		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
-		return FetchText(SWVersion_About_info);
-	}
-
 	// 10 groups can be created when 10 is selected for _Max groups_ field in
 	// preference page
 
@@ -1076,5 +1029,13 @@ public class Setup_GroupSensorsPage extends BaseClass {
 			}
 			break;
 		}
+	}
+
+	//
+	public void Capture_ImgButton1(String Img_Name) throws IOException {
+		TestUtilities tu = new TestUtilities();
+		WebElement FirststImage = driver.findElementByAccessibilityId("Image1Button");
+		tu.capture_element_screenshot(driver, FirststImage, "TestData", Img_Name);
+
 	}
 }

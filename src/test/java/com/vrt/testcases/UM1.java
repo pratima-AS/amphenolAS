@@ -1198,7 +1198,7 @@ public class UM1 extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", "1D", getPW("Dsbluser"));
@@ -1230,7 +1230,7 @@ public class UM1 extends BaseClass {
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Thread.sleep(2000);
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1D", getPW("Dsbluser"));
@@ -1361,7 +1361,7 @@ public class UM1 extends BaseClass {
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Thread.sleep(2000);
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.click_CopyAsNewSetup_Button();

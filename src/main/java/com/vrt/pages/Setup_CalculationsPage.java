@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
 
@@ -171,7 +169,6 @@ public class Setup_CalculationsPage extends BaseClass {
 	}
 
 	// Enter D-Value
-
 	public void Enter_Dvalue_textfield(String Dval) {
 		clickOn(Dvalue_textfield);
 		ClearText(Dvalue_textfield);
@@ -185,27 +182,35 @@ public class Setup_CalculationsPage extends BaseClass {
 		// clickOn(SatTP_btn);
 	}
 
-	// Select Temp sensor for SatP
-	public void select_1stTempSensor() throws InterruptedException {
+	// fetch text from PressureSensorsComboBox
+	public String FetchTxt_PressureSensorsComboBox() {
+		WebElement SatP_TempDrpDwnBox = driver.findElementByAccessibilityId("PressureSensorsComboBox");
+		return FetchText(SatP_TempDrpDwnBox);
+	}
+
+//click on PressureSensorsComboBox
+
+	public void clickon_PressureSensorsComboBox() {
 		WebElement SatP_TempDrpDwnBox = driver.findElementByAccessibilityId("PressureSensorsComboBox");
 		clickOn(SatP_TempDrpDwnBox);
-		Thread.sleep(500);
 
-		Actions ac = new Actions(driver);
-		ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
-		Thread.sleep(500);
+	}
 
-		WebElement SatP_selectSensorText = driver.findElementByName("Select Sensor");
-		clickOn(SatP_selectSensorText);
-		Thread.sleep(500);
+//select sensor
+	public void selectSensor_SaturationPressureOfSteam_DD(int index) throws InterruptedException {
+		clickon_PressureSensorsComboBox();
+		List<WebElement> senrList = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(senrList.get(index));
 	}
 
 	// get the sensor text from Pressure Sensors ComboBox
-	public String getTxt_TempSensor() throws InterruptedException {
-		WebElement SatP_TempDrpDwnBox = driver.findElementByAccessibilityId("PressureSensorsComboBox");
-		clickOn(SatP_TempDrpDwnBox);
-		List<WebElement> senrList = driver.findElements(By.className("ComboBoxItem"));
-		return FetchText(senrList.get(1));
+	public String getSensorTxt_SaturationPressureOfSteam(int index) throws InterruptedException {
+
+		List<WebElement> senrList = driver.findElementByAccessibilityId("PressureSensorsComboBox")
+				.findElements(By.className("ComboBoxItem"));
+		// System.out.println(senrList.size());
+		return senrList.get(index).getText();
+		// return FetchText(senrList.get(index));
 	}
 
 	// verify is PressureSensorsComboBox enable
@@ -249,27 +254,37 @@ public class Setup_CalculationsPage extends BaseClass {
 		enterText(Zvalue_textfield, zval);
 	}
 
-	// Select Pressure sensor for SatT
-	public void select_1stPrSensor() throws InterruptedException {
-		WebElement SatP_PrDrpDwnBox = driver.findElementByAccessibilityId("TemperatureSenosrsComboBox");
-		clickOn(SatP_PrDrpDwnBox);
-		Thread.sleep(500);
+	// selectSensorFrom SaturationTemperatureOfSteam_DD
 
-		Actions ac = new Actions(driver);
-		ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
-		Thread.sleep(500);
-
-		WebElement SatT_headerText = driver.findElementByName("Saturation temperature of steam");
-		clickOn(SatT_headerText);
-		Thread.sleep(500);
+	public void selectSensor_SaturationTemperatureOfSteam_DD(int index) throws InterruptedException {
+		WebElement SatP_PsrDrpDwnBox = driver.findElementByAccessibilityId("TemperatureSenosrsComboBox");
+		clickOn(SatP_PsrDrpDwnBox);
+		List<WebElement> senrList = driver.findElements(By.className("ComboBoxItem"));
+		clickOn(senrList.get(index));
 	}
 
-	// get text Temperature Sensors ComboBox
-	public String getTxt_PrsrSensor() throws InterruptedException {
+//get text Temperature Sensors ComboBox
+	public void Clickon_TemperatureSenosrsComboBox() throws InterruptedException {
 		WebElement SatP_PrDrpDwnBox = driver.findElementByAccessibilityId("TemperatureSenosrsComboBox");
 		clickOn(SatP_PrDrpDwnBox);
-		List<WebElement> senrList = driver.findElements(By.className("ComboBoxItem"));
-		return FetchText(senrList.get(1));
+
+	}
+
+	// fetch text from TemperatureSenosrsComboBox
+	public String FetchTxt_TempSensorsComboBox() {
+		WebElement SatP_PsrDrpDwnBox = driver.findElementByAccessibilityId("TemperatureSenosrsComboBox");
+		return FetchText(SatP_PsrDrpDwnBox);
+	}
+
+	// get Sensor Txt from SaturationTemperatureOfSteam
+
+	public String getSensorTxt_SaturationTemperatureOfSteam(int index) throws InterruptedException {
+
+		List<WebElement> senrList = driver.findElementByAccessibilityId("TemperatureSenosrsComboBox")
+				.findElements(By.className("ComboBoxItem"));
+
+		return senrList.get(index).getText();
+		// return FetchText(senrList.get(index));
 	}
 
 	// verify is TemperatureSenosrsComboBox enable
@@ -289,7 +304,7 @@ public class Setup_CalculationsPage extends BaseClass {
 	}
 
 	// click on group sensor btn
-	public Setup_GroupSensorsPage click_groupsensor() throws IOException {
+	public Setup_GroupSensorsPage click_groupsensorTab() throws IOException {
 		clickOn(PreviousButton);
 		return new Setup_GroupSensorsPage();
 	}
@@ -297,8 +312,7 @@ public class Setup_CalculationsPage extends BaseClass {
 	// Click the Next button to move to Setup Qualification page
 	public Setup_QualParamPage Click_NxtBtn() throws IOException, InterruptedException {
 		clickOn(NxtBtn);
-		// clickOn(NxtBtn);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		return new Setup_QualParamPage();
 	}
 
@@ -325,120 +339,26 @@ public class Setup_CalculationsPage extends BaseClass {
 	}
 
 	// Is Saturation pressure of steam displayed
-	public boolean Is_Saturation_Psrofstm_displayed() {
+	public boolean Is_TempSensorDD_AgainstSATp_displayed() {
 		WebElement satrnprsrofstm = driver.findElementByName("Saturation pressure of steam");
 		return satrnprsrofstm.isDisplayed();
 
 	}
 
-	// Is Saturation pressure of steam displayed
-	public boolean Is_Saturation_Tmpofstm_displayed() {
+	// Is Saturation temp of steam displayed
+	public boolean Is_PsrSensorDD_AgainstSATp_displayed() {
 		WebElement satrntmprofstm = driver.findElementByName("Saturation temperature of steam");
 		return satrntmprofstm.isDisplayed();
 
 	}
 
 //click back
-
 	public assetDetailsPage Click_back_Btn() throws IOException {
 		clickOn(Back_btn);
 
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
 		return new assetDetailsPage();
-	}
-
-	// Right click on the calcultion page to invoke the bottom apps bar
-	public void Rt_Click_Buttom_AppBar() {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-	}
-
-	// Verify the presence of Home button in the bottom apps bar
-	public boolean check_Home_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_Home_Icon);
-	}
-
-	// Verify the presence of Apps Help icon/button in the bottom apps bar
-	public boolean check_Help_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_AppHelp_Icon);
-	}
-
-	// Verify the presence of WndsHelp Help icon/button in the bottom apps bar
-	public boolean check_WndsHelp_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
-	}
-
-	// Verify the presence of About Help icon/button in the bottom apps bar
-	public boolean check_About_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_About_Icon);
-	}
-
-	// Click on the Home icon of the bottom apps bar to move to Main Hub page
-	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		clickOn(bottomMenu_Home_Icon);
-		WebElement Yesbtn = driver.findElementByName("Yes");
-		clickOn(Yesbtn);
-		Thread.sleep(1000);
-		return new MainHubPage();
-	}
-
-	// Click on the Help icon of the bottom apps bar to move to Main Hub page
-	public void Click_Help_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		clickOn(bottomMenu_AppHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the WndsHelp icon of the bottom apps bar
-	public void Click_WndsHelp_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		clickOn(bottomMenu_WndsHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the About icon of the bottom apps bar to invoke the ABout window
-	public void Click_About_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		clickOn(bottomMenu_About_Icon);
-		Thread.sleep(500);
-	}
-
-	// Get the Help context header text on clicking Help icon of the bottom apps bar
-	public String get__HelpMenu_HdrText() {
-		WebElement HelpMenu = driver.findElementByAccessibilityId("helpHeader");
-		return FetchText(HelpMenu);
-	}
-
-	// Verify the presence of About window on clicking the ABout icon in the bottom
-	// apps bar
-	public boolean check_About_wndw_Presence() {
-		WebElement About_Wndw = driver.findElementByName("About");
-		return IsElementVisibleStatus(About_Wndw);
-	}
-
-	// Get the Sw version info from the About window on clicking About icon of the
-	// bottom apps bar
-	public String get_SWVersion_About_Text() {
-		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
-		return FetchText(SWVersion_About_info);
 	}
 
 }

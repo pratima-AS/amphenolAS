@@ -2,6 +2,8 @@ package com.vrt.testcases;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.net.UnknownHostException;
+import java.text.ParseException;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -62,7 +64,7 @@ public class setup_CalculationTest extends BaseClass {
 
 	// Before All the tests are conducted
 	@BeforeTest
-	public void PreSetup() throws InterruptedException, IOException, AWTException {
+	public void PreSetup() throws InterruptedException, IOException, AWTException, ParseException {
 
 		extent = new ExtentReports(
 				System.getProperty("user.dir") + "/test-output/ER_" + "setup_CalculationTest" + ".html", true);
@@ -74,49 +76,46 @@ public class setup_CalculationTest extends BaseClass {
 		System.out.println("Setup_Calculation Test is  in Progress..");
 
 		// Rename the User file (NgvUsers.uxx) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+		// Rename the cache Setup file (Asset.txt) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
+		// Rename the VRT Setups folder (Asset) if exists
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 
-		/*
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData"
-		 * , "NgvUsers.uux");
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache"
-		 * , "Asset.txt");
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles",
-		 * "Assets"); // Rename the cache Setup file (Asset.txt) if exists
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT"
-		 * , "Setup.txt"); // Rename the VRT Setups folder (Asset) if exists
-		 * renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles",
-		 * "VRTSetups");
-		 * 
-		 * LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App"); //Thread.sleep(500);
-		 * LoginPage = new LoginPage();
-		 * 
-		 * // Method to Create Very 1st User with All privilege UserManagementPage =
-		 * UserManagementPage = LoginPage.DefaultLogin(); LoginPage =
-		 * UserManagementPage.FirstUserCreation("User1", getUID("adminFull"),
-		 * getPW("adminFull"), getPW("adminFull"), "FullAdmin", "12345678",
-		 * "abc@gmail.com"); MainHubPage = LoginPage.Login(getUID("adminFull"),
-		 * getPW("adminFull")); UserManagementPage =
-		 * MainHubPage.ClickAdminTile_UMpage();
-		 * UserManagementPage.clickAnyUserinUserList("User1");
-		 * 
-		 * UserManagementPage.clickPrivRunQual();
-		 * UserManagementPage.clickPrivCreateEditAsset();
-		 * UserManagementPage.clickPrivCreateEditSetup();
-		 * UserManagementPage.clickPrivRunCal();
-		 * 
-		 * UserManagementPage.ClickNewUserSaveButton();
-		 * UserLoginPopup(getUID("adminFull"), getPW("adminFull")); MainHubPage =
-		 * UserManagementPage.ClickBackButn();
-		 * 
-		 * // Method to Create 1st Asset assetHubPage = MainHubPage.ClickAssetTile();
-		 * assetCreationPage = assetHubPage.ClickAddAssetBtn();
-		 * assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath",
-		 * "AAS", "Hyderabad", "VRT-RF", "2", "cu", "11/20/2019", "5", "Weeks",
-		 * "1st Asset Creation"); UserLoginPopup(getUID("adminFull"),
-		 * getPW("adminFull"));
-		 * 
-		 * AppClose(); Thread.sleep(500);
-		 */
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		// Thread.sleep(500);
+		LoginPage = new LoginPage();
+
+		// Method to Create Very 1st User with All privilege UserManagementPage =
+		UserManagementPage = LoginPage.DefaultLogin();
+		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
+				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
+		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		UserManagementPage.clickAnyUserinUserList("User1");
+
+		UserManagementPage.clickPrivRunQual();
+		UserManagementPage.clickPrivCreateEditAsset();
+		UserManagementPage.clickPrivCreateEditSetup();
+		UserManagementPage.clickPrivRunCal();
+
+		UserManagementPage.ClickNewUserSaveButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		MainHubPage = UserManagementPage.ClickBackButn();
+
+		// Method to Create 1st Asset
+		assetHubPage = MainHubPage.Click_AssetTile();
+		assetCreationPage = assetHubPage.ClickAddAssetBtn();
+		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+
+		AppClose();
+		Thread.sleep(500);
+
 	}
 
 	// After All the tests are conducted
@@ -136,34 +135,26 @@ public class setup_CalculationTest extends BaseClass {
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		assetHubPage = MainHubPage.Click_AssetTile();
 		assetDetailsPage = assetHubPage.click_assetTile("Asset01");
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
 		defineSetupPage.enter_defineSetupPage_setupName("test");
 		defineSetupPage.click_defineSetupPage_SensorCountField();
 		defineSetupPage.enter_defineSetupPage_SensorCount("300");
-		defineSetupPage.enter_defineSetupPage_SOP("10");
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
-		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		//Setup_SensorConfigPage.Enter_PressureCount_textField("5");
 
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMP");
 		Setup_SensorConfigPage.Click_assignBtn();
-
-		Setup_SensorConfigPage.select_Sensortype_Pr();
-		Setup_SensorConfigPage.Enter_Num_To("5");
-		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
-		Setup_SensorConfigPage.Click_assignBtn();
-		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
-
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 	}
 
 	// TearDown of the App
@@ -191,19 +182,15 @@ public class setup_CalculationTest extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-
 		driver.quit();
 	}
 
 	// Test Cases
 	// CAL001-Verify the details displayed in Calculations screen
-
 	@Test(groups = { "Regression" }, description = "CAL001-Verify the details displayed in Calculations screen")
 	public void CAL001() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL001-Verify the details displayed in Calculations screens");
 		SoftAssert sa = new SoftAssert();
-
-		System.out.println(Setup_CalculationsPage.get_CalculationPage_titletext());
 
 		sa.assertEquals(Setup_CalculationsPage.get_CalculationPage_titletext(), "Calculations",
 				"FAIL: Calculations header is not displaying");
@@ -228,7 +215,6 @@ public class setup_CalculationTest extends BaseClass {
 
 	// CAL002-Verify the details displayed on the right pane on-click of the
 	// _Lethality Calculations_ option
-
 	@Test(groups = {
 			"Regression" }, description = "CAL002-Verify the details displayed on the right pane on-click of the _Lethality Calculations_ option")
 	public void CAL002() throws InterruptedException, IOException {
@@ -287,9 +273,9 @@ public class setup_CalculationTest extends BaseClass {
 
 	// CAL006-Verify that min 60 and max 400 is allowed in base temperature field
 	@Test(groups = {
-			"Regression" }, description = "CAL006-Verify that min 60 and max 400 is allowed in base temperature field")
-	public void CAL006() throws InterruptedException, IOException {
-		extentTest = extent.startTest("CAL006-Verify that min 60 and max 400 is allowed in base temperature field");
+			"Regression" }, description = "CAL006A-Verify that min 60 and max 400 is allowed in base temperature field")
+	public void CAL006A() throws InterruptedException, IOException {
+		extentTest = extent.startTest("CAL006A-Verify that min 60 and max 400 is allowed in base temperature field");
 		SoftAssert sa = new SoftAssert();
 		// Enter value less than 60
 		Setup_CalculationsPage.enter_bTemp("59");
@@ -301,9 +287,9 @@ public class setup_CalculationTest extends BaseClass {
 
 	// CAL006A-Verify that min 60 and max 400 is allowed in base temperature field
 	@Test(groups = {
-			"Regression" }, description = "CAL006A-Verify that min 60 and max 400 is allowed in base temperature field")
-	public void CAL006A() throws InterruptedException, IOException {
-		extentTest = extent.startTest("CAL006A-Verify that min 60 and max 400 is allowed in base temperature field");
+			"Regression" }, description = "CAL006B-Verify that min 60 and max 400 is allowed in base temperature field")
+	public void CAL006B() throws InterruptedException, IOException {
+		extentTest = extent.startTest("CAL006B-Verify that min 60 and max 400 is allowed in base temperature field");
 		SoftAssert sa = new SoftAssert();
 		// Enter value more than 400
 		Setup_CalculationsPage.enter_bTemp("450");
@@ -366,7 +352,6 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL008B-Verify the invalid values for Base temperature field - Empty Field
-
 	@Test(groups = {
 			"Regression" }, description = "CAL008B-Verify the invalid values for Base temperature field - Empty Field")
 	public void CAL008B() throws InterruptedException, IOException {
@@ -383,7 +368,6 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL009-Verify that 1.00 is the default value displayed in D Value field
-
 	@Test(groups = {
 			"Regression" }, description = "CAL009-Verify that 1.00 is the default value displayed in D Value field")
 	public void CAL009() throws InterruptedException, IOException {
@@ -405,22 +389,26 @@ public class setup_CalculationTest extends BaseClass {
 		// Enter more than 5 chars
 		Setup_CalculationsPage.Enter_Dvalue_textfield("123456");
 
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
+		Thread.sleep(1000);
 		String Dtxt = Setup_CalculationsPage.DValueField_text();
+
+		System.out.println(Dtxt.length());
 		sa.assertEquals(Dtxt.length(), 5, " Fail:the default value is not displayed in BD Value field ");
 		sa.assertAll();
 	}
 
-	// CAL011-Verify that min 0.10 and max 99.99 are allowed in D Value field
-	@Test(groups = {
-			"Regression" }, dataProvider = "CAL011A", dataProviderClass = setupCreationUtility.class, description = "CAL011-Verify that min 0.10 allowed in D Value field")
-
-	public void CAL011A(String Dtempmin) throws InterruptedException, IOException {
+	// CAL011A-Verify that min 0.10 and max 99.99 are allowed in D Value field
+	@Test(groups = { "Regression" }, description = "CAL011A-Verify that min 0.10 allowed in D Value field")
+	public void CAL011A() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL011A-Verify that min 0.10  allowed in D Value field");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.Enter_Dvalue_textfield(Dtempmin);
-		Setup_CalculationsPage.Click_Cleth_DrpDwn();
-
+		Setup_CalculationsPage.Enter_Dvalue_textfield("-10");
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
+		Thread.sleep(1000);
 		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "0.10",
 				" Fail: Minimum value 0.10 is not allowed in D Value field");
 		sa.assertAll();
@@ -428,18 +416,16 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL011B-Verify that min 0.10 and max 99.99 are allowed in D Value field
-	@Test(groups = {
-			"Regression" }, dataProvider = "CAL011B", dataProviderClass = setupCreationUtility.class, description = "CAL011B-Verify that max 99.99  allowed in D Value field")
-
-	public void CAL011B(String DTempmax) throws InterruptedException, IOException {
+	@Test(groups = { "Regression" }, description = "CAL011B-Verify that max 99.99  allowed in D Value field")
+	public void CAL011B() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL011B-Verify that max 99.99  allowed in D Value field");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.Enter_Dvalue_textfield(DTempmax);
-		Setup_CalculationsPage.Click_Cleth_DrpDwn();
-		Thread.sleep(1000);
+		Setup_CalculationsPage.Enter_Dvalue_textfield("999999");
+		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
 		String Dval = Setup_CalculationsPage.DValueField_text();
-		System.out.println(Dval);
+		// System.out.println(Dval);
 		sa.assertEquals(Dval, "99.99", "Fail:Minimum value 99.99 is not allowed in D Value field ");
 		sa.assertAll();
 
@@ -462,50 +448,31 @@ public class setup_CalculationTest extends BaseClass {
 
 	}
 
-	// CAL013A-Verify the invalid values for D Value
+	// CAL013-Verify the invalid values for D Value
 	@Test(groups = {
-			"Regression" }, dataProvider = "CAL013A", dataProviderClass = setupCreationUtility.class, description = "CAL013A-Verify the invalid values for D Value")
+			"Regression" }, dataProvider = "CAL013", dataProviderClass = setupCreationUtility.class, 
+					description = "CAL013-Verify the invalid values for D Value")
 
-	public void CAL013A(String Dvalue) throws InterruptedException, IOException {
-		extentTest = extent.startTest("CAL013A-Verify the invalid values for D Value");
+	public void CAL013(String Dvalue, String ExpDValue) throws InterruptedException, IOException {
+		extentTest = extent.startTest("CAL013-Verify the invalid values for D Value");
 
 		SoftAssert sa = new SoftAssert();
+		//String Dval = Setup_CalculationsPage.DValueField_text();
 		Setup_CalculationsPage.Enter_Dvalue_textfield(Dvalue);
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
+		Thread.sleep(1000);
+		String Dval1 = Setup_CalculationsPage.DValueField_text();
 
 		// Here we have entered specialchars and characters as invalid values so here
 		// application will restrict and
 		// will navigate to next page
 
-		sa.assertEquals(Setup_QualParamPage.QualParamsPage_state(), true,
-				"Fail:Setup Qual Paramter Page is not displaying ");
+		sa.assertEquals(Dval1, ExpDValue, "Fail: Applicationa accepted inviad D values");
 		sa.assertAll();
-	}
-
-	// CAL013B- verify when user Do not enter any value in D Value field and proceed
-	// to next step with valid values in all other fields
-
-	@Test(groups = {
-			"Regression" }, description = "CAL013B- verify when user Do not enter any value in D Value field and proceed to next step with valid values in all other fields               ")
-
-	public void CAL013B() throws InterruptedException, IOException {
-		extentTest = extent.startTest(
-				"CAL013B- verify when user Do not enter any value in D Value field and proceed to next step with valid values in all other fields         ");
-
-		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.Enter_Dvalue_textfield("");
-		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
-
-		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
-
-		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "1.00",
-				" Fail: Minimum value 0.10 is not allowed in D Value field");
-		sa.assertAll();
-
 	}
 
 	// CAL014-Verify that 10.0 is the default value displayed in Z Value field
-
 	@Test(groups = {
 			"Regression" }, description = "CAL014-Verify that 10.0 is the default value displayed in Z Value field")
 	public void CAL014() throws InterruptedException, IOException {
@@ -518,7 +485,6 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL015-Verify that max 5 characters are allowed in Z Value field
-
 	@Test(groups = { "Regression" }, description = "CAL015-Verify that max 5 characters are allowed in Z Value field")
 	public void CAL015() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL015-Verify that max 5 characters are allowed in Z Value field");
@@ -531,16 +497,13 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// CAL016-Verify that min 1.0 and max 99.0 are allowed in Z Value field
-
-	@Test(groups = {
-			"Regression" }, dataProvider = "CAL016A", dataProviderClass = setupCreationUtility.class, description = "CAL016-Verify that min 1.0  allowed in Z Value field")
-
-	public void CAL016A(String Zvalmin) throws InterruptedException, IOException {
-		extentTest = extent.startTest("CAL016-Verify that min 1.0  allowed in Z Value field");
+	// CAL016A-Verify that min 1.0 and max 99.0 are allowed in Z Value field
+	@Test(groups = { "Regression" }, description = "CAL016A-Verify that min 1.0  allowed in Z Value field")
+	public void CAL016A() throws InterruptedException, IOException {
+		extentTest = extent.startTest("CAL016A-Verify that min 1.0  allowed in Z Value field");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.enter_Zval(Zvalmin);
+		Setup_CalculationsPage.enter_Zval("0.11");
 		Setup_CalculationsPage.Click_Cleth_DrpDwn();
 
 		sa.assertEquals(Setup_CalculationsPage.ZValueField_text(), "1.0",
@@ -549,15 +512,13 @@ public class setup_CalculationTest extends BaseClass {
 
 	}
 
-// CAL016-Verify that max 99.0 are allowed in Z Value field
-	@Test(groups = {
-			"Regression" }, dataProvider = "CAL016B", dataProviderClass = setupCreationUtility.class, description = "CAL016B-Verify that max 99.0  allowed in Z Value field")
-
-	public void CAL016B(String Zvalmax) throws InterruptedException, IOException {
+	// CAL016B-Verify that max 99.0 are allowed in Z Value field
+	@Test(groups = { "Regression" }, description = "CAL016B-Verify that max 99.0  allowed in Z Value field")
+	public void CAL016B() throws InterruptedException, IOException {
 		extentTest = extent.startTest("CAL016B-Verify that max 99.0  allowed in Z Value field");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.enter_Zval(Zvalmax);
+		Setup_CalculationsPage.enter_Zval("9999");
 		Setup_CalculationsPage.Click_Cleth_DrpDwn();
 
 		sa.assertEquals(Setup_CalculationsPage.ZValueField_text(), "99.0",
@@ -584,7 +545,6 @@ public class setup_CalculationTest extends BaseClass {
 	}
 
 	// CAL018-Verify the invalid values of Z Value field
-
 	@Test(groups = {
 			"Regression" }, dataProvider = "CAL018A", dataProviderClass = setupCreationUtility.class, description = "CAL018A-Verify the invalid values of  Z Value field")
 
@@ -606,7 +566,6 @@ public class setup_CalculationTest extends BaseClass {
 
 	// CAL018B- verify when user Do not enter any value in Z Value field and proceed
 	// to next step with valid values in all other fields
-
 	@Test(groups = {
 			"Regression" }, description = "CAL018B- verify when user Do not enter any value in Z Value field and proceed to next step with valid values in all other fields               ")
 
@@ -644,6 +603,25 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
+	// CAL018D-Verify when user Enter value greater than 99.0 in Z Value field and
+	// click on any other field ,
+	// The value in the field should get set to 99.0 automatically
+	@Test(groups = {
+			"Regression" }, description = " CAL018D-Verify when user Enter value greater than 99.0 in Z Value field and click on any other field ,The value in the field should get set to 99.0 automatically")
+
+	public void CAL018D() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				" CAL018D-Verify when user Enter value greater than 99.0 in Z Value field and click on any other field ,The value in the field should get set to 99.0 automatically");
+
+		SoftAssert sa = new SoftAssert();
+		Setup_CalculationsPage.enter_Zval("999");
+		Setup_CalculationsPage.Click_Cleth_DrpDwn();
+
+		sa.assertEquals(Setup_CalculationsPage.ZValueField_text(), "99.0",
+				" Fail: The value in the field should get set to 99.0 automatically");
+		sa.assertAll();
+	}
+
 	// CAL019-Verify that Undefined, During entire cycle and During Exposure cycle
 	// are displayed in the drop down for Calculate lethality field
 	@Test(groups = {
@@ -660,7 +638,7 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//CAL029-Verify that on click of each option in the list of calculate lethality drop down, will reflect correctly in the field
+	//CAL029-Verify that on click of each option in the list of calculate lethality drop down, will reflect correctly in the field
 	@Test(groups = {
 			"Regression" }, description = "CAL019-Verify that Undefined, During entire cycle and During Exposure cycle are displayed in the drop down for Calculate lethality field")
 
@@ -684,74 +662,132 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-// CAL030-Verify the details displayed on the right pane on-click of the
-// _Saturation PT Calculation_ option
-
+	// CAL030-Verify the details displayed on the right pane on-click of the
+	// _Saturation PT Calculation_ option
 	@Test(groups = {
-			"Regression" }, description = "CAL030-Verify the details displayed on the right pane on-click of the _Saturation PT Calculation_ option")
-
+			"Regression" }, description = "CAL030-Verify the details displayed on the "
+					+ "right pane on-click of the _Saturation PT Calculation_ option")
 	public void CAL030() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL030-Verify the details displayed on the right pane on-click of the _Saturation PT Calculation_ option");
+				"CAL030-Verify the details displayed on the right pane on-click of "
+				+ "the _Saturation PT Calculation_ option");
 
 		SoftAssert sa = new SoftAssert();
+
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
+		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
+		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
+		Setup_SensorConfigPage.Click_assignBtn();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
+		Thread.sleep(1000);
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
+
 		Setup_CalculationsPage.click_SatTP_btn();
-		sa.assertEquals(Setup_CalculationsPage.Is_Saturation_Psrofstm_displayed(), true,
+		sa.assertEquals(Setup_CalculationsPage.Is_TempSensorDD_AgainstSATp_displayed(), true,
 				"fail:Saturation pressure of steam is not displayed");
-		sa.assertEquals(Setup_CalculationsPage.Is_Saturation_Tmpofstm_displayed(), true,
+		sa.assertEquals(Setup_CalculationsPage.Is_PsrSensorDD_AgainstSATp_displayed(), true,
 				"fail:Saturation Temperature of steam is not displayed");
 		sa.assertAll();
 	}
 
-//CAL031-Verify that the drop down of Saturation pressure of steam will display the list of all Temperature sensors
-
+	//CAL031-Verify that the drop down of Saturation pressure of steam will display the 
+	//list of all Temperature sensors
 	@Test(groups = {
-			"Regression" }, description = "CAL031-Verify that the drop down of Saturation pressure of steam will display the list of all Temperature sensors")
+			"Regression" }, description = "CAL031-Verify that the drop down of Saturation "
+					+ "pressure of steam will display the list of all Temperature sensors")
 
 	public void CAL031() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL031-Verify that the drop down of Saturation pressure of steam will display the list of all Temperature sensors");
+				"CAL031-Verify that the drop down of Saturation pressure of steam will "
+				+ "display the list of all Temperature sensors");
 
 		SoftAssert sa = new SoftAssert();
 		Setup_CalculationsPage.click_SatTP_btn();
-
-		sa.assertEquals(Setup_CalculationsPage.getTxt_TempSensor(), "TMP1", "fail:Temp sensors are not displaying");
+		Setup_CalculationsPage.clickon_PressureSensorsComboBox();
+		Thread.sleep(3000);
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationPressureOfSteam(0), "TMP1",
+				"fail:Temp sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationPressureOfSteam(1), "TMP2",
+				"fail:Temp sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationPressureOfSteam(2), "TMP3",
+				"fail:Temp sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationPressureOfSteam(3), "TMP4",
+				"fail:Temp sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationPressureOfSteam(4), "TMP5",
+				"fail:Temp sensors are not displaying");
 
 		sa.assertAll();
 	}
 
-//CAL032-Verify that the drop down of Saturation temperature of steam will display the list of all Pressure sensors
+	//CAL032-Verify that the drop down of Saturation temperature of steam will display 
+	//the list of all Pressure sensors
 	@Test(groups = {
-			"Regression" }, description = "CAL032-Verify that the drop down of Saturation temperature of steam will display the list of all Pressure sensors")
-
+			"Regression" }, description = "CAL032-Verify that the drop down of "
+					+ "Saturation temperature of steam will display the list of all Pressure sensors")
 	public void CAL032() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL032-Verify that the drop down of Saturation temperature of steam will display the list of all Pressure sensors");
+				"CAL032-Verify that the drop down of Saturation temperature of steam will "
+				+ "display the list of all Pressure sensors");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_CalculationsPage.click_SatTP_btn();
+		
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
+		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
+		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
+		Setup_SensorConfigPage.Click_assignBtn();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
+		Thread.sleep(1000);
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 
-		sa.assertEquals(Setup_CalculationsPage.getTxt_PrsrSensor(), "PSR1", "fail:Pressure sensors are not displaying");
+		Setup_CalculationsPage.click_SatTP_btn();
+		Setup_CalculationsPage.Clickon_TemperatureSenosrsComboBox();
+		Thread.sleep(3000);
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationTemperatureOfSteam(0), "PSR1",
+				"fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationTemperatureOfSteam(1), "PSR2",
+				"fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationTemperatureOfSteam(2), "PSR3",
+				"fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationTemperatureOfSteam(3), "PSR4",
+				"fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.getSensorTxt_SaturationTemperatureOfSteam(4), "PSR5",
+				"fail:Pressure sensors are not displaying");
 
 		sa.assertAll();
+
 	}
 
 	// CAL033-Verify that the Saturation pressure of steam field will be disabled
 	// when there are no temperature sensors defined in the setup
 	@Test(groups = {
-			"Regression" }, description = "CAL033-Verify that the Saturation pressure of steam field will be disabled when there are no temperature sensors defined in the setup")
-
+			"Regression" }, description = "CAL033-Verify that the Saturation pressure of "
+					+ "steam field will be disabled when there are no temperature sensors defined in the setup")
 	public void CAL033() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL033-Verify that the Saturation pressure of steam field will be disabled when there are no temperature sensors defined in the setup");
+				"CAL033-Verify that the Saturation pressure of steam field will be disabled "
+				+ "when there are no temperature sensors defined in the setup");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
+		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
+		Setup_SensorConfigPage.Click_assignBtn();
+		
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_CalculationsPage.click_SatTP_btn();
 		sa.assertEquals(Setup_CalculationsPage.PressureSensorsComboBox_IsEnable(), false,
 				"fail:PressureSensorsComboBox will not be Enable");
@@ -762,21 +798,16 @@ public class setup_CalculationTest extends BaseClass {
 
 	// CAL034-Verify that the Saturation temperature of steam field will be disabled
 	// when there are no pressure sensors defined in the setup
-
 	@Test(groups = {
-			"Regression" }, description = "CAL034-Verify that the Saturation temperature of steam field will be disabled when there are no pressure sensors defined in the setup")
+			"Regression" }, description = "CAL034-Verify that the Saturation temperature of steam field "
+					+ "will be disabled when there are no pressure sensors defined in the setup")
 
 	public void CAL034() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL034-Verify that the Saturation temperature of steam field will be disabled when there are no pressure sensors defined in the setup");
+				"CAL034-Verify that the Saturation temperature of steam field will be disabled when "
+				+ "there are no pressure sensors defined in the setup");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
-		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
-		Setup_SensorConfigPage.Enter_PressureCount_textField("0");
-		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
-		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
 		Setup_CalculationsPage.click_SatTP_btn();
 		sa.assertEquals(Setup_CalculationsPage.Temp_SensorsComboBox_IsEnable(), false,
 				"fail:PressureSensorsComboBox will not be Enable");
@@ -784,92 +815,110 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 
 	}
+	
 	// CAL035-Verify that the value selected from the drop down of Saturation
-	// pressure of steam field is relfected correctly
-
+	// pressure of steam field is reflected correctly
 	@Test(groups = {
-			"Regression" }, description = "CAL035-Verify that the value selected from the drop down of Saturation pressure of steam field is relfected correctly")
+			"Regression" }, description = "CAL035-Verify that the value selected from the "
+					+ "drop down of Saturation pressure of steam field is relfected correctly")
 
 	public void CAL035() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL035-Verify that the value selected from the drop down of Saturation pressure of steam field is relfected correctly");
+				"CAL035-Verify that the value selected from the drop down of Saturation pressure "
+				+ "of steam field is relfected correctly");
 
 		SoftAssert sa = new SoftAssert();
 		Setup_CalculationsPage.click_SatTP_btn();
+		Setup_CalculationsPage.selectSensor_SaturationPressureOfSteam_DD(1);
 
-		Setup_CalculationsPage.select_1stTempSensor();
-
-		sa.assertEquals(Setup_CalculationsPage.getTxt_TempSensor(), "TMP1", "fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.FetchTxt_PressureSensorsComboBox(), "TMP1",
+				"fail:Pressure sensors are not displaying");
 
 		sa.assertAll();
 	}
 
 	// CAL036-Verify that the value selected from the drop down of Saturation
 	// temperature of steam field is reflected correctly
-
 	@Test(groups = {
-			"Regression" }, description = "CAL036-Verify that the value selected from the drop down of Saturation temperature of steam field is reflected correctly")
-
+			"Regression" }, description = "CAL036-Verify that the value selected from the "
+					+ "drop down of Saturation temperature of steam field is reflected correctly")
 	public void CAL036() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL036-Verify that the value selected from the drop down of Saturation temperature of steam field is reflected correctly");
+				"CAL036-Verify that the value selected from the drop down of "
+				+ "Saturation temperature of steam field is reflected correctly");
 
 		SoftAssert sa = new SoftAssert();
+
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
+		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
+		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
+		Setup_SensorConfigPage.Click_assignBtn();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
+		Thread.sleep(1000);
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_CalculationsPage.click_SatTP_btn();
+		
+		Setup_CalculationsPage.selectSensor_SaturationTemperatureOfSteam_DD(1);
 
-		Setup_CalculationsPage.select_1stPrSensor();
-
-		sa.assertEquals(Setup_CalculationsPage.getTxt_PrsrSensor(), "PSR1", "fail:Pressure sensors are not displaying");
+		sa.assertEquals(Setup_CalculationsPage.FetchTxt_TempSensorsComboBox(), "PSR1",
+				"fail:Pressure sensors are not displaying");
 
 		sa.assertAll();
 	}
 
 	// CAL037-Verify that on-click of the Group sensors navigator on the top left
 	// will navigate to Group sensor screen
-
 	@Test(groups = {
-			"Regression" }, description = "CAL037-Verify that on-click of the Group sensors navigator on the top left will navigate to Group sensor screen")
+			"Regression" }, description = "CAL037-Verify that on-click of the "
+					+ "Group sensors navigator on the top left will navigate to Group sensor screen")
 
 	public void CAL037() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"/CAL037-Verify that on-click of the Group sensors navigator on the top left will navigate to Group sensor screen");
+				"/CAL037-Verify that on-click of the Group sensors navigator on the "
+				+ "top left will navigate to Group sensor screen");
 
 		SoftAssert sa = new SoftAssert();
 
-		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
 		sa.assertEquals(Setup_GroupSensorsPage.GrpsensorPage_state(), true,
 				"fail: group sensor page is not displaying");
 
 		sa.assertAll();
 	}
 
-//CAL038-Verify that on-click of the Qualification Parameters navigator on the top right will navigate to Qualification Parameters screen
-
+	//CAL038-Verify that on-click of the Qualification Parameters navigator on the 
+	//top right will navigate to Qualification Parameters screen
 	@Test(groups = {
-			"Regression" }, description = "CAL038-Verify that on-click of the Qualification Parameters navigator on the top right will navigate to Qualification Parameters screen")
+			"Regression" }, description = "CAL038-Verify that on-click of the Qualification "
+					+ "Parameters navigator on the top right will navigate to Qualification Parameters screen")
 
 	public void CAL038() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL038-Verify that on-click of the Qualification Parameters navigator on the top right will navigate to Qualification Parameters screen");
+				"CAL038-Verify that on-click of the Qualification Parameters navigator on the "
+				+ "top right will navigate to Qualification Parameters screen");
 
 		SoftAssert sa = new SoftAssert();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 
 		sa.assertEquals(Setup_QualParamPage.QualParamsPage_state(), true,
 				"fail: Qual parameter page is not displaying");
-
 		sa.assertAll();
 	}
 
 	// CAL039-Verify that on-click of the back icon on the screen will navigate to
 	// Asset details screen upon confirmation
-
 	@Test(groups = {
-			"Regression" }, description = "CAL039-Verify that on-click of the back icon on the screen will navigate to Asset details screen upon confirmation")
+			"Regression" }, description = "CAL039-Verify that on-click of the back icon "
+					+ "on the screen will navigate to Asset details screen upon confirmation")
 
 	public void CAL039() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL039-Verify that on-click of the back icon on the screen will navigate to Asset details screen upon confirmation");
+				"CAL039-Verify that on-click of the back icon on the screen will navigate to "
+				+ "Asset details screen upon confirmation");
 
 		SoftAssert sa = new SoftAssert();
 		assetDetailsPage = Setup_CalculationsPage.Click_back_Btn();
@@ -880,25 +929,22 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// CAL040-Verify the bottom menu options displayed in Qualification Parameters
-	// screen
-
+	// CAL040-Verify the bottom menu options displayed in Calculation screen
 	@Test(description = "CAL040-Verify the bottom menu options displayed in Qualification Parameters screen")
-	public void SC106() throws InterruptedException {
+	public void CAL040() throws InterruptedException {
 		extentTest = extent
 				.startTest("CAL040-Verify the bottom menu options displayed in Qualification Parameters screen");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_CalculationsPage.Rt_Click_Buttom_AppBar();
+		tu.Right_Click__Buttom_Menuoptions();
 
-		sa.assertEquals(Setup_CalculationsPage.check_Home_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Home_Buttom_AppBar_Presence(), true,
 				"FAIL: Home icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_CalculationsPage.check_Help_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_Help_Buttom_AppBar_Presence(), true,
 				"FAIL: Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_CalculationsPage.check_WndsHelp_Buttom_AppBar_Presence(), true,
+		sa.assertEquals(tu.check_WndsHelp_Buttom_AppBar_Presence(), true,
 				"FAIL: Windows Help icon/button missing in bottom app bar");
-		sa.assertEquals(Setup_CalculationsPage.check_About_Buttom_AppBar_Presence(), true,
-				"FAIL: About icon/button missing in bottom app bar");
+		sa.assertEquals(tu.check_About_wndw_Presence(), true, "FAIL: About icon/button missing in bottom app bar");
 		sa.assertAll();
 	}
 
@@ -910,7 +956,7 @@ public class setup_CalculationTest extends BaseClass {
 				"CAL041-Verify that on-click of home btn in bottom menu options is navigated to main hub page");
 		SoftAssert sa = new SoftAssert();
 
-		MainHubPage = Setup_CalculationsPage.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar();
 
 		sa.assertEquals(MainHubPage.mainPageTitle(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
@@ -924,51 +970,69 @@ public class setup_CalculationTest extends BaseClass {
 		extentTest = extent.startTest(
 				"CAL042-Verify that on-click of help btn in bottom menu options displays information about the Qualification parameters screen");
 		SoftAssert sa = new SoftAssert();
-
-		Setup_CalculationsPage.Click_Help_Icon_AppBar();
-
-		sa.assertEquals(Setup_CalculationsPage.get__HelpMenu_HdrText(), "Calculations",
-				"FAIL: Clicking Help icon/button in bottom app bar"
-						+ "do not display the Calculations Help context window");
+		tu.Click_Help_Icon_AppBar();
+		sa.assertEquals(tu.get__HelpMenu_HdrText(), "Calculations", "FAIL: Clicking Help icon/button in bottom app bar"
+				+ "do not display the Sensors Configuration Help context window");
 		sa.assertAll();
 	}
-
+	
+	
 	// CAL043-Verify that on-click of windows help btn in bottom menu options
 	// generates a PDF with information
 	// This TC will handle manually
 
 	// CAL044-Verify that on-click of About btn in bottom menu options displays the
 	// software version and the console IP address
-
-	@Test(description = "'CAL044-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address")
-	public void SC110() throws InterruptedException {
-		extentTest = extent.startTest(
-				"'CAL044-Verify that on-click of About btn in bottom menu options displays the software version and the console IP address");
+	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, 
+			description = "Verify that on-click of About btn in bottom menu options displays "
+			+ "the software version and the console IP address")
+	public void CAL044(String SWVer) throws InterruptedException, UnknownHostException {
+		extentTest = extent.startTest("CAL044-Verify that on-click of About btn in bottom menu options displays "
+				+ "the software version and the console IP address");
 		SoftAssert sa = new SoftAssert();
 
-		Setup_CalculationsPage.Click_About_Icon_AppBar();
-		sa.assertEquals(Setup_CalculationsPage.check_About_wndw_Presence(), true,
-				"FAIL: Clicking About icon/button in bottom app bar do not display the About window");
+		tu.Click_About_Icon_AppBar();
+		// System.out.println(SWVer);
+		// System.out.println(tu.SWversion_InAboutWndw());
+		sa.assertEquals(tu.SWversion_InAboutWndw(), SWVer,
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
+		// System.out.println("Console IP Address in About window:
+		// "+tu.consoleIP_InAboutWndw());
+		// System.out.println(tu.system_IPadress());
+		sa.assertEquals(tu.consoleIP_InAboutWndw(), tu.system_IPadress(),
+				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
 		sa.assertAll();
+
 	}
 
 	// CAL045-Verify that when edited the setup and removed Temeprature group, an
 	// alert message should be displayed that Lethality condition should be
 	// Undefined when there are no Temperature sensors
 	@Test(groups = {
-			"Regression" }, description = "CAL045-Verify that when edited the setup and removed Temeprature group, an alert message should be displayed that Lethality condition should be Undefined when there are no Temperature sensors")
+			"Regression" }, description = "CAL045-Verify that when edited the setup and "
+					+ "removed Temeprature group, an alert message should be displayed that "
+					+ "Lethality condition should be Undefined when there are no Temperature sensors")
 
 	public void CAL045() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"CAL045-Verify that when edited the setup and removed Temeprature group, an alert message should be displayed that Lethality condition should be Undefined when there are no Temperature sensors");
+				"CAL045-Verify that when edited the setup and removed Temeprature group, an alert message "
+				+ "should be displayed that Lethality condition should be Undefined when there are no Temperature sensors");
 
 		SoftAssert sa = new SoftAssert();
-		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensor();
+		Setup_GroupSensorsPage = Setup_CalculationsPage.click_groupsensorTab();
 		Setup_SensorConfigPage = Setup_GroupSensorsPage.Click_SensorConfigTab();
-		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
+		Setup_SensorConfigPage.Enter_PressureCount_textField("5");
+		Setup_SensorConfigPage.select_Sensortype_Pr();
+		Setup_SensorConfigPage.Enter_Num_To("5");
+		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
+		Setup_SensorConfigPage.Click_assignBtn();	
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
+		Thread.sleep(1000);
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_GroupSensorsPage.click_DeleteGroup_Btn();
+		Setup_GroupSensorsPage.DeleteGroup_Yes();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.click_YesBtn_AlertMsg_for_DeleteGroup_SensorUnassigned();
+		//Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_CalculationsPage.select_AlethCondition("During Entire Study");
 		Setup_CalculationsPage.NxtBtn_alert();
 

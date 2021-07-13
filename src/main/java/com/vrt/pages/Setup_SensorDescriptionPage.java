@@ -2,6 +2,7 @@ package com.vrt.pages;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -223,16 +224,6 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		PrInlist.get(3).click();
 	}
 
-	// get text
-	public String gettext_for_opt_2() {
-		List<WebElement> SensorType_ComboBox = driver.findElementsByAccessibilityId("SensorTypeSimComboBox");
-		SensorType_ComboBox.get(1).click();
-
-		List<WebElement> PrInlist = driver.findElementsByClassName("ComboBoxItem");
-		return PrInlist.get(3).getText();
-
-	}
-
 	// Presence of txtFrom Range box
 	public boolean is_From_textVisible() {
 		WebElement txtFrom_field = driver.findElementByAccessibilityId("txtFrom");
@@ -296,7 +287,8 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		return FetchText(Description_field);
 	}
 
-//Check Pressure displayed in combo box when only pressure added in Sensor config page
+	// Check Pressure displayed in combo box when only pressure added in Sensor
+	// config page
 	public boolean OnlyPressure_SensorType_Visible() {
 		List<WebElement> PresIncombobox = driver.findElementsByClassName("ComboBoxItem");
 		return IsElementVisibleStatus(PresIncombobox.get(0));
@@ -316,6 +308,30 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		return senrList.get(0).isEnabled();
 	}
 
+	// select row as per user defined
+
+	public void Select_Row(String rownumber) throws IOException, InterruptedException {
+		List<WebElement> sensorsrowList = driver.findElementByAccessibilityId("PART_ScrollViewer")
+				.findElements(By.className("ScrollViewer"));
+
+		for (int i = 0; i < sensorsrowList.size(); i++) {
+
+			List<WebElement> SensorRowInfoList = sensorsrowList.get(i).findElements(By.className("TextBlock"));
+
+			for (int j = 0; j < SensorRowInfoList.size(); j++) {
+
+				String st = SensorRowInfoList.get(j).getText();
+				if (st.equals(rownumber)) {
+
+					SensorRowInfoList.get(j).click();
+
+					break;
+
+				}
+			}
+		}
+	}
+
 	public boolean Secondsensor_Selected() {
 		WebElement senr2 = driver.findElementByName("2");
 		return senr2.isEnabled();
@@ -326,73 +342,28 @@ public class Setup_SensorDescriptionPage extends BaseClass {
 		return senr1.isEnabled();
 	}
 
-	// Click on First sensor
-	public void Firstsensor_click() {
-		WebElement senr1 = driver.findElementByName("1");
-		clickOn(senr1);
-	}
+	public static HashMap<Integer, Integer> get_LeftPaneDescription_Index() {
 
-	// Click on second sensor
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int a = 1;
+		int b = 3;
+		while (a < 301) {
+			map.put(a, b);
+			a = a + 1;
+			b = b + 4;
+			// System.out.println("value is : "+a+" "+ b);
+		}
 
-	public void Secondsensor_click() {
-		WebElement senr2 = driver.findElementByName("2");
-		clickOn(senr2);
-	}
-
-	// Click on fifth sensor
-
-	public void Fifthsensor_click() {
-		WebElement senr5 = driver.findElementByName("5");
-		clickOn(senr5);
-	}
-
-//Click on eight sensor   
-
-	public void Eightsensor_click() {
-		WebElement senrList = driver.findElementByName("8");
-		senrList.click();
+		return map;
 	}
 
 	// Fetch the description text from row 1
-	public String Description_txt_Row1() {
+	public String get_LeftpaneDescription_txt(int rowNo) throws IOException, InterruptedException {
+		int z = get_LeftPaneDescription_Index().get(rowNo);
+		// System.out.println(z);
 		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
 				.findElements(By.className("TextBlock"));
-		return desclist.get(3).getText();
-	}
-
-	// Fetch the description text from row 2
-	public String Description_txt_Row2() {
-		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
-		return desclist.get(7).getText();
-	}
-
-	// Fetch the description text from row 3
-	public String Description_txt_Row3() {
-		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
-		return desclist.get(11).getText();
-	}
-
-	// Fetch the description text from row 4
-	public String Description_txt_Row4() {
-		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
-		return desclist.get(15).getText();
-	}
-
-	// Fetch the description text from row 5
-	public String Description_txt_Row5() {
-		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
-		return desclist.get(19).getText();
-	}
-
-	// Fetch the description text from row 8
-	public String Description_txt_Row8() {
-		List<WebElement> desclist = driver.findElementByAccessibilityId("PART_ScrollViewer")
-				.findElements(By.className("TextBlock"));
-		return desclist.get(31).getText();
+		return desclist.get(z).getText();
 	}
 
 	// Presence of txtFrom Range box enable
