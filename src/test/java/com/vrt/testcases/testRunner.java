@@ -23,8 +23,8 @@ public class testRunner {
 		ExtentReporterNG er = new ExtentReporterNG();
 
 		testng = new TestNG();
-		//testng.setTestClasses(new Class[] {HitNTrialTests.class});
-		testng.setTestClasses(new Class[] {QualificationProcessTest.class});
+		testng.setTestClasses(new Class[] {HitNTrialTests.class});
+		//testng.setTestClasses(new Class[] {QualificationProcessTest.class});
 
 		testng.run();			
 	}

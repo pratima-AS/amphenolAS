@@ -62,6 +62,11 @@ public class LoginPage extends BaseClass {
 	public String AppName() {
 		return FetchText(ProductName);
 	}
+	
+	// Click on the Product Name content
+	public void clickOn_AppName() {
+		clickOn(ProductName);
+	}
 
 	// Verify the User ID field presence...")
 	public boolean UserIDFieldPresence() {
@@ -309,7 +314,7 @@ public class LoginPage extends BaseClass {
 	// Get the Sw version info from the About window on clicking About icon of the
 	// bottom apps bar
 	public String get_SWVersion_About_Text() throws InterruptedException {
-		clickOn(ProductName);
+		clickOn_AppName();
 		Actions ac = new Actions(driver);
 		ac.contextClick().build().perform();
 		// ac.contextClick().build().perform();
@@ -320,8 +325,6 @@ public class LoginPage extends BaseClass {
 		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
 
 		String[] SWVer = FetchText(SWVersion_About_info).split(":");
-		clickOn(ProductName);
-		clickOn(ProductName);
 		return SWVer[1];
 	}
 

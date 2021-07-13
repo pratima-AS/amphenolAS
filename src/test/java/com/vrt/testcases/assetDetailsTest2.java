@@ -234,7 +234,7 @@ public class assetDetailsTest2 extends BaseClass {
 
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();

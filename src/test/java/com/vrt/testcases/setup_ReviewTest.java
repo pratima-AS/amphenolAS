@@ -181,7 +181,7 @@ public class setup_ReviewTest extends BaseClass {
 		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 
@@ -763,7 +763,7 @@ public class setup_ReviewTest extends BaseClass {
 		defineSetupPage.enter_defineSetupPage_LoadDesc("Updated");
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.clickSaveBtn();

@@ -292,7 +292,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 		Setup_ReviewPage.click_Save_Btn(Qstart, "Yes", getUID("adminFull"), getPW("adminFull"));
@@ -863,7 +863,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 
 		int Yr = Integer.parseInt(TOD.split(":")[0]);
@@ -944,7 +944,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 
@@ -1026,7 +1026,7 @@ public class assetDetailsTest1 extends BaseClass {
 
 		//Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
@@ -1249,7 +1249,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 

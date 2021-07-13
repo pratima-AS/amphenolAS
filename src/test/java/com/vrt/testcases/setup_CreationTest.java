@@ -269,7 +269,7 @@ public class setup_CreationTest extends BaseClass {
 			Thread.sleep(1000);*/
 		}
 		
-		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_NxtBtn();
+		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		
 		//Setup_Claculations page
 		float bTemp = Float.parseFloat(BaseTemp);
@@ -280,8 +280,8 @@ public class setup_CreationTest extends BaseClass {
 		
 		if (PrNo>0) {
 			Setup_CalculationsPage.click_SatTP_btn();
-			Setup_CalculationsPage.select_1stTempSensor();
-			Setup_CalculationsPage.select_1stPrSensor();			
+			Setup_CalculationsPage.selectSensor_SaturationPressureOfSteam_DD(0);
+			Setup_CalculationsPage.selectSensor_SaturationTemperatureOfSteam_DD(0);			
 			Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 			
 		} else {

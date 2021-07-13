@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.vrt.testcases.LoginTest">
+      <class name="com.vrt.testcases.setup_QualParametersTest">
         <methods>
-          <include name="LOGIN_022"/>
           <include name="Teardown"/>
-          <include name="endReport"/>
+          <include name="QP012"/>
+          <include name="PreSetup"/>
           <include name="Setup"/>
-          <include name="PreSetUp"/>
+          <include name="endReport_releaseMomory"/>
         </methods>
-      </class> <!-- com.vrt.testcases.LoginTest -->
+      </class> <!-- com.vrt.testcases.setup_QualParametersTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

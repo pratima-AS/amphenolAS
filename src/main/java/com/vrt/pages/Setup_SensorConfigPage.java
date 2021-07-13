@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SendKeysAction;
 
 import com.vrt.base.BaseClass;
 
@@ -18,7 +16,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 	private WebElement AddSensors_btn = null;
 	private WebElement ConfigureSensors_btn = null;
 	private WebElement DefineSetup_btn = null;
-	private WebElement AddExpanderImage_btn = null;
 	private WebElement GroupSensors_btn = null;
 
 	private void initializeEelements() {
@@ -28,8 +25,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 		ConfigureSensors_btn = driver.findElementByName("Configure Sensors");
 		DefineSetup_btn = driver.findElementByName("Define Setup");
 		GroupSensors_btn = driver.findElementByAccessibilityId("NextButton");
-		AddExpanderImage_btn = driver.findElementByAccessibilityId("ExpanderImage");
-
 	}
 
 	Setup_SensorConfigPage() throws IOException {
@@ -45,7 +40,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 		ConfigureSensors_btn = null;
 		DefineSetup_btn = null;
 		GroupSensors_btn = null;
-		AddExpanderImage_btn = null;
 	}
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,7 +52,7 @@ public class Setup_SensorConfigPage extends BaseClass {
 	}
 
 	// Check the presence of Define Setup name
-	public boolean SensorConfig_assertname_state() {
+	public boolean SensorConfig_setupname_state() {
 		return IsElementVisibleStatus(SensorConfigPageHeaderTxt);
 	}
 
@@ -110,11 +104,12 @@ public class Setup_SensorConfigPage extends BaseClass {
 	// then click yes for second alert message i.e Less number of sensors are
 	// configured than the definied
 
-	public Setup_GroupSensorsPage Click_nxtbtn_ForChangingExistingSC() throws IOException {
+	public Setup_GroupSensorsPage Click_nxtbtn_ForChangingExistingSC() throws IOException, InterruptedException {
 		clickOn(GroupSensors_btn);
 
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
+		Thread.sleep(1000);
 		WebElement Yesbtn1 = driver.findElementByName("Yes");
 		clickOn(Yesbtn1);
 		return new Setup_GroupSensorsPage();
@@ -641,100 +636,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 		WebElement Description_Button = driver.findElementByAccessibilityId("DescriptionButton");
 		clickOn(Description_Button);
 		return new Setup_SensorDescriptionPage();
-	}
-
-	// Right click on the Asset Creation page to invoke the bottom apps bar
-	public void Right_Click__Buttom_Menuoptions() {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-	}
-
-	// Verify the presence of Home button in the bottom apps bar
-	public boolean check_Home_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_Home_Icon);
-	}
-
-	// Verify the presence of Apps Help icon/button in the bottom apps bar
-	public boolean check_Help_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_AppHelp_Icon);
-	}
-
-	// Verify the presence of WndsHelp Help icon/button in the bottom apps bar
-	public boolean check_WndsHelp_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
-	}
-
-	// Verify the presence of About Help icon/button in the bottom apps bar
-	public boolean check_About_Buttom_AppBar_Presence() {
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		return IsElementVisibleStatus(bottomMenu_About_Icon);
-	}
-
-	// Click on the Home icon of the bottom apps bar to move to Main Hub page
-	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		clickOn(bottomMenu_Home_Icon);
-		WebElement Yesbtn = driver.findElementByName("Yes");
-		clickOn(Yesbtn);
-		Thread.sleep(1000);
-		return new MainHubPage();
-	}
-
-	// Click on the Help icon of the bottom apps bar to move to Main Hub page
-	public void Click_Help_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_AppHelp_Icon = driver.findElementByAccessibilityId("HelpAppBarButton");
-		clickOn(bottomMenu_AppHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the WndsHelp icon of the bottom apps bar
-	public void Click_WndsHelp_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
-		clickOn(bottomMenu_WndsHelp_Icon);
-		Thread.sleep(500);
-	}
-
-	// Click on the About icon of the bottom apps bar to invoke the ABout window
-	public void Click_About_Icon_AppBar() throws InterruptedException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_About_Icon = driver.findElementByAccessibilityId("AboutAppBarButton");
-		clickOn(bottomMenu_About_Icon);
-		Thread.sleep(500);
-	}
-
-	// Get the Asset Creation Help context header text on clicking Help icon of the
-	// bottom apps bar
-	public String get__HelpMenu_HdrText() {
-		WebElement AsstCreation_HelpMenu = driver.findElementByAccessibilityId("helpHeader");
-		return FetchText(AsstCreation_HelpMenu);
-	}
-
-	// Verify the presence of About window on clicking the ABout icon in the bottom
-	// apps bar
-	public boolean check_About_wndw_Presence() {
-		WebElement About_Wndw = driver.findElementByName("About");
-		return IsElementVisibleStatus(About_Wndw);
-	}
-
-	// Get the Sw version info from the About window on clicking About icon of the
-	// bottom apps bar
-	public String get_SWVersion_About_Text() {
-		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
-		return FetchText(SWVersion_About_info);
 	}
 
 }
