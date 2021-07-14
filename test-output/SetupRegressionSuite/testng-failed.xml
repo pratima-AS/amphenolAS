@@ -7,11 +7,32 @@
   </listeners>
   <test thread-count="5" verbose="5" name="Setup(failed)">
     <classes>
+      <class name="com.vrt.testcases.setup_SensorConfigTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="PreSetup"/>
+          <include name="SC110" invocation-numbers="0 0 0"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_SensorConfigTest -->
+      <class name="com.vrt.testcases.setup_QualParametersTest">
+        <methods>
+          <include name="QP060" invocation-numbers="0 0 0"/>
+          <include name="QP030A"/>
+          <include name="Teardown"/>
+          <include name="QP032A"/>
+          <include name="QP034A"/>
+          <include name="PreSetup"/>
+          <include name="Setup"/>
+          <include name="endReport_releaseMomory"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_QualParametersTest -->
       <class name="com.vrt.testcases.setup_GroupSensorsTest">
         <methods>
           <include name="Teardown"/>
           <include name="PreSetup"/>
-          <include name="GS080"/>
+          <include name="GS080" invocation-numbers="0 0 0"/>
           <include name="endReport_releaseMomory"/>
           <include name="GS014"/>
           <include name="Setup"/>
@@ -25,12 +46,10 @@
           <include name="PreSetup"/>
           <include name="Setup"/>
           <include name="CAL011A"/>
-          <include name="CAL013"/>
-          <include name="CAL035"/>
-          <include name="CAL036"/>
-          <include name="CAL044"/>
-          <include name="CAL016B"/>
+          <include name="CAL033"/>
+          <include name="CAL044" invocation-numbers="0 0 0"/>
           <include name="CAL010"/>
+          <include name="CAL032"/>
         </methods>
       </class> <!-- com.vrt.testcases.setup_CalculationTest -->
     </classes>
