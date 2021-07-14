@@ -226,7 +226,7 @@ public class Setup_CalculationsPage extends BaseClass {
 
 	// Get the default value displayed in D Value field
 
-	public String DValueField_text() {
+	public String get_DValueField_text() {
 		return FetchText(Dvalue_textfield);
 	}
 

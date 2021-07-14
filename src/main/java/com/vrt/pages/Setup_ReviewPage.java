@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-
 import org.openqa.selenium.WebElement;
 
 import com.vrt.base.BaseClass;
@@ -57,6 +56,7 @@ public class Setup_ReviewPage extends BaseClass {
 	WebElement Sensors_Grp = null;
 	WebElement Type_Group = null;
 	WebElement SaveSetupButton = null;
+	WebElement TotalGroupValue_TextBlock = null;
 
 	private void initializeEelements() {
 		ReviewPageTitle = driver.findElementByName("Review");
@@ -77,6 +77,7 @@ public class Setup_ReviewPage extends BaseClass {
 		SensorDetails_Section = driver.findElementByName("Sensor Details");
 
 		Groups_Section = driver.findElementByName("Groups");
+		TotalGroupValue_TextBlock = driver.findElementByAccessibilityId("TotalGroupValueTextBlock");
 
 		EditGroupsButton = driver.findElementByAccessibilityId("EditGroupsButton");
 
@@ -124,7 +125,55 @@ public class Setup_ReviewPage extends BaseClass {
 	}
 
 	// Release memory
+	public void resetWebElements() {
+		ReviewPageTitle = null;
+		SaveSetup_Btn = null;
+		QStart_Text = null;
+		Bottom_VScrollBar = null;
+		Back_btn = null;
+		CopyAsNewSetup_Button = null;
+		SetupHeaderTextBlock = null;
+		sub_header = null;
+		Previous_Btn = null;
+		CreateSetupReport_Button = null;
+		AssetDetails_Section = null;
+		SensorDetails_Section = null;
+		Groups_Section = null;
+		Qualification_StartStop_Condition_Section = null;
+		EditCalculationButton = null;
+		Calculations_Section = null;
+		EditSensorDetailsButton = null;
+		EditGroupsButton = null;
+		ReportHeader_Section = null;
+		EditReportButton = null;
+		EditQualificationParametersButton = null;
+		// image = null;
+		Asset_ID = null;
+		Model = null;
+		Manufacturer = null;
+		Type = null;
+		Size = null;
+		Temp = null;
+		Humidity = null;
+		Pressure = null;
+		Temp_val = null;
+		Asset_ID_Report = null;
+		SOP_Protocol_Report = null;
+		Load_Description_Report = null;
+		Comments_report = null;
+		AssetIDvalue_Report = null;
+		SopProtocolValue_Report = null;
+		LoadDescValue_Report = null;
+		CommentValue_Report = null;
+		TotalGroups = null;
+		No_Groups = null;
+		GroupName = null;
+		Sensors_Grp = null;
+		Type_Group = null;
+		SaveSetupButton = null;
+		TotalGroupValue_TextBlock = null;
 
+	}
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Review Page methods
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,6 +285,12 @@ public class Setup_ReviewPage extends BaseClass {
 		return new Setup_QualParamPage();
 	}
 
+	// fetch text TotalGroupValue_TextBlock
+
+	public String get_TotalGroup_Value() {
+		return FetchText(TotalGroupValue_TextBlock);
+	}
+
 	// Get the Review page title text
 	public String get_ReviewPage_titletext() {
 		return FetchText(ReviewPageTitle);
@@ -317,7 +372,7 @@ public class Setup_ReviewPage extends BaseClass {
 
 	public assetDetailsPage click_backBtn() throws InterruptedException, IOException {
 		clickOn(Back_btn);
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		return new assetDetailsPage();
 
 	}
@@ -374,32 +429,34 @@ public class Setup_ReviewPage extends BaseClass {
 	 */
 
 // verify asset ID is displaying in Assets section
-	public boolean Asset_ID_state() {
-		return Asset_ID.isEnabled();
+	public boolean Is_AssetID_Visible() {
+		return IsElementVisibleStatus(Asset_ID);
 	}
 
 	// verify Model is displaying in Assets section
-	public boolean Model_state() {
-		return Model.isEnabled();
+	public boolean Is_Model_Visible() {
+		return IsElementVisibleStatus(Model);
 	}
 
 	// verify Manufacturer is displaying in Assets section
-	public boolean Manufacturer_state() {
-		return Manufacturer.isEnabled();
+	public boolean Is_Manufacturer_visible() {
+
+		return IsElementVisibleStatus(Manufacturer);
 	}
 
 	// verify Type is displaying in Assets section
-	public boolean Type_state() {
-		return Type.isEnabled();
+	public boolean Is_Type_Visible() {
+		return IsElementVisibleStatus(Type);
 	}
 
 	// verify Type is displaying in Assets section
-	public boolean Size_state() {
-		return Size.isEnabled();
+	public boolean Is_Size_Visible() {
+
+		return IsElementVisibleStatus(Size);
 	}
 
 	// verify Temp is displaying in Assets section
-	public boolean Temp_state() {
+	public boolean Is_Temp_Visible() {
 		return IsElementVisibleStatus(Temp);
 	}
 
@@ -415,12 +472,12 @@ public class Setup_ReviewPage extends BaseClass {
 	}
 
 	// verify Humidity is displaying in Assets section
-	public boolean Humidity_state() {
+	public boolean Is_Humidity_visible() {
 		return IsElementVisibleStatus(Humidity);
 	}
 
 	// verify Pressure is displaying in Assets section
-	public boolean Pressure_state() {
+	public boolean Is_Pressure_visible() {
 		return IsElementVisibleStatus(Pressure);
 	}
 
@@ -437,7 +494,7 @@ public class Setup_ReviewPage extends BaseClass {
 
 	// SOP_Protocol_Report is displayed
 
-	public boolean SOP_Protocol_Report_state() {
+	public boolean Is_SOP_Protocol_Report_Visible() {
 		return IsElementVisibleStatus(SOP_Protocol_Report);
 	}
 
@@ -452,12 +509,12 @@ public class Setup_ReviewPage extends BaseClass {
 	}
 
 	// Load Description report
-	public boolean Load_Description_Report_State() {
+	public boolean Is_Load_Description_report_Visible() {
 		return IsElementVisibleStatus(Load_Description_Report);
 	}
 
 	// Comments_report
-	public boolean Comments_report_State() {
+	public boolean Is_Comments_report_Visible() {
 		return IsElementVisibleStatus(Comments_report);
 	}
 
@@ -480,40 +537,37 @@ public class Setup_ReviewPage extends BaseClass {
 	}
 
 	// Is TotalGroups visible
-	public boolean TotalGroups_State() {
+	public boolean Is_TotalGroups_visible() {
 		return IsElementVisibleStatus(TotalGroups);
 	}
 
 	// Is No_Groups visible
-	public boolean NumberOf_Groups_State() {
+	public boolean Is_NumberOfGroups_visible() {
 		return IsElementVisibleStatus(No_Groups);
 	}
 
 	// is GroupName visible
-	public boolean GroupName_State() {
+	public boolean IsGroupName_Visible() {
 		return IsElementVisibleStatus(GroupName);
 	}
 
 	// is SensorsName visible
-	public boolean Sensors_Grp_State() {
+	public boolean Is_Sensors_Visible() {
 		return IsElementVisibleStatus(Sensors_Grp);
 	}
 
 	// is SensorsName visible
-	public boolean Type_Group_State() {
+	public boolean Is_TypeGroup_Visible() {
 		return IsElementVisibleStatus(Type_Group);
 	}
-
-	//
 
 	// Group name temp is displayed
 	public boolean Temperature_State() {
 		WebElement Temperaturer_GrpName = driver.findElementByName("Temperature");
-
 		return IsElementVisibleStatus(Temperaturer_GrpName);
 	}
 
-	// Group name temp is displayed
+//Group name temp is displayed
 	public boolean Pressure_State() {
 		WebElement Pressure_GrpName = driver.findElementByName("Pressure");
 

@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="67" total="68" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="45698" started-at="2021-07-13T16:41:24 IST" finished-at="2021-07-13T16:42:10 IST">
+  <suite name="Default suite" duration-ms="72971" started-at="2021-07-14T19:31:55 IST" finished-at="2021-07-14T19:33:08 IST">
     <groups>
       <group name="Regression">
-        <method signature="setup_QualParametersTest.QP012()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="QP012" class="com.vrt.testcases.setup_QualParametersTest"/>
+        <method signature="setup_CalculationTest.CAL033()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="CAL033" class="com.vrt.testcases.setup_CalculationTest"/>
       </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="45698" started-at="2021-07-13T16:41:24 IST" finished-at="2021-07-13T16:42:10 IST">
-      <class name="com.vrt.testcases.setup_QualParametersTest">
-        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="PreSetup" is-config="true" duration-ms="110" started-at="2021-07-13T16:41:24 IST" finished-at="2021-07-13T16:41:24 IST">
+    <test name="Default test" duration-ms="72971" started-at="2021-07-14T19:31:55 IST" finished-at="2021-07-14T19:33:08 IST">
+      <class name="com.vrt.testcases.setup_CalculationTest">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="PreSetup" is-config="true" duration-ms="225" started-at="2021-07-14T19:31:55 IST" finished-at="2021-07-14T19:31:55 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PreSetup -->
-        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="Setup" is-config="true" duration-ms="37958" started-at="2021-07-13T16:41:24 IST" finished-at="2021-07-13T16:42:02 IST">
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="Setup" is-config="true" duration-ms="43278" started-at="2021-07-14T19:31:55 IST" finished-at="2021-07-14T19:32:38 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Setup -->
-        <test-method status="PASS" signature="QP012()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="QP012" duration-ms="7151" started-at="2021-07-13T16:42:02 IST" description="QP012-Verify that 24hr format is accepted in the time HH field for time of the day option" finished-at="2021-07-13T16:42:09 IST">
+        <test-method status="PASS" signature="CAL033()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="CAL033" duration-ms="28823" started-at="2021-07-14T19:32:38 IST" description="CAL033-Verify that the Saturation pressure of steam field will be disabled when there are no temperature sensors defined in the setup" finished-at="2021-07-14T19:33:07 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- QP012 -->
-        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="Teardown" is-config="true" duration-ms="45" started-at="2021-07-13T16:42:09 IST" finished-at="2021-07-13T16:42:09 IST">
+        </test-method> <!-- CAL033 -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="Teardown" is-config="true" duration-ms="67" started-at="2021-07-14T19:33:07 IST" finished-at="2021-07-14T19:33:07 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=QP012 status=SUCCESS method=setup_QualParametersTest.QP012()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70] output={null}]]]>
+                <![CDATA[[TestResult name=CAL033 status=SUCCESS method=setup_CalculationTest.CAL033()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport_releaseMomory()[pri:0, instance:com.vrt.testcases.setup_QualParametersTest@3e57cd70]" name="endReport_releaseMomory" is-config="true" duration-ms="402" started-at="2021-07-13T16:42:09 IST" finished-at="2021-07-13T16:42:10 IST">
+        <test-method status="PASS" signature="endReport_releaseMomory()[pri:0, instance:com.vrt.testcases.setup_CalculationTest@6b9651f3]" name="endReport_releaseMomory" is-config="true" duration-ms="536" started-at="2021-07-14T19:33:07 IST" finished-at="2021-07-14T19:33:08 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport_releaseMomory -->
-      </class> <!-- com.vrt.testcases.setup_QualParametersTest -->
+      </class> <!-- com.vrt.testcases.setup_CalculationTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

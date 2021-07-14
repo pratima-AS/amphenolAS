@@ -8,12 +8,12 @@
        </listeners>
        <test thread-count="5" name="Setup" preserve-order="true">
               <classes>
-<!--                      <class name="com.vrt.testcases.setup_DefineSetupTest" > </class> -->
-<!--                      <class name="com.vrt.testcases.setup_SensorConfigTest" > </class> -->
+                     <class name="com.vrt.testcases.setup_DefineSetupTest" > </class>
+                     <class name="com.vrt.testcases.setup_SensorConfigTest" > </class>
                      <class name="com.vrt.testcases.setup_GroupSensorsTest" ></class>
                      <class name="com.vrt.testcases.setup_CalculationTest" ></class>
-                     <!-- <class name="com.vrt.testcases.setup_QualParametersTest" ></class>
-                     <class name="com.vrt.testcases.setup_ReviewTest" ></class>   -->      
+                     <class name="com.vrt.testcases.setup_QualParametersTest" ></class>
+                     <class name="com.vrt.testcases.setup_ReviewTest" ></class>        
               </classes>
        </test> <!-- setupTestSanity -->
 </suite> <!-- setupTestSanity -->

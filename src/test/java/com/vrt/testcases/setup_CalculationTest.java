@@ -16,9 +16,11 @@ import org.testng.asserts.SoftAssert;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+
 import com.vrt.base.BaseClass;
 import com.vrt.pages.LoginPage;
 import com.vrt.pages.MainHubPage;
+import com.vrt.pages.PoliciesPage;
 import com.vrt.pages.Setup_SensorConfigPage;
 import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.UserManagementPage;
@@ -26,11 +28,9 @@ import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.assetDetailsPage;
 import com.vrt.pages.assetHubPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
-
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.setupCreationUtility;
 import com.vrt.pages.Setup_SensorDescriptionPage;
-
 import com.vrt.pages.Setup_CalculationsPage;
 import com.vrt.pages.Setup_QualParamPage;
 
@@ -61,6 +61,7 @@ public class setup_CalculationTest extends BaseClass {
 	Setup_SensorDescriptionPage Setup_SensorDescriptionPage;
 	Setup_CalculationsPage Setup_CalculationsPage;
 	Setup_QualParamPage Setup_QualParamPage;
+	PoliciesPage PoliciesPage;
 
 	// Before All the tests are conducted
 	@BeforeTest
@@ -96,14 +97,12 @@ public class setup_CalculationTest extends BaseClass {
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 
-		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
 		UserManagementPage.clickPrivCreateEditSetup();
-		UserManagementPage.clickPrivRunCal();
 
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		MainHubPage = UserManagementPage.ClickBackButn();
+		MainHubPage = UserManagementPage.ClickBackButn();		
 
 		// Method to Create 1st Asset
 		assetHubPage = MainHubPage.Click_AssetTile();
@@ -112,6 +111,14 @@ public class setup_CalculationTest extends BaseClass {
 		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
 				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		
+		//Method to enable D value editing in Policies page.
+        assetHubPage = assetCreationPage.clickBackBtn();
+        MainHubPage  = assetHubPage.click_BackBtn();
+        UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+        PoliciesPage = UserManagementPage.Click_Policy();
+        PoliciesPage.Enable_Editing_Dvalue();
+        
 
 		AppClose();
 		Thread.sleep(500);
@@ -145,8 +152,6 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
-		//Setup_SensorConfigPage.Enter_PressureCount_textField("5");
-
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
 		Setup_SensorConfigPage.select_Sensortype_temp();
 		Setup_SensorConfigPage.Enter_Num_To("5");
@@ -230,8 +235,7 @@ public class setup_CalculationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// CAL003-Verify that 121.1 is the default value displayed in Base Temperature
-	// field
+	// CAL003-Verify that 121.1 is the default value displayed in Base Temperature field
 	@Test(groups = {
 			"Regression" }, description = "CAL003-Verify that 121.1 is the default value displayed in Base Temperature field")
 	public void CAL003() throws InterruptedException, IOException {
@@ -374,7 +378,7 @@ public class setup_CalculationTest extends BaseClass {
 		extentTest = extent.startTest("CAL009-Verify that 1.00 is the default value displayed in D Value field");
 		SoftAssert sa = new SoftAssert();
 
-		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "1.00",
+		sa.assertEquals(Setup_CalculationsPage.get_DValueField_text(), "1.00",
 				" Fail:the default value is not displayed in BD Value field ");
 		sa.assertAll();
 	}
@@ -392,7 +396,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
 		Thread.sleep(1000);
-		String Dtxt = Setup_CalculationsPage.DValueField_text();
+		String Dtxt = Setup_CalculationsPage.get_DValueField_text();
 
 		System.out.println(Dtxt.length());
 		sa.assertEquals(Dtxt.length(), 5, " Fail:the default value is not displayed in BD Value field ");
@@ -409,7 +413,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
 		Thread.sleep(1000);
-		sa.assertEquals(Setup_CalculationsPage.DValueField_text(), "0.10",
+		sa.assertEquals(Setup_CalculationsPage.get_DValueField_text(), "0.10",
 				" Fail: Minimum value 0.10 is not allowed in D Value field");
 		sa.assertAll();
 
@@ -424,7 +428,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_CalculationsPage.Enter_Dvalue_textfield("999999");
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
-		String Dval = Setup_CalculationsPage.DValueField_text();
+		String Dval = Setup_CalculationsPage.get_DValueField_text();
 		// System.out.println(Dval);
 		sa.assertEquals(Dval, "99.99", "Fail:Minimum value 99.99 is not allowed in D Value field ");
 		sa.assertAll();
@@ -462,7 +466,7 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_CalculationsPage = Setup_QualParamPage.click_Backbtn();
 		Thread.sleep(1000);
-		String Dval1 = Setup_CalculationsPage.DValueField_text();
+		String Dval1 = Setup_CalculationsPage.get_DValueField_text();
 
 		// Here we have entered specialchars and characters as invalid values so here
 		// application will restrict and
@@ -783,7 +787,9 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("PSR");
 		Setup_SensorConfigPage.Click_assignBtn();
-		
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
+		Setup_GroupSensorsPage.click_DfltGrp_Btn();
+		Setup_SensorConfigPage=Setup_GroupSensorsPage.Click_SensorConfigTab();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nxtbtn_ForChangingExistingSC();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
@@ -1032,7 +1038,6 @@ public class setup_CalculationTest extends BaseClass {
 		Setup_GroupSensorsPage.click_DeleteGroup_Btn();
 		Setup_GroupSensorsPage.DeleteGroup_Yes();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.click_YesBtn_AlertMsg_for_DeleteGroup_SensorUnassigned();
-		//Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 		Setup_CalculationsPage.select_AlethCondition("During Entire Study");
 		Setup_CalculationsPage.NxtBtn_alert();
 

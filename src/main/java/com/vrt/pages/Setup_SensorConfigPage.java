@@ -106,10 +106,10 @@ public class Setup_SensorConfigPage extends BaseClass {
 
 	public Setup_GroupSensorsPage Click_nxtbtn_ForChangingExistingSC() throws IOException, InterruptedException {
 		clickOn(GroupSensors_btn);
-
+		Thread.sleep(2000);
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		WebElement Yesbtn1 = driver.findElementByName("Yes");
 		clickOn(Yesbtn1);
 		return new Setup_GroupSensorsPage();
@@ -213,7 +213,7 @@ public class Setup_SensorConfigPage extends BaseClass {
 	}
 
 	// Enter Temperature count to add Temp sensors
-	public void Enter_TemperatureCount_textField(String TempCount) {
+	public void Enter_TemperatureCount_textField(String TempCount) throws InterruptedException {
 		List<WebElement> TextFields = driver.findElementsByClassName("TextBox");
 		// System.out.println(TextFields.size());
 
