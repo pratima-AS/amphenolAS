@@ -374,6 +374,12 @@ public class TestUtilities extends BaseClass {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
 	}
+	
+	// Fetch the popup message data by virtue of Name attribute
+	public String get_popup_text() {
+		WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
+		return LogMsg.getAttribute("Name");
+	}
 
 	// Method to retrive all the file names present in any folder
 	public List<String> get_fileNamesList(String folderpath) {

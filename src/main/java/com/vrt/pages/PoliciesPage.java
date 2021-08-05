@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
 
@@ -18,6 +20,7 @@ public class PoliciesPage extends BaseClass {
 	WebElement PoliciesHeaderText = null;
 	WebElement pwdcombobox = null;
 	WebElement SaveBtn = null;
+	WebElement Passwords = null;
 	WebElement UserManagement_TAB = null;
 	WebElement ExpirePasswordComboBox = null;
 	WebElement LoginFailuresComboBox = null;
@@ -49,6 +52,7 @@ public class PoliciesPage extends BaseClass {
 
 		ExpirePasswordCheckBox = driver.findElementByAccessibilityId("ExpirePasswordCheckBox");
 		SaveBtn = driver.findElementByName("Save");
+		Passwords = driver.findElementByName("Passwords");
 		UserManagement_TAB = driver.findElementByAccessibilityId("UserManagementButton");
 		Preferences_TAB = driver.findElementByAccessibilityId("PreferencesButton");
 
@@ -80,6 +84,7 @@ public class PoliciesPage extends BaseClass {
 		Preferences_TAB = null;
 		InstrumentCalibWarningComboBox = null;
 		CancelButton = null;
+		Passwords = null;
 	}
 
 	/*----------------------
@@ -125,112 +130,12 @@ public class PoliciesPage extends BaseClass {
 		clickOn(option1);
 	}
 
-	// Select 6 chars for minimum length pwd
-	public void PWDLengthBox_6chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option1 = driver.findElementByName("6 Characters");
-		clickOn(option1);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
+	// Select any minimum length pwd
 
-	// Select 7 chars for minimum length pwd
-	public void PWDLengthBox_7chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option2 = driver.findElementByName("7 Characters");
-		clickOn(option2);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 8 chars for minimum length pwd
-	public void PWDLengthBox_8chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option3 = driver.findElementByName("8 Characters");
-		clickOn(option3);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 9 chars for minimum length pwd
-	public void PWDLengthBox_9chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option4 = driver.findElementByName("9 Characters");
-		clickOn(option4);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 10 chars for minimum length pwd
-	public void PWDLengthBox_10chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option5 = driver.findElementByName("10 Characters");
-		clickOn(option5);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 11 chars for minimum length pwd
-	public void PWDLengthBox_11chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option11 = driver.findElementByName("11 Characters");
-		clickOn(option11);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 12 chars for minimum length pwd
-	public void PWDLengthBox_12chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option12 = driver.findElementByName("12 Characters");
-		clickOn(option12);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 13 chars for minimum length pwd
-	public void PWDLengthBox_13chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option13 = driver.findElementByName("13 Characters");
-		clickOn(option13);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 14 chars for minimum length pwd
-	public void PWDLengthBox_14chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option14 = driver.findElementByName("14 Characters");
-		clickOn(option14);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 15 chars for minimum length pwd
-	public void PWDLengthBox_15chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option15 = driver.findElementByName("15 Characters");
-		clickOn(option15);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
-	// Select 16 chars for minimum length pwd
-	public void PWDLengthBox_16chars() throws InterruptedException {
-		// System.out.println(Utype);
-		clickOn(pwdcombobox);
-		WebElement option16 = driver.findElementByName("16 Characters");
-		clickOn(option16);
+	public void SelectAny_Option_FromPWDLengthBox(int index) throws InterruptedException {
+		List<WebElement> options = driver.findElementByAccessibilityId("RequireMinLengthPassword_A_ID1")
+				.findElements(By.className("ComboBoxItem"));
+		options.get(index).click();
 		Thread.sleep(1000);
 		ClickSaveButton();
 	}
@@ -305,11 +210,10 @@ public class PoliciesPage extends BaseClass {
 	public void Enable_Editing_Dvalue() throws InterruptedException {
 
 		if (checkboxSelectStatus(AllowDValueEditingCheckBox) == true) {
-			System.out.println("Check box selected");
+			System.out.println("D Value Checkbox is selected");
 		} else {
 			clickOn(AllowDValueEditingCheckBox);
 			ClickSaveButton();
-			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		}
 	}
 
@@ -368,7 +272,15 @@ public class PoliciesPage extends BaseClass {
 		clickOn(pwdcheckbox);
 		Thread.sleep(1000);
 		ClickSaveButton();
+	}
 
+	public void Enable_Editing_PWDcheckbox() throws InterruptedException {
+		if (checkboxSelectStatus(pwdcheckbox) == true) {
+			System.out.println("Min Length Password CheckBox is selected");
+		} else {
+			clickOn(pwdcheckbox);
+			ClickSaveButton();
+		}
 	}
 
 	public void Select_PWDcheckbox() throws InterruptedException {
@@ -389,82 +301,24 @@ public class PoliciesPage extends BaseClass {
 		return FetchText(Msg);
 	}
 
-	public void Click_PWchars(String PWchars) throws InterruptedException {
-
-		List<WebElement> ItemList = driver.findElementByAccessibilityId("RequireMinLengthPassword_A_ID1")
-				.findElements(By.className("ComboBoxItem"));
-
-		// System.out.println("Total setup created: " +SetupList.size());
-		// Loop for the different setup tiles created
-		for (int i = 0; i < ItemList.size(); i++) {
-			// System.out.println("setup list: " +SetupList.get(i).getText());
-
-			List<WebElement> ItemInfoList = ItemList.get(i).findElements(By.className("TextBlock"));
-
-			// System.out.println(" setup info count: " + SetupTileInfoList.size());
-			// Fetch all the contents of the Asset tile
-			for (int j = 0; j < ItemInfoList.size(); j++) {
-				// System.out.println("setup TileInfo: "+SetupTileInfoList.get(j).getText());
-
-				String st = ItemInfoList.get(j).getText();
-				if (st.contains(PWchars)) {
-					ItemInfoList.get(j).click();
-
-					break;
-				}
-
-			}
-		}
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-//
-	public void click_ExpirePasswordComboBox() {
-		clickOn(ExpirePasswordComboBox);
-
-	}
-
-//Select 14 chars for minimum length pwd
-	public void ExpPWD_181days() throws InterruptedException {
-
-		clickOn(ExpirePasswordComboBox);
-		WebElement option181 = driver.findElementByName("181 Days");
-		clickOn(option181);
-		Thread.sleep(1000);
-		ClickSaveButton();
-	}
-
 //fetch text
-	public String fetch_expirepwdtext() {
-		return FetchText(ExpirePasswordComboBox);
+	public String fetch_expirepwd_Defaulttext() {
+		return ExpirePasswordComboBox.findElement(By.className("TextBlock")).getText();
 	}
 
-	public void Click_ExpirePW(String SetupName) {
+	public void SelectAny_Value_fromExpirePwd_DD(int index) throws InterruptedException {
+		List<WebElement> options = driver.findElementByAccessibilityId("ExpirePasswordComboBox_A_ID2")
+				.findElements(By.className("ComboBoxItem"));
+		options.get(index).click();
+		Thread.sleep(1000);
+		ClickSaveButton();
+	}
 
-		List<WebElement> ItemList = driver.findElementByAccessibilityId("ExpirePasswordComboBox")
+	public String FetchTxt_from_ExpirePwdDD(int index) throws InterruptedException {
+		List<WebElement> options = driver.findElementByAccessibilityId("ExpirePasswordComboBox_A_ID2")
 				.findElements(By.className("ComboBoxItem"));
 
-		for (int i = 0; i < ItemList.size(); i++) {
-			// System.out.println("Item list: " +ItemList.get(i).getText());
-
-			List<WebElement> ItemInfoList = ItemList.get(i).findElements(By.className("TextBlock"));
-
-			// Fetch all the contents of the comobox tile
-			for (int j = 0; j < ItemInfoList.size(); j++) {
-				// System.out.println("setup TileInfo: "+ItemInfoList.get(j).getText());
-
-				String st = ItemInfoList.get(j).getText();
-				if (st.equals(SetupName)) {
-					ItemInfoList.get(j).click();
-
-					break;
-				}
-
-			}
-		}
-
+		return FetchText(options.get(index));
 	}
 
 //click On ExpirePasswordCheckBox
@@ -591,6 +445,65 @@ public class PoliciesPage extends BaseClass {
 		WebElement Yes_Alert_btn = driver.findElementByName("Yes");
 		clickOn(Yes_Alert_btn);
 
+	}
+
+	// click on ExpirePasswordComboBox
+
+	public void click_ExpirePasswordComboBox() {
+		clickOn(ExpirePasswordComboBox);
+
+	}
+
+	// Select Expire Password
+	public void selectExpirePassword(String pw) throws InterruptedException {
+
+		String pw1 = fetch_expirepwd_Defaulttext();
+		String SPart = pw1.split(" ")[0];
+		int val = Integer.parseInt(SPart);
+		// System.out.println(val);
+
+		String firstPart = pw.split(" ")[0];
+		int val1 = Integer.parseInt(firstPart);
+		// System.out.println(val1);
+
+		click_ExpirePasswordComboBox();
+		click_ExpirePasswordComboBox();
+		Actions ac = new Actions(driver);
+
+		if (val1 < val) {
+			for (int i = 0; i <= val; i++) {
+				//click_ExpirePasswordComboBox();
+				//Thread.sleep(500);
+				ac.sendKeys(Keys.ARROW_UP).build().perform();
+				//ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.ENTER).build().perform();
+				//Thread.sleep(1000);
+				// System.out.println((fetch_expirepwd_Defaulttext()));
+				//Thread.sleep(500);
+				if (ExpirePasswordComboBox.findElement(By.className("TextBlock")).getText().equals(pw)) {
+					// clickOn(Passwords);
+					Thread.sleep(1000);
+					break;
+					
+				}
+			}
+
+		} else if (val1 > val) {
+			for (int i = 0; i <= (368-val); i++) {
+				//click_ExpirePasswordComboBox();
+				// Thread.sleep(500);
+				//ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+				ac.sendKeys(Keys.ARROW_DOWN).build().perform();
+				//Thread.sleep(2000);
+				// System.out.println((fetch_expirepwd_Defaulttext()));
+				// Thread.sleep(500);
+				if (ExpirePasswordComboBox.findElement(By.className("TextBlock")).getText().equals(pw)) {
+					// clickOn(Passwords);
+					Thread.sleep(1000);
+					break;
+				}
+			}
+			
+		}
 	}
 
 }

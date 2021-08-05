@@ -43,7 +43,6 @@ import com.vrt.pages.FileManagementPage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.CopySetuppage;
-import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.SelectBaseStationPage;
 import com.vrt.pages.Setup_CalculationsPage;
 import com.vrt.pages.Setup_GroupSensorsPage;
@@ -51,7 +50,7 @@ import com.vrt.pages.Setup_QualParamPage;
 import com.vrt.pages.Setup_ReviewPage;
 import com.vrt.pages.Setup_SensorConfigPage;
 import com.vrt.pages.OverlayWiringImagePage;
-import com.vrt.pages.RWFileSelctionPage;
+import com.vrt.pages.RW_FileSelctionPage;
 import com.vrt.pages.AuditPage;
 
 import com.vrt.utility.TestUtilities;
@@ -88,7 +87,7 @@ public class assetDetailsTest1 extends BaseClass {
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	RWFileSelctionPage RWFileSelctionPage;
+	RW_FileSelctionPage RWFileSelctionPage;
 	CopySetuppage CopySetuppage;
 	SelectBaseStationPage SelectBaseStationPage;
 	OverlayWiringImagePage OverlayWiringImagePage;
@@ -1024,7 +1023,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		//Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 

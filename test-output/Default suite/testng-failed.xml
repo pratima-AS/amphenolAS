@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.vrt.testcases.setup_CalculationTest">
+      <class name="com.vrt.testcases.PolicyTest">
         <methods>
-          <include name="Teardown"/>
-          <include name="endReport_releaseMomory"/>
           <include name="PreSetup"/>
+          <include name="Teardown"/>
+          <include name="endReport"/>
+          <include name="Policies008" invocation-numbers="0"/>
           <include name="Setup"/>
-          <include name="CAL033"/>
         </methods>
-      </class> <!-- com.vrt.testcases.setup_CalculationTest -->
+      </class> <!-- com.vrt.testcases.PolicyTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

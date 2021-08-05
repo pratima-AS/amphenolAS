@@ -1,13 +1,11 @@
 /**
- * @author ruchika.behura
- *
- */
+* @author ruchika.behura
+*
+*/
 
 package com.vrt.pages;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,8 +16,6 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.vrt.base.BaseClass;
 import com.vrt.utility.TestUtilities;
-
-import org.openqa.selenium.JavascriptExecutor;
 
 public class UserManagementPage extends BaseClass {
 
@@ -271,7 +267,7 @@ public class UserManagementPage extends BaseClass {
 		enterText(PWUMField, NewPW);
 	}
 
-	//fetch PW text
+	// fetch PW text
 	public String get_PWField_text() {
 		return FetchText(PWUMField);
 	}
@@ -387,13 +383,12 @@ public class UserManagementPage extends BaseClass {
 		clickOn(BackUMBtn);
 		return new MainHubPage();
 	}
-	
-	
+
 	// Click Userlist window of UM Page
 	public void click_UsrLstBx() throws IOException {
 		WebElement usrListBox = driver.findElementByAccessibilityId("UsersListBox");
 		clickOn(usrListBox);
-		
+
 	}
 
 	// Select/Click any User in the UserList Panel
@@ -428,7 +423,7 @@ public class UserManagementPage extends BaseClass {
 		clickOn(CopyFilesReports);
 		clickOn(CreaeteEditSetupPriv);
 		clickOn(DeleteSetup);
-		clickOn(ArchiveData);		
+		clickOn(ArchiveData);
 		clickOn(CreaeteEditEquipPriv);
 		clickOn(DeleteEquipment);
 		clickOn(ManualSync);
@@ -443,7 +438,7 @@ public class UserManagementPage extends BaseClass {
 		// Thread.sleep(1000);
 	}
 
-	//Scroll down and click on AuditTrail user privilege checkbox
+	// Scroll down and click on AuditTrail user privilege checkbox
 	public void ClkAuditTrail() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
@@ -455,8 +450,8 @@ public class UserManagementPage extends BaseClass {
 		Thread.sleep(500);
 
 	}
-	
-	//Scroll Up and click 3 times
+
+	// Scroll Up and click 3 times
 	public void ClkscrollBar_up() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallDecrease");
@@ -465,7 +460,7 @@ public class UserManagementPage extends BaseClass {
 		clickOn(scrollbar);
 	}
 
-	//Scroll down and click 3 times
+	// Scroll down and click 3 times
 	public void ClkscrollBar_down() throws InterruptedException, AWTException {
 
 		WebElement scrollbar = driver.findElementByAccessibilityId("VerticalSmallIncrease");
@@ -898,6 +893,12 @@ public class UserManagementPage extends BaseClass {
 		return new PoliciesPage();
 	}
 
+	// Click on PoliciesHeaderText
+	public PreferencesPage Click_PreferenceTab() throws IOException {
+		clickOn(PreferencesHeaderText);
+		return new PreferencesPage();
+	}
+
 	// User Management Creation with ALL fields
 	public void UMCreation_AllFields(String UName, String UID, String Pwd, String Title, String Utype, String phno,
 			String Email, String ImageName) throws InterruptedException, AWTException, IOException {
@@ -909,7 +910,7 @@ public class UserManagementPage extends BaseClass {
 		select_UserType(Utype);
 		enterNewUserPhone(phno);
 		enterNewUserEmail(Email);
-		//selectUserImg(ImageName);
+		// selectUserImg(ImageName);
 		Thread.sleep(500);
 		ClickNewUserSaveButton();
 	}

@@ -40,7 +40,7 @@ import com.vrt.pages.SyncOutPage;
 import com.vrt.pages.CopySetuppage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
-import com.vrt.pages.RWFileSelctionPage;
+import com.vrt.pages.RW_FileSelctionPage;
 import bsh.ParseException;
 
 public class UM2 extends BaseClass {
@@ -71,7 +71,7 @@ public class UM2 extends BaseClass {
 	SyncInPage SyncInPage;
 	SyncOutPage SyncOutPage;
 	CopySetuppage CopySetuppage;
-	RWFileSelctionPage RWFileSelctionPage;
+	RW_FileSelctionPage RW_FileSelctionPage;
 	SyncInAssetListPage SyncInAssetListPage;
 
 	// Before Class/Test
@@ -455,9 +455,9 @@ public class UM2 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		RW_FileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
 
-		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
+		sa.assertEquals(RW_FileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
 		sa.assertAll();
 	}
 
@@ -810,9 +810,9 @@ public class UM2 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		RW_FileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
 
-		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
+		sa.assertEquals(RW_FileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
 		sa.assertAll();
 	}
 
@@ -962,9 +962,9 @@ public class UM2 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_QualTile();
 		assetDetailsPage.Select_QualFile("manual 1 min sampling");
-		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		RW_FileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
 
-		sa.assertEquals(RWFileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
+		sa.assertEquals(RW_FileSelctionPage.assetDetailTitle_Visible(), true, "AssetsNameText  should be Visible");
 		sa.assertAll();
 	}
 
