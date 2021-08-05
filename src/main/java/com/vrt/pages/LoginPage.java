@@ -169,6 +169,14 @@ public class LoginPage extends BaseClass {
 
 		return new MainHubPage();
 	}
+	
+	// Click New PW Save Btn without moving to Home Page")
+	public void ClickNewPW_OkBtn() throws InterruptedException, IOException {
+		WebElement NewPWSaveBtn = driver.findElementByName("OK");
+		clickOn(NewPWSaveBtn);
+		Thread.sleep(1000);
+	}
+
 
 	// Verify the CancelBtnPresence...")
 	public boolean CancelBtnPresence() {
@@ -210,6 +218,16 @@ public class LoginPage extends BaseClass {
 
 		return new MainHubPage();
 	}
+	
+	public void ChangeNewPW_getalertmsg(String UID, String PW, String NPW) throws InterruptedException, IOException {
+		EnterUserID(UID);
+		EnterUserPW(PW);
+		ClickLoginBtn();
+		enterNewPW(NPW);
+		enterConfNewPW(NPW);
+		ClickNewPW_OkBtn();
+	}
+
 
 //Login method for User OTHER THAN Kaye/411...")
 	public MainHubPage Login(String UID, String PW) throws InterruptedException, IOException {
@@ -295,21 +313,10 @@ public class LoginPage extends BaseClass {
 		MainLoginBtn.click();
 	}
 
-	// Alert message for entering deleted users credentials
-	public String Deleteduser_AlertMsg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(LogMsg);
-	}
-
-	public String AlertMsg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(LogMsg);
-	}
-
-	public String UserBlocked_PopUp_Msg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
-		return LogMsg.getAttribute("Name");
-	}
+	//public String UserBlocked_PopUp_Msg() {
+		//WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
+		//return LogMsg.getAttribute("Name");
+	//}
 
 	// Get the Sw version info from the About window on clicking About icon of the
 	// bottom apps bar

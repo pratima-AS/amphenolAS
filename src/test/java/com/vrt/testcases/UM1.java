@@ -2006,7 +2006,7 @@ public class UM1 extends BaseClass {
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.InvalidLogin(getUID("TestAdmin"), getPW("TestAdmin"));
 		String ExpAlrtMsg = "Invalid Credential, Please try again";
-		String ActAlertMsg = LoginPage.AlertMsg();
+		String ActAlertMsg = tu.get_AlertMsg_text();		
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL:Invalid Credential, Please try again message Not displaying");
 		sa.assertAll();
 	}

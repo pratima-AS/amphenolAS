@@ -9,17 +9,11 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.vrt.base.BaseClass;
-import com.vrt.utility.TestUtilities;
 
 public class RW_FileSelctionPage extends BaseClass {
 
@@ -73,6 +67,17 @@ public class RW_FileSelctionPage extends BaseClass {
 		return IsElementVisibleStatus(AssetsType);
 	}
 
+	// select Temperature
+
+	public RW_CycleSelectionPage Select_Temperature_ClickOK() throws IOException {
+		WebElement sensorType = driver.findElementByName("Temperature");
+		clickOn(sensorType);
+		WebElement ok = driver.findElementByName("OK");
+		clickOn(ok);
+		return new RW_CycleSelectionPage();
+
+	}
+
 // verify the presence of Manufacturer  (HARD CODE because This asset  has sync In through application)
 
 	public boolean assetManufacturer_Visible() {
@@ -98,8 +103,8 @@ public class RW_FileSelctionPage extends BaseClass {
 		Thread.sleep(5000);
 
 		// enter the filename
-		//String folderpath = System.getProperty("user.home") + "\\Documents";
-		//System.out.println(folderpath);
+		// String folderpath = System.getProperty("user.home") + "\\Documents";
+		// System.out.println(folderpath);
 		alert.sendKeys(folderpath);
 		Thread.sleep(500);
 
@@ -114,14 +119,15 @@ public class RW_FileSelctionPage extends BaseClass {
 		driver.switchTo().activeElement();
 		Thread.sleep(500);
 	}
-	
+
 	// displayMessageTextBlock
 	public String AlertMsg() {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
 	}
-	
-	// Right Click anywhere in the Report File selection Page to invoke the Bottom app status
+
+	// Right Click anywhere in the Report File selection Page to invoke the Bottom
+	// app status
 	// bar
 	public void rightclickon_RWFSPage() throws InterruptedException {
 		Actions ac = new Actions(driver);

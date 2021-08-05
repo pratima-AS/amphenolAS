@@ -497,10 +497,10 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // user who has acess will navigate to next page
-	public RWFileSelctionPage Click_GenerateReportsBtn_RWpage() throws IOException {
+	public RW_FileSelctionPage Click_GenerateReportsBtn_RWpage() throws IOException {
 		WebElement GenerateReports = driver.findElementByAccessibilityId("GenerateReportsForQualButton");
 		clickOn(GenerateReports);
-		return new RWFileSelctionPage();
+		return new RW_FileSelctionPage();
 	}
 
 // check the presence of GenerateReportsForQualButton

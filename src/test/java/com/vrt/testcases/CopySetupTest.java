@@ -38,7 +38,7 @@ import com.vrt.pages.Setup_QualParamPage;
 import com.vrt.pages.Setup_ReviewPage;
 import com.vrt.pages.Setup_SensorConfigPage;
 import com.vrt.pages.OverlayWiringImagePage;
-import com.vrt.pages.RWFileSelctionPage;
+import com.vrt.pages.RW_FileSelctionPage;
 import com.vrt.pages.AuditPage;
 
 import com.vrt.utility.TestUtilities;
@@ -74,7 +74,7 @@ public class CopySetupTest extends BaseClass {
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	RWFileSelctionPage RWFileSelctionPage;
+	RW_FileSelctionPage RWFileSelctionPage;
 	CopySetuppage CopySetuppage;
 	SelectBaseStationPage SelectBaseStationPage;
 	OverlayWiringImagePage OverlayWiringImagePage;

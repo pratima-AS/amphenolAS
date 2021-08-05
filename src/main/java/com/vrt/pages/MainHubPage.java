@@ -169,6 +169,14 @@ public class MainHubPage extends BaseClass {
 		WebElement btnConnect = driver.findElementByAccessibilityId("btnConnectIO");
 		clickOn(btnConnect);
 	}
+	
+	// Click the Admin Tile to navigate PreferencesPage
+	public PreferencesPage ClickAdminTile_Prefpage() throws InterruptedException, IOException {
+		clickOn(MainUIAdminTile);
+		Thread.sleep(1000);
+		return new PreferencesPage();
+	}
+
 }
 
 

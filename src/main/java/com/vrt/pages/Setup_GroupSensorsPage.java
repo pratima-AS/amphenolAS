@@ -133,9 +133,11 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
 	}
-	
-	// click on yes btn for the sensor not assigned message while moving to Calculation page after deleting a group
-	public Setup_CalculationsPage click_YesBtn_AlertMsg_for_DeleteGroup_SensorUnassigned() throws IOException, InterruptedException {
+
+	// click on yes btn for the sensor not assigned message while moving to
+	// Calculation page after deleting a group
+	public Setup_CalculationsPage click_YesBtn_AlertMsg_for_DeleteGroup_SensorUnassigned()
+			throws IOException, InterruptedException {
 		clickOn(CalculationsTab);
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
@@ -1017,17 +1019,17 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	// 10 groups can be created when 10 is selected for _Max groups_ field in
 	// preference page
 
-	public void create_Group10(int numberofGroups) {
+	public void create_MaxGroup(int numberofGroups) {
+		int j = 1;
+
 		for (int i = 1; i <= numberofGroups; i++) {
 			clickOn_NewGroupButton();
 
-			String GroupName = "Programiz";
-			for (int j = 0; j < GroupName.length(); j++) {
-				enter_groupname(GroupName);
+			String gn = "abc" + j;
 
-				click_SaveBtn();
-			}
-			break;
+			enter_groupname(gn);
+			click_SaveBtn();
+			j++;
 		}
 	}
 
