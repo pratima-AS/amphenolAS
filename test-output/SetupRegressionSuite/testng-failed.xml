@@ -38,18 +38,23 @@
           <include name="Setup"/>
         </methods>
       </class> <!-- com.vrt.testcases.setup_GroupSensorsTest -->
+      <class name="com.vrt.testcases.setup_ReviewTest">
+        <methods>
+          <include name="REV025"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="PreSetup"/>
+          <include name="Teardown"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_ReviewTest -->
       <class name="com.vrt.testcases.setup_CalculationTest">
         <methods>
           <include name="Teardown"/>
           <include name="endReport_releaseMomory"/>
-          <include name="CAL011B"/>
           <include name="PreSetup"/>
           <include name="Setup"/>
-          <include name="CAL011A"/>
-          <include name="CAL033"/>
+          <include name="CAL013"/>
           <include name="CAL044" invocation-numbers="0 0 0"/>
-          <include name="CAL010"/>
-          <include name="CAL032"/>
         </methods>
       </class> <!-- com.vrt.testcases.setup_CalculationTest -->
     </classes>

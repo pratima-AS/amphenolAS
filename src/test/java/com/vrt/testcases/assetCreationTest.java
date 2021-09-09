@@ -1736,7 +1736,7 @@ public class assetCreationTest extends BaseClass {
 
 		MainHubPage = assetCreationPage.Click_Home_Icon_AppBar();
 
-		sa.assertEquals(MainHubPage.mainPageTitle(), true,
+		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
 	}

@@ -7,52 +7,95 @@
   </listeners>
   <test thread-count="5" verbose="5" name="Asset(failed)">
     <classes>
+      <class name="com.vrt.testcases.assetHubTest">
+        <methods>
+          <include name="PreSetup"/>
+          <include name="ASSTHB002"/>
+          <include name="Teardown"/>
+          <include name="ASSTHB011"/>
+          <include name="ASSTHB010"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="Setup"/>
+          <include name="ASSTHB006a" invocation-numbers="0 0 0"/>
+          <include name="ASSTHB009"/>
+          <include name="ASSTHB008" invocation-numbers="0 0 0"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.assetHubTest -->
+      <class name="com.vrt.testcases.CopyAssetTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="CA005" invocation-numbers="0 0 0 1 1 1 2 2 2 3 3 3"/>
+          <include name="PreSetup"/>
+          <include name="Setup"/>
+          <include name="endReport_releaseMomory"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.CopyAssetTest -->
       <class name="com.vrt.testcases.assetDetailsTest1">
         <methods>
-          <include name="Teardown"/>
-          <include name="ASST077"/>
+          <include name="ASST062"/>
+          <include name="ASST084"/>
+          <include name="ASST086"/>
+          <include name="ASST044"/>
+          <include name="ASST088"/>
+          <include name="ASST038"/>
+          <include name="ASST068"/>
+          <include name="ASST043"/>
+          <include name="ASST065"/>
+          <include name="ASST087"/>
+          <include name="ASST081"/>
           <include name="endReport_releaseMomory"/>
+          <include name="ASST037"/>
+          <include name="ASST059"/>
+          <include name="ASST053B"/>
+          <include name="ASST025STP" invocation-numbers="0 0 0"/>
+          <include name="ASST053A"/>
+          <include name="ASST034"/>
+          <include name="ASST056"/>
+          <include name="ASST078"/>
+          <include name="ASST075"/>
+          <include name="ASST050"/>
+          <include name="Teardown"/>
+          <include name="ASST033"/>
+          <include name="ASST077"/>
+          <include name="ASST027"/>
+          <include name="ASST032"/>
+          <include name="ASST076"/>
           <include name="Setup"/>
+          <include name="ASST030"/>
+          <include name="ASST074"/>
+          <include name="ASST090"/>
+          <include name="ASST054A_REP"/>
+          <include name="ASST052B"/>
+          <include name="ASST004"/>
+          <include name="ASST048"/>
+          <include name="ASST026STP"/>
+          <include name="ASST047"/>
+          <include name="ASST052A"/>
           <include name="PreSetup"/>
+          <include name="ASST029"/>
         </methods>
       </class> <!-- com.vrt.testcases.assetDetailsTest1 -->
-      <class name="com.vrt.testcases.CopySetupTest">
-        <methods>
-          <include name="CS008"/>
-          <include name="CS019"/>
-          <include name="CS009"/>
-          <include name="CS002"/>
-          <include name="CS013"/>
-          <include name="CS003"/>
-          <include name="CS014"/>
-          <include name="Teardown"/>
-          <include name="CS006"/>
-          <include name="CS017"/>
-          <include name="CS012"/>
-          <include name="CS004"/>
-          <include name="Setup"/>
-          <include name="CS007"/>
-          <include name="CS015A"/>
-          <include name="CS0023"/>
-          <include name="CS010"/>
-          <include name="CS021"/>
-          <include name="CS018B"/>
-          <include name="PreSetup"/>
-          <include name="CS018A"/>
-          <include name="endReport_releaseMomory"/>
-          <include name="CS015B"/>
-        </methods>
-      </class> <!-- com.vrt.testcases.CopySetupTest -->
       <class name="com.vrt.testcases.assetCreationTest">
         <methods>
           <include name="Teardown"/>
+          <include name="ASST37" invocation-numbers="0 0 0"/>
+          <include name="ASST35" invocation-numbers="0 0 0"/>
           <include name="PreSetup"/>
           <include name="Setup"/>
           <include name="endReport"/>
           <include name="ASST03"/>
-          <include name="ASST39" invocation-numbers="0 0 0"/>
         </methods>
       </class> <!-- com.vrt.testcases.assetCreationTest -->
+      <class name="com.vrt.testcases.assetDetailsTest2">
+        <methods>
+          <include name="PreSetup"/>
+          <include name="Teardown"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="ASST005"/>
+          <include name="ASST009"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.assetDetailsTest2 -->
     </classes>
   </test> <!-- Asset(failed) -->
 </suite> <!-- Failed suite [AssetRegressionSuite] -->

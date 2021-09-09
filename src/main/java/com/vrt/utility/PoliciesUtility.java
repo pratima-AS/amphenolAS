@@ -152,6 +152,76 @@ public class PoliciesUtility extends BaseClass {
 		return data;
 	}
 
+	@DataProvider(name = "Policies005_3")
+	public static Object[][] Policies005_3() {
+		String sheetName = "Policies005_3";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_4")
+	public static Object[][] Policies005_4() {
+		String sheetName = "Policies005_4";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_5")
+	public static Object[][] Policies005_5() {
+		String sheetName = "Policies005_5";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_6")
+	public static Object[][] Policies005_6() {
+		String sheetName = "Policies005_6";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_7")
+	public static Object[][] Policies005_7() {
+		String sheetName = "Policies005_7";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_8")
+	public static Object[][] Policies005_8() {
+		String sheetName = "Policies005_8";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_9")
+	public static Object[][] Policies005_9() {
+		String sheetName = "Policies005_9";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_10")
+	public static Object[][] Policies005_10() {
+		String sheetName = "Policies005_10";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_11")
+	public static Object[][] Policies005_11() {
+		String sheetName = "Policies005_11";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies005_12")
+	public static Object[][] Policies005_12() {
+		String sheetName = "Policies005_12";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 	@DataProvider(name = "Policies008")
 	public static Object[][] Policies008() {
 		String sheetName = "Policies008";
@@ -187,6 +257,41 @@ public class PoliciesUtility extends BaseClass {
 		return data;
 	}
 
+	@DataProvider(name = "Policies009")
+	public static Object[][] Policies009() {
+		String sheetName = "Policies009";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies011")
+	public static Object[][] Policies011() {
+		String sheetName = "Policies011";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies012")
+	public static Object[][] Policies012() {
+		String sheetName = "Policies012";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies013")
+	public static Object[][] Policies013() {
+		String sheetName = "Policies013";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	@DataProvider(name = "Policies014")
+	public static Object[][] Policies014() {
+		String sheetName = "Policies014";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 	@DataProvider(name = "Policies015")
 	public static Object[][] Policies015() {
 		String sheetName = "Policies015";
@@ -194,16 +299,16 @@ public class PoliciesUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "Policies015A")
-	public static Object[][] Policies015A() {
-		String sheetName = "Policies015A";
+	@DataProvider(name = "Policies015B")
+	public static Object[][] Policies015B() {
+		String sheetName = "Policies015B";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "Policies015B")
-	public static Object[][] Policies015B() {
-		String sheetName = "Policies015B";
+	@DataProvider(name = "Policies015A1")
+	public static Object[][] Policies015A1() {
+		String sheetName = "Policies015A1";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
@@ -271,16 +376,9 @@ public class PoliciesUtility extends BaseClass {
 		return data;
 	}
 
-	@DataProvider(name = "Policies023")
-	public static Object[][] Policies023() {
-		String sheetName = "Policies023";
-		Object[][] data = getTestData(sheetName);
-		return data;
-	}
-
-	@DataProvider(name = "Policies023A")
-	public static Object[][] Policies023A() {
-		String sheetName = "Policies023A";
+	@DataProvider(name = "Policies023_1")
+	public static Object[][] Policies023_1() {
+		String sheetName = "Policies023_1";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}

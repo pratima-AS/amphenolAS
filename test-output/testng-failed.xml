@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [SetupRegressionSuite]">
+  <listeners>
+    <listener class-name="com.vrt.Listners.ExtentReporterNG"/>
+    <listener class-name="com.vrt.Listners.RetryTransformer"/>
+  </listeners>
+  <test thread-count="5" verbose="5" name="Setup(failed)">
     <classes>
-      <class name="com.vrt.testcases.PolicyTest">
+      <class name="com.vrt.testcases.setup_SensorConfigTest">
         <methods>
-          <include name="PreSetup"/>
           <include name="Teardown"/>
-          <include name="endReport"/>
-          <include name="Policies008" invocation-numbers="0"/>
+          <include name="PreSetup"/>
+          <include name="SC110" invocation-numbers="0 0 0"/>
+          <include name="endReport_releaseMomory"/>
           <include name="Setup"/>
         </methods>
-      </class> <!-- com.vrt.testcases.PolicyTest -->
+      </class> <!-- com.vrt.testcases.setup_SensorConfigTest -->
+      <class name="com.vrt.testcases.setup_QualParametersTest">
+        <methods>
+          <include name="QP060" invocation-numbers="0 0 0"/>
+          <include name="QP030A"/>
+          <include name="Teardown"/>
+          <include name="QP032A"/>
+          <include name="QP034A"/>
+          <include name="PreSetup"/>
+          <include name="Setup"/>
+          <include name="endReport_releaseMomory"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_QualParametersTest -->
+      <class name="com.vrt.testcases.setup_GroupSensorsTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="PreSetup"/>
+          <include name="GS080" invocation-numbers="0 0 0"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="GS014"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_GroupSensorsTest -->
+      <class name="com.vrt.testcases.setup_ReviewTest">
+        <methods>
+          <include name="REV025"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="PreSetup"/>
+          <include name="Teardown"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_ReviewTest -->
+      <class name="com.vrt.testcases.setup_CalculationTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="endReport_releaseMomory"/>
+          <include name="PreSetup"/>
+          <include name="Setup"/>
+          <include name="CAL013"/>
+          <include name="CAL044" invocation-numbers="0 0 0"/>
+        </methods>
+      </class> <!-- com.vrt.testcases.setup_CalculationTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Setup(failed) -->
+</suite> <!-- Failed suite [SetupRegressionSuite] -->

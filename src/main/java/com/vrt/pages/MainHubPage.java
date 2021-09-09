@@ -63,12 +63,11 @@ public class MainHubPage extends BaseClass {
 	}
 
 	// Verify the Main Hub Page title name
-	public boolean mainPageTitle() {
+	public boolean Is_mainHubPageTitle_Visible() {
 		return IsElementVisibleStatus(MainUIPageTitle);
 	}
 
 	// Is UserDesignation text Block Presence
-
 	public boolean IsUserDesigBlockPresence() {
 		WebElement UserDesigTextBlock = driver.findElementByAccessibilityId("UserDesignationTextBlock");
 		return IsElementEnabledStatus(UserDesigTextBlock);
@@ -169,7 +168,7 @@ public class MainHubPage extends BaseClass {
 		WebElement btnConnect = driver.findElementByAccessibilityId("btnConnectIO");
 		clickOn(btnConnect);
 	}
-	
+
 	// Click the Admin Tile to navigate PreferencesPage
 	public PreferencesPage ClickAdminTile_Prefpage() throws InterruptedException, IOException {
 		clickOn(MainUIAdminTile);
@@ -178,5 +177,3 @@ public class MainHubPage extends BaseClass {
 	}
 
 }
-
-
