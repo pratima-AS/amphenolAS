@@ -313,10 +313,12 @@ public class LoginPage extends BaseClass {
 		MainLoginBtn.click();
 	}
 
-	//public String UserBlocked_PopUp_Msg() {
-		//WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
-		//return LogMsg.getAttribute("Name");
-	//}
+	// click on Button0
+	public void cick_ok() {
+		WebElement ok = driver.findElementByAccessibilityId("Button0");
+		clickOn(ok);
+	}
+
 
 	// Get the Sw version info from the About window on clicking About icon of the
 	// bottom apps bar
@@ -334,5 +336,15 @@ public class LoginPage extends BaseClass {
 		String[] SWVer = FetchText(SWVersion_About_info).split(":");
 		return SWVer[1];
 	}
+	
+	// Click the login button repetitively based on the preference setting for the
+	// User to be disabled
+	public void click_loginBtn_Loginfail(int val) throws InterruptedException {
+		for (int i = 0; i <= val; i++) {
+			clickOn(MainLoginBtn);
+			Thread.sleep(500);
+		}
+	}
+
 
 }

@@ -360,5 +360,13 @@ public class Setup_CalculationsPage extends BaseClass {
 		clickOn(Yesbtn);
 		return new assetDetailsPage();
 	}
+	
+	// Verify the D Field is not editable
+	public boolean IsDvalue_Readonly() {
+		WebElement readOnly = driver.findElementByAccessibilityId("DValueTexBox");
+		return readOnly.getAttribute("Value.IsReadOnly").equals("True");
+
+	}
+
 
 }

@@ -11,7 +11,6 @@
         <methods>
           <include name="Teardown"/>
           <include name="PreSetup"/>
-          <include name="ADMN069H"/>
           <include name="ADMN016"/>
           <include name="endReport"/>
           <include name="ADMN018"/>

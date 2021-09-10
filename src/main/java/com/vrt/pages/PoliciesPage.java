@@ -41,21 +41,14 @@ public class PoliciesPage extends BaseClass {
 	// Page element Initialize method
 	private void initElements() {
 		PoliciesHeaderText = driver.findElementByAccessibilityId("PoliciesButton");
-		// pwdcombobox =
-		// driver.findElementByAccessibilityId("RequireMinLengthPasswordComboBox");
-
 		pwdcombobox = driver.findElementByAccessibilityId("RequireMinLengthPassword_A_ID1");
 		pwdcheckbox = driver.findElementByAccessibilityId("RequireMinLengthPasswordCheckBox");
-		// ExpirePasswordComboBox =
-		// driver.findElementByAccessibilityId("ExpirePasswordComboBox");
 		ExpirePasswordComboBox = driver.findElementByAccessibilityId("ExpirePasswordComboBox_A_ID2");
-
 		ExpirePasswordCheckBox = driver.findElementByAccessibilityId("ExpirePasswordCheckBox");
 		SaveBtn = driver.findElementByName("Save");
 		Passwords = driver.findElementByName("Passwords");
 		UserManagement_TAB = driver.findElementByAccessibilityId("UserManagementButton");
 		Preferences_TAB = driver.findElementByAccessibilityId("PreferencesButton");
-
 		LoginFailuresComboBox = driver.findElementByAccessibilityId("LoginFailuresComboBox");
 		DisplayUserIdEntryCheckBox = driver.findElementByName("Display user id during entry");
 		DisablePasswordSystemCheckBox = driver.findElementByAccessibilityId("DisablePasswordSystemCheckBox");
@@ -100,15 +93,12 @@ public class PoliciesPage extends BaseClass {
 		clickOn(pwdcombobox);
 	}
 
-	// FetchText from pwdcombobox
-
-	public String pwdcombobox_text() {
-		return FetchText(pwdcombobox);
-
+	// FetchText from pwd char combobox
+	public String pwdLengthcombobox_text() {
+		return FetchText(pwdcombobox.findElement(By.className("TextBlock")));
 	}
 
 	// click on InstrumentCalibWarningComboBox
-
 	public void Click_InstrumentCalibWarningComboBox() throws InterruptedException {
 		clickOn(InstrumentCalibWarningComboBox);
 	}
@@ -116,11 +106,6 @@ public class PoliciesPage extends BaseClass {
 	// fetch text from InstrumentCalibWarningComboBox
 	public String InstrumentCalibWarningComboBox_text() {
 		return FetchText(InstrumentCalibWarningComboBox);
-
-	}
-
-	public String PWD_text() {
-		return FetchText(pwdcombobox);
 
 	}
 
@@ -132,83 +117,101 @@ public class PoliciesPage extends BaseClass {
 
 	// Select any minimum length pwd
 
-	public void SelectAny_Option_FromPWDLengthBox(int index) throws InterruptedException {
-		List<WebElement> options = driver.findElementByAccessibilityId("RequireMinLengthPassword_A_ID1")
-				.findElements(By.className("ComboBoxItem"));
-		options.get(index).click();
-		Thread.sleep(1000);
-		ClickSaveButton();
+	public void SelectAny_Option_FromPWDLengthBox(String CharLength) throws InterruptedException {
+		String ch1 = pwdLengthcombobox_text();
+		// System.out.println(ch1);
+		String SPart = ch1.split(" ")[0];
+		// System.out.println(SPart);
+
+		PWDLengthBox_Click();
+		PWDLengthBox_Click();
+		Actions ac = new Actions(driver);
+
+		if (CharLength.equals("6")) {
+			Thread.sleep(1000);
+			ClickSaveButton();
+		} else {
+			for (int i = 0; i <= 11; i++) {
+				ac.sendKeys(Keys.ARROW_DOWN).build().perform();
+				Thread.sleep(1000);
+				String ch2 = pwdLengthcombobox_text().split(" ")[0];
+				// System.out.println(ch2);
+				if (ch2.equals(CharLength)) {
+					Thread.sleep(1000);
+					break;
+				}
+			}
+			Thread.sleep(1000);
+			ClickSaveButton();
+		}
+
 	}
 
 	// Is password combobox visible
-
 	public boolean IspwdcomboboxVisible() {
-
 		return IsElementEnabledStatus(pwdcombobox);
 	}
 
 	// Is LoginFailuresComboBox enable
-
 	public boolean IsLoginFailuresComboBox_Enable() {
-
 		return IsElementEnabledStatus(LoginFailuresComboBox);
 	}
 
-//DisplayUserIdEntryCheckBox
+	// DisplayUserIdEntryCheckBox
 	public boolean IsUserIdEntryCheckBoxVisible() {
-
 		return IsElementEnabledStatus(DisplayUserIdEntryCheckBox);
 	}
 
-//DisablePasswordSystemCheckBox
+	public boolean IsUserIdEntryCheckBox_Enabled() {
+		return checkboxSelectStatus(DisplayUserIdEntryCheckBox);
+	}
 
+	public void UserIdEntryCheckBox_Status() throws InterruptedException {
+		if (checkboxSelectStatus(DisplayUserIdEntryCheckBox) == true) {
+			System.out.println("DisplayUserIdEntryCheckBox is selected");
+		} else {
+			clickOn(AllowDValueEditingCheckBox);
+			ClickSaveButton();
+		}
+	}
+
+	// DisablePasswordSystemCheckBox
 	public boolean IsPwdsystemcheckBoxVisible() {
-
 		return IsElementEnabledStatus(DisablePasswordSystemCheckBox);
 	}
 
-//PasswordAplhaNumericSystemCheckBox
-
+	// PasswordAplhaNumericSystemCheckBox
 	public boolean IsSpecialCharCheckBoxVisible() {
 
-		return PasswordAplhaNumericSystemCheckBox.isEnabled();
+		return IsElementEnabledStatus(PasswordAplhaNumericSystemCheckBox);
 	}
 
-//click PasswordAplhaNumericSystemCheckBox
+	// click PasswordAplhaNumericSystemCheckBox
 	public void click_RequireSpecialCharacters() {
 		clickOn(PasswordAplhaNumericSystemCheckBox);
 	}
 
-//InstrumentCalibWarningCheckBox
-
+	// InstrumentCalibWarningCheckBox
 	public boolean IsInstrumentCalibWarningCheckBoxVisible() {
-
 		return IsElementEnabledStatus(InstrumentCalibWarningCheckBox);
 	}
 
-//ExpirePasswordComboBox is visible
-
+	// ExpirePasswordComboBox is visible
 	public boolean IsExpirePasswordComboBoxVisible() {
-
 		return IsElementEnabledStatus(ExpirePasswordComboBox);
 	}
 
-//AllowDValueEditingCheckBox
-
+	// AllowDValueEditingCheckBox
 	public boolean IsAllowDValueEditingCheckBoxVisible() {
-
 		return IsElementEnabledStatus(AllowDValueEditingCheckBox);
 	}
 
-//is checkbox AllowDValueEditing is selected
-
+	// is checkbox AllowDValueEditing is selected
 	public boolean IsDValueCheckBox_selected() {
-
 		return checkboxSelectStatus(AllowDValueEditingCheckBox);
 	}
 
 	public void Enable_Editing_Dvalue() throws InterruptedException {
-
 		if (checkboxSelectStatus(AllowDValueEditingCheckBox) == true) {
 			System.out.println("D Value Checkbox is selected");
 		} else {
@@ -222,11 +225,16 @@ public class PoliciesPage extends BaseClass {
 		clickOn(AllowDValueEditingCheckBox);
 	}
 
-//AutoSyncOutCheckBox
-
+	// AutoSyncOutCheckBox
 	public boolean IsAutoSyncOutCheckBoxVisible() {
-
 		return IsElementEnabledStatus(AutoSyncOutCheckBox);
+	}
+
+	public void EnterUID(String UN, String PW) {
+		WebElement LgInUID = driver.findElementByAccessibilityId("UserIdTextBox");
+		WebElement LgInPW = driver.findElementByAccessibilityId("PasswordTextBox");
+		LgInUID.sendKeys(UN);
+		LgInPW.sendKeys(PW);
 	}
 
 	// Click Save button
@@ -266,12 +274,14 @@ public class PoliciesPage extends BaseClass {
 	}
 
 	// click on pwdcombobox for check/Uncheck combo box
-
 	public void clickOn_PWDcheckbox() throws InterruptedException {
-
 		clickOn(pwdcheckbox);
 		Thread.sleep(1000);
 		ClickSaveButton();
+	}
+
+	public void click_PWDcheckbox() throws InterruptedException {
+		clickOn(pwdcheckbox);
 	}
 
 	public void Enable_Editing_PWDcheckbox() throws InterruptedException {
@@ -284,7 +294,6 @@ public class PoliciesPage extends BaseClass {
 	}
 
 	public void Select_PWDcheckbox() throws InterruptedException {
-
 		clickOn(pwdcheckbox);
 
 	}
@@ -327,96 +336,33 @@ public class PoliciesPage extends BaseClass {
 		clickOn(ExpirePasswordCheckBox);
 	}
 
-//DisableUserafterAttemptsCheckBox
+	// DisableUserafterAttemptsCheckBox
 	public void click_DisableUserafterAttemptsCheckBox() throws InterruptedException {
 
 		clickOn(DisableUserafterAttemptsCheckBox);
 	}
 
-//
-	public void LoginFailure_3() throws InterruptedException {
+	//
+	public void Select_From_LoginFailuresDD(int index) throws InterruptedException {
 
 		clickOn(LoginFailuresComboBox);
-		WebElement option1 = driver.findElementByName("3");
-		clickOn(option1);
+		List<WebElement> options = driver.findElementByAccessibilityId("LoginFailuresComboBox")
+				.findElements(By.className("ComboBoxItem"));
+		options.get(index).click();
 		Thread.sleep(1000);
 		ClickSaveButton();
-
 	}
 
-	public void LoginFailure_4() throws InterruptedException {
+	// Verify the Asset ID Field is enable or not
 
-		clickOn(LoginFailuresComboBox);
-		WebElement option2 = driver.findElementByName("4");
-		clickOn(option2);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_5() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option2 = driver.findElementByName("5");
-		clickOn(option2);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_6() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option3 = driver.findElementByName("6");
-		clickOn(option3);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_7() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option7 = driver.findElementByName("7");
-		clickOn(option7);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_8() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option8 = driver.findElementByName("8");
-		clickOn(option8);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_9() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option9 = driver.findElementByName("9");
-		clickOn(option9);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-	public void LoginFailure_10() throws InterruptedException {
-
-		clickOn(LoginFailuresComboBox);
-		WebElement option10 = driver.findElementByName("10");
-		clickOn(option10);
-		Thread.sleep(1000);
-		ClickSaveButton();
-
-	}
-
-// Verify the Asset ID Field is enable or not
 	public String UseID_Masked() {
 		WebElement Idfield = driver.findElementByAccessibilityId("UserIdAsetrik");
+		return Idfield.getAttribute("Value.Value");
+
+	}
+
+	public String Fetch_UseID() {
+		WebElement Idfield = driver.findElementByAccessibilityId("UserIdTextBox");
 		return Idfield.getAttribute("Value.Value");
 
 	}
@@ -460,11 +406,11 @@ public class PoliciesPage extends BaseClass {
 		String pw1 = fetch_expirepwd_Defaulttext();
 		String SPart = pw1.split(" ")[0];
 		int val = Integer.parseInt(SPart);
-		// System.out.println(val);
+		// System.out.println("ActPW: "+val);
 
-		String firstPart = pw.split(" ")[0];
-		int val1 = Integer.parseInt(firstPart);
-		// System.out.println(val1);
+		// String firstPart = pw.split(" ")[0];
+		int val1 = Integer.parseInt(pw);
+		// System.out.println("SetPW: "+val1);
 
 		click_ExpirePasswordComboBox();
 		click_ExpirePasswordComboBox();
@@ -472,37 +418,22 @@ public class PoliciesPage extends BaseClass {
 
 		if (val1 < val) {
 			for (int i = 0; i <= val; i++) {
-				//click_ExpirePasswordComboBox();
-				//Thread.sleep(500);
 				ac.sendKeys(Keys.ARROW_UP).build().perform();
-				//ac.sendKeys(Keys.ARROW_UP).sendKeys(Keys.ENTER).build().perform();
-				//Thread.sleep(1000);
-				// System.out.println((fetch_expirepwd_Defaulttext()));
-				//Thread.sleep(500);
-				if (ExpirePasswordComboBox.findElement(By.className("TextBlock")).getText().equals(pw)) {
-					// clickOn(Passwords);
+				if (fetch_expirepwd_Defaulttext().split(" ")[0].equals(pw)) {
 					Thread.sleep(1000);
 					break;
-					
 				}
 			}
 
 		} else if (val1 > val) {
-			for (int i = 0; i <= (368-val); i++) {
-				//click_ExpirePasswordComboBox();
-				// Thread.sleep(500);
-				//ac.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+			for (int i = 0; i <= (368 - val); i++) {
 				ac.sendKeys(Keys.ARROW_DOWN).build().perform();
-				//Thread.sleep(2000);
-				// System.out.println((fetch_expirepwd_Defaulttext()));
-				// Thread.sleep(500);
-				if (ExpirePasswordComboBox.findElement(By.className("TextBlock")).getText().equals(pw)) {
-					// clickOn(Passwords);
+				if (fetch_expirepwd_Defaulttext().split(" ")[0].equals(pw)) {
 					Thread.sleep(1000);
 					break;
 				}
 			}
-			
+
 		}
 	}
 

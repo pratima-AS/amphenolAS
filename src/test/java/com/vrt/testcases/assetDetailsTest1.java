@@ -106,7 +106,7 @@ public class assetDetailsTest1 extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("AssetDetails Test in Progress..");
+		System.out.println("AssetDetails Test1 in Progress..");
 		// Delete all files from the AutoLogs folder
 		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\AutoLogs";
 		tu.DeleteFiles(path);
@@ -2152,7 +2152,7 @@ public class assetDetailsTest1 extends BaseClass {
 
 		MainHubPage = assetDetailsPage.Click_Home_Icon_AppBar();
 
-		sa.assertEquals(MainHubPage.mainPageTitle(), true,
+		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
 	}

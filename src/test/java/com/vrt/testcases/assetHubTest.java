@@ -313,7 +313,7 @@ public class assetHubTest extends BaseClass {
 		
 		MainHubPage=assetHubPage.ClickBackBtn();
 
-		sa.assertEquals(MainHubPage.mainPageTitle(), true, "FAIL: TC-ASSTHB007 -Landed "
+		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true, "FAIL: TC-ASSTHB007 -Landed "
 				+ "to Wrong page instead of Main Hub page");				
 		sa.assertAll();
 	}

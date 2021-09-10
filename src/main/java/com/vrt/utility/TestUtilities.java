@@ -91,6 +91,38 @@ public class TestUtilities extends BaseClass {
 		return strDate;
 	}
 
+	// Convert MM-dd-yyyy type of Date input to a dd-MM-yyyy date format
+	public String convert_StringDate_to_ActualDate_inCertainFormat4(String dt) throws ParseException {
+		SimpleDateFormat formating = new SimpleDateFormat("MM-dd-yyyy");
+		String dateinString = dt;
+		// System.out.println(dateString);
+		Date date = formating.parse(dateinString);
+
+		// System.out.println(date);
+		// System.out.println(formating.format(date));
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		String strDate = formatter.format(date);
+		// System.out.println("Date Format with dd-MM-yyyy : "+strDate);
+		return strDate;
+	}
+
+	// Convert MM-dd-yyyy type of Date input to a dd-MM-yyyy date format
+	public String convert_StringDate_to_ActualDate_inCertainFormat5(String dt) throws ParseException {
+		SimpleDateFormat formating = new SimpleDateFormat("dd:MM:yyyy:hh:mm:ss");
+		String dateinString = dt;
+		// System.out.println(dateString);
+		Date date = formating.parse(dateinString);
+
+		// System.out.println(date);
+		// System.out.println(formating.format(date));
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		String strDate = formatter.format(date);
+		// System.out.println("Date Format with dd-MM-yyyy : "+strDate);
+		return strDate;
+	}
+
 	// get_CurrentDate_inCertainFormat:Rqd Date format MM-dd-YYYY = 12-31-2019 or
 	// MM/dd/YYYY = 12/31/2019
 	public String get_CurrentDate_inCertainFormat(String dtFormat) throws ParseException {
@@ -118,7 +150,7 @@ public class TestUtilities extends BaseClass {
 		// format timestamp
 		return sdf.format(timestamp);
 	}
-	
+
 	// get_CurrentDate & Tomestamp_in any Format like:dd-MM-yyyy-HH-mm-ss
 	public String get_CurrentDateandTimeStamp2(String DtTimeFormat) {
 		SimpleDateFormat sdf = new SimpleDateFormat(DtTimeFormat);
@@ -202,6 +234,20 @@ public class TestUtilities extends BaseClass {
 		return sdf.format(currentDatePlusOne);
 	}
 
+	// Method to change System(PC) Date to any date
+	public void change_SystemDate(String Date) throws IOException, InterruptedException, ParseException {
+		String command = "cmd /c start date " + Date;
+
+		// Changing the System Date to Future Date
+		// System.out.println(command);
+		Runtime.getRuntime().exec(command);
+		Thread.sleep(1000);
+		Runtime.getRuntime().exec("taskkill /f /im cmd.exe");
+		// System.out.println("New Changed Future Date:
+		// "+get_CurrentDate_inCertainFormat("dd-MM-yyyy"));
+		Thread.sleep(5000);
+	}
+
 	// Capture Screenshot of a particular WebElement
 	public void capture_element_screenshot(WebDriver driver, WebElement element, String DestinationFldrName,
 			String screenshotName) throws IOException {
@@ -226,7 +272,8 @@ public class TestUtilities extends BaseClass {
 		ImageIO.write(dest, "png", screenShot);
 
 		// Copy Image into particular directory
-		String destination = System.getProperty("user.dir") + "/src/test/resources/" + DestinationFldrName + "/" + screenshotName + ".png";
+		String destination = System.getProperty("user.dir") + "/src/test/resources/" + DestinationFldrName + "/"
+				+ screenshotName + ".png";
 		FileUtils.copyFile(screenShot, new File(destination));
 
 	}
@@ -297,7 +344,7 @@ public class TestUtilities extends BaseClass {
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
 	}
-	
+
 	public static String captureFailedTCScreenshot(WebDriver driver, String screenshotName) throws IOException {
 		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
@@ -359,6 +406,67 @@ public class TestUtilities extends BaseClass {
 		Thread.sleep(500);
 	}
 
+	// Method to retrive all the file names present in any folder
+	public List<String> get_fileNamesList(String folderpath) {
+		List<String> results = new ArrayList<String>();
+
+		// enter the folder path
+		// String folderpath = System.getProperty("user.dir") +
+		// \\src\\test\\resources\\TestData\\ + foldername;
+		File[] files = new File(folderpath).listFiles();
+		// If this pathname does not denote a directory, then listFiles() returns null.
+
+		for (File file : files) {
+			if (file.isFile()) {
+				results.add(file.getName());
+			}
+		}
+		return results;
+	}
+
+	// Clear/Delete ALL files from a directory/ folder
+	public void DeleteFiles(String fldrPath) {
+		File file = new File(fldrPath);
+		File[] files = file.listFiles();
+		for (File f : files) {
+			if (f.isFile() && f.exists()) {
+				f.delete();
+				// System.out.println("successfully deleted");
+			} else {
+				System.out.println("cant delete a file due to open or error");
+			}
+		}
+	}
+
+	// Deleting a particular FILE method
+	public void deleteFile(String filePath, String fileName) throws IOException {
+
+		// File path
+		String filepath = filePath;
+		File file = new File(filepath + "/" + fileName);
+
+		// System.out.println(file.exists());
+		if (!file.exists()) {
+			// file.createNewFile();
+			System.out.println("Target File: " + fileName + " NOT present");
+		} else {
+			if (file.delete()) {
+				System.out.println(fileName + " file deleted");
+			}
+		}
+	}
+
+	// Create a Folder/Directory in target location
+	public void create_Folder(String fldrPath) {
+		File file = new File(fldrPath);
+
+		if (file.mkdir()) {
+			// System.out.println("Folder is successfully created");
+		} else {
+			System.out.println("cant create a folder");
+		}
+	}
+
 	// Close alert message if visible
 	public void click_Close_alertmsg() throws InterruptedException {
 		if (!IsElementVisibleStatus(driver.findElementByAccessibilityId("displayMessageTextBlock"))) {
@@ -374,56 +482,12 @@ public class TestUtilities extends BaseClass {
 		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
 		return FetchText(Msg);
 	}
-	
+
 	// Fetch the popup message data by virtue of Name attribute
 	public String get_popup_text() {
 		WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
 		return LogMsg.getAttribute("Name");
 	}
-
-	// Method to retrive all the file names present in any folder
-	public List<String> get_fileNamesList(String folderpath) {
-		List<String> results = new ArrayList<String>();
-
-		// enter the folder path
-		// String folderpath = System.getProperty("user.dir") +
-		// "\\src\\test\\resources\\TestData\\" + foldername;
-		File[] files = new File(folderpath).listFiles();
-		// If this pathname does not denote a directory, then listFiles() returns null.
-
-		for (File file : files) {
-			if (file.isFile()) {
-				results.add(file.getName());
-			}
-		}
-		return results;
-	}
-
-	//Clear/Delete all files from a directory/ folder
-	public void DeleteFiles(String fldrPath) {
-		File file = new File(fldrPath);
-		File[] files = file.listFiles();
-		for (File f : files) {
-			if (f.isFile() && f.exists()) {
-				f.delete();
-				//System.out.println("successfully deleted");
-			} else {
-				System.out.println("cant delete a file due to open or error");
-			}
-		}
-	}
-	
-	//Create a Folder/Directory in target location
-	public void create_Folder(String fldrPath) {
-		File file = new File(fldrPath);
-
-		if (file.mkdir()) {
-			//System.out.println("Folder is successfully created");
-		} else {
-			System.out.println("cant create a folder");
-		}
-	}
-	
 
 	// Right click on the Asset Creation page to invoke the bottom apps bar
 	public void Right_Click__Buttom_Menuoptions() {
@@ -448,8 +512,9 @@ public class TestUtilities extends BaseClass {
 		WebElement bottomMenu_WndsHelp_Icon = driver.findElementByAccessibilityId("WindowsHelpAppBarButton");
 		return IsElementVisibleStatus(bottomMenu_WndsHelp_Icon);
 	}
-	
-	// Verify the presence of About window on clicking the ABout icon in the bottom apps bar
+
+	// Verify the presence of About window on clicking the ABout icon in the bottom
+	// apps bar
 	public boolean check_About_wndw_Presence() {
 		WebElement About_Wndw = driver.findElementByName("About");
 		return IsElementVisibleStatus(About_Wndw);
@@ -488,7 +553,6 @@ public class TestUtilities extends BaseClass {
 		Thread.sleep(500);
 	}
 
-	
 	// Click on the About icon of the bottom apps bar to invoke the ABout window
 	public void Click_About_Icon_AppBar() throws InterruptedException {
 		Actions ac = new Actions(driver);
@@ -512,23 +576,22 @@ public class TestUtilities extends BaseClass {
 		// (localhost.getHostAddress()).trim());
 		return localhost.getHostAddress().trim();
 	}
-		
+
 	// program to find IP address from the About window of app
 	public String consoleIP_InAboutWndw() {
 		WebElement consoleIPText_InAboutWndw = driver.findElementByAccessibilityId("ConsoleIPTextBlock");
 		String CnslIP = consoleIPText_InAboutWndw.getText().split(":")[1];
-		
+
 		return CnslIP.substring(1);
-	}		
-	
-	// program to Get the Sw version info from the About window on clicking About icon of the bottom apps bar
+	}
+
+	// program to Get the Sw version info from the About window on clicking About
+	// icon of the bottom apps bar
 	public String SWversion_InAboutWndw() {
 		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
 		String SWVersionText = SWVersion_About_info.getText().split(":")[1];
-		
+
 		return SWVersionText;
 	}
-	
-	
 
 }
