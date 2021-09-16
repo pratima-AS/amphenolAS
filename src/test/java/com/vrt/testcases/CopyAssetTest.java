@@ -142,7 +142,7 @@ public class CopyAssetTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetDetailsPage.resetWebElements();
+		//assetDetailsPage.resetWebElements();
 		System.out.println("copyAssetTest Completed.");
 	}
 
@@ -187,8 +187,7 @@ public class CopyAssetTest extends BaseClass {
 
 	/******************************
 	 * Copy Asset Test cases/scripts
-	 * 
-	 * @throws AWTException
+	 *
 	 ******************************/
 
 	// CA001-Verify the on-click of Copy icon for Assets
@@ -208,7 +207,6 @@ public class CopyAssetTest extends BaseClass {
 
 	// CA003-Verify the details displayed for each setup in Copy Asset screen
 	// This test cases also covered under CA002 script
-
 	@Test(groups = {
 			"Regression" }, dataProvider = "CA002", dataProviderClass = assetCreationUtility.class, description = "CA002-Verify the details displayed in Copy Asset screen")
 
@@ -294,17 +292,19 @@ public class CopyAssetTest extends BaseClass {
 
 	// CA005-Verify the Invalid inputs accepted in Asset name field
 	@Test(groups = {
-			"Regression" }, dataProvider = "CA005", dataProviderClass = assetCreationUtility.class, description = "CA005-Verify the Invalid inputs accepted in Asset name field")
-
+			"Regression" }, dataProvider = "CA005", dataProviderClass = assetCreationUtility.class, 
+					description = "CA005-Verify the Invalid inputs accepted in Asset name field")
 	public void CA005(String NewAssetName) throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest("CA005-Verify the Invalid inputs accepted in Asset name field");
 		SoftAssert sa = new SoftAssert();
 		Copyassetpage = assetDetailsPage.clickCopyasset();
 		Copyassetpage.Enter_NewAssetNameField(NewAssetName);
+		Copyassetpage.Enter_NewAssetIDField("ca005");
 		Copyassetpage.click_copy_Btn();
 
 		String ActAlrtMsg = tu.get_AlertMsg_text();
-		String ExpAlrtMsg = "Asset name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)";
+		String ExpAlrtMsg = "Asset name accepts alpha numeric and special characters like "
+				+ "space, -,_ ,slash (forward and backward)";
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Alert message is not displayed");
 		sa.assertAll();
 
@@ -314,9 +314,9 @@ public class CopyAssetTest extends BaseClass {
 
 	// CA005A- Keep Asset name field blank and enter valid values in all other
 	// fields and save changes
-
 	@Test(groups = {
-			"Regression" }, description = "CA005A- Keep Asset name field blank and enter valid values in all other fields and save changes")
+			"Regression" }, description = "CA005A- Keep Asset name field blank and enter valid values "
+					+ "in all other fields and save changes")
 
 	public void CA005A() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
@@ -511,10 +511,8 @@ public class CopyAssetTest extends BaseClass {
 	// screen
 	// CA014-Verify if Audit trial record exists for copy asset.
 	// This Test Case also covered under CA011
-
 	@Test(groups = {
 			"Regression" }, description = "CA011-Verify the on-click functionality of the copy button in Copy Asset screen")
-
 	public void CA011() throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent
 				.startTest("CA011-Verify the on-click functionality of the copy button in Copy Asset screen");
@@ -522,7 +520,9 @@ public class CopyAssetTest extends BaseClass {
 		Copyassetpage = assetDetailsPage.clickCopyasset();
 
 		Copyassetpage.copyAsset_Creation("CA011", "11");
+		Thread.sleep(2000);
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		Thread.sleep(2000);
 		String ActAlrtMsg = tu.get_AlertMsg_text();
 		String ExpAlrtMsg = "CA011 Created Successfully";
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Alert message is not displayed");
@@ -530,7 +530,7 @@ public class CopyAssetTest extends BaseClass {
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		MainHubPage = assetHubPage.click_BackBtn();
 		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
 		String ExpectMSG = "Asset : \"CA011\" is created by User Id : \"1\" , User Name : \"User1\".";
 

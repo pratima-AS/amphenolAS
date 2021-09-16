@@ -7,10 +7,8 @@ import java.text.ParseException;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -92,7 +90,7 @@ public class assetDetailsTest2 extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("AssetDetails Test in Progress..");
+		System.out.println("AssetDetails 2 Test in Progress..");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -161,7 +159,7 @@ public class assetDetailsTest2 extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetDetailsPage.resetWebElements();
+		//assetDetailsPage.resetWebElements();
 		System.out.println("assetDetails Test2  Completed.");
 	}
 
@@ -208,41 +206,35 @@ public class assetDetailsTest2 extends BaseClass {
 	/******************************
 	 * Asset Details Test cases/scripts
 	 * 
-	 * @throws AWTException
 	 ******************************/
 
 	// ASST016STP-Verify the Setup date and time for an edited Setup
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "ASST016STP", dataProviderClass = assetCreationUtility.class, description = "Verify the Setup date and time for an edited Setup")
-
+			"Regression" }, dataProvider = "ASST016STP", dataProviderClass = assetCreationUtility.class, 
+					description = "Verify the Setup date and time for an edited Setup")
 	public void ASST001(String Comments) throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest("ASST016STP-Verify the Setup date and time for an edited Setup");
 		SoftAssert sa = new SoftAssert();
 
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.Click_SetupName("Manual 5 sec SR");
 
 		String Earlierdate = assetDetailsPage.get_DateUnder_Setup();
 
 		defineSetupPage = assetDetailsPage.editStupBtn_Position_0();
-//Define Setup
+		//Edit Setup
 		defineSetupPage.click_defineSetupPage_commentsField();
 		defineSetupPage.clear_defineSetupPage_comments();
 		defineSetupPage.enter_defineSetupPage_comments(Comments);
 		Setup_SensorConfigPage = defineSetupPage.click_defineSetupPage_nxtBtn();
-
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn();
-
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
-
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
-
-		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1", getPW("adminFull"));
+		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage = Setup_ReviewPage.click_backBtn();
 
-		assetDetailsPage.Click_SetupName("manual 1 min sampling");
+		assetDetailsPage.Click_SetupName("Manual 5 sec SR");
 		String Currentdate = tu.get_CurrentDateandTimeStamp();
 
 		sa.assertNotEquals(Earlierdate, Currentdate, "FAIL: Earlier time stamp and current time stamp is same");
@@ -250,8 +242,7 @@ public class assetDetailsTest2 extends BaseClass {
 
 	}
 
-	// ASST019STP-Verify Copy setup functionality when there is only one Asset
-	// available
+	// ASST019STP-Verify Copy setup functionality when there is only one Asset available
 	@Test(groups = {
 			"Regression" }, description = "ASST019STP-Verify Copy setup functionality when there is only one Asset")
 	public void ASST001A() throws InterruptedException, ParseException, IOException, AWTException {
@@ -272,13 +263,14 @@ public class assetDetailsTest2 extends BaseClass {
 	// report under Reports tile-Qualifications sub tab
 	// ASST056_1REP-Verify if Audit trial record exists for Deletion of a Detailed
 	// report (This Test case also executing under ASST055_1REP tc )
-
 	@Test(groups = {
-			"Regression" }, description = "ASST055_1REP,ASST056_1REP-Verify the on-click functionality of Delete icon for Detailed report under Reports tile-Qualifications sub tab")
+			"Regression" }, description = "ASST055_1REP,ASST056_1REP-Verify the on-click "
+					+ "functionality of Delete icon for Detailed report under Reports tile-Qualifications sub tab")
 	public void ASST002() throws InterruptedException, ParseException, IOException, AWTException {
 
 		extentTest = extent.startTest(
-				"ASST055_1REP,ASST056_1REP-Verify the on-click functionality of Delete icon for Detailed report under Reports tile-Qualifications sub tab");
+				"ASST055_1REP,ASST056_1REP-Verify the on-click functionality of Delete icon for "
+				+ "Detailed report under Reports tile-Qualifications sub tab");
 		SoftAssert sa = new SoftAssert();
 		// assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
@@ -341,7 +333,6 @@ public class assetDetailsTest2 extends BaseClass {
 
 	// ASST058REP-Verify if Audit trial record exists for Deletion of a Summary
 	// report (This Test case also executing under ASST057REP tc )
-
 	@Test(groups = {
 			"Regression" }, description = "ASST057_1REP,ASST058REP-Verify the on-click functionality of Delete icon for Summary report under Reports tile-Qualifications sub tab")
 	public void ASST004() throws InterruptedException, ParseException, IOException, AWTException {
@@ -377,7 +368,6 @@ public class assetDetailsTest2 extends BaseClass {
 
 	// ASST070REP-Verify if Audit trial record exists for Deletion of a Pass_Fail
 	// report (This script is executing under ASST069REP script )
-
 	@Test(groups = {
 			"Regression" }, description = "ASST069REP,ASST070REP-Verify the on-click functionality of Delete icon for Pass_Fail report under Reports tile-Pass_Fail sub tab")
 	public void ASST005() throws InterruptedException, IOException, AWTException {
@@ -410,7 +400,6 @@ public class assetDetailsTest2 extends BaseClass {
 	// Documents tile
 	// ASST083-Verify if Audit trial record exists for Deletion of a Document (This
 	// script is covered under the below script ASST082)
-
 	@Test(groups = {
 			"Regression" }, description = "ASST082,ASST083-Verify the on-click functionality of Delete icon for a document under Documents tile")
 	public void ASST006() throws InterruptedException, IOException {
@@ -442,7 +431,6 @@ public class assetDetailsTest2 extends BaseClass {
 	// ASST049-Verify the on-click of delete icon for a Qualification study file
 	// ASST051-Verify if Audit trial record exists for Delete study file activity
 	// (This script is covering under the script ASST049)
-
 	@Test(groups = {
 			"Regression" }, description = "ASST049,ASST051-Verify the on-click of delete icon for a Qualification study file")
 	public void ASST007() throws InterruptedException, IOException {
@@ -500,7 +488,6 @@ public class assetDetailsTest2 extends BaseClass {
 	// ASST010-Verify the on-click of Delete icon for Assets with no files in it
 	// ASST011-Verify the Audit trail for Delete Assets activity this script is
 	// covered under ASST010 script
-
 	@Test(groups = {
 			"Regression" }, description = "ASST010,ASST011-Verify the on-click of Delete icon for Assets with no files in it")
 	public void ASST009() throws Exception {

@@ -306,10 +306,8 @@ public class Setup_ReviewPage extends BaseClass {
 		return FetchText(sub_header);
 	}
 
-	// Click expected TOD action option like "Yes or No or Cancel" as input to the
-	// method
-	// to perform the corresponding TOD Save Alert message
-	// Click save button
+	// Click expected TOD action option like "Yes or No or Cancel" as input to the method
+	// to perform the corresponding TOD Save Alert message Click save button
 	public void click_Save_Btn(String QStart, String TODAlertAction, String UID, String PW)
 			throws InterruptedException {
 
@@ -369,7 +367,6 @@ public class Setup_ReviewPage extends BaseClass {
 
 	// click on back button to navigate assetdetails page after saving the edited
 	// details in review screen
-
 	public assetDetailsPage click_backBtn() throws InterruptedException, IOException {
 		clickOn(Back_btn);
 		// Thread.sleep(1000);

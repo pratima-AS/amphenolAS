@@ -794,16 +794,13 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Upload Documents method under Asset details page
-	public void uploadDoc_Assetdetails(String filename) throws AWTException, IOException, InterruptedException {
+	public void uploadDoc_Assetdetails(String filepath, String filename) throws AWTException, IOException, InterruptedException {
 
 		// switch to the file upload window
 		WebElement alert = driver.switchTo().activeElement();
 		Thread.sleep(1000);
 
-		// enter the filename
-		String filepath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\" + filename;
-		System.out.println(filepath);
-		alert.sendKeys(filepath);
+		alert.sendKeys(filepath+filename);
 		Thread.sleep(1000);
 
 		// hit enter
@@ -855,7 +852,7 @@ public class assetDetailsPage extends BaseClass {
 		// clickOn(AssetHub_ImgHldr);
 	}
 
-//Capture alert message
+//Capture image from the asset hub holder save it in Data folder
 	public void Capture_AsstImg(String Img_Name) throws IOException {
 		TestUtilities tu = new TestUtilities();
 		tu.capture_element_screenshot(driver, AssetHub_ImgHldr, "TestData", Img_Name);
@@ -975,7 +972,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 	// Select any report file and click on that
-
 	public void Select_ReportFile(String SR) throws InterruptedException, IOException {
 
 		List<WebElement> REPORTList = driver.findElementByClassName("ListView")
@@ -1019,8 +1015,8 @@ public class assetDetailsPage extends BaseClass {
 		}
 
 	}
+	
 	// Select Summary Report
-
 	public void Select_SummaryReport() throws InterruptedException, IOException {
 
 		List<WebElement> SRList = driver.findElementByClassName("ListView").findElements(By.className("ListViewItem"));
@@ -1051,7 +1047,6 @@ public class assetDetailsPage extends BaseClass {
 	}
 
 // Select any Doc file and click on that
-
 	public void Select_DocFile(String DC) throws InterruptedException, IOException {
 		List<WebElement> DOCList = driver.findElementByName("VRT.DataModule.Asset.ViewModels.ActivityItemViewModel")
 				.findElements(By.className("TextBlock"));
@@ -1219,17 +1214,6 @@ public class assetDetailsPage extends BaseClass {
 		r.keyRelease(KeyEvent.VK_ENTER);
 		r = null;
 
-	}
-
-	// Verify Application switch from PDF window to Application
-	public void perform_alt_tab_OP() throws AWTException {
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_ALT);
-		robot.keyPress(KeyEvent.VK_TAB);
-		// robot.delay(100);
-		robot.keyRelease(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_ALT);
-		robot = null;
 	}
 
 	// Right click on the Asset Creation page to invoke the bottom apps bar

@@ -153,7 +153,7 @@ public class MainHubPage extends BaseClass {
 	// Click the Audit Title
 	public AuditPage ClickAuditTitle() throws InterruptedException, IOException {
 		clickOn(AuditTitle);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		return new AuditPage();
 	}
 

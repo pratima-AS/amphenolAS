@@ -96,7 +96,6 @@ public class assetDetailsTest1 extends BaseClass {
 	// Before All the tests are conducted
 	// @BeforeTest
 	@BeforeClass
-
 	public void PreSetup() throws InterruptedException, IOException, AWTException, ParseException {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "assetDetailsTest1" + ".html",
@@ -110,8 +109,6 @@ public class assetDetailsTest1 extends BaseClass {
 		// Delete all files from the AutoLogs folder
 		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\AutoLogs";
 		tu.DeleteFiles(path);
-
-		// System.out.println(" AutoLogs Folder is cleared now ");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
@@ -188,8 +185,8 @@ public class assetDetailsTest1 extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetDetailsPage.resetWebElements();
-		System.out.println("assetDetails Test  Completed.");
+		//assetDetailsPage.resetWebElements();
+		System.out.println("assetDetails 1 Test  Completed.");
 	}
 
 	// Before Method(Test) method
@@ -235,7 +232,7 @@ public class assetDetailsTest1 extends BaseClass {
 	/******************************
 	 * Asset Details Test cases/scripts
 	 * 
-	 * @throws AWTException
+	 * 
 	 ******************************/
 
 	// ASST001-Verify the details displayed in Asset details screen -
@@ -302,7 +299,9 @@ public class assetDetailsTest1 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		Thread.sleep(4000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
-		assetDetailsPage.perform_alt_tab_OP();
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		assetDetailsPage.Click_reportsTile();
 		assetDetailsPage.Click_SetupReportsButton();
 		sa.assertEquals(assetDetailsPage.SetupReportASST001B_Visible(), true,
@@ -353,12 +352,13 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST004-Verify if the details are saved during Edit Asset post modification
 	// ASST005-Verify the Audit trail for Edit Assets activity
-
 	@Test(groups = {
-			"Regression" }, description = "ASST004,ASST005-Verify if the details are saved during Edit Asset post modification,Verify the Audit trail for Edit Assets activity")
+			"Regression" }, description = "ASST004,ASST005-Verify if the details are "
+					+ "saved during Edit Asset post modification,Verify the Audit trail for Edit Assets activity")
 	public void ASST004() throws Exception {
 		extentTest = extent.startTest(
-				"ASST004,ASST005-Verify if the details are saved during Edit Asset post modification,Verify the Audit trail for Edit Assets activity");
+				"ASST004,ASST005-Verify if the details are saved during Edit Asset "
+				+ "post modification,Verify the Audit trail for Edit Assets activity");
 		SoftAssert sa = new SoftAssert();
 
 		assetCreationPage = assetDetailsPage.click_assetEditBtn();
@@ -389,7 +389,7 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(2000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
 		System.out.println(Actionmsg);
-		String ExpectMSG = "Asset : \"Asset01\" \"Equipment ID\" field modified from \" 01 to 02 \" by  User ID : \"1\" , User Name : \"User1\".";
+		String ExpectMSG = "Asset : \"Asset01\" \"Asset ID\" field modified from \" 01 to 02 \" by  User ID : \"1\" , User Name : \"User1\".";
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL:The Audit trail record for Edit Assets activity is not exist ");
 		sa.assertAll();
@@ -641,6 +641,7 @@ public class assetDetailsTest1 extends BaseClass {
 				sa.assertAll();
 			}
 		}
+		sa.assertAll();
 
 	}
 	// ASST021STP-Verify -Copy to drive- functionality of a setup for USB drive
@@ -805,7 +806,6 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST024STP-Verify Clicking on Initiate Qualification the user should start
 	// Qualification Procedure
-
 	@Test(groups = {
 			"Regression" }, description = "ASST024STP-Verify Clicking on Initiate Qualification the user should start Qualification Procedure")
 	public void ASST024STP() throws InterruptedException, IOException {
@@ -826,15 +826,15 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST025STP-Verify the on-click on the Initiate Qualification button when the
 	// Qual start is defined as _Start on date and time_
-
 	@Test(dataProvider = "ASST025STP", dataProviderClass = assetCreationUtility.class, groups = {
-			"Regression" }, description = "ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is defined as _Start on date and time_")
-
+			"Regression" }, description = "ASST025STP-Verify the on-click on the Initiate Qualification"
+					+ " btn when the Qual start is defined as _Start on date and time_")
 	public void ASST025STP(String AName, String AID, String AType, String AManufaturer, String ALocation,
 			String SetupName, String SensorCount, String TempCount, String TCSensorLabel, String Qstart, String TOD)
 			throws InterruptedException, IOException, AWTException, ParseException {
 		extentTest = extent.startTest(
-				"ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is defined as _Start on date and time_");
+				"ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is "
+				+ "defined as _Start on date and time_");
 		SoftAssert sa = new SoftAssert();
 
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -844,8 +844,8 @@ public class assetDetailsTest1 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		assetHubPage = assetCreationPage.clickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile(AName);
-		// Define Setup
-//Define Setup
+		
+		//Define Setup
 		defineSetupPage = assetDetailsPage.click_NewStupCreateBtn();
 		defineSetupPage.clear_defineSetupPage_setupName();
 		defineSetupPage.enter_defineSetupPage_setupName(SetupName);
@@ -879,11 +879,9 @@ public class assetDetailsTest1 extends BaseClass {
 		String S = Setup_QualParamPage.fetch_Sec();
 
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
-
-		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1", getPW("adminFull"));
-
-		Setup_ReviewPage.click_Yes_TODAlertMsg_Btn("Yes");
-		// Thread.sleep(1000);
+		Setup_ReviewPage.clickSaveBtn();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		Thread.sleep(1000);
 		assetDetailsPage = Setup_ReviewPage.click_backBtn();
 		assetDetailsPage.Click_SetupName(SetupName);
 		assetDetailsPage.click_InitiateQualBtn();
@@ -983,10 +981,9 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST027STP-Verify the edit setup functionality
 	// ASST028STP-Verify if Audit trial record exists for edit setup
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "ASST027STP", dataProviderClass = assetCreationUtility.class, description = "Verify the edit setup functionality")
-
+			"Regression" }, dataProvider = "ASST027STP", dataProviderClass = assetCreationUtility.class, 
+					description = "Verify the edit setup functionality")
 	public void ASST027(String SetupName, String SensorCount, String SOP, String LoadDescription, String Comments,
 			String TempCount, String TCSensorLabel)
 			throws InterruptedException, IOException, AWTException, ParseException {
@@ -998,9 +995,8 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.Click_SetupName(SetupName);
 
-//Define Setup
+		//Edit Setup
 		defineSetupPage = assetDetailsPage.editStupBtn_Position_0();
-
 		defineSetupPage.click_defineSetupPage_SensorCountField();
 		defineSetupPage.clear_defineSetupPage_SensorCount();
 		defineSetupPage.enter_defineSetupPage_SensorCount(SensorCount);
@@ -1014,7 +1010,6 @@ public class assetDetailsTest1 extends BaseClass {
 		defineSetupPage.clear_defineSetupPage_comments();
 		defineSetupPage.enter_defineSetupPage_comments(Comments);
 		Setup_SensorConfigPage = defineSetupPage.click_Nxt_WithalertYes();
-
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField(TempCount);
 		Setup_SensorConfigPage.Click_Configurationsensors_Expanderbtn();
@@ -1023,14 +1018,14 @@ public class assetDetailsTest1 extends BaseClass {
 		Setup_SensorConfigPage.Enter_SensorLabel(TCSensorLabel);
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		// Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_withAlert();
+		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 		Setup_CalculationsPage = Setup_GroupSensorsPage.Click_CalculationsTab();
 
 		Setup_QualParamPage = Setup_CalculationsPage.Click_NxtBtn();
 		Setup_ReviewPage = Setup_QualParamPage.Click_NxtBtn();
 
-		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", "1", getPW("adminFull"));
+		Setup_ReviewPage.click_Save_Btn("Manual", "Yes", getUID("adminFull"), getPW("adminFull"));
 		assetDetailsPage = Setup_ReviewPage.click_backBtn();
 
 		assetDetailsPage.Click_SetupName(SetupName);
@@ -1056,7 +1051,6 @@ public class assetDetailsTest1 extends BaseClass {
 		String DisplayedCommentsTxt = defineSetupPage.get_defineSetupPage_comments_txtData();
 		String ExpectedCommentsTxt = Comments;
 		sa.assertEquals(DisplayedCommentsTxt, ExpectedCommentsTxt, "Fail: Expected Comment text  is not displayed");
-		sa.assertAll();
 
 		assetDetailsPage = defineSetupPage.defineSetupPage_backBtn();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
@@ -1064,7 +1058,7 @@ public class assetDetailsTest1 extends BaseClass {
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
-		System.out.println(Actionmsg);
+		//System.out.println(Actionmsg);
 		String ExpectMSG = "Setup: \"ASST026STP\" is modified in Tab : \"Define Setup & Sensors Configuration & Group Sensors & Qualification Parameters\" by User ID : \"1\" , User Name: \"User1\"";
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Audit trial record doess not exists for edit setup ");
@@ -1073,7 +1067,6 @@ public class assetDetailsTest1 extends BaseClass {
 	}
 
 	// ASST029WO-Verify the on-click functionality of the wiring icon for a setup
-
 	@Test(groups = {
 			"Regression" }, description = "ASST029WO-Verify the on-click functionality of the wiring icon for a setup")
 	public void ASST029() throws InterruptedException, IOException {
@@ -1210,10 +1203,9 @@ public class assetDetailsTest1 extends BaseClass {
 	// ASST037-Verify the on-click functionality of the print icon for a setup
 	// ASST039STP-Verify the Audit trail for print Setup report activity (This Test
 	// case is covering under ASST037 )
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "ASST037", dataProviderClass = assetCreationUtility.class, description = "ASST037,ASST039STP-Verify the on-click functionality of the print icon for a setup")
-
+			"Regression" }, dataProvider = "ASST037", dataProviderClass = assetCreationUtility.class, 
+					description = "ASST037,ASST039STP-Verify the on-click functionality of the print icon for a setup")
 	public void ASST037(String AName, String AID, String AType, String AManufaturer, String ALocation, String SetupName,
 			String SensorCount, String SOP, String TempCount, String TCSensorLabel)
 			throws InterruptedException, IOException, AWTException {
@@ -1261,7 +1253,8 @@ public class assetDetailsTest1 extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		Thread.sleep(4000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
-		assetDetailsPage.perform_alt_tab_OP();
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
 		Thread.sleep(2000);
 		assetDetailsPage.Click_reportsTile();
 		// assetDetailsPage.Click_SetupReportsButton();
@@ -1276,7 +1269,6 @@ public class assetDetailsTest1 extends BaseClass {
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
-
 		String ExpectMSG = "Asset Details:  Setup report creation performed by User ID : \"1\", User Name : \"User1\"";
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL: Search results is not available for print Setup report activity");
@@ -1286,7 +1278,6 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST038-Verify if user is unable to generate the setup report when there is
 	// no privilege given
-
 	@Test(groups = {
 			"Regression" }, description = "ASST038-Verify if user is unable to generate the setup report when there is no privilege given")
 	public void ASST038() throws InterruptedException, IOException, AWTException {
@@ -1319,7 +1310,6 @@ public class assetDetailsTest1 extends BaseClass {
 	// This test cases is handled under assetDetailsTest2 class
 
 	// ASST043-Verify the details displayed under Qualifications tile
-
 	@Test(groups = { "Regression" }, description = "ASST043-Verify the details displayed under Qualifications tile")
 	public void ASST043() throws InterruptedException, IOException {
 		extentTest = extent.startTest("ASST043-Verify the details displayed under Qualifications tile");
@@ -1359,7 +1349,6 @@ public class assetDetailsTest1 extends BaseClass {
 	// (Because of Hardware dependency this will be tested manually )
 
 	// ASST046-Verify if Audit trial record exists for Copy of a study file
-
 	// This Test Case is executed under ASST044
 	@Test(groups = {
 			"Regression" }, description = "ASST044,ASST046-Verify -Copy to drive- functionality of a Qualification study file for local drive"
@@ -1397,14 +1386,13 @@ public class assetDetailsTest1 extends BaseClass {
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(5000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
-		System.out.println(Actionmsg);
+		//System.out.println(Actionmsg);
 		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL:Audit trial record does not exists for Copy of a qual study file ");
 		sa.assertAll();
 	}
 
 	// ASST047-Verify the display of Generate Reports button in Qualifications tile
-
 	@Test(groups = {
 			"Regression" }, description = "ASST047-Verify the display of Generate Reports button in Qualifications tile")
 	public void ASST047() throws InterruptedException, IOException {
@@ -1423,8 +1411,7 @@ public class assetDetailsTest1 extends BaseClass {
 		sa.assertAll();
 	}
 
-//ASST048-Verify the on-click functionality of generate reports button in Qualification tile
-
+	//ASST048-Verify the on-click functionality of generate reports button in Qualification tile
 	@Test(groups = {
 			"Regression" }, description = "'ASST048-Verify the on-click functionality of generate reports button in Qualification tile")
 	public void ASST048() throws InterruptedException, IOException {
@@ -1486,7 +1473,6 @@ public class assetDetailsTest1 extends BaseClass {
 	// covered under ASST049 test case
 
 	// ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup
-
 	@Test(groups = {
 			"Regression" }, description = "ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup")
 	public void ASST052A() throws InterruptedException, IOException {
@@ -1532,11 +1518,9 @@ public class assetDetailsTest1 extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local
-	// drive
+	// ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local drive
 	// ASST055REP-Verify if Audit trial record exists for Copy of a setup report
-
-	@Test(groups = { "Regression" }, description = "ASST053REP-Verify -Copy to drive- "
+	@Test(groups = { "Regression" }, description = "ASST053REP + ASST055REP- Verify -Copy to drive- "
 			+ "functionality of a Setup Report for local drive")
 	public void ASST053A() throws InterruptedException, ParseException, IOException, AWTException {
 
@@ -1611,6 +1595,8 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(2000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
 		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\D=(manual 1 min samplin)=1=17-Jul-2020 16-45-25=.pdf";
 		File f = new File(downloadPath);
@@ -1632,15 +1618,15 @@ public class assetDetailsTest1 extends BaseClass {
 	// drive
 	// This test cases will handle manually because of hardware dependency
 
-	// ASST054A_REP- Verify the on-click functionality of PDF icon for Summary
-	// report
+	// ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report
 	// under Reports tile-Qualifications sub tab
-
 	@Test(groups = {
-			"Regression" }, description = "ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab")
+			"Regression" }, description = "ASST054A_REP- Verify the on-click functionality of PDF icon"
+					+ " for Summary report under Reports tile-Qualifications sub tab")
 	public void ASST054A_REP() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab");
+				"ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under "
+				+ "Reports tile-Qualifications sub tab");
 		SoftAssert sa = new SoftAssert();
 		assetHubPage = assetDetailsPage.ClickBackBtn();
 		assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
@@ -1651,6 +1637,8 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(4000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
 		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\S=(manual 1 min samplin)=1=09-Jun-2020 15-27-34=.pdf";
 		File f = new File(downloadPath);
@@ -1667,14 +1655,15 @@ public class assetDetailsTest1 extends BaseClass {
 		}
 
 	}
+	
 	// ASST055REP-Verify if Audit trial record exists for Copy of a setup report
-	// ASST055REP is handling under ASST053REP
+	// ASST055REP is handled under ASST053REP
 
 	// ASST056REP-Verify the on-click functionality of PDF icon under Reports
 	// tile-Setups sub tab
-
 	@Test(groups = {
-			"Regression" }, description = "ASST056REP-Verify the on-click functionality of PDF icon under Reports tile-Setups sub tab")
+			"Regression" }, description = "ASST056REP-Verify the on-click functionality of "
+					+ "PDF icon under Reports tile-Setups sub tab")
 	public void ASST056() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ASST056REP-Verify the on-click functionality of PDF icon under Reports tile-Setups sub tab");
@@ -1694,6 +1683,8 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(1000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
 		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\Se=(manual 1 min sampling)=()=0=10-Aug-2020 20-57-33=.pdf";
 		File f = new File(downloadPath);
@@ -1713,10 +1704,9 @@ public class assetDetailsTest1 extends BaseClass {
 
 //ASST059REP-Verify -Copy to drive- functionality of a Detailed Report for local drive
 // ASST061REP-Verify if Audit trial record exists for Copy of a Detailed report (This test cases is executing under ASST059REP)
-
 	@Test(groups = {
 			"Regression" }, description = "ASST059REP,ASST061REP-Verify -Copy to drive- functionality of a Detailed Report for local drive")
-	public void ASST059() throws InterruptedException, IOException, AWTException {
+	public void ASST059_61() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"ASST059REP,ASST061REP-Verify -Copy to drive- functionality of a Detailed Report for local drive");
 		SoftAssert sa = new SoftAssert();
@@ -1813,12 +1803,11 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST063REP-Verify -Copy to drive- functionality of a Summary Report for USB
 	// drive This TC will handle Manually due to hard drive dependency
+	
 	// ASST065REP-Verify -Copy to drive- functionality of a Pass_Fail Report for
 	// local drive
-
 	// ASST067REP-Verify if Audit trial record exists for Copy of a Pass_Fail report
 	// (This audit test cases also covered under the below test script)
-
 	@Test(groups = {
 			"Regression" }, description = "ASST065REP,ASST067REP-Verify -Copy to drive- functionality of a Pass_Fail Report for local drive")
 	public void ASST065() throws InterruptedException, IOException, AWTException {
@@ -1860,7 +1849,7 @@ public class assetDetailsTest1 extends BaseClass {
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
 		String Actionmsg = AuditPage.get_auditEvent_text();
-		System.out.println(Actionmsg);
+		//System.out.println(Actionmsg);
 		String ExpectMSG = "User ID : \"1\" ,  User Name: \"User1\" logged in to do  \"CopyFilesReports\" operation in \"Asset Details \" screen";
 		sa.assertEquals(Actionmsg, ExpectMSG,
 				"FAIL: Audit trial record does not exists for Copy of a Pass_Fail report");
@@ -1873,7 +1862,6 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report
 	// under Reports tile-Pass_Fail sub tab
-
 	@Test(groups = {
 			"Regression" }, description = "ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report under Reports tile-Pass_Fail sub tab")
 	public void ASST068() throws Exception {
@@ -1895,6 +1883,8 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(2000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
 		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\P=(manual 1 min samplin)=(1 min sampling with )=1=19-Mar-2020 13-51-43=.pdf";
 		File f = new File(downloadPath);
@@ -1907,18 +1897,20 @@ public class assetDetailsTest1 extends BaseClass {
 			sa.assertEquals(f.getName(), "P=(manual 1 min samplin)=(1 min sampling with )=1=19-Mar-2020 13-51-43=.pdf",
 					" File is not available");
 			sa.assertAll();
-			System.out.println("fail to find the File");
+			//System.out.println("fail to find the File");
 		}
 	}
+	
 	// ASST069REP,ASST070REP is handling in AssetDetailsTest-2 class
 
 	// ASST072REP-Verify the reports are not displayed in Reports tile when the
 	// files are edited unless they are re-generated
 	// This ASST072REP will handel manually as its related to report
+	
 	// ASST073REP-Verify if user is not able to delete the reports when there are no
 	// privileges given
 	// This test case similar as ADMN081B test case which is present in UM4 class
-
+	
 	// ASST074-Verify the details displayed under Documents tile
 	@Test(groups = { "Regression" }, description = "ASST074-Verify the details displayed under Documents tile")
 	public void ASST074() throws InterruptedException, IOException {
@@ -1942,7 +1934,7 @@ public class assetDetailsTest1 extends BaseClass {
 
 	}
 
-//ASST075-Verify the on-click functionality of Upload Documents button
+	//ASST075-Verify the on-click functionality of Upload Documents button
 	@Test(groups = {
 			"Regression" }, description = "ASST075-Verify the on-click functionality of Upload Documents button")
 	public void ASST075() throws InterruptedException, IOException, AWTException {
@@ -1950,14 +1942,17 @@ public class assetDetailsTest1 extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
-		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWord.docx");
+		// enter the file path of the doc
+		String filepath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\";
+	//	System.out.println(filepath);
+		assetDetailsPage.uploadDoc_Assetdetails(filepath, "HelpFileWord.docx");
 		Thread.sleep(1000);
 		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "1",
 				"FAIL:Reports tile count displayed <0 under Asset details page");
 		sa.assertAll();
 	}
 
-//ASST076-Verify the valid formats of the documents that can be uploaded
+	//ASST076-Verify the valid formats of the documents that can be uploaded
 	@Test(groups = {
 			"Regression" }, description = "ASST076-Verify the valid formats of the documents that can be uploaded")
 	public void ASST076() throws InterruptedException, IOException, AWTException {
@@ -1967,7 +1962,10 @@ public class assetDetailsTest1 extends BaseClass {
 		// assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
-		assetDetailsPage.uploadDoc_Assetdetails("VPRT-UserManual-Chapter 5.pdf");
+		// enter the file path of the doc
+		String filepath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\";
+	//	System.out.println(filepath);
+		assetDetailsPage.uploadDoc_Assetdetails(filepath, "VPRT-UserManual-Chapter 5.pdf");
 		Thread.sleep(1000);
 		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
 				"FAIL:Reports tile count is not updating  under Asset details page");
@@ -1975,8 +1973,7 @@ public class assetDetailsTest1 extends BaseClass {
 		sa.assertAll();
 	}
 
-//ASST077-Verify the invalid formats of the documents that should not be visible while uploading
-
+	//ASST077-Verify the invalid formats of the documents that should not be visible while uploading
 	@Test(groups = {
 			"Regression" }, description = "ASST077-Verify the invalid formats of the documents that should not be visible while uploading")
 	public void ASST077() throws InterruptedException, IOException, AWTException {
@@ -1987,18 +1984,29 @@ public class assetDetailsTest1 extends BaseClass {
 		// assetDetailsPage = assetHubPage.click_assetTile("SyncInAsset");
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
-		assetDetailsPage.uploadDoc_Assetdetails("U88A.eqp");
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();
-		assetDetailsPage.uploadDoc_Assetdetails("42234379E40F5E6A2E84.ast");
-		assetDetailsPage.click_DocsTileBtn();
-		assetDetailsPage.click_UploadDocsBtn();
-		assetDetailsPage.uploadDoc_Assetdetails("1065306A4C9C5E7376FC.cfg");
 
-		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "3",
+		// enter the filename
+		String filepath1 = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\syncin\\VRTEquipments\\U88A\\";
+		//System.out.println(filepath1);
+		assetDetailsPage.uploadDoc_Assetdetails(filepath1, "U88A.eqp");
+		assetDetailsPage.click_DocsTileBtn();
+		assetDetailsPage.click_UploadDocsBtn();
+
+		String filepath2 = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\syncin\\Assets\\1584017028\\";
+		//System.out.println(filepath1);
+		assetDetailsPage.uploadDoc_Assetdetails(filepath2, "42234379E40F5E6A2E84.ast");
+		assetDetailsPage.click_DocsTileBtn();
+		assetDetailsPage.click_UploadDocsBtn();
+
+		String filepath3 = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\syncin\\VRTSetups\\1584017028\\";
+		//System.out.println(filepath3);
+		assetDetailsPage.uploadDoc_Assetdetails(filepath3, "1065306A4C9C5E7376FC.cfg");
+
+		sa.assertEquals(assetDetailsPage.docsTile_countdata(), "2",
 				"FAIL:Reports tile count is  increasing  under Asset details page");
 		sa.assertAll();
 	}
+
 
 	// ASST078-Verify -Copy to drive- functionality of an uploaded document for
 	// local drive
@@ -2009,7 +2017,6 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST080-Verify if Audit trial record exists for Copy of a Document (This test
 	// case has covered under ASST078 test case )
-
 	@Test(groups = {
 			"Regression" }, description = "ASST078,ASST080-Verify -Copy to drive- functionality of an uploaded document for local drive      ")
 	public void ASST078() throws InterruptedException, IOException, AWTException {
@@ -2055,11 +2062,10 @@ public class assetDetailsTest1 extends BaseClass {
 
 	}
 
-	// ASST081-Verify the on-click functionality of PDF icon for a document under
-	// Documents tile
-
+	// ASST081-Verify the on-click functionality of PDF icon for a document under Documents tile
 	@Test(groups = {
-			"Regression" }, description = "ASST081-Verify the on-click functionality of PDF icon for a document under Documents tile")
+			"Regression" }, description = "ASST081-Verify the on-click functionality of PDF icon "
+					+ "for a document under Documents tile")
 	public void ASST081() throws InterruptedException, IOException, AWTException {
 		extentTest = extent
 				.startTest("ASST081-Verify the on-click functionality of PDF icon for a document under Documents tile");
@@ -2072,6 +2078,8 @@ public class assetDetailsTest1 extends BaseClass {
 		Thread.sleep(1000);
 		assetDetailsPage.click_PDFpopup_OkBtn();
 		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+		Thread.sleep(2000);
 		String downloadPath = System.getProperty("user.home")
 				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\LTR-40_Cooling.pdf";
 		File f = new File(downloadPath);
@@ -2092,9 +2100,7 @@ public class assetDetailsTest1 extends BaseClass {
 	// ASST083-Verify if Audit trial record exists for Deletion of a Document
 	// This ASST082 and ASST083 are handled in AssetDetailsTest-2 class
 
-	// ASST084-Verify if the application declines uploading documents that has same
-	// name
-
+	// ASST084-Verify if the application declines uploading documents that has same name
 	@Test(groups = {
 			"Regression" }, description = "ASST084-Verif if the application declines uploading documents that has same name")
 	public void ASST084() throws InterruptedException, ParseException, IOException, AWTException {
@@ -2105,16 +2111,25 @@ public class assetDetailsTest1 extends BaseClass {
 		assetDetailsPage.click_DocsTileBtn();
 		assetDetailsPage.click_UploadDocsBtn();
 
+		// enter the filename
+		String filepath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\";
+		//System.out.println(filepath);
 		// HelpFileWord.docx this file already has uploaded
+		assetDetailsPage.uploadDoc_Assetdetails(filepath, "LTR-40_Cooling.pdf");
+		
+		//Upload the LTR-40_Cooling.pdf again
+		assetDetailsPage.click_DocsTileBtn();
+		assetDetailsPage.click_UploadDocsBtn();		
+		assetDetailsPage.uploadDoc_Assetdetails(filepath, "LTR-40_Cooling.pdf");
 
-		assetDetailsPage.uploadDoc_Assetdetails("HelpFileWord.docx");
-
-		String actAlert_msg = assetDetailsPage.alertMeg_duplicateDocupload_Assetdetails();
+		String actAlert_msg= tu.get_popup_text();
+		//String actAlert_msg = assetDetailsPage.alertMeg_duplicateDocupload_Assetdetails();
 		String expAlert_msg = "Another file with same name already exists. Please use different name.";
 		sa.assertEquals(actAlert_msg, expAlert_msg,
 				"FAIL: Duplicate alert message not displayed while uploading duplicate document");
 		sa.assertAll();
 	}
+	
 	// ASST085-Verify if user is not able to delete the document when there are no
 	// privileges given
 
@@ -2143,7 +2158,6 @@ public class assetDetailsTest1 extends BaseClass {
 
 	// ASST087-Verify the home btn functionality in bottom menu options in Asset
 	// details screen
-
 	@Test(description = "ASST087-Verify the home btn functionality in bottom menu options in Asset details screen")
 	public void ASST087() throws InterruptedException, IOException {
 		extentTest = extent
