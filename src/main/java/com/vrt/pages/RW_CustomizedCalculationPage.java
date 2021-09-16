@@ -17,7 +17,7 @@ public class RW_CustomizedCalculationPage extends BaseClass {
 
 	// Page element Initialize method
 	private void initElements() {
-		Customize = driver.findElementByName("Customize");
+		//Customize = driver.findElementByName("Customize");
 
 	}
 

@@ -181,7 +181,7 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-/*
+
 	//LOGIN_002- Verify if clicking on the Kaye application tab opens the Login Screen of the application
 	@Test(groups = {"Regression", "Sanity"},description="LOGIN_002- Verify if clicking on the Kaye "
 			+ "application tab opens the Login Screen of the application")
@@ -359,8 +359,8 @@ public class LoginTest extends BaseClass{
 		MainLoginPage.EnterUserPW(getPW("adminFull"));
 		
 		MainHubPage=MainLoginPage.ClickonLoginBtn();
-		if (MainHubPage.mainPageTitle()) {
-			System.out.println(MainHubPage.mainPageTitle());
+		if (MainHubPage.Is_mainHubPageTitle_Visible()) {
+			//System.out.println(MainHubPage.Is_mainHubPageTitle_Visible());
 			sa.assertEquals(true, true, 
 					"FAIL: Very 1st User Forced to change PW instaed of redirecting to Main Hub Page");
 			sa.assertAll();
@@ -683,7 +683,7 @@ public class LoginTest extends BaseClass{
 		String expAlertMsg = "User account has been disabled, please contact administrator";
 
 
-		sa.assertEquals(MainLoginPage.AlertMsg(), expAlertMsg, "FAIL: User is not Disabled");
+		sa.assertEquals(tu.get_popup_text(), expAlertMsg, "FAIL: User is not Disabled");
 		sa.assertAll();
 	}
 	
@@ -715,7 +715,7 @@ public class LoginTest extends BaseClass{
 		
 		String expAlertMsg = "User account has been disabled, please contact administrator";
 
-		sa.assertEquals(MainLoginPage.UserBlocked_PopUp_Msg(), expAlertMsg, "FAIL: User is not Disabled");
+		sa.assertEquals(tu.get_popup_text(), expAlertMsg, "FAIL: User is not Disabled");
 		sa.assertAll();
 	}
 	
@@ -769,6 +769,6 @@ public class LoginTest extends BaseClass{
 		
 		sa.assertAll();
 	}
-	*/
+	
 	
 }

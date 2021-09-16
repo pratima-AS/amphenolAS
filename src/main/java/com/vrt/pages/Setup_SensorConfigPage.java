@@ -97,7 +97,7 @@ public class Setup_SensorConfigPage extends BaseClass {
 		return new Setup_GroupSensorsPage();
 	}
 
-	// While editing setup if user edit the temp count and click on net button
+	// While editing setup if user edit the temp count and click on next button
 	// application will display two alert message
 	// Click on Yes for first alert message i.e changing the existing sensor
 	// configuration
@@ -160,7 +160,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 		return IsElementVisibleStatus(Pressure_Field);
 	}
 
-	//
 	// Check the presence of Add-Btn field
 	public boolean Add_btnField_state() {
 		WebElement AddBtn_Field = driver.findElementByAccessibilityId("SelectButton");
@@ -169,7 +168,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 
 	// Get the Temperature text
 	public String get_Temperature_text() {
-
 		List<WebElement> TextFields = driver.findElementsByClassName("TextBox");
 		return FetchText(TextFields.get(0));
 
@@ -179,12 +177,6 @@ public class Setup_SensorConfigPage extends BaseClass {
 	public Setup_defineSetupPage DefineSetup_back_btn() throws IOException {
 		clickOn(DefineSetup_btn);
 		return new Setup_defineSetupPage();
-	}
-
-	// Get text of the Button Bar Alert message
-	public String Alertmsg_txt() {
-		WebElement alrtmsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(alrtmsg);
 	}
 
 	// Get the Humidity text

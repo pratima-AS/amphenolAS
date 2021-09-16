@@ -142,7 +142,7 @@ public class CopySetupTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetDetailsPage.resetWebElements();
+		//assetDetailsPage.resetWebElements();
 		System.out.println("copySetupTest  Completed.");
 	}
 

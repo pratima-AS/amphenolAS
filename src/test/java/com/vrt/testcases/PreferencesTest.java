@@ -111,10 +111,10 @@ public class PreferencesTest extends BaseClass {
 
 		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-
 		// Rename Preferences.ini file
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "Preferences.ini");
-
+		// Rename Policy file
+		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "Policies.ini");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
@@ -865,16 +865,16 @@ public class PreferencesTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//PREF033-Verify  the Reports when  No is selected for _Allow Users to change Lethality_ field
-
+	//PREF033-Verify  the Reports when  No is selected for _Allow Users to change Lethality_ field
 	@Test(groups = {
-			"Regression" }, description = "PREF033-Verify  the Reports when  No is selected for _Allow Users to change Lethality_ field")
+			"Regression" }, description = "PREF033-Verify  the Reports when  No is selected "
+					+ "for _Allow Users to change Lethality_ field")
 	public void PREF033() throws Exception {
 		extentTest = extent.startTest(
 				"PREF033-Verify  the Reports when  No is selected for _Allow Users to change Lethality_ field");
 		SoftAssert sa = new SoftAssert();
 		PreferencesPage.click_AllowLethalityComboBox();
-		PreferencesPage.selectValue_From_AllowLethalityComboBox(2);
+		PreferencesPage.selectValue_From_AllowLethalityComboBox(2);			
 		PreferencesPage.click_SaveBtn();
 		PreferencesPage.UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		MainHubPage = PreferencesPage.ClickBackButn();
@@ -894,6 +894,8 @@ public class PreferencesTest extends BaseClass {
 				" Fail : Customize option is  available in Customized Calculation Page");
 
 		sa.assertAll();
+		 
+		 
 	}
 
 //PREF034-Verify  the celcius values allowed for _IRTD Stability Threshold Limit_ field

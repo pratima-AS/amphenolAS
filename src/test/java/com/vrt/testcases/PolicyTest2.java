@@ -179,9 +179,10 @@ public class PolicyTest2 extends BaseClass {
 	// After Class/Test
 	// @AfterTest
 	@AfterClass
-	public void endReport() throws InterruptedException {
+	public void endReport() throws InterruptedException, IOException {
 		tu.DeleteFiles("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData\\Audit");
 		tu.DeleteFiles("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\VRTAuditBackup");
+		tu.deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "Policies.ini");
 		// System.out.println(".......Cleared Audit Folder.....");
 		extent.flush();
 		extent.close();

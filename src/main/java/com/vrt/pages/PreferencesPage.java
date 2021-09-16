@@ -358,7 +358,6 @@ public class PreferencesPage extends BaseClass {
 	}
 
 //select any value  from AllowLethalityComboBox
-
 	public void selectValue_From_AllowLethalityComboBox(int index) {
 
 		List<WebElement> option1 = driver.findElementByAccessibilityId("AllowLethalityComboBox")

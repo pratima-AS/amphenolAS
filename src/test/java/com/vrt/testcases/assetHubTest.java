@@ -79,8 +79,11 @@ public class assetHubTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");		
 		//Delete the cache Asset file (Asset.txt) if exists
 		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");		
-		//Delete the Asset folder (Asset) if exists
-		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
+        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
+        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
+        renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+
 
 		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
@@ -112,7 +115,7 @@ public class assetHubTest extends BaseClass {
 	public void endReport_releaseMomory(){
 		extent.flush();
 		extent.close();
-		assetHubPage.resetWebElements();
+		//assetHubPage.resetWebElements();
 		//System.out.println("Reset Webelement memory released");
 		System.out.println("assetHubTest Completed.");
 	}
@@ -146,9 +149,9 @@ public class assetHubTest extends BaseClass {
 			//extentTest.log(LogStatus.PASS, extentTest.addScreenCapture(screenshotPath2)); //to add screenshot in extent report
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report		
-		assetHubPage.resetWebElements();
+		//assetHubPage.resetWebElements();
 		driver.quit();
-		driver = null;
+		//driver = null;
 	}
 
 	

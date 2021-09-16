@@ -278,7 +278,7 @@ public class TestUtilities extends BaseClass {
 
 	}
 
-	// Comparison of two images placed at the default Test Data Folder
+	// Comparison of two images placed at the default Test Data Folder are different
 	public boolean compareImage(String ExpImgName, String ActImgName) throws IOException {
 		boolean state = false;
 
@@ -383,7 +383,6 @@ public class TestUtilities extends BaseClass {
 
 	// Select Folder method
 	public void selectFolder(String foldername) throws AWTException, IOException, InterruptedException {
-
 		// switch to the file upload window
 		WebElement alert = driver.switchTo().activeElement();
 		Thread.sleep(1000);
@@ -406,7 +405,7 @@ public class TestUtilities extends BaseClass {
 		Thread.sleep(500);
 	}
 
-	// Method to retrive all the file names present in any folder
+	// Method to retrieve all the file names present in any folder
 	public List<String> get_fileNamesList(String folderpath) {
 		List<String> results = new ArrayList<String>();
 
@@ -529,7 +528,7 @@ public class TestUtilities extends BaseClass {
 		clickOn(bottomMenu_Home_Icon);
 		WebElement Yesbtn = driver.findElementByName("Yes");
 		clickOn(Yesbtn);
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		return new MainHubPage();
 	}
 
@@ -594,4 +593,28 @@ public class TestUtilities extends BaseClass {
 		return SWVersionText;
 	}
 
+	// Click ALT+f4 button TO CLOSE ANY APP
+	public void click_ALTf4_KeyStroke_ToCloseApp() throws InterruptedException, AWTException {
+		// hit enter
+		Robot r = new Robot();
+		r.keyPress(KeyEvent.VK_ALT);
+		r.keyPress(KeyEvent.VK_F4);
+		r.keyRelease(KeyEvent.VK_F4);
+		r.keyRelease(KeyEvent.VK_ALT);
+		r = null;
+
+	}
+	
+
+	// Verify Application switch from PDF window to Application
+	public void perform_alt_tab_OP() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_ALT);
+		robot.keyPress(KeyEvent.VK_TAB);
+		// robot.delay(100);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_ALT);
+		robot = null;
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.vrt.testcases;
 import java.awt.AWTException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -71,15 +72,11 @@ public class setup_GroupSensorsTest extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
-		System.out.println("setup_SensorConfigTest in Progress..");
+		System.out.println("setup_GroupSensorsTest in Progress..");
 
-		// Rename the User file (NgvUsers.uxx) if exists
-
-		// Rename the User file (NgvUsers.uxx) if exists
+/*		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
-		// Rename the cache Asset file (Asset.txt) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
-		// Rename the Asset folder (Asset) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		// Rename the cache Setup file (Asset.txt) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache\\ValProbeRT", "Setup.txt");
@@ -87,6 +84,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		// Thread.sleep(500);
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		// Method to Create Very 1st User with All privilege
@@ -97,8 +95,10 @@ public class setup_GroupSensorsTest extends BaseClass {
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
 
+		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
 		UserManagementPage.clickPrivCreateEditSetup();
+		UserManagementPage.clickPrivRunCal();
 
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -108,13 +108,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 		assetHubPage = MainHubPage.Click_AssetTile();
 		assetCreationPage = assetHubPage.ClickAddAssetBtn();
 		String crntDate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", assetid, "HeatBath", "aas", "Hyderabad", "VRT-RF",
-				"2", "cu", crntDate, "5", "Weeks", "1st Asset Creation");
+		assetCreationPage.assetCreationWithAllFieldEntry("Asset01", "01", "HeatBath", "aas", "Hyderabad", "VRT-RF", "2",
+				"cu", crntDate, "5", "Weeks", "1st Asset Creation");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		AppClose();
 		Thread.sleep(500);
-
+	*/	
 	}
 
 	// After All the tests are conducted
@@ -124,7 +124,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		extent.close();
 		assetHubPage.resetWebElements();
 		// System.out.println("Reset Webelement memory released");
-		System.out.println("setup_SensorConfigTest Completed.");
+		System.out.println("setup_GroupSensorsTest Completed.");
 	}
 
 	// Before Method(Test) method
@@ -171,13 +171,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-
 		driver.quit();
 	}
 
+	/**************
 	// Test Cases
+	***************/
+	
 	// GS001-Verify the details displayed in Group Sensor screen
-
 	@Test(groups = { "Regression" }, description = "GS001-Verify the details displayed in Group Sensor screen")
 	public void GS001() throws InterruptedException, IOException {
 		extentTest = extent.startTest("GS001-Verify the details displayed in Group Sensor screen");
@@ -202,37 +203,29 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertEquals(Setup_GroupSensorsPage.get_Setup_titletext(), "test", "FAIL: Set up title is not available");
 		sa.assertEquals(Setup_GroupSensorsPage.get_GrpsensorPage_titletext(), "Group Sensors",
 				"FAIL: Group sensor page title is not displaying ");
-
 		sa.assertEquals(Setup_GroupSensorsPage.DefaultGrp_Btn_state(), true,
 				"FAIL: Default Group Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.NewGroup_Btn_State(), true, "FAIL: NewGroup Btn Is not visible ");
-
 		sa.assertEquals(Setup_GroupSensorsPage.SensorCount(), 15, "FAIL: sensor counts arenot displaying ");
-
 		sa.assertEquals(Setup_GroupSensorsPage.SensorConfiguration_Tab_state(), true,
 				"FAIL: SensorConfiguration tab is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.Calculationn_Tab_state(), true, "FAIL: New Group Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.EditGrpHdr_state(), true, "FAIL: New Group Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.GroupsList_Btn_state(), true, "FAIL: GroupsList_Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.GroupWiring_Btn_state(), true, "FAIL:GroupWiring_Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.DeleteGroup_Btn_state(), true, "FAIL:DeleteGroup_Btn is not available");
-
 		sa.assertAll();
 	}
 
 	// GS002-Verify that when clicked on the Default button, the groups get created
 	// as per the sensor type with edit icon against each group
 	@Test(groups = {
-			"Regression" }, description = "GS002-Verify that when clicked on the Default button, the groups get created as per the sensor type with edit icon against each group")
+			"Regression" }, description = "GS002-Verify that when clicked on the Default button, "
+					+ "the groups get created as per the sensor type with edit icon against each group")
 	public void GS002() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS002-Verify that when clicked on the Default button, the groups get created as per the sensor type with edit icon against each group");
+				"GS002-Verify that when clicked on the Default button, the groups get created as per "
+				+ "the sensor type with edit icon against each group");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -264,9 +257,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		// System.out.println(Setup_GroupSensorsPage.get_groupTitle());
 		sa.assertEquals(Setup_GroupSensorsPage.get_groupTitle(1), "Humidity", "FAIL: New Group Btn is not available");
 		sa.assertEquals(Setup_GroupSensorsPage.get_groupTitle(2), "Pressure", "FAIL: New Group Btn is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.EditGroupButton_state(), true, "FAIL: New Group Btn is not available");
-
 		sa.assertAll();
 
 	}
@@ -274,7 +265,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS003-Verify that when clicked on the Temperature group, the temperature
 	// sensors list is displayed
 	@Test(groups = {
-			"Regression" }, description = "GS003-Verify that when clicked on the Temperature group, the temperature sensors list is displayed")
+			"Regression" }, description = "GS003-Verify that when clicked on the Temperature group, "
+					+ "the temperature sensors list is displayed")
 	public void GS003() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS003-Verify that when clicked on the Temperature group, the temperature sensors list is displayed");
@@ -309,16 +301,15 @@ public class setup_GroupSensorsTest extends BaseClass {
 		int Tmpcount1 = Integer.parseInt(Tmpcount);
 		sa.assertEquals(Setup_GroupSensorsPage.Temp_Sensor_Txt(), Temp_SensorLabel,
 				"FAIL:the Temperature  sensors label  is not displayed");
-
 		sa.assertEquals(Setup_GroupSensorsPage.GroupSensorCount(), Tmpcount1, "Temp sensor count is not displayed ");
-
 		sa.assertAll();
 	}
 
 	// GS004-Verify that when clicked on the Pressure group, the pressure sensors
 	// list is displayed
 	@Test(groups = {
-			"Regression" }, description = "GS004-Verify that when clicked on the Pressure group, the pressure sensors list is displayed")
+			"Regression" }, description = "GS004-Verify that when clicked on the Pressure group, "
+					+ "the pressure sensors list is displayed")
 	public void GS004() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS004-Verify that when clicked on the Pressure group, the pressure sensors list is displayed");
@@ -356,10 +347,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS005-Verify that when clicked on the Humidity group, the humidity sensors
 	// list is displayed
 	@Test(groups = {
-			"Regression" }, description = "GS005-Verify that when clicked on the Humidity group, the humidity sensors list is displayed")
+			"Regression" }, description = "GS005-Verify that when clicked on the Humidity group, "
+					+ "the humidity sensors list is displayed")
 	public void GS005() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS005-Verify that when clicked on the Humidity group, the humidity sensors list is displayedGS004-Verify that when clicked on the Pressure group, the pressure sensors list is displayed");
+				"GS005-Verify that when clicked on the Humidity group, the humidity sensors list "
+				+ "is displayedGS004-Verify that when clicked on the Pressure group, the pressure sensors list is displayed");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -396,10 +389,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// sensors are displayed for that group and next 50 sensors are divided into the
 	// second group
 	@Test(groups = {
-			"Regression" }, description = "GS005.1-Verify that when there are more number of sensors for a group, max 50 sensors are displayed for that group and next 50 sensors are divided into the second group")
+			"Regression" }, description = "GS005.1-Verify that when there are more number of sensors "
+					+ "for a group, max 50 sensors are displayed for that group and next 50 sensors are divided into the second group")
 	public void GS005_1() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS005.1-Verify that when there are more number of sensors for a group, max 50 sensors are displayed for that group and next 50 sensors are divided into the second group");
+				"GS005.1-Verify that when there are more number of sensors for a group, "
+				+ "max 50 sensors are displayed for that group and next 50 sensors are divided into the second group");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -462,10 +457,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 //GS007-Verify that when edited the groups, the sensors of the current group will be selected and Save and cancel buttons are displayed
 
 	@Test(groups = {
-			"Regression" }, description = "GS007:Verify that when edited the groups, the sensors of the current group will be selected and Save and cancel buttons are displayed")
+			"Regression" }, description = "GS007:Verify that when edited the groups, the sensors of "
+					+ "he current group will be selected and Save and cancel buttons are displayed")
 	public void GS007() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS007:Verify that when edited the groups, the sensors of the current group will be selected and Save and cancel buttons are displayed");
+				"GS007:Verify that when edited the groups, the sensors of the current group will be "
+				+ "selected and Save and cancel buttons are displayed");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -499,7 +496,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.sensorSelected_Count();
 
 		sa.assertEquals(Setup_GroupSensorsPage.IsSaveBtn_Visible(), true, "SaveBtn is not displayed ");
-
 		sa.assertEquals(Setup_GroupSensorsPage.IsCncelBtn_Visible(), true, "CancelBtn is not displayed ");
 		sa.assertAll();
 
@@ -507,12 +503,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 // GS008-Verify that the wiring overlay icon will be non-clickable and new griup
 // button is disabled when groups are in edit mode
-
 	@Test(groups = {
-			"Regression" }, description = "GS008-Verify that the wiring overlay icon will be non-clickable and new griup button is disabled when groups are in edit mode")
+			"Regression" }, description = "GS008-Verify that the wiring overlay icon will be "
+					+ "non-clickable and new griup button is disabled when groups are in edit mode")
 	public void GS008() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS008-Verify that the wiring overlay icon will be non-clickable and new griup button is disabled when groups are in edit mode");
+				"GS008-Verify that the wiring overlay icon will be non-clickable and new griup button "
+				+ "is disabled when groups are in edit mode");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -529,19 +526,19 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_GroupEditIcon(0);
 
 		sa.assertEquals(Setup_GroupSensorsPage.GroupWiring_Btn_IsEnable(), false, "FAIL: GroupsGraph_Btn is  Enable");
-
 		sa.assertEquals(Setup_GroupSensorsPage.NewGroup_Btn_IsEnable(), false, "FAIL: NewGroup_Btn is IsEnable");
 		sa.assertAll();
 	}
 
 	// GS009-Verify that when temperature group is in edit mode, the sensors of
 	// different sensor type are not selectable
-
 	@Test(groups = {
-			"Regression" }, description = "GS009-Verify that when temperature group is in edit mode, the sensors of different sensor type are not selectable")
+			"Regression" }, description = "GS009-Verify that when temperature group is in edit mode, "
+					+ "the sensors of different sensor type are not selectable")
 	public void GS009() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS009-Verify that when temperature group is in edit mode, the sensors of different sensor type are not selectable");
+				"GS009-Verify that when temperature group is in edit mode, the sensors of different "
+				+ "sensor type are not selectable");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -570,16 +567,19 @@ public class setup_GroupSensorsTest extends BaseClass {
 //System.out.println(Nonselected_sensorname);
 		sa.assertEquals(sensrlabel, Nonselected_sensorname,
 				"Fail: the sensors of different sensor type are selectable");
+		sa.assertAll();
 
 	}
+	
 	// GS010-Verify that when pressure group is in edit mode, the sensors of
 	// different sensor type are not selectable
-
 	@Test(groups = {
-			"Regression" }, description = "GS010-Verify that when pressure group is in edit mode, the sensors of different sensor type are not selectable")
+			"Regression" }, description = "GS010-Verify that when pressure group is in edit mode, "
+					+ "the sensors of different sensor type are not selectable")
 	public void GS010() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS010-Verify that when pressure group is in edit mode, the sensors of different sensor type are not selectable");
+				"GS010-Verify that when pressure group is in edit mode, the sensors of different "
+				+ "sensor type are not selectable");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -607,16 +607,19 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		sa.assertEquals(sensrlabel, Nonselected_sensorname,
 				"Fail: the sensors of different sensor type are selectable");
+		sa.assertAll();
 
 	}
 
 	// GS011-Verify that when humidity group is in edit mode, the sensors of
 	// different sensor type are not selectable
 	@Test(groups = {
-			"Regression" }, description = "GS011-Verify that when humidity group is in edit mode, the sensors of different sensor type are not selectable")
+			"Regression" }, description = "GS011-Verify that when humidity group is in edit mode, "
+					+ "the sensors of different sensor type are not selectable")
 	public void GS011() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS011-Verify that when humidity group is in edit mode, the sensors of different sensor type are not selectable");
+				"GS011-Verify that when humidity group is in edit mode, the sensors of different "
+				+ "sensor type are not selectable");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -648,10 +651,10 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// GS012-Verify that the max number of characters allowed in group name field
-	// are 35 char
+	// GS012-Verify that the max number of characters allowed in group name field are 35 char
 	@Test(groups = {
-			"Regression" }, description = "GS012-Verify that the max number of characters allowed in group name field are 35 char")
+			"Regression" }, description = "GS012-Verify that the max number of characters "
+					+ "allowed in group name field are 35 char")
 	public void GS012() throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("GS012-Verify that the max number of characters allowed in group name field are 35 char");
@@ -696,9 +699,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 // GS013-Verify the valid inputs for Group name field
 	@Test(groups = {
-			"Regression" }, dataProvider = "GS013", dataProviderClass = setupCreationUtility.class, description = "GS013-Verify the valid inputs for Group name field"
+			"Regression" }, dataProvider = "GS013", dataProviderClass = setupCreationUtility.class, 
+					description = "GS013-Verify the valid inputs for Group name field"
 					+ " accepted in Temperature field under Add Sensors section")
-
 	public void GS013(String GName) throws InterruptedException, IOException {
 		extentTest = extent.startTest("GS013-Verify the valid inputs for Group name field");
 
@@ -723,10 +726,11 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertAll();
 
 	}
+	
 	// GS014-Verify the invalid inputs for Group name field
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "GS014", dataProviderClass = setupCreationUtility.class, description = "GS014-Verify the invalid inputs for Group name field"
+			"Regression" }, dataProvider = "GS014", dataProviderClass = setupCreationUtility.class, 
+					description = "GS014-Verify the invalid inputs for Group name field"
 					+ "accepted in Temperature field under Add Sensors section")
 
 	public void GS014(String InvalidGName, String ExpAlrtMsg) throws InterruptedException, IOException {
@@ -756,7 +760,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 	}
 
 	// GS014B-Do not enter anything in Group name field. Click on calculations Tab
-
 	@Test(groups = {
 			"Regression" }, description = "GS014B-Do not enter anything in Group name field. Click on calculations Tab")
 
@@ -794,7 +797,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.Click_CalculationsTab_Alrt();
 
 		String ExpAlrtMsg = "Please Enter Group Name";
-
 		String ActAlrtMsg = tu.get_AlertMsg_text();
 
 		sa.assertEquals(ActAlrtMsg, ExpAlrtMsg, "FAIL: Alert message is not matching ");
@@ -804,9 +806,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 	// GS015-Verify that the sensors can be selected or de-selected for a group in
 	// edit mode
-
 	@Test(groups = {
-			"Regression" }, description = "GS015-Verify that the sensors can be selected or de-selected for a group in edit mode")
+			"Regression" }, description = "GS015-Verify that the sensors can be selected or "
+					+ "de-selected for a group in edit mode")
 	public void GS015() throws InterruptedException, IOException {
 		extentTest = extent
 				.startTest("GS015-Verify that the sensors can be selected or de-selected for a group in edit mode");
@@ -841,10 +843,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// sensors are allowed for each group
 
 	@Test(groups = {
-			"Regression" }, description = "GS016-Verify that when selected more than 50 sensors for a group of same sensor type in edit mode, a validation message is displayed that max 50 sensors are allowed for each group")
+			"Regression" }, description = "GS016-Verify that when selected more than "
+					+ "50 sensors for a group of same sensor type in edit mode, "
+					+ "a validation message is displayed that max 50 sensors are allowed for each group")
 	public void GS016() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS016-Verify that when selected more than 50 sensors for a group of same sensor type in edit mode, a validation message is displayed that max 50 sensors are allowed for each group");
+				"GS016-Verify that when selected more than 50 sensors for a group of same sensor "
+				+ "type in edit mode, a validation message is displayed that max 50 sensors are allowed for each group");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -872,7 +877,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS017-Verify that when clicked on the cancel button for groups in edit mode,
 	// will discard the changes
 	@Test(groups = {
-			"Regression" }, description = "GS017-Verify that when clicked on the cancel button for groups in edit mode, will discard the changes")
+			"Regression" }, description = "GS017-Verify that when clicked on the cancel "
+					+ "button for groups in edit mode, will discard the changes")
 	public void GS017() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS017-Verify that when clicked on the cancel button for groups in edit mode, will discard the changes");
@@ -908,7 +914,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS018-Verify that on-click of save button for group in edit mode will edit
 	// the group successfully
 	@Test(groups = {
-			"Regression" }, description = "GS018-Verify that on-click of save button for group in edit mode will edit the group successfully")
+			"Regression" }, description = "GS018-Verify that on-click of save button for "
+					+ "group in edit mode will edit the group successfully")
 	public void GS018() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS018-Verify that on-click of save button for group in edit mode will edit the group successfully");
@@ -934,10 +941,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS019-Verify that when clicked on new group button, an empty group name field
 	// is displayed along with all sensors of all sensor types displayed
 	@Test(groups = {
-			"Regression" }, description = "GS019-Verify that when clicked on new group button, an empty group name field is displayed along with all sensors of all sensor types displayed")
+			"Regression" }, description = "GS019-Verify that when clicked on new group button, "
+					+ "an empty group name field is displayed along with all sensors of all sensor types displayed")
 	public void GS019() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS019-Verify that when clicked on new group button, an empty group name field is displayed along with all sensors of all sensor types displayed");
+				"GS019-Verify that when clicked on new group button, an empty group name field "
+				+ "is displayed along with all sensors of all sensor types displayed");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -963,10 +972,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS020-Verify that when creating a new group, the wiring overlay icon is
 	// disabled and Save and cancel buttons are displayed
 	@Test(groups = {
-			"Regression" }, description = "GS020-Verify that when creating a new group, the wiring overlay icon is disabled and Save and cancel buttons are displayed")
+			"Regression" }, description = "GS020-Verify that when creating a new group, "
+					+ "the wiring overlay icon is disabled and Save and cancel buttons are displayed")
 	public void GS020() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS020-Verify that when creating a new group, the wiring overlay icon is disabled and Save and cancel buttons are displayed");
+				"GS020-Verify that when creating a new group, the wiring overlay icon is disabled "
+				+ "and Save and cancel buttons are displayed");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -993,11 +1004,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// particular sensor type, a sensor of another sensor type is not selectable
 
 	@Test(groups = {
-			"Regression" }, description = "GS021-Verify that when creating a new group, when one sensor is selected of a particular sensor type, a sensor of another sensor type is not selectable")
+			"Regression" }, description = "GS021-Verify that when creating a new group, "
+					+ "when one sensor is selected of a particular sensor type, a sensor of "
+					+ "another sensor type is not selectable")
 
 	public void GS021() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS021-Verify that when creating a new group, when one sensor is selected of a particular sensor type, a sensor of another sensor type is not selectable");
+				"GS021-Verify that when creating a new group, when one sensor is selected of "
+				+ "a particular sensor type, a sensor of another sensor type is not selectable");
 
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1030,11 +1044,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// create mode
 
 	@Test(groups = {
-			"Regression" }, description = "GS022-Verify that the sensors can be selected or de-selected for a group in create mode")
+			"Regression" }, description = "GS022-Verify that the sensors can be selected "
+					+ "or de-selected for a group in create mode")
 
 	public void GS022() throws InterruptedException, IOException {
 		extentTest = extent
-				.startTest("GS022-Verify that the sensors can be selected or de-selected for a group in create mode");
+				.startTest("GS022-Verify that the sensors can be selected or de-selected "
+						+ "for a group in create mode");
 
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1067,7 +1083,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// sensor type in create mode, a validation message is displayed that max 50
 	// sensors are allowed for each group
 	@Test(groups = {
-			"Regression" }, description = "Verify that when selected more than 50 sensors for a group of same sensor type in create mode, a validation message is displayed that max 50 sensors are allowed for each group")
+			"Regression" }, description = "GS022-Verify that when selected more than "
+					+ "50 sensors for a group of same sensor type in create mode, "
+					+ "a validation message is displayed that max 50 sensors are allowed for each group")
 
 	public void GS023() throws InterruptedException, IOException {
 		extentTest = extent
@@ -1104,10 +1122,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS024-Verify that when clicked on the cancel button for groups in create
 	// mode, will discard the changes
 	@Test(groups = {
-			"Regression" }, description = "GS024-Verify that when clicked on the cancel button for groups in create mode, will discard the changes")
+			"Regression" }, description = "GS024-Verify that when clicked on the "
+					+ "cancel button for groups in create mode, will discard the changes")
 	public void GS024() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS024-Verify that when clicked on the cancel button for groups in create mode, will discard the changes");
+				"GS024-Verify that when clicked on the cancel button for groups in "
+				+ "create mode, will discard the changes");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1133,7 +1153,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 //GS025-Verify that on-click of save button for group creation will create the group successfully  
 	@Test(groups = {
-			"Regression" }, description = "GS025-Verify that on-click of save button for group creation will create the group successfully")
+			"Regression" }, description = "GS025-Verify that on-click of save button "
+					+ "for group creation will create the group successfully")
 	public void GS025() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS025-Verify that on-click of save button for group creation will create the group successfully");
@@ -1157,9 +1178,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 	}
 
 //GS026-Verify that on-click of the wiring overlay icon, will display the wiring overlay screen
-
 	@Test(groups = {
-			"Regression" }, description = "GS026-Verify that on-click of the wiring overlay icon, will display the wiring overlay screen")
+			"Regression" }, description = "GS026-Verify that on-click of the wiring overlay icon, "
+					+ "will display the wiring overlay screen")
 	public void GS026() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS026-Verify that on-click of the wiring overlay icon, will display the wiring overlay screen");
@@ -1210,30 +1231,29 @@ public class setup_GroupSensorsTest extends BaseClass {
 		// System.out.println( Setup_GroupSensorsPage.listofsensors_GrpWiringpage());
 
 		sa.assertEquals(Setup_GroupSensorsPage.countOfgroups_GroupWiringpage(), 2, "FAIL:Group are not displayed");
-
 		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Empty(), false,
 				"FAIL:list of sensors are not displayed");
-
 		sa.assertEquals(Setup_GroupSensorsPage.GroupWiring_Btn_IsEnable(), true, "FAIL:Group Wiring Btn Is not Enable");
-
 		sa.assertEquals(Setup_GroupSensorsPage.GroupsList_Btn_state(), true, "FAIL:GroupsList Btn is not visible");
-
 		sa.assertEquals(Setup_GroupSensorsPage.imageselectionoption5_isdisplayed(), true,
 				"countOf_imageselectionoptions Btn is not 5");
-
 		sa.assertEquals(Setup_GroupSensorsPage.Print_state(), true, "Print button is not visible");
 
 		sa.assertAll();
 
 	}
 
-//GS028-Verify that when clicked on any image upload option on the right pane should display the edit,delete and camera icons in a small pop-up window
-
+	// GS028-Verify that when clicked on any image upload option on the right pane
+	// should display
+	// the edit,delete and camera icons in a small pop-up window
 	@Test(groups = {
-			"Regression" }, description = "GS028-Verify that when clicked on any image upload option on the right pane should display the edit,delete and camera icons in a small pop-up window")
+			"Regression" }, description = "GS028-Verify that when clicked on any "
+					+ "image upload option on the right pane should display the edit,"
+					+ "delete and camera icons in a small pop-up window")
 	public void GS028() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS028-Verify that when clicked on any image upload option on the right pane should display the edit,delete and camera icons in a small pop-up window");
+				"GS028-Verify that when clicked on any image upload option on the right pane "
+				+ "should display the edit,delete and camera icons in a small pop-up window");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1253,22 +1273,21 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		sa.assertEquals(Setup_GroupSensorsPage.is_ChangeImageBtn_displayed(), true,
 				"Fail: Change Image Btn is not displayed");
-
 		sa.assertEquals(Setup_GroupSensorsPage.is_RemoveImageBtn_displayed(), true,
 				"Fail: Remove Image Btn is not displayed");
-
 		sa.assertEquals(Setup_GroupSensorsPage.is_ChangeImageCamera_displayed(), true,
 				"Fail: Remove Image Btn is not displayed");
 		sa.assertAll();
 	}
 
 //GS029-Verify that on-click of the edit icon will display the window to browse the image
-
 	@Test(groups = {
-			"Regression" }, description = "GS029-Verify that on-click of the edit icon will display the window to browse the image")
+			"Regression" }, description = "GS029-Verify that on-click of the edit "
+					+ "icon will display the window to browse the image")
 	public void GS029() throws InterruptedException, IOException, AWTException {
 		extentTest = extent
-				.startTest("GS029-Verify that on-click of the edit icon will display the window to browse the image");
+				.startTest("GS029-Verify that on-click of the edit icon will display "
+						+ "the window to browse the image");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1293,12 +1312,15 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 	}
 
-//GS030-Verify that after browsing and selecting the image for the selected group, will upload the image and display in wiring overlay screen
+	//GS030-Verify that after browsing and selecting the image for the selected group, 
+	//will upload the image and display in wiring overlay screen
 	@Test(groups = {
-			"Regression" }, description = "GS030-Verify that after browsing and selecting the image for the selected group, will upload the image and display in wiring overlay screen")
+			"Regression" }, description = "GS030-Verify that after browsing and selecting "
+					+ "the image for the selected group, will upload the image and display in wiring overlay screen")
 	public void GS030() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"GS030-Verify that after browsing and selecting the image for the selected group, will upload the image and display in wiring overlay screen");
+				"GS030-Verify that after browsing and selecting the image for the selected group, "
+				+ "will upload the image and display in wiring overlay screen");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1324,16 +1346,13 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 //Capture the actual Image saved to the  placeholder 1
 		Setup_GroupSensorsPage.Capture_ImgButton1("Actual_VRT_Pro_Img_2ndbutton");
-
 		boolean status_ImgCompare = tu.compareImage("Expected_VRT_Pro_Img_1stbutton", "Actual_VRT_Pro_Img_2ndbutton");
 
 		sa.assertEquals(status_ImgCompare, false, "FAIL:  Image saved is not same as what was selected");
-
 		sa.assertAll();
 	}
 
 //GS031-Verify that on-click of the camera icon will open the device camera
-
 	@Test(groups = {
 			"Regression" }, description = "GS031-Verify that on-click of the camera icon will open the device camera")
 	public void GS031() throws InterruptedException, IOException, AWTException {
@@ -1361,12 +1380,14 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_Cameraclose_btn();
 	}
 
-//GS032-Verify that by taking a picture in device camera will upload the image and display in wiring overlay screen
-	@Test(groups = {
-			"Regression" }, description = "GS032-Verify that by taking a picture in device camera will upload the image and display in wiring overlay screen")
+	// GS032-Verify that by taking a picture in device camera will upload the image
+	// and display in wiring overlay screen
+	@Test(groups = { "Regression" }, description = "GS032-Verify that by taking a picture in "
+			+ "device camera will upload the image and display in wiring overlay screen")
 	public void GS032() throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest(
-				"GS032-Verify that by taking a picture in device camera will upload the image and display in wiring overlay screen");
+				"GS032-Verify that by taking a picture in device camera will upload the "
+				+ "image and display in wiring overlay screen");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1382,19 +1403,34 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
+		Setup_GroupSensorsPage.Capture_GroupImgHolder("Group_ImageHolder1_BlankImage");
 		Setup_GroupSensorsPage.click_1stImageBtn();
 		Setup_GroupSensorsPage.click_CameraBtn();
+		Thread.sleep(4000);
 		Setup_GroupSensorsPage.click_CaptureBtn();
+		Thread.sleep(2000);
 		Setup_GroupSensorsPage.click_AcceptButton();
+		Setup_GroupSensorsPage.Capture_GroupImgHolder("Group_ImageHolder1_withimage");
 
+		// Expected Image Group_ImageHolder1_BlankImage taken in step 1382 which is
+		// already present in the Test
+		// Data folder which will be compared to the Actual image
+		// Group_ImageHolder1_withimage captured.
+		boolean status_ImgCompare1 = tu.compareImage("Group_ImageHolder1_BlankImage", "Group_ImageHolder1_withimage");
+		// System.out.println(status_ImgCompare1);
+
+		// Expecting Image diff=true as different images compared
+		sa.assertEquals(status_ImgCompare1, true,
+				"FAIL: The Group Image is not getting displayed in the Asset Details page");
+		sa.assertAll();
 	}
 
 //GS033-Verify that on-click of the delete icon will delete the image on the left and right panes in wiring overlay screen
-	@Test(groups = {
-			"Regression" }, description = "GS033-Verify that on-click of the delete icon will delete the image on the left and right panes in wiring overlay screen")
+	@Test(groups = { "Regression" }, description = "GS033-Verify that on-click of the delete icon will "
+			+ "delete the image on the left and right panes in wiring overlay screen")
 	public void GS033() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"GS033-Verify that on-click of the delete icon will delete the image on the left and right panes in wiring overlay screen");
+		extentTest = extent.startTest("GS033-Verify that on-click of the delete icon will delete the image on the "
+				+ "left and right panes in wiring overlay screen");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1410,20 +1446,49 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
+		Setup_GroupSensorsPage.Capture_GroupImgHolder("Group_ImageHolder1_BlankImage");
 		Setup_GroupSensorsPage.click_1stImageBtn();
 		Setup_GroupSensorsPage.click_EditImageBtn();
 		Setup_GroupSensorsPage.upload_Images("UserimageValid.jpg");
 		Thread.sleep(2000);
 		Setup_GroupSensorsPage.click_1stImageBtn();
 		Setup_GroupSensorsPage.click_RemoveImageBtn();
+		Setup_GroupSensorsPage.Capture_GroupImgHolder("Group_ImageHolder1_BlankImage2");
+
+		// Expected Image Group_ImageHolder1_BlankImage taken in step 1422 which is
+		// already present in the Test
+		// Data folder which will be compared to the Actual image
+		// Group_ImageHolder1_BlankImage2 captured.
+		boolean status_ImgCompare1 = tu.compareImage("Group_ImageHolder1_BlankImage", "Group_ImageHolder1_BlankImage2");
+		// System.out.println(status_ImgCompare1);
+
+		// Expecting Image diff=true as same image compared
+		sa.assertEquals(status_ImgCompare1, false,
+				"FAIL: The Group Image is not getting displayed in the Asset Details page");
+		sa.assertAll();
 	}
 
-//GS034-Verify that when selected any existing image in wiring overlay screen can be applied for any group
-//GS034 will handel manually 
+	// GS034-Verify that when selected any existing image in wiring overlay screen
+	@Test(groups = { "Regression" }, description = "GS034-Verify that when selected "
+			+ "any existing image in wiring overlay screen")
+	public void GS034() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest("GS034-Verify that when selected any existing image"
+				+ " in wiring overlay screen-TO BE TESTED MANUALLY");
 
-//GS035-Verify that the sensors for a group can be moved and placed anywhere on the image on the left pane
+	}
 
-//GS036-Verify the details displayed for each group in the Wiring overlay screen
+	// GS035-Verify that the sensors for a group can be moved and placed anywhere on
+	// the image on the left pane
+	@Test(groups = { "Regression" }, description = "GS035-Verify that the sensors for a group "
+			+ "can be moved and placed anywhere on the image on the left pane")
+	public void GS035() throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest("GS035-Verify that the sensors for a group can be moved and placed anywhere "
+				+ "on the image on the left pane-TO BE TESTED MANUALLY");
+
+	}
+
+	// GS036-Verify the details displayed for each group in the Wiring overlay
+	// screen
 	@Test(groups = {
 			"Regression" }, description = "GS036-Verify the details displayed for each group in the Wiring overlay screen")
 	public void GS036() throws InterruptedException, IOException, AWTException {
@@ -1447,20 +1512,20 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		sa.assertEquals(Setup_GroupSensorsPage.Fetchgroupname_GWpage(0), "Temperature",
 				"FAIL:group name is not available");
-
 		sa.assertEquals(Setup_GroupSensorsPage.islistofsensors_Empty(), false,
 				"FAIL:list of sensors are not displayed");
 		sa.assertEquals(Setup_GroupSensorsPage.Sensor_Name(), "TMP1", "FAIL:lable name is not displaying");
-
 		sa.assertAll();
 	}
 
-//GS037-Verify that on-click of the print icon in the wiring overlay screen will print the wiring overlay report for the current selected group
-	@Test(groups = {
-			"Regression" }, description = "GS037-Verify that on-click of the print icon in the wiring overlay screen will print the wiring overlay report for the current selected group")
+	// GS037-Verify that on-click of the print icon in the wiring overlay screen
+	// will print
+	// the wiring overlay report for the current selected group
+	@Test(groups = { "Regression" }, description = "GS037-Verify that on-click of the print icon "
+			+ "in the wiring overlay screen will print the wiring overlay report for the current selected group")
 	public void GS037() throws InterruptedException, IOException, AWTException {
-		extentTest = extent.startTest(
-				"GS037-Verify that on-click of the print icon in the wiring overlay screen will print the wiring overlay report for the current selected group");
+		extentTest = extent.startTest("GS037-Verify that on-click of the print icon in the wiring overlay screen "
+				+ "will print the wiring overlay report for the current selected group");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1477,11 +1542,35 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		Setup_GroupSensorsPage.click_GrpWiring_Btn();
 		Setup_GroupSensorsPage.Click_Print();
-
+		Thread.sleep(3000);
 		Setup_GroupSensorsPage.click_PDFpopup_OkBtn();
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+
+		String foldrpath = "C:\\Users\\" + System.getProperty("user.name")
+				+ "\\AppData\\Local\\Packages\\Kaye.ValProbeRT_racmveb2qnwa8\\LocalState\\";
+		//System.out.println(foldrpath);
+		// Confirm if the file got copied to the above destination folder or not
+		List<String> fn = tu.get_fileNamesList(foldrpath);
+		//System.out.println(fn);
+		String expFileName = "WiringLayOut.pdf";
+		for (String filename : fn) {
+			if (filename.equals(expFileName)) { 
+				sa.assertEquals(filename, expFileName, "FAIL: Incorrect file is copied or "
+						+ "not all copied during Copy to drive operation for Setup");
+				sa.assertAll();
+			}
+		}
+		//sa.assertAll();
 	}
 
-//GS038-Verify the details displayed in Wiring overlay reports
+	// GS038-Verify the details displayed in Wiring overlay reports
+	@Test(groups = { "Regression" }, description = "GS038-Verify the details displayed in Wiring overlay reports")
+	public void GS038() throws InterruptedException, IOException, AWTException {
+		extentTest = extent
+				.startTest("GS038-Verify the details displayed in Wiring overlay reports-TO BE TESTED MANUALLY");
+
+	}
 
 //GS039-Verify that more than 5mb size image cannot be uploaded and validation message is displayed
 	@Test(groups = {
@@ -1548,7 +1637,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//GS043-Verify that move icon is displayed in group sensors screen only when there are minimum 2 groups
+	//GS043-Verify that move icon is displayed in group sensors screen only when there are minimum 2 groups
 	@Test(groups = {
 			"Regression" }, description = "GS043-Verify that move icon is displayed in group sensors screen only when there are minimum 2 groups")
 	public void GS043() throws InterruptedException, IOException {
@@ -1575,10 +1664,11 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.IsMoveBtn_Visible(), true, "FAIL: Move Btn  is not available");
-		sa.assertAll();
+		
 		Setup_GroupSensorsPage.Selectgroup(0);
 		Setup_GroupSensorsPage.DeleteGroup_Yes();
-		sa.assertEquals(Setup_GroupSensorsPage.IsMoveBtn_Visible(), true, "FAIL: Move Btn  is not available");
+		sa.assertEquals(Setup_GroupSensorsPage.IsMoveBtn_Visible(), false, "FAIL: Move Btn  is not available");
+		sa.assertAll();
 
 	}
 
@@ -1656,7 +1746,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		sa.assertEquals(Setup_GroupSensorsPage.Is_CloseBtn_Visible(), true,
 				"FAIL: Move sensor page title   is not available");
-
 		sa.assertAll();
 
 	}
@@ -1697,7 +1786,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 				"FAIL: Temperature   is not available in from dropdown list box");
 		sa.assertEquals(Setup_GroupSensorsPage.fetchgroupname_fromDropdown(1), "Humidity",
 				"FAIL: Humidity group  is not available in From dropdown list box ");
-
 		sa.assertAll();
 
 	}
@@ -1736,10 +1824,8 @@ public class setup_GroupSensorsTest extends BaseClass {
 				"FAIL: Move sensor page title   is not available");
 		sa.assertEquals(Setup_GroupSensorsPage.fetchgroupname_Todropdown(0), "Temperature",
 				"FAIL: Temperature   is not available in To dropdown list box");
-
 		sa.assertEquals(Setup_GroupSensorsPage.fetchgroupname_Todropdown(1), "Humidity",
 				"FAIL: Temperature   is not available in To dropdown list box");
-
 		sa.assertAll();
 	}
 
@@ -1777,7 +1863,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		sa.assertEquals(SL, Setup_GroupSensorsPage.get_sensortext_FromDD(0),
 				"FAIL: The corresponding sensors of that group on the left pane is not displaying");
-
 		sa.assertAll();
 
 	}
@@ -1801,9 +1886,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("TMPR");
 		String SenstTxt = Setup_SensorConfigPage.get_SensorLabel_text();
-
 		Setup_SensorConfigPage.Click_assignBtn();
-
 		Setup_SensorConfigPage.select_Sensortype_Hmd();
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
@@ -1818,7 +1901,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 		// System.out.println(Setup_GroupSensorsPage.get_sensortext_ToDD(0));
 		sa.assertEquals(SenstTxt, Setup_GroupSensorsPage.get_sensortext_ToDD(0),
 				"FAIL: The corresponding sensors of that group on the right pane is not displaying");
-
 		sa.assertAll();
 
 	}
@@ -1843,26 +1925,23 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_SensorConfigPage.Enter_Num_To("5");
 		Setup_SensorConfigPage.Enter_SensorLabel("HMD");
 		Setup_SensorConfigPage.Click_assignBtn();
-
 		Setup_GroupSensorsPage = Setup_SensorConfigPage.Click_nextbtn_LessSnsrconfig();
 		Setup_GroupSensorsPage.click_DfltGrp_Btn();
-
 		Setup_GroupSensorsPage.Click_MoveIcon();
-
 		sa.assertEquals(Setup_GroupSensorsPage.is_sensor_selected_leftpane(0), true,
 				"Fail: 1st sensor is not selected");
-
 		sa.assertAll();
 	}
 
 	// GS050-Verify that on-click of the move button will move the sensors from the
 	// _From_ group to the _To_ group
-
 	@Test(groups = {
-			"Regression" }, description = "GS050-Verify that on-click of the move button will move the sensors from the _From_ group to the _To_ group")
+			"Regression" }, description = "GS050-Verify that on-click of the move button "
+					+ "will move the sensors from the _From_ group to the _To_ group")
 	public void GS050() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS050-Verify that on-click of the move button will move the sensors from the _From_ group to the _To_ group");
+				"GS050-Verify that on-click of the move button will move the sensors from "
+				+ "the _From_ group to the _To_ group");
 		SoftAssert sa = new SoftAssert();
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -1888,6 +1967,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.select_options_fromDDL(1);
 		Setup_GroupSensorsPage.ClickOnsensor_leftpane_Movewindow(2);
 		Setup_GroupSensorsPage.click_MoveBtn();
+		Thread.sleep(3000);
 		sa.assertEquals(Setup_GroupSensorsPage.get_sensrCount_ToDD(), 3,
 				"Fail:The sensors from the _From_ group to the _To_ group has not moved");
 		sa.assertAll();
@@ -2165,7 +2245,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertEquals(Setup_GroupSensorsPage.Is_AssetIDVisible(), true, "Fail: AssetID is not displaying");
 		Setup_GroupSensorsPage.click_ExpanderIcon();
 		sa.assertEquals(Setup_GroupSensorsPage.Is_AssetIDVisible(), false, "Fail: AssetID is not displaying");
-
 		sa.assertAll();
 	}
 
@@ -2237,7 +2316,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 				"Fail:  Asset ID value is not pre populated from Define setup screen");
 		sa.assertEquals(Setup_GroupSensorsPage.getTxt_from_SOP(), "10",
 				"Fail: SOP protocol value is not pre populated from Define setup screen");
-
 		sa.assertAll();
 	}
 
@@ -2301,7 +2379,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 		Setup_GroupSensorsPage.click_SaveBtn();
 
 		sa.assertEquals(Setup_GroupSensorsPage.getTxt_from_AssetID(), "AID", "Fail:  Asset ID value is not editable");
-
 		sa.assertAll();
 	}
 
@@ -2382,10 +2459,9 @@ public class setup_GroupSensorsTest extends BaseClass {
 		sa.assertAll();
 	}
 	// GS076-Verify the bottom menu options displayed in Group sensors screen
-
 	@Test(groups = {
 			"Regression" }, description = "GS076-Verify the bottom menu options displayed in Group sensors screen")
-	public void SC106() throws InterruptedException, IOException {
+	public void GS076() throws InterruptedException, IOException {
 		extentTest = extent.startTest("GS076-Verify the bottom menu options displayed in Group sensors screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
@@ -2413,7 +2489,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 	// GS077-Verify that on-click of home btn in bottom menu options is navigated to
 	// main hub page
 	@Test(description = "GS077-Verify that on-click of home btn in bottom menu options is navigated to main hub page")
-	public void SC107() throws InterruptedException, IOException {
+	public void GS077() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"GS077-Verify that on-click of home btn in bottom menu options is navigated to main hub page");
 		SoftAssert sa = new SoftAssert();
@@ -2436,10 +2512,12 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 	// GS078-Verify that on-click of help btn in bottom menu options displays
 	// information about the Group sensors screen
-	@Test(description = "GS078-Verify that on-click of help btn in bottom menu options displays information about the Group sensors screen")
-	public void SC108() throws InterruptedException, IOException {
+	@Test(description = "GS078-Verify that on-click of help btn in bottom menu "
+			+ "options displays information about the Group sensors screen")
+	public void GS078() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"GS078-Verify that on-click of help btn in bottom menu options displays information about the Group sensors screen");
+				"GS078-Verify that on-click of help btn in bottom menu options displays "
+				+ "information about the Group sensors screen");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("5");
@@ -2463,7 +2541,6 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 	// GS080-Verify that on-click of About btn in bottom menu options displays the
 	// software version and the console IP address
-
 	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, 
 			description = "Verify that on-click of About btn in bottom menu options displays "
 			+ "the software version and the console IP address")
@@ -2493,4 +2570,5 @@ public class setup_GroupSensorsTest extends BaseClass {
 				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
 		sa.assertAll();
 	}
+
 }

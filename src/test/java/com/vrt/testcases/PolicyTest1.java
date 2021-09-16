@@ -162,7 +162,8 @@ public class PolicyTest1 extends BaseClass {
 	// After Class/Test
 	// @AfterTest
 	@AfterClass
-	public void endReport() throws InterruptedException {
+	public void endReport() throws InterruptedException, IOException {
+		tu.deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "Policies.ini");
 		extent.flush();
 		extent.close();
 		System.out.println("Policy Test1  Completed.");

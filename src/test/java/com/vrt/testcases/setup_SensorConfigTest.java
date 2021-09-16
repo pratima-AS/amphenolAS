@@ -208,7 +208,7 @@ public class setup_SensorConfigTest extends BaseClass {
 				"SC002:Verify that sensors pane on the left side will display no sensors and will be blank till no sensor types are defined and selected");
 		SoftAssert sa = new SoftAssert();
 		Setup_SensorConfigPage.Click_GroupSensors_btn();
-		String actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String actalert = tu.get_AlertMsg_text();
 		String expalert = "Please configure atleast one sensor to proceed.";
 		sa.assertEquals(actalert, expalert,
 				"FAIL: Application should display the alert message as there is no sensors added ");
@@ -367,7 +367,7 @@ public class setup_SensorConfigTest extends BaseClass {
 				"FAIL: Temperature_Sensor_Titlestate should be visible ");
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("0");
 		Setup_SensorConfigPage.Click_GroupSensors_btn();
-		String actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String actalert = tu.get_AlertMsg_text();
 		String expalert = "Please configure atleast one sensor to proceed.";
 		sa.assertEquals(actalert, expalert,
 				"FAIL: Application should display the alert message as there is no sensors added ");
@@ -388,7 +388,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_TemperatureCount_textField("300");
-		String Actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String Actalert = tu.get_AlertMsg_text();
 		String Expectalert = "You are trying to add more number of sensors than defined";
 		sa.assertEquals(Actalert, Expectalert, "FAIL:alert message not matched");
 		sa.assertAll();
@@ -534,7 +534,7 @@ public class setup_SensorConfigTest extends BaseClass {
 				"FAIL: Temperature_Sensor_Titlestate should be visible ");
 		Setup_SensorConfigPage.Enter_HumidityCount_textField("0");
 		Setup_SensorConfigPage.Click_GroupSensors_btn();
-		String actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String actalert = tu.get_AlertMsg_text();
 		String expalert = "Please configure atleast one sensor to proceed.";
 		sa.assertEquals(actalert, expalert,
 				"FAIL: Application should display the alert message as there is no sensors added ");
@@ -556,7 +556,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_HumidityCount_textField("300");
-		String Actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String Actalert = tu.get_AlertMsg_text();
 		String Expectalert = "You are trying to add more number of sensors than defined";
 		sa.assertEquals(Actalert, Expectalert, "FAIL:alert message not matched");
 		sa.assertAll();
@@ -704,7 +704,7 @@ public class setup_SensorConfigTest extends BaseClass {
 				"FAIL: Temperature_Sensor_Titlestate should be visible ");
 		Setup_SensorConfigPage.Enter_PressureCount_textField("0");
 		Setup_SensorConfigPage.Click_GroupSensors_btn();
-		String actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String actalert = tu.get_AlertMsg_text();
 		String expalert = "Please configure atleast one sensor to proceed.";
 		sa.assertEquals(actalert, expalert,
 				"FAIL: Application should display the alert message as there is no sensors added ");
@@ -726,7 +726,7 @@ public class setup_SensorConfigTest extends BaseClass {
 
 		Setup_SensorConfigPage.Click_Addsensors_Expanderbtn();
 		Setup_SensorConfigPage.Enter_PressureCount_textField("300");
-		String Actalert = Setup_SensorConfigPage.Alertmsg_txt();
+		String Actalert = tu.get_AlertMsg_text();
 		String Expectalert = "You are trying to add more number of sensors than defined";
 		sa.assertEquals(Actalert, Expectalert, "FAIL:alert message not matched");
 		sa.assertAll();
@@ -1539,7 +1539,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Enter__Num_SensorLabel(sensrlblno);
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		String ActAlert = Setup_SensorConfigPage.Alertmsg_txt();
+		String ActAlert = tu.get_AlertMsg_text();
 		String ExpAlert = "Please provide valid Sensor Label Number.";
 
 		sa.assertEquals(ActAlert, ExpAlert, "FAIL: Alert message should be displayed");
@@ -1560,7 +1560,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.Click_assignBtn();
 		Setup_SensorConfigPage.Click_assignBtn();
 
-		String ActAlert = Setup_SensorConfigPage.Alertmsg_txt();
+		String ActAlert = tu.get_AlertMsg_text();
 		String ExpAlert = "Sensor Label should be unique..";
 		sa.assertEquals(ActAlert, ExpAlert, "FAIL: Alert message should be displayed");
 		sa.assertAll();
@@ -1583,7 +1583,7 @@ public class setup_SensorConfigTest extends BaseClass {
 		Setup_SensorConfigPage.select_Sensortype_Hmd();
 		Setup_SensorConfigPage.Enter_SensorLabel("test");
 		Setup_SensorConfigPage.Click_assignBtn();
-		String ActAlert = Setup_SensorConfigPage.Alertmsg_txt();
+		String ActAlert = tu.get_AlertMsg_text();
 		String ExpAlert = "Selected sensors and selected sensor type are different. Please choose same type..";
 		sa.assertEquals(ActAlert, ExpAlert, "FAIL: Alert message should be displayed");
 		sa.assertAll();

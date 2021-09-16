@@ -262,12 +262,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return new assetDetailsPage();
 	}
 
-	// Get text of the back Alert message
-	public String get_text_BackBtn_popup() {
-		WebElement backBtn_popup = driver.findElementByAccessibilityId("Content_String");
-		return backBtn_popup.getAttribute("Name");
-	}
-
 	// click on SensorConfig tab
 	public Setup_SensorConfigPage Click_SensorConfigTab() throws InterruptedException, IOException {
 		clickOn(PreviousButton);
@@ -589,6 +583,12 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		WebElement FirststImage = driver.findElementByAccessibilityId("Image1Button");
 		clickOn(FirststImage);
 	}
+	
+	// Capture image from the group image holder save it in Data folder
+	public void Capture_GroupImgHolder(String Img_Name) throws IOException {		
+		WebElement FirststImage = driver.findElementByAccessibilityId("Image1Button");
+		tu.capture_element_screenshot(driver, FirststImage, "TestData", Img_Name);
+	}
 
 	// click on Image2Button
 	public void click_2ndImageBtn() {
@@ -699,7 +699,6 @@ public class Setup_GroupSensorsPage extends BaseClass {
 	}
 
 	// Click on GroupsListButton
-
 	public void click_GroupListBtn() {
 		WebElement grouplistbtn = driver.findElementByAccessibilityId("GroupsListButton");
 		clickOn(grouplistbtn);
@@ -716,8 +715,7 @@ public class Setup_GroupSensorsPage extends BaseClass {
 		return status;
 	}
 
-//Is move icon visible 
-
+	//Is move icon visible 
 	public boolean is_MoveIconVisible() {
 		WebElement Move_Btn = driver.findElementByAccessibilityId("MoveSensorsButton");
 		return IsElementVisibleStatus(Move_Btn);

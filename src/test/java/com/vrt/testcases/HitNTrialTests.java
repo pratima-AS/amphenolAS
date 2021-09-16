@@ -128,16 +128,18 @@ public class HitNTrialTests extends BaseClass {
 
 		
 		//delete the User file (NgvUsers.uxx) if exists
-		deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
+		//deleteFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		//renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");		
 		
-	
-		//LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
-		LaunchApp("C:\\Program Files (x86)\\SyncTool\\Synctool.exe");
+		//System.out.println(System.getProperty("user.name"));
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		//Thread.sleep(5000);
+		//tu.click_ALTf4_KeyStroke_ToCloseApp();
+		//LaunchApp("C:\\Program Files (x86)\\SyncTool\\Synctool.exe");
 	/*	LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
@@ -253,7 +255,7 @@ public class HitNTrialTests extends BaseClass {
 			throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest(
 				"check for file deletion");
-		System.out.println("check for file deletion");
+		System.out.println("check for App Closure");
 	}
 
 }
