@@ -141,7 +141,7 @@ public class multipleassetHubAssetCreationTest extends BaseClass{
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
 		driver.quit();
-		driver = null;
+		//driver = null;
 	}
 
 	

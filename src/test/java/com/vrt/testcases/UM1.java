@@ -213,7 +213,7 @@ public class UM1 extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-		UserManagementPage.resetWebElements();
+		//UserManagementPage.resetWebElements();
 		driver.quit();
 	}
 
@@ -1629,7 +1629,8 @@ public class UM1 extends BaseClass {
 
 	// ADMN045A
 	@Test(groups = {
-			"Regression" }, dataProvider = "ADMIN045A", dataProviderClass = userManagementUtility.class, description = "ADMN045A-Verify Reset pwd functionality for second user-Admin")
+			"Regression" }, dataProvider = "ADMIN045A", dataProviderClass = userManagementUtility.class, 
+					description = "ADMN045A-Verify Reset pwd functionality for second user-Admin")
 	public void ADMN045A(String UN, String UID, String PWD, String UTitle, String UType)
 			throws InterruptedException, ParseException, IOException, AWTException {
 		extentTest = extent.startTest("ADMN045A-Verify Reset pwd functionality for second user-Admin");
@@ -1641,7 +1642,7 @@ public class UM1 extends BaseClass {
 		tu.click_Close_alertmsg();
 		MainHubPage = UserManagementPage.ClickBackButn();
 		LoginPage = MainHubPage.UserSignOut();
-		LoginPage.EnterUserID("045A");
+		LoginPage.EnterUserID(UID);
 		LoginPage.EnterUserPW(PWD);
 		LoginPage.ClickLoginBtn();
 		sa.assertEquals(LoginPage.ChangePWCheckBoxEnableStatus(), false, "FAIL: PW change text box enabled");

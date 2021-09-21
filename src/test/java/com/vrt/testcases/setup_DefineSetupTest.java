@@ -114,7 +114,7 @@ public class setup_DefineSetupTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetHubPage.resetWebElements();
+		//assetHubPage.resetWebElements();
 		// //System.out.println("Reset Webelement memory released");
 		System.out.println("setup_defineSetupTest Completed.");
 	}
@@ -155,7 +155,6 @@ public class setup_DefineSetupTest extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-
 		driver.quit();
 	}
 
