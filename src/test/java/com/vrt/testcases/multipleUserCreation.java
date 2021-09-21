@@ -21,7 +21,6 @@ import javax.imageio.ImageIO;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.ClickAction;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -92,7 +91,7 @@ public class multipleUserCreation extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("multiUser creation in Progress..");
 
-		/*
+	
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -119,7 +118,7 @@ public class multipleUserCreation extends BaseClass {
 		UserManagementPage.ClickNewUserSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage.ClickNewUser();
-		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"), getPW("Dsbluser"),
+		UserManagementPage.UMCreation_MandatoryFields("dsbl1", "1D", getPW("Dsbluser"),
 				"AdminNew", "System Administrator");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		//tu.click_Close_alertmsg();
@@ -140,7 +139,7 @@ public class multipleUserCreation extends BaseClass {
 		SyncInAssetListPage.click_AlrtYesBtn();
 		Thread.sleep(6000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
-		*/
+		
 		
 	}
 	

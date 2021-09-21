@@ -230,7 +230,6 @@ public class PolicyTest2 extends BaseClass {
 
 		}
 		extent.endTest(extentTest); // ending test and ends the current test and prepare to create html report
-		PoliciesPage.resetWebElements();
 		driver.quit();
 	}
 

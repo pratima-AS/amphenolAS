@@ -74,7 +74,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name2"));
 		System.out.println("setup_GroupSensorsTest in Progress..");
 
-/*		// Rename the User file (NgvUsers.uxx) if exists
+		// Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Cache", "Asset.txt");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
@@ -114,7 +114,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 
 		AppClose();
 		Thread.sleep(500);
-	*/	
+	
 	}
 
 	// After All the tests are conducted
@@ -122,7 +122,7 @@ public class setup_GroupSensorsTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetHubPage.resetWebElements();
+		//assetHubPage.resetWebElements();
 		// System.out.println("Reset Webelement memory released");
 		System.out.println("setup_GroupSensorsTest Completed.");
 	}

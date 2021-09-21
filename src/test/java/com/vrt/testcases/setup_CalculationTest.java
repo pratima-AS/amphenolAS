@@ -118,7 +118,7 @@ public class setup_CalculationTest extends BaseClass {
         UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
         PoliciesPage = UserManagementPage.Click_Policy();
         PoliciesPage.Enable_Editing_Dvalue();
-        
+        UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		AppClose();
 		Thread.sleep(500);
@@ -242,7 +242,7 @@ public class setup_CalculationTest extends BaseClass {
 		extentTest = extent
 				.startTest("CAL003-Verify that 121.1 is the default value displayed in Base Temperature field");
 		SoftAssert sa = new SoftAssert();
-		System.out.println(Setup_CalculationsPage.BTemp_text());
+		//System.out.println(Setup_CalculationsPage.BTemp_text());
 		sa.assertEquals(Setup_CalculationsPage.BTemp_text(), "121.1",
 				"Fail:the default value is not displayed in Base Temperature field ");
 		sa.assertAll();
@@ -256,7 +256,7 @@ public class setup_CalculationTest extends BaseClass {
 		extentTest = extent
 				.startTest("CAL004-Verify that degrees centigrade is displayed beside Base temperature field");
 		SoftAssert sa = new SoftAssert();
-		System.out.println(Setup_CalculationsPage.get_BaseTempUnit_text());
+		//System.out.println(Setup_CalculationsPage.get_BaseTempUnit_text());
 		sa.assertEquals(Setup_CalculationsPage.get_BaseTempUnit_text(), "°C",
 				"Fail:degrees centigrade is not displayed beside Base temperature field");
 		sa.assertAll();
@@ -398,7 +398,7 @@ public class setup_CalculationTest extends BaseClass {
 		Thread.sleep(1000);
 		String Dtxt = Setup_CalculationsPage.get_DValueField_text();
 
-		System.out.println(Dtxt.length());
+		//System.out.println(Dtxt.length());
 		sa.assertEquals(Dtxt.length(), 5, " Fail:the default value is not displayed in BD Value field ");
 		sa.assertAll();
 	}

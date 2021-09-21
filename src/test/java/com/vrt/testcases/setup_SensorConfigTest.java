@@ -118,7 +118,7 @@ public class setup_SensorConfigTest extends BaseClass {
 	public void endReport_releaseMomory() {
 		extent.flush();
 		extent.close();
-		assetHubPage.resetWebElements();
+		//assetHubPage.resetWebElements();
 		// System.out.println("Reset Webelement memory released");
 		System.out.println("setup_SensorConfigTest Completed.");
 	}
