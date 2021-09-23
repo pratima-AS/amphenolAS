@@ -15,7 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import com.vrt.pages.EquipmentPage;
+import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.utility.TestUtilities;
 import com.vrt.base.BaseClass;
 

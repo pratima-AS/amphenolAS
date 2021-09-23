@@ -27,7 +27,7 @@ import com.vrt.utility.setupCreationUtility;
 import com.vrt.utility.userManagementUtility;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.EquipmentHubPage;
-import com.vrt.pages.EquipmentPage;
+import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.pages.IRTDHubPage;
 import com.vrt.pages.IRTDDetailspage;
 import com.vrt.pages.assetHubPage;
@@ -46,17 +46,9 @@ import com.vrt.pages.VRTLoggersDetailspage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.Copyassetpage;
-import com.vrt.pages.Setup_SensorConfigPage;
-import com.vrt.pages.Setup_defineSetupPage;
-import com.vrt.pages.Setup_GroupSensorsPage;
-import com.vrt.pages.Setup_CalculationsPage;
-import com.vrt.pages.Setup_QualParamPage;
-import com.vrt.pages.Setup_ReviewPage;
 import com.vrt.pages.CopySetuppage;
 
 import com.vrt.utility.sensorCofigUtility;
-import com.vrt.utility.setupCreationUtility;
-import com.vrt.utility.userManagementUtility;
 
 public class UM1 extends BaseClass {
 
@@ -75,7 +67,7 @@ public class UM1 extends BaseClass {
 	UserManagementPage UserManagementPage;
 	AuditPage AuditPage;
 	EquipmentHubPage EquipmentHubPage;
-	EquipmentPage EquipmentPage;
+	NewEquipmentCreation_Page EquipmentPage;
 	IRTDHubPage IRTDHubPage;
 	IRTDDetailspage IRTDDetailspage;
 	assetHubPage assetHubPage;

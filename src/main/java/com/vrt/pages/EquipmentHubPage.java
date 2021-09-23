@@ -1,21 +1,12 @@
 /**
- * @author ruchika.behura
- *
- */
+* @author ruchika.behura
+*
+*/
 
 package com.vrt.pages;
-
-import java.awt.AWTException;
-
-import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import com.vrt.pages.EquipmentPage;
 import com.vrt.base.BaseClass;
 
 public class EquipmentHubPage extends BaseClass {
@@ -23,11 +14,15 @@ public class EquipmentHubPage extends BaseClass {
 	// EquipmentHubPage Element definition
 	WebElement AddButton = null;
 	WebElement VRTLogger = null;
+	WebElement EquipmentHeaderTextBlock = null;
+	WebElement Back_btn = null;
 
 	private void initElements() {
 		AddButton = driver.findElementByAccessibilityId("AddEquipmentsButton");
 		VRTLogger = driver.findElementByAccessibilityId("TitleTextBlock1");
-		
+		EquipmentHeaderTextBlock = driver.findElementByAccessibilityId("EquipmentHeaderTextBlock");
+		Back_btn = driver.findElementByAccessibilityId("ArrowGlyph");
+
 	}
 
 	EquipmentHubPage() throws IOException {
@@ -36,11 +31,20 @@ public class EquipmentHubPage extends BaseClass {
 
 	}
 
+	// Release memory
+	public void resetWebElements() {
+		AddButton = null;
+		VRTLogger = null;
+		EquipmentHeaderTextBlock = null;
+		Back_btn = null;
+
+	}
+
 	// Click AddButton
-	public EquipmentPage ClickAddButton() throws InterruptedException, IOException {
+	public NewEquipmentCreation_Page ClickAddButton() throws InterruptedException, IOException {
 		clickOn(AddButton);
-		//Thread.sleep(1000);
-		return new EquipmentPage();
+		// Thread.sleep(1000);
+		return new NewEquipmentCreation_Page();
 	}
 
 	// IRTD
@@ -50,11 +54,25 @@ public class EquipmentHubPage extends BaseClass {
 		clickOn(irtdbox);
 		return new IRTDHubPage();
 	}
-		// 
-		// Click on VRT List box of Equipment page
-		public VRTLoggerHubPage Click_VRTLogger_listbox() throws IOException {
-			clickOn(VRTLogger);
-			return new VRTLoggerHubPage();
+
+	// Is IRTD Tile visible
+
+	public boolean Is_IRTDTileVisible() throws IOException {
+		WebElement irtdbox = driver.findElementByName("IRTD");
+		return IsElementVisibleStatus(irtdbox);
+	}
+
+	// Is VRT Tile visible
+
+	public boolean Is_VRTLoggerVisible() throws IOException {
+
+		return IsElementVisibleStatus(VRTLogger);
+	}
+
+	// Click on VRT List box of Equipment page
+	public VRTLoggerHubPage Click_VRTLogger_listbox() throws IOException {
+		clickOn(VRTLogger);
+		return new VRTLoggerHubPage();
 	}
 
 	// Click AddButton to get Alert message when supervisor does not have default
@@ -72,15 +90,30 @@ public class EquipmentHubPage extends BaseClass {
 
 	// Click on back button
 	public MainHubPage ClickBackBtn() throws IOException {
-		WebElement backBtn = driver.findElementByAccessibilityId("ArrowGlyph");
-		clickOn(backBtn);
+		clickOn(Back_btn);
 		return new MainHubPage();
 	}
-	//click Initiate Verification Tab
-		public void  ClickInitiateVerification() throws IOException {
-			WebElement InitiateVerificationTab = driver.findElementByAccessibilityId("SaveButton1");
-			clickOn(InitiateVerificationTab);
-		}
-			
+
+	// click Initiate Verification Tab
+	public void ClickInitiateVerification() throws IOException {
+		WebElement InitiateVerificationTab = driver.findElementByAccessibilityId("SaveButton1");
+		clickOn(InitiateVerificationTab);
+	}
+
+	// Is EquipmentHeaderTextBlock visible
+	public boolean IsEquipmentHeader_Visible() {
+		return IsElementVisibleStatus(EquipmentHeaderTextBlock);
+	}
+
+	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		clickOn(bottomMenu_Home_Icon);
+
+		Thread.sleep(1000);
+		return new MainHubPage();
+	}
 
 }
