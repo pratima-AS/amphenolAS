@@ -22,7 +22,7 @@ import com.vrt.utility.PreferencesUtility;
 import com.vrt.utility.TestUtilities;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.EquipmentHubPage;
-import com.vrt.pages.EquipmentPage;
+import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.pages.IRTDHubPage;
 import com.vrt.pages.IRTDDetailspage;
 import com.vrt.pages.assetHubPage;
@@ -66,7 +66,7 @@ public class PreferencesTest extends BaseClass {
 	UserManagementPage UserManagementPage;
 	AuditPage AuditPage;
 	EquipmentHubPage EquipmentHubPage;
-	EquipmentPage EquipmentPage;
+	NewEquipmentCreation_Page EquipmentPage;
 	IRTDHubPage IRTDHubPage;
 	IRTDDetailspage IRTDDetailspage;
 	assetHubPage assetHubPage;

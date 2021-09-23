@@ -135,6 +135,12 @@ public class MainHubPage extends BaseClass {
 		// System.out.println("AstCnt in Main Hub Page: "+AstCnt);
 		return AstCnt;
 	}
+	
+	// is MainUIEquipmentTitle visible
+	public boolean IsEquipmentTile_Visible() {
+		return IsElementVisibleStatus(MainUIEquipmentTitle);
+
+	}
 
 	// Click the Equipment Tile
 	public EquipmentHubPage ClickEquipmentTile() throws InterruptedException, IOException {

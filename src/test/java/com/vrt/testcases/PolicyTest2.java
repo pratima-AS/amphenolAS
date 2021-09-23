@@ -30,7 +30,7 @@ import com.vrt.pages.MainHubPage;
 import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.EquipmentHubPage;
-import com.vrt.pages.EquipmentPage;
+import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.pages.IRTDHubPage;
 import com.vrt.pages.IRTDDetailspage;
 import com.vrt.pages.assetHubPage;
@@ -79,7 +79,7 @@ public class PolicyTest2 extends BaseClass {
 	UserManagementPage UserManagementPage;
 	AuditPage AuditPage;
 	EquipmentHubPage EquipmentHubPage;
-	EquipmentPage EquipmentPage;
+	NewEquipmentCreation_Page EquipmentPage;
 	IRTDHubPage IRTDHubPage;
 	IRTDDetailspage IRTDDetailspage;
 	assetHubPage assetHubPage;

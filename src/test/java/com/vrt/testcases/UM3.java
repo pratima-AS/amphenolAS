@@ -24,7 +24,7 @@ import com.vrt.pages.LoginPage;
 import com.vrt.pages.MainHubPage;
 import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.EquipmentHubPage;
-import com.vrt.pages.EquipmentPage;
+import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.utility.TestUtilities;
 
 import bsh.ParseException;
@@ -57,7 +57,7 @@ public class UM3 extends BaseClass {
 	MainHubPage MainHubPage;
 	UserManagementPage UserManagementPage;
 	EquipmentHubPage EquipmentHubPage;
-	EquipmentPage EquipmentPage;
+	NewEquipmentCreation_Page EquipmentPage;
 	IRTDDetailspage IRTDDetailspage;
 	IRTDHubPage IRTDHubPage;
 	FileManagementPage FileManagementPage;
