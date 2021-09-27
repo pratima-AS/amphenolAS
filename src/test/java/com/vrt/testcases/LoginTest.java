@@ -62,7 +62,7 @@ public class LoginTest extends BaseClass{
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("Login Test in Progress..");
 		
-		
+		/*
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -70,13 +70,13 @@ public class LoginTest extends BaseClass{
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		
-		/*LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
+		*/
+		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		MainLoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", MainLoginPage.get_SWVersion_About_Text());
 		AppClose();
 		Thread.sleep(1000);
-		*/
+		
 	}
 	
 	//After All the tests are conducted
@@ -115,9 +115,8 @@ public class LoginTest extends BaseClass{
 			//extentTest.log(LogStatus.PASS, extentTest.addScreenCapture(screenshotPath2)); //to add screenshot in extent report
 		}		
 		extent.endTest(extentTest); //ending test and ends the current test and prepare to create html report
-		MainLoginPage.resetWebElements();
+		//MainLoginPage.resetWebElements();
 		driver.quit();
-		driver = null;
 	}
 	
 	
@@ -143,7 +142,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-	
 	//LOGIN_001b-Verify that Policies,Preferences screens are disabled for login with First installation
 	@Test(groups = {"Regression"}, description="LOGIN_001b-Verify that Policies,Preferences screens "
 			+ "are disabled for login with First installation")
@@ -161,7 +159,6 @@ public class LoginTest extends BaseClass{
 		
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_001_2 -Verify the first time app install login credentials with incorrect password
 	@Test(groups = {"Regression"}, description="LOGIN_001_2 -Verify the first time app install"
@@ -181,7 +178,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-
 	//LOGIN_002- Verify if clicking on the Kaye application tab opens the Login Screen of the application
 	@Test(groups = {"Regression", "Sanity"},description="LOGIN_002- Verify if clicking on the Kaye "
 			+ "application tab opens the Login Screen of the application")
@@ -198,7 +194,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();		
 	}
 	
-	
 	//LOGIN_003- Verify  the contents of the Kaye application Login Screen
 	@Test(groups = {"Regression"}, description="LOGIN_003- Verify  the contents of the Kaye application "
 			+ "Login Screen")
@@ -209,23 +204,18 @@ public class LoginTest extends BaseClass{
 		//Validate Product Name
 		String expectedAppName = "ValProbe RT System";
 		//String ActualAppName = MainLoginPage.AppName();
-		sa.assertEquals(MainLoginPage.AppName(), expectedAppName, "FAIL: Invalid Product Name displayed");
-		
+		sa.assertEquals(MainLoginPage.AppName(), expectedAppName, "FAIL: Invalid Product Name displayed");		
 		// Validate presence of UserID text field
-		sa.assertEquals(MainLoginPage.UserIDFieldPresence(), false, "FAIL: No UID field present");
-		
+		sa.assertEquals(MainLoginPage.UserIDFieldPresence(), true, "FAIL: No UID field present");		
 		//Validate for Password text field presence
-		sa.assertEquals(MainLoginPage.UserPWFieldPresence(), true, "FAIL: No PW field present");
-		
+		sa.assertEquals(MainLoginPage.UserPWFieldPresence(), true, "FAIL: No PW field present");		
 		//Validate for Login Button presence
-		sa.assertEquals(MainLoginPage.LoginBtnPresence(), true, "FAIL: LOGIN button is not Present");
-		
+		sa.assertEquals(MainLoginPage.LoginBtnPresence(), true, "FAIL: LOGIN button is not Present");		
 		// Check for CANCEL Button presence
 		sa.assertEquals(MainLoginPage.CancelBtnPresence(), true, "FAIL: CANCEL button is not displayed");
 				
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_004- Verify if the input data in the Password field is displayed as asterisk
 	@Test(groups = {"Regression"}, description="LOGIN_004- Verify if the input data in the"
@@ -243,7 +233,6 @@ public class LoginTest extends BaseClass{
 		sa4.assertNotEquals(actualPWTxt, "abc", "FAIL: The PW field data is not displayed in Astrisk");
 		sa4.assertAll();
 	}
-	
 	
 	//LOGIN_005- Verify if user can login into the application by entering UserID and 
 	//Password and then clicking on Login button
@@ -285,7 +274,6 @@ public class LoginTest extends BaseClass{
 
 	}
 	
-	
 	//LOGIN_007- Verify if user is not allowed to login with invalid credentials
 	@Test(groups = {"Regression"}, description="LOGIN_007- Verify if user is not allowed to "
 			+ "login with invalid credentials")
@@ -304,7 +292,6 @@ public class LoginTest extends BaseClass{
 		sa7.assertAll();
 	}
 	
-	
 	//LOGIN_008- Verify if user is not allowed to login if the UserId or Password 
 	//field is left blank
 	@Test(groups = {"Regression"}, description="LOGIN_008- Verify if user is not "
@@ -320,7 +307,6 @@ public class LoginTest extends BaseClass{
 		sa8.assertAll();
 	}
 		
-	
 	//LOGIN_009- Verify if the application closes on three unsuccessful login attempts
 	@Test(groups = {"Regression"}, description="LOGIN_009- Verify if the application "
 			+ "closes on three unsuccessful login attempts")
@@ -344,7 +330,6 @@ public class LoginTest extends BaseClass{
 				+"on entering 3 times INVALID User Credentials");
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_010- Verify if the first created admin user is not forced to change his 
 	//password during first login instance after user creation
@@ -374,7 +359,6 @@ public class LoginTest extends BaseClass{
 	
 	}
 	
-	
 	//LOGIN_011- Verify if the Change Password tick-box is in Enabled state during first time login 
 	//after creating the first admin user
 	@Test(groups = {"Regression"}, description="LOGIN_011- Verify if the Change Password tickbox is in "
@@ -392,7 +376,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();		
 	}
 
-	
 	//LOGIN_012- Verify if the Change Password tickbox is in enabled state during consecutive 
 	//logins by the first admin user
 	@Test(groups = {"Regression"}, description="LOGIN_012- Verify if the Change Password tickbox"
@@ -412,7 +395,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();	
 	}
 	
-	
 	//LOGIN_013- Verify if checking the Change Password tickbox allows the user to change his password
 	@Test(groups = {"Regression"}, description="LOGIN_013- Verify if checking the Change Password"
 			+ " tickbox allows the user to change his password")
@@ -430,7 +412,6 @@ public class LoginTest extends BaseClass{
 				+ "is not enabled/displayed to Change PW");
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_014- Verify if unchecking the Change Password tickbox restricts the user 
 	//from changing his password
@@ -459,7 +440,6 @@ public class LoginTest extends BaseClass{
 		}		
 	}
 
-	
 	//LOGIN_015- Verify if user can change the password by entering new password and clicking on the OK button
 	@Test(groups = {"Regression"}, description="LOGIN_015- Verify if user can change the password "
 			+ "by entering new password and clicking on the OK button")
@@ -494,7 +474,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 		
-	
 	//LOGIN_016- Verify if clicking on the Cancel button in the Change password field 
 	//restores the previous password
 	@Test(groups = {"Regression"}, description="LOGIN_016- Verify if clicking on the Cancel button"
@@ -522,7 +501,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 	
-	
 	//LOGIN_017- Verify if subsequent users created are forced to change their password during first login instance
 	@Test(groups = {"Regression", "Sanity"}, description="LOGIN_017- Verify if subsequent users created are "
 			+ "forced to change their password during first login instance")
@@ -547,7 +525,6 @@ public class LoginTest extends BaseClass{
 
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_018- Verify if the Change Password tickbox is in disabled state during first  
 	//login instance for subsequent users
@@ -604,7 +581,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();	
 	}
 	
-	
 	//LOGIN_020- Verify if a user is forced to change his password while login, 
 	//if his password has been changed by the admin user	
 	@Test(groups = {"Regression"}, description="LOGIN_020- Verify if a user is "
@@ -650,7 +626,6 @@ public class LoginTest extends BaseClass{
 		sa.assertAll();
 	}
 
-	
 	//LOGIN_021- Verify if a Disabled user is not allowed to login to the system	
 	@Test(groups = {"Regression"}, description="LOGIN_021- Verify if a Disabled user "
 			+ "is not allowed to login to the system")
@@ -682,11 +657,9 @@ public class LoginTest extends BaseClass{
 		
 		String expAlertMsg = "User account has been disabled, please contact administrator";
 
-
-		sa.assertEquals(tu.get_popup_text(), expAlertMsg, "FAIL: User is not Disabled");
+		sa.assertEquals(tu.get_AlertMsg_text(), expAlertMsg, "FAIL: User is not Disabled");
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_022- Verify if on 3 unsuccessful login attempts with the same UserId, 
 	//the User account is blocked	
@@ -718,7 +691,6 @@ public class LoginTest extends BaseClass{
 		sa.assertEquals(tu.get_popup_text(), expAlertMsg, "FAIL: User is not Disabled");
 		sa.assertAll();
 	}
-	
 	
 	//LOGIN_024- Verify the password change in login screen by using last 20 passwords	
 	@Test(groups = {"Regression"}, dataProvider = "LOGIN_024", dataProviderClass = userManagementUtility.class,

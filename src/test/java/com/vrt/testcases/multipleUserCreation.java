@@ -5,32 +5,14 @@
 
 package com.vrt.testcases;
 
-import static org.testng.Assert.assertEquals;
-
 import java.awt.AWTException;
-import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -39,24 +21,10 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.vrt.base.BaseClass;
 import com.vrt.pages.LoginPage;
 import com.vrt.pages.MainHubPage;
-import com.vrt.pages.Setup_CalculationsPage;
-import com.vrt.pages.Setup_GroupSensorsPage;
-import com.vrt.pages.Setup_QualParamPage;
-import com.vrt.pages.Setup_ReviewPage;
-import com.vrt.pages.Setup_SensorConfigPage;
-import com.vrt.pages.Setup_defineSetupPage;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.UserManagementPage;
-import com.vrt.pages.assetCreationPage;
-import com.vrt.pages.assetHubPage;
-import com.vrt.pages.assetDetailsPage;
 import com.vrt.pages.FileManagementPage;
-import com.vrt.pages.EquipmentHubPage;
-import com.vrt.pages.VRTLoggerHubPage;
-import com.vrt.pages.VRTLoggersDetailspage;
 import com.vrt.pages.SyncInPage;
-import com.vrt.pages.CopySetuppage;
-import com.vrt.pages.Copyassetpage;
 
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.userManagementUtility;
@@ -66,8 +34,8 @@ public class multipleUserCreation extends BaseClass {
 	
 	public multipleUserCreation() throws Exception {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 	TestUtilities tu = new TestUtilities();
 	public ExtentReports extent;
 	public ExtentTest extentTest;
@@ -76,6 +44,9 @@ public class multipleUserCreation extends BaseClass {
 	LoginPage LoginPage;
 	MainHubPage MainHubPage;
 	UserManagementPage UserManagementPage;
+	FileManagementPage FileManagementPage;
+	SyncInPage SyncInPage;
+	SyncInAssetListPage SyncInAssetListPage;
 	
 
 	//Before test/Class
