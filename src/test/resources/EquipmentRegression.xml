@@ -11,6 +11,7 @@
 		<classes>
 			<class name="com.vrt.testcases.EquipmentHubTest"></class>
 			<class name="com.vrt.testcases.EquipmentCreationTest"></class>
+			<class name="com.vrt.testcases.EquipmentEditTest"></class>
 
 		</classes>
 	</test> <!-- assetDetailsTestSanity -->

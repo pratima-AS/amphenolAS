@@ -4,9 +4,12 @@
 */
 
 package com.vrt.pages;
+
 import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import com.vrt.base.BaseClass;
 
 public class EquipmentHubPage extends BaseClass {
@@ -105,15 +108,22 @@ public class EquipmentHubPage extends BaseClass {
 		return IsElementVisibleStatus(EquipmentHeaderTextBlock);
 	}
 
-	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
+	// is InitiateVerification button visible
 
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		clickOn(bottomMenu_Home_Icon);
+	// Fetch EquipmentDueCalibration_Count and IRTD Equipment type text
 
-		Thread.sleep(1000);
-		return new MainHubPage();
+	public String FetchTxt_DueCalibrationCount_IRTDtype(int j) throws InterruptedException, IOException {
+		List<WebElement> Listcounts = driver.findElementByName("IRTD").findElements(By.className("TextBlock"));
+		return Listcounts.get(j).getText();
+
 	}
 
+	// Fetch EquipmentDueCalibration_Count and IRTD Equipment type text
+
+	public String FetchTxt_DueCalibrationCount_VRTLoggertype(int j) throws InterruptedException, IOException {
+		List<WebElement> Listcounts = driver.findElementByName("VRTLogger").findElements(By.className("TextBlock"));
+		// System.out.println(Listcounts.size());
+		return Listcounts.get(j).getText();
+
+	}
 }

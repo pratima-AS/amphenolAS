@@ -6,6 +6,9 @@
 package com.vrt.pages;
 
 import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.vrt.base.BaseClass;
@@ -148,6 +151,15 @@ public class MainHubPage extends BaseClass {
 		Thread.sleep(500);
 		return new EquipmentHubPage();
 	}
+	
+	// Fetch EquipmentDueCalibration_Count
+	public String FetchTxt_EquipmentDueCalibration_Count(int j) throws InterruptedException, IOException {
+		List<WebElement> Listcounts = driver.findElementByName("Equipment").findElements(By.className("TextBlock"));
+
+		return Listcounts.get(j).getText();
+
+	}
+
 
 	// Click the Equipment Tile
 	public FileManagementPage ClickFileManagementTitle() throws InterruptedException, IOException {
