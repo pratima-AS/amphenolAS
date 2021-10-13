@@ -122,6 +122,23 @@ public class TestUtilities extends BaseClass {
 		// System.out.println("Date Format with dd-MM-yyyy : "+strDate);
 		return strDate;
 	}
+	
+	// Convert MM-dd-yyyy type of Date input to a MM/dd/yyyy date format
+	public String convert_StringDate_to_ActualDate_inCertainFormat6(String dt) throws ParseException {
+		SimpleDateFormat formating = new SimpleDateFormat("MM-dd-yyyy");
+		String dateinString = dt;
+		// System.out.println(dateString);
+		Date date = formating.parse(dateinString);
+
+		// System.out.println(date);
+		// System.out.println(formating.format(date));
+
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		String strDate = formatter.format(date);
+		// System.out.println("Date Format with MM/dd/yyyy : "+strDate);
+		return strDate;
+	}
+
 
 	// get_CurrentDate_inCertainFormat:Rqd Date format MM-dd-YYYY = 12-31-2019 or
 	// MM/dd/YYYY = 12/31/2019
@@ -519,7 +536,7 @@ public class TestUtilities extends BaseClass {
 		return IsElementVisibleStatus(About_Wndw);
 	}
 
-	// Click on the Home icon of the bottom apps bar to move to Main Hub page
+	// Click on the Home icon of the bottom apps bar to move to Main Hub page with Alert message
 	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
 		Actions ac = new Actions(driver);
 		ac.contextClick().build().perform();
@@ -531,6 +548,19 @@ public class TestUtilities extends BaseClass {
 		Thread.sleep(3000);
 		return new MainHubPage();
 	}
+	
+	// Click on the Home icon of the bottom apps bar to move to Main Hub page without Alert message
+	public MainHubPage Click_Home_Icon_AppBar1() throws InterruptedException, IOException {
+		Actions ac = new Actions(driver);
+		ac.contextClick().build().perform();
+
+		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
+		clickOn(bottomMenu_Home_Icon);
+
+		Thread.sleep(1000);
+		return new MainHubPage();
+	}
+
 
 	// Click on the Help icon of the bottom apps bar to move to Main Hub page
 	public void Click_Help_Icon_AppBar() throws InterruptedException {

@@ -9,6 +9,8 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
+//import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -32,10 +34,11 @@ import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.NewEquipmentCreation_Page;
-
 import com.vrt.utility.EqupmentUtility;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.setupCreationUtility;
+import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDDetailspage;
 
 public class EquipmentCreationTest extends BaseClass {
 
@@ -60,6 +63,8 @@ public class EquipmentCreationTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
+	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDDetailspage IRTDDetailspage;
 
 	// Ensure the User has got rights to create Assets
 	// @BeforeTest
@@ -214,7 +219,7 @@ public class EquipmentCreationTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", SerialNo, "1");
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		sa.assertEquals(Actmsg, Expmsg, "Fail : application displaying wrong alert message");
 
 		sa.assertAll();
@@ -280,7 +285,7 @@ public class EquipmentCreationTest extends BaseClass {
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN006", "11");
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		String Expmsg = "Equipment \"EN006\" already exists, Please use a different Equipment SNO";
 
 		sa.assertEquals(Actmsg, Expmsg, "Fail : application displaying wrong alert message");
@@ -311,7 +316,7 @@ public class EquipmentCreationTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN", ModelNo);
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		sa.assertEquals(Actmsg, Expmsg, "Fail : Application displaying wrong alert message");
 		sa.assertAll();
 
@@ -391,7 +396,7 @@ public class EquipmentCreationTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.EqipCreation("IRTD", "EN", "12", id);
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		sa.assertEquals(Actmsg, Expmsg, "Fail : Application displaying wrong alert message");
 		sa.assertAll();
 	}
@@ -595,6 +600,7 @@ public class EquipmentCreationTest extends BaseClass {
 	}
 
 // EN_022- Verify if the Manufacturing Cal due date field displays the one year ahead timestamp of Manufacturing Cal date by default                 
+
 	@Test(groups = {
 			"Regression" }, description = "EN_022- Verify if the Manufacturing Cal due date field displays the one year ahead timestamp of Manufacturing Cal date by default")
 	public void EN_022() throws InterruptedException, IOException, ParseException {
@@ -604,13 +610,23 @@ public class EquipmentCreationTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.select_EquipmentType("IRTD");
-		// String crntdate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
-		// String calduedate =
-		// NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCal_DueDate();
-		System.out.println(NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCal_DueDate());
-		// sa.assertEquals(crntdate, calduedate,
-		// "Fail: By default Manufacturing Cal due date field not displaying one year
-		// ahead timestamp of Manufacturing Cal date");
+
+		String Manufacturing_Cal_Date = NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCalDate();
+
+		System.out.println("Manufacturing_Cal_Date " + Manufacturing_Cal_Date);
+		String crntdate = tu.get_CurrentDate_inCertainFormat("MM/dd/YYYY");
+
+		String ManufacturingCal_Due_Dat = NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCal_DueDate();
+
+		System.out.println("Actual ManufacturingCal_Due_Dat " + ManufacturingCal_Due_Dat);
+
+		String Futuredate = tu.convert_StringDate_to_ActualDate_inCertainFormat6(tu.getFutureDate_weeks(52));
+		System.out.println("Futuredate " + Futuredate);
+
+		sa.assertEquals(crntdate, Manufacturing_Cal_Date, "FAIL : ManufacturingCalDate is not same with current date");
+
+		sa.assertEquals(Futuredate, ManufacturingCal_Due_Dat,
+				"Fail: By default Manufacturing Cal due date field not displaying one year ahead timestamp of Manufacturing Cal date");
 		sa.assertAll();
 	}
 
@@ -631,11 +647,11 @@ public class EquipmentCreationTest extends BaseClass {
 		sa.assertAll();
 	}
 
-	// EN_024- Verify if the Last verification date field do not display the current
+	// EN_024- Verify if the Last verification date field do display the current
 	// system date and time by default
 
 	@Test(groups = {
-			"Regression" }, description = "EN_024- Verify if the Last verification date field do not display the current system date and time by default")
+			"Regression" }, description = "EN_024- Verify if the Last verification date field should display the current system date and time by default")
 	public void EN_024() throws InterruptedException, IOException, ParseException {
 
 		extentTest = extent.startTest(
@@ -674,11 +690,53 @@ public class EquipmentCreationTest extends BaseClass {
 
 	// EN_026- Verify if User able to select the Manufacturing Cal Date is equal to
 	// the Last Verification Date for VRT Logger equipment type
-	// EN_026 - MANUAL
+
+	@Test(groups = {
+			"Regression" }, description = "EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank")
+	public void EN_026() throws InterruptedException {
+		extentTest = extent.startTest(
+				"EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank");
+		SoftAssert sa = new SoftAssert();
+
+		NewEquipmentCreation_Page.select_EquipmentType("VRT Logger");
+		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
+		NewEquipmentCreation_Page.enterSN("039");
+		NewEquipmentCreation_Page.enterNewModelNumber("040");
+
+		NewEquipmentCreation_Page.selectManufacturingCalDate_Yr("2020");
+
+		NewEquipmentCreation_Page.selectLastVerificationDate_Yr("2020");
+		NewEquipmentCreation_Page.ClickSaveButton();
+
+		sa.assertEquals(NewEquipmentCreation_Page.UserLoginPopupVisible(), true);
+
+		sa.assertAll();
+
+	}
+
 	// EN_027- Verify if an alert message is displayed if the Manufacturing Cal Date
 	// is greater than the Last Verification Date for VRT Logger equipment type
-	// EN_027 MANUAL
-	// As we are unable to select future date
+
+	@Test(groups = {
+			"Regression" }, description = "EN_027- Verify if an alert message is displayed if the Manufacturing Cal Date is greater than the Last Verification Date for VRT Logger equipment type")
+	public void EN_027() throws InterruptedException {
+		extentTest = extent.startTest(
+				"EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank");
+		SoftAssert sa = new SoftAssert();
+
+		NewEquipmentCreation_Page.select_EquipmentType("VRT Logger");
+		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
+		NewEquipmentCreation_Page.enterSN("039");
+		NewEquipmentCreation_Page.enterNewModelNumber("040");
+
+		NewEquipmentCreation_Page.selectLastVerificationDate_Yr("2020");
+		NewEquipmentCreation_Page.ClickSaveButton();
+
+		String ActualMsg = tu.get_AlertMsg_text();
+		String ExpMsg = "Verification Date should be greater than Manufacturing Cal Date .";
+		sa.assertEquals(ActualMsg, ExpMsg, "FAIL: Alert message is not displaying correctly");
+		sa.assertAll();
+	}
 
 	// EN_028- Verify if User is not allowed to save the equipment if any one of the
 	// mandatory fields are left blank
@@ -692,12 +750,21 @@ public class EquipmentCreationTest extends BaseClass {
 
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields(Etype, SerialNo, EMN);
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		sa.assertEquals(Actmsg, Expmsg, "Fail : application displaying wrong alert message");
 		sa.assertAll();
 	}
 
 	// EN_029- Verify if user has a scope to add a new equipment picture
+
+	@Test(groups = { "Regression" }, description = "EN_029- This TC is equivalant to EN_030")
+	public void EN_029() throws InterruptedException, IOException, ParseException, AWTException {
+
+		extentTest = extent.startTest("EN_029- This TC is equivalant to EN_030");
+
+		SoftAssert sa = new SoftAssert();
+	}
+
 	// EN_030- Verify if User is allowed to upload an image of valid image size of
 	// less than 5 M
 
@@ -761,7 +828,7 @@ public class EquipmentCreationTest extends BaseClass {
 		NewEquipmentCreation_Page.click_EquipmentImage_UploadButton();
 		Thread.sleep(1000);
 		tu.uploadDoc("UserimageInValid.jpg");
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		String Expmsg = "Select image file with size less than 5 mb";
 		sa.assertEquals(Actmsg, Expmsg, "FAIL : Alert message not displaying");
 		sa.assertAll();
@@ -833,24 +900,31 @@ public class EquipmentCreationTest extends BaseClass {
 
 	// EN_035- Verify if user can create a new IRTD equipment by clicking on the
 	// Save button after filling up all the mandatory fields
+
 	@Test(groups = {
-			"Regression" }, description = "    EN_035- Verify if user can create a new IRTD equipment by clicking "
-					+ "on the Save button after filling up all the mandatory fields")
-	public void EN_035() throws InterruptedException {
+			"Regression" }, dataProvider = "EN_035", dataProviderClass = EqupmentUtility.class, description = "EN_035- Verify if user can create a new IRTD equipment by clicking on the  Save button after filling up all the mandatory fields")
+	public void EN_035(String Etype, String SerialNo, String EMN) throws InterruptedException, IOException {
 
 		extentTest = extent.startTest(
-				"EN_035- Verify if user can create a new IRTD equipment by clicking on the Save button after filling up all the mandatory fields");
+				"EN_035- Verify if user can create a new IRTD equipment by clicking on the  Save button after filling up all the mandatory fields");
 
 		SoftAssert sa = new SoftAssert();
-		// Here we are keeping ID field blank
-		NewEquipmentCreation_Page.EqipCreation("IRTD", "E1", "12", "11a");
 
-		sa.assertEquals(NewEquipmentCreation_Page.UserLoginPopupVisible(), true,
-				"FAIL - Verify if user can create a new IRTD equipment by clicking on the Save button after filling up all the mandatory fields");
+		NewEquipmentCreation_Page.EqipCreation_MandatoryFields(Etype, SerialNo, EMN);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+
+		EquipmentHubPage = NewEquipmentCreation_Page.ClickBackBtn();
+
+		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo(SerialNo);
+
+		sa.assertEquals(IRTDDetailspage.IRTD_DetailsHeaderPresence(), true, "FAIL - Landed to Wrong page");
 
 		sa.assertAll();
 
 	}
+
+	// EN_036 to EN_038 TCs are OBSOLATE
 
 	// EN_039- Verify if user can create a new VRT Logger equipment by clicking on
 	// the Save button after filling up all the mandatory fields
@@ -883,12 +957,15 @@ public class EquipmentCreationTest extends BaseClass {
 	}
 
 	// EN_041- Verify if the new equipment is created for valid login credentials
+	//// EN_046- Verify if the Audit event is recorded in the Audit screen for
+	// creating a new Equpment
 
 	@Test(groups = {
-			"Regression" }, description = "EN_041- Verify if the new equipment is created for valid login credentials")
-	public void EN_041() throws InterruptedException, IOException, ParseException, AWTException {
+			"Regression" }, description = "EN_041,EN_046- Verify if the new equipment is created for valid login credentials")
+	public void EN_041_EN_046() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extentTest = extent.startTest("EN_041- Verify if the new equipment is created for valid login credentials");
+		extentTest = extent
+				.startTest("EN_041,EN_046- Verify if the new equipment is created for valid login credentials");
 
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN041", "041");
@@ -920,7 +997,7 @@ public class EquipmentCreationTest extends BaseClass {
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN042", "042");
 		UserLoginPopup("2", "123240");
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		String Expmsg = "Invalid Credential, Please try again";
 		sa.assertEquals(Actmsg, Expmsg, "FAIL : Incorrect Alert Message");
 		sa.assertAll();
@@ -940,7 +1017,7 @@ public class EquipmentCreationTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.ClickSaveButton();
 
-		String Actmsg = NewEquipmentCreation_Page.AlertMsg();
+		String Actmsg = tu.get_AlertMsg_text();
 		String Expmsg = "Serial No. is mandatory, please enter Serial No.";
 		sa.assertEquals(Actmsg, Expmsg, "FAIL : Incorrect Alert Message");
 		sa.assertAll();
@@ -948,14 +1025,13 @@ public class EquipmentCreationTest extends BaseClass {
 
 	// EN_044- Verify if the Cancel button resets all the entries in the equipment
 	// text fields to blank
-	// EN_044 Has Defect.
 
 	@Test(groups = {
-			"Regression" }, description = "EN_044- Verify if the Cancel button resets all the entries in the equipment text fields to blank")
+			"Regression" }, description = "EN_044- Verify if the clear button resets all the entries in the equipment text fields to blank")
 	public void EN_044() throws InterruptedException, IOException, ParseException, AWTException {
 
 		extentTest = extent.startTest(
-				"EN_044- Verify if the Cancel button resets all the entries in the equipment text fields to blank");
+				"EN_044- Verify if the clear button resets all the entries in the equipment text fields to blank");
 
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.EqipCreation_WithoutClickingSaveBtn("IRTD", "EN044", "044");
@@ -993,29 +1069,7 @@ public class EquipmentCreationTest extends BaseClass {
 	// EN_046- Verify if the Audit event is recorded in the Audit screen for
 	// creating a new Equpment
 
-	@Test(groups = {
-			"Regression" }, description = "EN_046-Verify if the Audit event is recorded in the Audit screen for creating a new Equpment")
-	public void EN_046() throws InterruptedException, IOException, ParseException, AWTException {
-
-		extentTest = extent.startTest(
-				"EN_046-Verify if the Audit event is recorded in the Audit screen for creating a new Equpment");
-
-		SoftAssert sa = new SoftAssert();
-		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN0416", "046");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		EquipmentHubPage = NewEquipmentCreation_Page.ClickBackBtn();
-
-		MainHubPage = EquipmentHubPage.ClickBackBtn();
-		AuditPage = MainHubPage.ClickAuditTitle();
-		Thread.sleep(2000);
-		String Actualnmsg = AuditPage.get_auditEvent_text();
-
-		String ExpectMSG = "Equipment : \"EN0416\" is created by  User ID : \"1\" , User Name : \"User1\"";
-
-		sa.assertEquals(Actualnmsg, ExpectMSG, "FAIL:The Audit trail record for Equipment creation is not exist ");
-		sa.assertAll();
-
-	}
+	// EN_046 handelled in EN_041
 
 	// EN_048-Verify the bottom menu options in Asset details screen
 
@@ -1046,7 +1100,7 @@ public class EquipmentCreationTest extends BaseClass {
 				"EN_048_1- Verify if clicking on the Home button in the New Equipment page navigate to the Main Hub page");
 		SoftAssert sa = new SoftAssert();
 
-		MainHubPage = NewEquipmentCreation_Page.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar1();
 
 		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");

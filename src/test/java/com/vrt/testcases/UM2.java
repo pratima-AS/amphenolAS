@@ -28,7 +28,7 @@ import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.userManagementUtility;
-import com.vrt.pages.IRTDDetailspage;
+import com.vrt.pages.Equipment_IRTDDetailspage;
 import com.vrt.pages.IRTDHubPage;
 import com.vrt.pages.FileManagementPage;
 import com.vrt.pages.AuditPage;
@@ -60,7 +60,7 @@ public class UM2 extends BaseClass {
 	UserManagementPage UserManagementPage;
 	EquipmentHubPage EquipmentHubPage;
 	NewEquipmentCreation_Page EquipmentPage;
-	IRTDDetailspage IRTDDetailspage;
+	Equipment_IRTDDetailspage IRTDDetailspage;
 	IRTDHubPage IRTDHubPage;
 	FileManagementPage FileManagementPage;
 	AuditPage AuditPage;

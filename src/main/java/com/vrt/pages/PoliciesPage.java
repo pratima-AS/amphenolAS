@@ -436,5 +436,11 @@ public class PoliciesPage extends BaseClass {
 
 		}
 	}
+	
+	// click on Click_InstrumentCalibWarningCheckBox
+	public void Click_InstrumentCalibWarningCheckBox() {
+		clickOn(InstrumentCalibWarningCheckBox);
+	}
+
 
 }

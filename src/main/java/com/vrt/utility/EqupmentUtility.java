@@ -147,6 +147,13 @@ public class EqupmentUtility extends BaseClass {
 		return data;
 	}
 
+	@DataProvider(name = "EN_035")
+	public static Object[][] EN_035() {
+		String sheetName = "EN_035";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 	@DataProvider(name = "EEIRTD_006A")
 	public static Object[][] EEIRTD_006A() {
 		String sheetName = "EEIRTD_006A";
@@ -155,17 +162,34 @@ public class EqupmentUtility extends BaseClass {
 	}
 
 	// EEIRTD_006A
-	@DataProvider(name = "EEVRTL_006")
-	public static Object[][] EEVRTL_006() {
-		String sheetName = "EEVRTL_006";
+	@DataProvider(name = "EEVRTL_060")
+	public static Object[][] EEVRTL_060() {
+		String sheetName = "EEVRTL_060";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
 
-	@DataProvider(name = "EEVRTL_006A")
-	public static Object[][] EEVRTL_006A() {
-		String sheetName = "EEVRTL_006A";
+	@DataProvider(name = "EEVRTL_060A")
+	public static Object[][] EEVRTL_060A() {
+		String sheetName = "EEVRTL_060A";
 		Object[][] data = getTestData(sheetName);
 		return data;
 	}
+
+	@DataProvider(name = "EL_002")
+	public static Object[][] EL_002() {
+		String sheetName = "EL_002";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
+	// EL_022
+
+	@DataProvider(name = "EL_022")
+	public static Object[][] EL_022() {
+		String sheetName = "EL_022";
+		Object[][] data = getTestData(sheetName);
+		return data;
+	}
+
 }

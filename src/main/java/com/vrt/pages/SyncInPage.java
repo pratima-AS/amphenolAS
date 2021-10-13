@@ -79,7 +79,7 @@ public class SyncInPage extends BaseClass{
 		r.keyRelease(KeyEvent.VK_ENTER);
 		
 		String fp2 = System.getProperty("user.dir") +  "\\src\\test\\resources\\TestData\\" + pathname;
-		System.out.println(fp2);
+		//System.out.println(fp2);
 		alert.sendKeys(fp2);
 		Thread.sleep(500);
 		//Robot r = new Robot();

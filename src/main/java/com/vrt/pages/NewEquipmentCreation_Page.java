@@ -4,10 +4,12 @@
 */
 
 package com.vrt.pages;
+
 import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -324,12 +326,6 @@ public class NewEquipmentCreation_Page extends BaseClass {
 		ClickSaveButton();
 	}
 
-	// Fetch the Alert message
-	public String AlertMsg() {
-		WebElement Msg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(Msg);
-	}
-
 	// Enter Mandatory fields and create BS Equipment
 	public void BaseStation_EqipCreation_MandatoryFields(String Etype, String EID, String EMnum, String McAddress)
 			throws InterruptedException {
@@ -430,6 +426,13 @@ public class NewEquipmentCreation_Page extends BaseClass {
 		clickOn(ManufacturingCal_Date);
 	}
 
+	// click on ManufacturingCalDueDate
+
+	public void ClickOn_ManufacturingCal_Due_Date() {
+
+		clickOn(ManufacturingCal_Due_Date);
+	}
+
 	// is date picker field is avilable
 	public boolean Is_SelectDate_Visible() {
 		WebElement selectDate = driver.findElementByName("Select Date");
@@ -446,16 +449,6 @@ public class NewEquipmentCreation_Page extends BaseClass {
 
 	}
 
-	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
-		Actions ac = new Actions(driver);
-		ac.contextClick().build().perform();
-
-		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
-		clickOn(bottomMenu_Home_Icon);
-
-		Thread.sleep(1000);
-		return new MainHubPage();
-	}
 	// Fetch Text from ManufacturingCal_Due_Date
 
 	public String FetchTxt_From_ManufacturingCal_DueDate() {
@@ -469,5 +462,47 @@ public class NewEquipmentCreation_Page extends BaseClass {
 	public boolean is_ManufacturingCal_DueDate_Enabled() {
 
 		return ManufacturingCal_Due_Date.isEnabled();
+	}
+
+	public void selectManufacturingCalDate_Yr(String Yr) throws InterruptedException {
+
+		// click_AsstValidationDatePkr_Btn();
+		Actions ac = new Actions(driver);
+		String Date = FetchTxt_From_ManufacturingCalDate();
+		String expDate = Date.substring(Date.length() - 4);
+		// String[] expDate = Date.split("/");
+		// System.out.println(expDate);
+
+		while (!expDate.equals(Yr)) {
+			ClickOn_ManufacturingCalDate();
+			Thread.sleep(500);
+			ac.sendKeys(Keys.ARROW_RIGHT).sendKeys(Keys.ARROW_RIGHT).sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN)
+					.build().perform();
+			Thread.sleep(500);
+			Date = FetchTxt_From_ManufacturingCalDate();
+			expDate = Date.substring(Date.length() - 4);
+			// System.out.println(expDate);
+		}
+	}
+
+	public void selectLastVerificationDate_Yr(String Yr) throws InterruptedException {
+
+		// click_AsstValidationDatePkr_Btn();
+		Actions ac = new Actions(driver);
+		String Date = FetchTxt_LastVerificationDate();
+		String expDate = Date.substring(Date.length() - 4);
+		// String[] expDate = Date.split("/");
+		// System.out.println(expDate);
+
+		while (!expDate.equals(Yr)) {
+			click_LastVerificationdate_field();
+			Thread.sleep(500);
+			ac.sendKeys(Keys.ARROW_RIGHT).sendKeys(Keys.ARROW_RIGHT).sendKeys(Keys.ARROW_UP).sendKeys(Keys.RETURN)
+					.build().perform();
+			Thread.sleep(500);
+			Date = FetchTxt_LastVerificationDate();
+			expDate = Date.substring(Date.length() - 4);
+			// System.out.println(expDate);
+		}
 	}
 }

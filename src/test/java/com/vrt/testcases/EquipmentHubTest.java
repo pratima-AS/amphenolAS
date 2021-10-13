@@ -23,6 +23,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import com.vrt.base.BaseClass;
 import com.vrt.pages.LoginPage;
+import com.vrt.pages.PoliciesPage;
 import com.vrt.pages.MainHubPage;
 import com.vrt.pages.UserManagementPage;
 import com.vrt.pages.assetHubPage;
@@ -31,7 +32,11 @@ import com.vrt.pages.assetCreationPage;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.NewEquipmentCreation_Page;
-
+import com.vrt.pages.SyncInAssetListPage;
+import com.vrt.pages.SyncInPage;
+import com.vrt.pages.FileManagementPage;
+import com.vrt.pages.IRTDDetailspage;
+import com.vrt.pages.IRTDHubPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.setupCreationUtility;
 
@@ -58,6 +63,12 @@ public class EquipmentHubTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
+	IRTDHubPage IRTDHubPage;
+	IRTDDetailspage IRTDDetailspage;
+	FileManagementPage FileManagementPage;
+	SyncInPage SyncInPage;
+	SyncInAssetListPage SyncInAssetListPage;
+	PoliciesPage PoliciesPage;
 
 	// Ensure the User has got rights to create Assets
 	// @BeforeTest
@@ -80,24 +91,41 @@ public class EquipmentHubTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 		UserManagementPage = LoginPage.DefaultLogin();
+		// Create the default Admin USer
 		LoginPage = UserManagementPage.FirstUserCreation("User1", getUID("adminFull"), getPW("adminFull"),
 				getPW("adminFull"), "FullAdmin", "12345678", "abc@gmail.com");
 		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		UserManagementPage.clickAnyUserinUserList("User1");
-
+		UserManagementPage.clickPrivRunQual();
 		UserManagementPage.clickPrivCreateEditAsset();
 		UserManagementPage.clickPrivCreateEditSetup();
+		UserManagementPage.clickPrivRunCal();
 		UserManagementPage.ClickNewUserSaveButton();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
-		AppClose();
-		Thread.sleep(1000);
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		// Create a New Admin User but do not change its PW
+		UserManagementPage.CreateAdminUser(getUID("adminFull"), getPW("adminFull"), "NewU1", getUID("Newuser"),
+				getPW("Newuser"), "Admin", "12324", "abc@gmail.com");
+		// tu.click_Close_alertmsg();
+		MainHubPage = UserManagementPage.ClickBackButn();
+		// Conduct a Syncin operation
+		FileManagementPage = MainHubPage.ClickFileManagementTitle();
+		SyncInPage = FileManagementPage.ClickSyncInBtn_SyncinPage(getUID("adminFull"), getPW("adminFull"));
+		SyncInPage.enter_Filepath("syncin");
+		SyncInPage.click_FltrBtn();
+		SyncInAssetListPage = SyncInPage.click_SyncInOK_btn();
+		SyncInAssetListPage.click_EquipmentCheckBox();
+		SyncInAssetListPage.click_SelectAllBtn();
+		SyncInAssetListPage.click_OkBtn();
+		SyncInAssetListPage.click_AlrtYesBtn();
+		Thread.sleep(8000);
+		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
+		Thread.sleep(2000);
 
 	}
 
@@ -162,6 +190,49 @@ public class EquipmentHubTest extends BaseClass {
 		sa.assertAll();
 	}
 
+	// EH_002- Verify if the Equipment tile displays the count of the equipments due
+	// for Calibration based on the Instrument calibration Warning available in the
+	// Admin-Policies
+
+	@Test(groups = {
+			"Regression" }, description = "EH_002- Verify if the Equipment tile displays the count of the equipments due for Calibration based on the Instrument calibration Warning available in the Admin-Policies")
+	public void EH_002() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"EH_002- Verify if the Equipment tile displays the count of the equipments due for Calibration based on the Instrument calibration Warning available in the Admin-Policies");
+
+		SoftAssert sa = new SoftAssert();
+
+		sa.assertEquals(MainHubPage.FetchTxt_EquipmentDueCalibration_Count(0), "8/15",
+				"Fail: Equipment heder of Equipment Hub page is not visible");
+
+		sa.assertAll();
+	}
+
+	// EH_003- Verify if the Equipment tile should not display count once the
+	// Instrument calibration Warning is unchecked in the Admin-Policies
+	@Test(groups = {
+			"Regression" }, description = "EH_003- Verify if the Equipment tile should not display count once the Instrument calibration Warning is unchecked in the Admin-Policies")
+	public void EH_003() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"EH_003- Verify if the Equipment tile should not display count once the Instrument calibration Warning is unchecked in the Admin-Policies");
+
+		SoftAssert sa = new SoftAssert();
+		Thread.sleep(1000);
+		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
+		PoliciesPage = UserManagementPage.Click_Policy();
+		PoliciesPage.Click_InstrumentCalibWarningCheckBox();
+		PoliciesPage.ClickSaveButton();
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		MainHubPage = PoliciesPage.click_BackBtn();
+		sa.assertEquals(MainHubPage.FetchTxt_EquipmentDueCalibration_Count(0), "",
+				"Fail: Equipment heder of Equipment Hub page is not visible");
+
+	}
+
+	// YET_TO_IMPLEMENT_EH_004- Verify if the application throwing warning message
+	// if user trying to connect the Equipment which the due date achieved
+	// YET TO IMPLEMENT - EH_004
+
 	// EH_005- Verify if user can navigate to the Equipment page by clicking on the
 	// equipment tile
 
@@ -217,6 +288,31 @@ public class EquipmentHubTest extends BaseClass {
 		sa.assertAll();
 	}
 
+	// EH_008- Verify if the VRT equipment group tile in the equipment screen
+	// displays the count of equipments of that group due for calibration, Initiate
+	// Calibration button and Initiate Verification button
+
+	@Test(groups = {
+			"Regression" }, description = "EH_008- Verify if the VRT equipment group tile in the equipment screen displays the count of equipments of that group due for calibration, Initiate Calibration button and Initiate Verification button")
+	public void EH_008() throws InterruptedException, IOException {
+		extentTest = extent.startTest(
+				"EH_008- Verify if the VRT equipment group tile in the equipment screen displays the count of equipments of that group due for calibration, Initiate Calibration button and Initiate Verification button");
+		SoftAssert sa = new SoftAssert();
+		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
+
+		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(0), "1/1",
+				"Fail:Count of equipments of IRTD group type which are due for calibration  is not visible");
+		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(1), "IRTD",
+				"Fail: equipments of IRTD group type is not visible");
+
+		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_VRTLoggertype(0), "7/14",
+				"Fail:Count of equipments of VRTLogger group type which are due for calibration  is not visible");
+		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_VRTLoggertype(1), "VRTLogger",
+				"Fail: equipments of VRTLogger group type is not visible");
+
+		sa.assertAll();
+
+	}
 //EH_009- Verify if clicking on the Back button redirects to the Main Hub Page
 
 	@Test(groups = {
@@ -263,7 +359,7 @@ public class EquipmentHubTest extends BaseClass {
 
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 
-		MainHubPage = EquipmentHubPage.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar();
 
 		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
