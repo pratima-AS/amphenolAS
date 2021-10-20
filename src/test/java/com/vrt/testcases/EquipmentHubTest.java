@@ -84,13 +84,14 @@ public class EquipmentHubTest extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("EquipmentHub Test in Progress..");
 
-		// Rename the file (NgvUsers.uxx) if exists
+/*		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
+		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
@@ -126,7 +127,7 @@ public class EquipmentHubTest extends BaseClass {
 		Thread.sleep(8000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
-
+*/
 	}
 
 	// After All the tests are conducted
@@ -191,17 +192,16 @@ public class EquipmentHubTest extends BaseClass {
 	}
 
 	// EH_002- Verify if the Equipment tile displays the count of the equipments due
-	// for Calibration based on the Instrument calibration Warning available in the
-	// Admin-Policies
-
+	// for Calibration based on the Instrument calibration Warning available in the Admin-Policies
 	@Test(groups = {
-			"Regression" }, description = "EH_002- Verify if the Equipment tile displays the count of the equipments due for Calibration based on the Instrument calibration Warning available in the Admin-Policies")
+			"Regression" }, description = "EH_002- Verify if the Equipment tile displays the count of the "
+					+ "equipments due for Calibration based on the Instrument calibration Warning available in the Admin-Policies")
 	public void EH_002() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"EH_002- Verify if the Equipment tile displays the count of the equipments due for Calibration based on the Instrument calibration Warning available in the Admin-Policies");
+				"EH_002- Verify if the Equipment tile displays the count of the equipments due for Calibration "
+				+ "based on the Instrument calibration Warning available in the Admin-Policies");
 
 		SoftAssert sa = new SoftAssert();
-
 		sa.assertEquals(MainHubPage.FetchTxt_EquipmentDueCalibration_Count(0), "8/15",
 				"Fail: Equipment heder of Equipment Hub page is not visible");
 
@@ -211,21 +211,26 @@ public class EquipmentHubTest extends BaseClass {
 	// EH_003- Verify if the Equipment tile should not display count once the
 	// Instrument calibration Warning is unchecked in the Admin-Policies
 	@Test(groups = {
-			"Regression" }, description = "EH_003- Verify if the Equipment tile should not display count once the Instrument calibration Warning is unchecked in the Admin-Policies")
+			"Regression" }, description = "EH_003- Verify if the Equipment tile should not "
+					+ "display count once the Instrument calibration Warning is unchecked in the Admin-Policies")
 	public void EH_003() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"EH_003- Verify if the Equipment tile should not display count once the Instrument calibration Warning is unchecked in the Admin-Policies");
+				"EH_003- Verify if the Equipment tile should not display count once the "
+				+ "Instrument calibration Warning is unchecked in the Admin-Policies");
 
 		SoftAssert sa = new SoftAssert();
 		Thread.sleep(1000);
 		UserManagementPage = MainHubPage.ClickAdminTile_UMpage();
 		PoliciesPage = UserManagementPage.Click_Policy();
-		PoliciesPage.Click_InstrumentCalibWarningCheckBox();
-		PoliciesPage.ClickSaveButton();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		PoliciesPage.Disable_InstrumentCalibWarningCheckBox();
 		MainHubPage = PoliciesPage.click_BackBtn();
-		sa.assertEquals(MainHubPage.FetchTxt_EquipmentDueCalibration_Count(0), "",
+		sa.assertEquals(MainHubPage.FetchTxt_EquipmentDueCalibration_Count(0), "15",
 				"Fail: Equipment heder of Equipment Hub page is not visible");
+		
+		PoliciesPage = MainHubPage.ClickAdminTile_Polpage();
+		PoliciesPage.Enable_InstrumentCalibWarningCheckBox();
+		//PoliciesPage.ClickSaveButton();
+		sa.assertAll();
 
 	}
 
@@ -235,7 +240,6 @@ public class EquipmentHubTest extends BaseClass {
 
 	// EH_005- Verify if user can navigate to the Equipment page by clicking on the
 	// equipment tile
-
 	@Test(groups = {
 			"Regression" }, description = "EH_005- Verify if user can navigate to the Equipment page by clicking on the equipment tile")
 	public void EH_005() throws InterruptedException, IOException {
@@ -249,7 +253,7 @@ public class EquipmentHubTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//EH_006- Verify if the different equipments are grouped according to the different equipment types
+	//EH_006- Verify if the different equipments are grouped according to the different equipment types
 	@Test(groups = {
 			"Regression" }, description = "EH_006- Verify if the different equipments are grouped according to the different equipment types")
 	public void EH_006() throws InterruptedException, IOException {
@@ -265,20 +269,21 @@ public class EquipmentHubTest extends BaseClass {
 
 		sa.assertEquals(EquipmentHubPage.Is_IRTDTileVisible(), true,
 				"Fail: IRTD List Box  is not available in Equipment Hub page");
-
 		sa.assertEquals(EquipmentHubPage.Is_VRTLoggerVisible(), true,
 				"Fail: VRT List Box  is not available in Equipment Hub page");
-
 		sa.assertAll();
+		
 	}
 
-//EH_007- Verify if the VRT equipment group tile is by default present in the Equipment page, even before creation of any equipment
-
+	//EH_007- Verify if the VRT equipment group tile is by default present in the Equipment page, 
+	//even before creation of any equipment
 	@Test(groups = {
-			"Regression" }, description = "EH_007- Verify if the VRT equipment group tile is by default present in the Equipment page, even before creation of any equipment")
+			"Regression" }, description = "EH_007- Verify if the VRT equipment group tile is by "
+					+ "default present in the Equipment page, even before creation of any equipment")
 	public void EH_007() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"EH_007- Verify if the VRT equipment group tile is by default present in the Equipment page, even before creation of any equipment");
+				"EH_007- Verify if the VRT equipment group tile is by default present in the Equipment page, "
+				+ "even before creation of any equipment");
 		SoftAssert sa = new SoftAssert();
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 
@@ -291,30 +296,33 @@ public class EquipmentHubTest extends BaseClass {
 	// EH_008- Verify if the VRT equipment group tile in the equipment screen
 	// displays the count of equipments of that group due for calibration, Initiate
 	// Calibration button and Initiate Verification button
-
 	@Test(groups = {
-			"Regression" }, description = "EH_008- Verify if the VRT equipment group tile in the equipment screen displays the count of equipments of that group due for calibration, Initiate Calibration button and Initiate Verification button")
+			"Regression" }, description = "EH_008- Verify if the VRT equipment group tile in the "
+					+ "equipment screen displays the count of equipments of that group due for calibration, "
+					+ "Initiate Calibration button and Initiate Verification button")
 	public void EH_008() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
-				"EH_008- Verify if the VRT equipment group tile in the equipment screen displays the count of equipments of that group due for calibration, Initiate Calibration button and Initiate Verification button");
+				"EH_008- Verify if the VRT equipment group tile in the equipment screen displays the count of "
+				+ "equipments of that group due for calibration, Initiate Calibration button and Initiate Verification button");
 		SoftAssert sa = new SoftAssert();
+		
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 
 		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(0), "1/1",
-				"Fail:Count of equipments of IRTD group type which are due for calibration  is not visible");
+		"Fail:Count of equipments of IRTD group type which are due for calibration is not visible");
 		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(1), "IRTD",
-				"Fail: equipments of IRTD group type is not visible");
-
+		"Fail: equipments of IRTD group type is not visible");
+		//System.out.println(EquipmentHubPage.FetchTxt_DueCalibrationCount_VRTLoggertype(0));
 		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_VRTLoggertype(0), "7/14",
-				"Fail:Count of equipments of VRTLogger group type which are due for calibration  is not visible");
+		"Fail:Count of equipments of VRTLogger group type which are due for calibration is not visible");
 		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_VRTLoggertype(1), "VRTLogger",
-				"Fail: equipments of VRTLogger group type is not visible");
+		"Fail: equipments of VRTLogger group type is not visible");
 
 		sa.assertAll();
 
 	}
-//EH_009- Verify if clicking on the Back button redirects to the Main Hub Page
-
+	
+	//EH_009- Verify if clicking on the Back button redirects to the Main Hub Page
 	@Test(groups = {
 			"Regression" }, description = "EH_009- Verify if clicking on the Back button redirects to the Main Hub Page")
 	public void EH_009() throws InterruptedException, IOException {
@@ -327,8 +335,7 @@ public class EquipmentHubTest extends BaseClass {
 		sa.assertAll();
 	}
 
-//EH_010- Verify if user have a scope to add a new equipment from the Equipment screen
-
+	//EH_010- Verify if user have a scope to add a new equipment from the Equipment screen
 	@Test(groups = {
 			"Regression" }, description = "EH_010- Verify if user have a scope to add a new equipment from the Equipment screen")
 	public void EH_010() throws InterruptedException, IOException {
@@ -345,12 +352,12 @@ public class EquipmentHubTest extends BaseClass {
 		sa.assertEquals(ActAlertMsg, ExpAlrtMsg, "FAIL: Equipment has not  created successfully");
 		sa.assertAll();
 	}
+	
 	// EH_011- Verify if only privileged users are allowed to add new equipments
 	// This TC is covered in UM3 class.
 
 	// EH_012- Verify if clicking on the Home button in the Equipment Hub Page
 	// displays the main hub page
-
 	@Test(description = "EH_012- Verify if clicking on the Home button in the Equipment Hub Page displays the main hub page")
 	public void EH_012() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -358,9 +365,7 @@ public class EquipmentHubTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-
-		MainHubPage = tu.Click_Home_Icon_AppBar();
-
+		MainHubPage = tu.Click_Home_Icon_AppBar1();
 		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
@@ -368,7 +373,6 @@ public class EquipmentHubTest extends BaseClass {
 
 	// EH_013- Verify if clicking on the Help button in the Equipment Hub Page
 	// displays the online help menu for that page
-
 	@Test(description = "EH_013- Verify if clicking on the Help button in the Equipment Hub Page displays the online help menu for that page")
 	public void CAL042() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
@@ -387,11 +391,15 @@ public class EquipmentHubTest extends BaseClass {
 	// Page displays the Windows help menu document
 	// This TC will handle manually
 
-//EH_015- Verify if clicking on the About button in the Equipment Hub Page displays the current software version, Console IP           
-	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, description = "EH_015- Verify if clicking on the About button in the Equipment Hub Page displays the current software version, Console IP")
+	//EH_015- Verify if clicking on the About button in the Equipment Hub Page displays 
+	//the current software version, Console IP           
+	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, 
+			description = "EH_015- Verify if clicking on the About button in the Equipment Hub Page "
+					+ "displays the current software version, Console IP")
 	public void CAL044(String SWVer) throws InterruptedException, UnknownHostException {
 		extentTest = extent.startTest(
-				"EH_015- Verify if clicking on the About button in the Equipment Hub Page displays the current software version, Console IP");
+				"EH_015- Verify if clicking on the About button in the Equipment Hub Page displays "
+				+ "the current software version, Console IP");
 		SoftAssert sa = new SoftAssert();
 
 		tu.Click_About_Icon_AppBar();
@@ -406,5 +414,6 @@ public class EquipmentHubTest extends BaseClass {
 				"FAIL: Incorrect SW version & Console IP adress displayed in About window");
 		sa.assertAll();
 
-	}
+	}	
+	
 }

@@ -97,11 +97,25 @@ public class MainHubPage extends BaseClass {
 		return new LoginPage();
 	}
 
-	// Click the Admin Tile
+	// Click the Admin Tile to navigate UserManagementPage
 	public UserManagementPage ClickAdminTile_UMpage() throws InterruptedException, IOException {
 		clickOn(MainUIAdminTile);
 		Thread.sleep(500);
 		return new UserManagementPage();
+	}
+	
+	// Click the Admin Tile to navigate PreferencesPage
+	public PreferencesPage ClickAdminTile_Prefpage() throws InterruptedException, IOException {
+		clickOn(MainUIAdminTile);
+		Thread.sleep(1000);
+		return new PreferencesPage();
+	}
+	
+	// Click the Admin Tile to navigate PreferencesPage
+	public PoliciesPage ClickAdminTile_Polpage() throws InterruptedException, IOException {
+		clickOn(MainUIAdminTile);
+		Thread.sleep(1000);
+		return new PoliciesPage();
 	}
 
 	// Click the Admin Tile when SuperVisor does not have default access privilege
@@ -187,11 +201,6 @@ public class MainHubPage extends BaseClass {
 		clickOn(btnConnect);
 	}
 
-	// Click the Admin Tile to navigate PreferencesPage
-	public PreferencesPage ClickAdminTile_Prefpage() throws InterruptedException, IOException {
-		clickOn(MainUIAdminTile);
-		Thread.sleep(1000);
-		return new PreferencesPage();
-	}
+
 
 }

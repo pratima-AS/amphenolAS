@@ -437,9 +437,30 @@ public class PoliciesPage extends BaseClass {
 		}
 	}
 	
-	// click on Click_InstrumentCalibWarningCheckBox
-	public void Click_InstrumentCalibWarningCheckBox() {
-		clickOn(InstrumentCalibWarningCheckBox);
+	// Enable the  Instrument Calibration warning by clicking on Click_InstrumentCalibWarningCheckBox
+	public void Enable_InstrumentCalibWarningCheckBox() throws InterruptedException {
+		String InstruCalCheckBx_State =  InstrumentCalibWarningCheckBox.getAttribute("Toggle.ToggleState");
+		//System.out.println(InstruCalCheckBx_State);
+		//For enabling the Instru. Cal warning feature enter Yes as parameter
+		if (InstruCalCheckBx_State.equals("0")) {
+			clickOn(InstrumentCalibWarningCheckBox);
+			ClickSaveButton();
+			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		}
+		
+	}
+	
+	// Disable the  Instrument Calibration warning by clicking on Click_InstrumentCalibWarningCheckBox
+	public void Disable_InstrumentCalibWarningCheckBox() throws InterruptedException {
+		String InstruCalCheckBx_State =  InstrumentCalibWarningCheckBox.getAttribute("Toggle.ToggleState");
+		//System.out.println(InstruCalCheckBx_State);
+		//For enabling the Instru. Cal warning feature enter Yes as parameter
+		if (InstruCalCheckBx_State.equals("1")) {
+			clickOn(InstrumentCalibWarningCheckBox);
+			ClickSaveButton();
+			UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		}
+		
 	}
 
 
