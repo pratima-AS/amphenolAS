@@ -85,7 +85,7 @@ public class EquipmentEditTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
 		extent = new ExtentReports(
-				System.getProperty("user.dir") + "/test-output/ER_" + "EquipmentCreationTest" + ".html", true);
+				System.getProperty("user.dir") + "/test-output/ER_" + "EquipmentEditTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "Asset Creation Test");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
@@ -160,7 +160,7 @@ public class EquipmentEditTest extends BaseClass {
 	public void endReport() {
 		extent.flush();
 		extent.close();
-		System.out.println("EquipmentCreation Test Completed.");
+		System.out.println("EquipmentEditTest Test Completed.");
 	}
 
 	// Before all tests are conducted
