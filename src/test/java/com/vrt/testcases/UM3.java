@@ -30,7 +30,7 @@ import com.vrt.utility.TestUtilities;
 import bsh.ParseException;
 
 import com.vrt.pages.Equipment_IRTDDetailspage;
-import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDHubPage;
 import com.vrt.pages.FileManagementPage;
 import com.vrt.pages.AuditPage;
 import com.vrt.pages.assetHubPage;
@@ -59,7 +59,7 @@ public class UM3 extends BaseClass {
 	EquipmentHubPage EquipmentHubPage;
 	NewEquipmentCreation_Page EquipmentPage;
 	Equipment_IRTDDetailspage IRTDDetailspage;
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	FileManagementPage FileManagementPage;
 	AuditPage AuditPage;
 	assetHubPage assetHubPage;

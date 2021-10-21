@@ -1,4 +1,3 @@
-
 /**
 * @author ruchika.behura
 *
@@ -17,14 +16,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import com.vrt.pages.NewEquipmentCreation_Page;
-import com.vrt.pages.IRTDHubPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.base.BaseClass;
 
 public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	TestUtilities tu = new TestUtilities();
 
 	// EquipmentHubPage Element definition
@@ -38,9 +35,9 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 	WebElement Backbtn = null;
 	WebElement Camera_Btn = null;
 	WebElement DeleteEquipments = null;
-	WebElement UploadDocs_Btn = null;
+
 	WebElement DocsTile_Count = null;
-	WebElement VrtLoggerDetails_Title = null;
+
 	WebElement ModelNumber = null;
 	WebElement ManufacturingCalDate = null;
 	WebElement ManufacturingCalDueDate = null;
@@ -55,10 +52,9 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 	// Initializing the elements
 	private void initElements() {
 
-		VrtLoggerDetails_Title = driver.findElementByName("- Details");
 		Copytodrive = driver.findElementByAccessibilityId("CopyDocumentToDrive");
 		Documents_Tile = driver.findElementByAccessibilityId("DocumentsButton");
-		UploadDocs_Btn = driver.findElementByAccessibilityId("UploadDocumentsButton");
+
 		DocsTile_Count = driver.findElementByAccessibilityId("DocumentsCountTextBlock");
 		Backbtn = driver.findElementByAccessibilityId("ArrowGlyph");
 		ModelNumber = driver.findElementByAccessibilityId("ModelNumberTextBox");
@@ -86,7 +82,7 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 
 	// Release memory
 	public void resetWebElements() {
-		UploadDocs_Btn = null;
+
 		ManufacturingCalDate = null;
 		ManufacturingCalDueDate = null;
 		LastVerificationdate = null;
@@ -96,7 +92,7 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 		DocumentsTile = null;
 		HistoryTile = null;
 		DocsTile_Count = null;
-		VrtLoggerDetails_Title = null;
+
 		Documents_Tile = null;
 		Copytodrive = null;
 		EquipmentID = null;
@@ -142,8 +138,32 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 	// VrtLoggerDetails_Title availabe
 
 	public boolean is_VrtLoggerDetailsTitle_Available() {
+		WebElement VrtLoggerDetails_Title = driver.findElementByName(" - Details");
 		return IsElementVisibleStatus(VrtLoggerDetails_Title);
 
+	}
+
+	// fetch the Equip ID
+
+	public String fetch_ID() {
+		return FetchText(EquipmentID);
+	}
+
+	// Fetch text from ManufacturingCalDate
+
+	public String fetch_ManufacturingCalDate() {
+		return FetchText(ManufacturingCalDate);
+	}
+
+	// Fetch text from ManufacturingCalDueDate
+
+	public String fetch_ManufacturingCalDueDate() {
+		return FetchText(ManufacturingCalDueDate);
+	}
+
+	// is model no visible
+	public String fetch_ModelNumber() {
+		return FetchText(ModelNumber);
 	}
 
 	// is serialNo visible
@@ -315,9 +335,9 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 		return deleteAsset_popup.getAttribute("Name");
 	}
 
-	public VRTLoggerHubPage click_Back_btn() throws IOException {
+	public Equipment_VRTLoggerHubPage click_Back_btn() throws IOException {
 		clickOn(Backbtn);
-		return new VRTLoggerHubPage();
+		return new Equipment_VRTLoggerHubPage();
 	}
 
 	// fetch the Equip ID
@@ -342,9 +362,9 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 	}
 
 	// click Backbtn
-	public VRTLoggerHubPage Backbtn() throws IOException {
+	public Equipment_VRTLoggerHubPage Backbtn() throws IOException {
 		clickOn(Backbtn);
-		return new VRTLoggerHubPage();
+		return new Equipment_VRTLoggerHubPage();
 	}
 
 	// Click Camera Image button
@@ -383,7 +403,7 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 	// UploadDocumentsButton
 
 	public void click_UploadDocsBtn() throws InterruptedException {
-
+		WebElement UploadDocs_Btn = driver.findElementByAccessibilityId("UploadDocumentsButton");
 		clickOn(UploadDocs_Btn);
 		Thread.sleep(2000);
 	}

@@ -38,7 +38,7 @@ import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.pages.FileManagementPage;
 import com.vrt.pages.Equipment_IRTDDetailspage;
-import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDHubPage;
 import com.vrt.utility.EqupmentUtility;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.assetCreationUtility;
@@ -46,7 +46,7 @@ import com.vrt.utility.setupCreationUtility;
 import com.vrt.utility.EqupmentUtility;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.SyncInAssetListPage;
-import com.vrt.pages.VRTLoggerHubPage;
+import com.vrt.pages.Equipment_VRTLoggerHubPage;
 import com.vrt.pages.Equuipment_VRTLoggersDetailspage;
 
 public class EquipmentEditTest extends BaseClass {
@@ -72,12 +72,12 @@ public class EquipmentEditTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	Equipment_IRTDDetailspage Equipment_IRTDDetailspage;
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	VRTLoggerHubPage VRTLoggerHubPage;
+	Equipment_VRTLoggerHubPage VRTLoggerHubPage;
 	Equuipment_VRTLoggersDetailspage Equuipment_VRTLoggersDetailspage;
 
 	// Ensure the User has got rights to create Assets
@@ -91,7 +91,7 @@ public class EquipmentEditTest extends BaseClass {
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("EquipmentCreation Test in Progress..");
+		System.out.println("EquipmentEditTest Test in Progress..");
 
 		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");

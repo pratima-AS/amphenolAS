@@ -52,10 +52,10 @@ public class EquipmentHubPage extends BaseClass {
 
 	// IRTD
 	// Click on IRTD List box of Equipment page
-	public IRTDHubPage click_IRTDTile() throws IOException {
+	public Equipment_IRTDHubPage click_IRTDTile() throws IOException {
 		WebElement irtdbox = driver.findElementByName("IRTD");
 		clickOn(irtdbox);
-		return new IRTDHubPage();
+		return new Equipment_IRTDHubPage();
 	}
 
 	// Is IRTD Tile visible
@@ -73,9 +73,9 @@ public class EquipmentHubPage extends BaseClass {
 	}
 
 	// Click on VRT List box of Equipment page
-	public VRTLoggerHubPage Click_VRTLogger_listbox() throws IOException {
+	public Equipment_VRTLoggerHubPage Click_VRTLogger_listbox() throws IOException {
 		clickOn(VRTLogger);
-		return new VRTLoggerHubPage();
+		return new Equipment_VRTLoggerHubPage();
 	}
 
 	// Click AddButton to get Alert message when supervisor does not have default

@@ -107,7 +107,7 @@ public class TestUtilities extends BaseClass {
 		return strDate;
 	}
 
-	// Convert MM-dd-yyyy type of Date input to a dd-MM-yyyy date format
+	// Convert dd:MM:yyyy:hh:mm:ss type of Date input to a dd-MM-yyyy date format
 	public String convert_StringDate_to_ActualDate_inCertainFormat5(String dt) throws ParseException {
 		SimpleDateFormat formating = new SimpleDateFormat("dd:MM:yyyy:hh:mm:ss");
 		String dateinString = dt;
@@ -134,6 +134,22 @@ public class TestUtilities extends BaseClass {
 		// System.out.println(formating.format(date));
 
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		String strDate = formatter.format(date);
+		// System.out.println("Date Format with MM/dd/yyyy : "+strDate);
+		return strDate;
+	}
+
+	// Convert MM/dd/yyyy type of Date input to a dd-MMM-yyyy date format
+	public String convert_StringDate_to_ActualDate_inCertainFormat7(String dt) throws ParseException {
+		SimpleDateFormat formating = new SimpleDateFormat("MM/dd/yyyy");
+		String dateinString = dt;
+		// System.out.println(dateString);
+		Date date = formating.parse(dateinString);
+
+		// System.out.println(date);
+		// System.out.println(formating.format(date));
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 		String strDate = formatter.format(date);
 		// System.out.println("Date Format with MM/dd/yyyy : "+strDate);
 		return strDate;
