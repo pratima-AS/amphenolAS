@@ -20,7 +20,7 @@ import com.vrt.base.BaseClass;
 
 public class Equipment_IRTDDetailspage extends BaseClass {
 
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	TestUtilities tu = new TestUtilities();
 	// EquipmentHubPage Element definition
 	WebElement IRTDHeader = null;
@@ -200,12 +200,12 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 	}
 
 	// Navigate to IRTD Hub page after Deleting IRTD in IRTDDetails page
-	public IRTDHubPage delete_IRTD(String UID, String PW) throws InterruptedException, IOException {
+	public Equipment_IRTDHubPage delete_IRTD(String UID, String PW) throws InterruptedException, IOException {
 		clickDeleteEquipmentIcon();
 		WebElement YesBtn = driver.findElementByAccessibilityId("Button1");
 		clickOn(YesBtn);
 		UserLoginPopup(UID, PW);
-		return new IRTDHubPage();
+		return new Equipment_IRTDHubPage();
 	}
 
 	// Edit Equipment Name
@@ -258,9 +258,9 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 		return deleteAsset_popup.getAttribute("Name");
 	}
 
-	public IRTDHubPage click_Back_btn() throws IOException {
+	public Equipment_IRTDHubPage click_Back_btn() throws IOException {
 		clickOn(Back_btn);
-		return new IRTDHubPage();
+		return new Equipment_IRTDHubPage();
 	}
 
 	// Click Camera Image button

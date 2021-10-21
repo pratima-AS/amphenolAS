@@ -9,8 +9,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
-//import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -37,8 +35,9 @@ import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.utility.EqupmentUtility;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.setupCreationUtility;
-import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDHubPage;
 import com.vrt.pages.Equipment_IRTDDetailspage;
+
 
 public class EquipmentCreationTest extends BaseClass {
 
@@ -63,7 +62,7 @@ public class EquipmentCreationTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	Equipment_IRTDDetailspage IRTDDetailspage;
 
 	// Ensure the User has got rights to create Assets
@@ -197,14 +196,13 @@ public class EquipmentCreationTest extends BaseClass {
 	}
 
 	// EN_002 - Verify if the Kaye Serial No. field accepts Alphanumeric characters
-
 	@Test(groups = {
-			"Regression" }, dataProvider = "EN_002", dataProviderClass = EqupmentUtility.class, description = "EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters")
+			"Regression" }, dataProvider = "EN_002", dataProviderClass = EqupmentUtility.class, 
+					description = "EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters")
 	public void EN_002(String SerialNo) throws InterruptedException {
 		extentTest = extent.startTest("EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters");
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", SerialNo, "1");
-
 		sa.assertEquals(NewEquipmentCreation_Page.UserLoginPopupVisible(), true);
 
 		sa.assertAll();
@@ -269,15 +267,13 @@ public class EquipmentCreationTest extends BaseClass {
 	}
 
 	// EN_006- Verify if the Kaye Serial Number field accepts unique value only
-
 	@Test(groups = {
 			"Regression" }, description = "EN_006- Verify if the Kaye Serial Number field accepts unique value only")
 	public void EN_006() throws InterruptedException, IOException {
 
 		extentTest = extent.startTest("EN_006- Verify if the Kaye Serial Number field accepts unique value only");
+		
 		SoftAssert sa = new SoftAssert();
-
-		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 		NewEquipmentCreation_Page.EqipCreation_MandatoryFields("IRTD", "EN006", "10");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		EquipmentHubPage = NewEquipmentCreation_Page.ClickBackBtn();

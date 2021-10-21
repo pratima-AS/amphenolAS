@@ -35,8 +35,8 @@ import com.vrt.pages.NewEquipmentCreation_Page;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.SyncInPage;
 import com.vrt.pages.FileManagementPage;
-import com.vrt.pages.IRTDDetailspage;
-import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDDetailspage;
+import com.vrt.pages.Equipment_IRTDHubPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.utility.setupCreationUtility;
 
@@ -63,8 +63,8 @@ public class EquipmentHubTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
-	IRTDHubPage IRTDHubPage;
-	IRTDDetailspage IRTDDetailspage;
+	Equipment_IRTDHubPage IRTDHubPage;
+	Equipment_IRTDDetailspage IRTDDetailspage;
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
@@ -84,7 +84,7 @@ public class EquipmentHubTest extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("EquipmentHub Test in Progress..");
 
-/*		// Rename the file (NgvUsers.uxx) if exists
+		// Rename the file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTSetups");
@@ -127,7 +127,7 @@ public class EquipmentHubTest extends BaseClass {
 		Thread.sleep(8000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
-*/
+
 	}
 
 	// After All the tests are conducted
@@ -308,7 +308,7 @@ public class EquipmentHubTest extends BaseClass {
 		
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
 
-		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(0), "1/1",
+		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(0), "1/2",
 		"Fail:Count of equipments of IRTD group type which are due for calibration is not visible");
 		sa.assertEquals(EquipmentHubPage.FetchTxt_DueCalibrationCount_IRTDtype(1), "IRTD",
 		"Fail: equipments of IRTD group type is not visible");

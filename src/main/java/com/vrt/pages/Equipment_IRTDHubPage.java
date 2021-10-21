@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.vrt.base.BaseClass;
 
-public class IRTDHubPage extends BaseClass {
+public class Equipment_IRTDHubPage extends BaseClass {
 	// EquipmentIRTDDetailspage EquipmentIRTDDetailspage;
 
 	// EquipmentHubPage Element definition
@@ -20,6 +20,7 @@ public class IRTDHubPage extends BaseClass {
 	WebElement Back_btn = null;
 	WebElement SerialNo = null;
 	WebElement Mfgcaldate = null;
+	WebElement MfgcalDuedate = null;
 
 	WebElement filter_btn = null;
 
@@ -29,12 +30,13 @@ public class IRTDHubPage extends BaseClass {
 		SerialNo = driver.findElementByName("Serial No: ");
 		Mfgcaldate = driver.findElementByName("Mfg cal date: ");
 
+		MfgcalDuedate = driver.findElementByName("Mfg cal due date: ");
 		Back_btn = driver.findElementByAccessibilityId("ArrowGlyph");
 		filter_btn = driver.findElementByAccessibilityId("FilterEquipmentsButton");
 
 	}
 
-	IRTDHubPage() throws IOException {
+	Equipment_IRTDHubPage() throws IOException {
 		super();
 		initElements();
 
@@ -46,7 +48,7 @@ public class IRTDHubPage extends BaseClass {
 		Back_btn = null;
 		SerialNo = null;
 		Mfgcaldate = null;
-
+		MfgcalDuedate = null;
 		filter_btn = null;
 	}
 
@@ -135,8 +137,8 @@ public class IRTDHubPage extends BaseClass {
 	}
 
 	public boolean isMfgcalduedate_Visible() {
-		WebElement Mfgcalduedate = driver.findElementByName("Mfg cal due date:");
-		return IsElementVisibleStatus(Mfgcalduedate);
+
+		return IsElementVisibleStatus(MfgcalDuedate);
 
 	}
 
