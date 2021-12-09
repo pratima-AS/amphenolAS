@@ -489,5 +489,13 @@ public class Equuipment_VRTLoggersDetailspage extends BaseClass {
 		WebElement Print_Button = driver.findElementByAccessibilityId("PrintButton");
 		clickOn(Print_Button);
 	}
+	
+	public Equipment_VRTLoggerHubPage click_Back_btn_alert() throws IOException, InterruptedException {
+		clickOn(Backbtn);
+		WebElement yes_Button1 = driver.findElementByAccessibilityId("Button1");
+		clickOn(yes_Button1);
+		return new Equipment_VRTLoggerHubPage();
+	}
+
 
 }

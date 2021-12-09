@@ -41,9 +41,9 @@ import com.vrt.pages.Equipment_IRTDDetailspage;
 import com.vrt.pages.EquipmentHubPage;
 import com.vrt.pages.SyncInAssetListPage;
 import com.vrt.pages.NewEquipmentCreation_Page;
-
 import com.vrt.utility.EqupmentUtility;
 import com.vrt.utility.TestUtilities;
+import com.vrt.utility.assetCreationUtility;
 import com.vrt.utility.setupCreationUtility;
 
 public class EquipmentListTest extends BaseClass {
@@ -98,7 +98,6 @@ public class EquipmentListTest extends BaseClass {
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		LoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
@@ -143,7 +142,7 @@ public class EquipmentListTest extends BaseClass {
 	public void endReport() {
 		extent.flush();
 		extent.close();
-		System.out.println("EquipmentListTest Test Completed.");
+		System.out.println("EquipmentHub Test Completed.");
 	}
 
 	// Before all tests are conducted
@@ -216,7 +215,6 @@ public class EquipmentListTest extends BaseClass {
 		EquipmentHubPage = NewEquipmentCreation_Page.ClickBackBtn();
 		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
 		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo(serialNum);
-
 		String actualModelNum = Equipment_IRTDDetailspage.fetch_ModelNumber();
 		String actualID = Equipment_IRTDDetailspage.fetch_ID();
 		String Exp_ManufacturingCalDate = Equipment_IRTDDetailspage.fetch_ManufacturingCalDate();
@@ -251,6 +249,7 @@ public class EquipmentListTest extends BaseClass {
 		sa.assertAll();
 
 	}
+
 	// EL_004- Verify if the filter button is available in the IRTD equipment type
 	// screen
 
@@ -580,32 +579,33 @@ public class EquipmentListTest extends BaseClass {
 
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 
-		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "A022", "21");
+		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "ZZZ12");
 		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
 		Thread.sleep(1000);
-
-		String Act_ManufacturingCalDate = tu.convert_StringDate_to_ActualDate_inCertainFormat7(
-				NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCalDate());
-		String Act_ManufacturingCalDueDate = tu.convert_StringDate_to_ActualDate_inCertainFormat7(
-				NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCal_DueDate());
-		// String modelNum = NewEquipmentCreation_Page.Fetch_ModelNumber_Txt();
+		String Mcdate = NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCalDate();
+		String Mcduedate = NewEquipmentCreation_Page.FetchTxt_From_ManufacturingCal_DueDate();
 		NewEquipmentCreation_Page.ClickSaveButton();
 
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		EquipmentHubPage = NewEquipmentCreation_Page.ClickBackBtn();
+		Thread.sleep(1000);
+
+		String Act_ManufacturingCalDate = tu.convert_StringDate_to_ActualDate_inCertainFormat7(Mcdate);
+		String Act_ManufacturingCalDueDate = tu.convert_StringDate_to_ActualDate_inCertainFormat7(Mcduedate);
+		// String modelNum = NewEquipmentCreation_Page.Fetch_ModelNumber_Txt();
 
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  A022");
+		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  ZZZ12");
 
 		// String actualModelNum = Equuipment_VRTLoggersDetailspage.fetch_ModelNumber();
-		String actualID = Equuipment_VRTLoggersDetailspage.fetch_ID();
+		String actualID = Equuipment_VRTLoggersDetailspage.fetch_ModelNumber();
 		String Exp_ManufacturingCalDate = Equuipment_VRTLoggersDetailspage.fetch_ManufacturingCalDate();
 
 		String Exp_ManufacturingCalDueDate = Equuipment_VRTLoggersDetailspage.fetch_ManufacturingCalDueDate();
 
-		sa.assertEquals(actualID, "21",
+		sa.assertEquals(actualID, "12",
 				"FAIL: Id is not same in Equipment_VRTLogerDetailspage which has entered in New Equipment creation ");
 		sa.assertEquals(Act_ManufacturingCalDate, Exp_ManufacturingCalDate,
 				"FAIL: ManufacturingCalDate is not same in Equipment_IRTDDetailspage which has entered in New Equipment creation ");
@@ -836,7 +836,7 @@ public class EquipmentListTest extends BaseClass {
 
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 
-		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "EL32", "32");
+		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "AL32");
 		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
 		Thread.sleep(1000);
 		NewEquipmentCreation_Page.ClickSaveButton();
@@ -851,7 +851,7 @@ public class EquipmentListTest extends BaseClass {
 		VRTLoggerHubPage.Select_datepickerfield(1);
 		VRTLoggerHubPage.click_OKbtn_Filterpopup();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  EL32");
+		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  AL32");
 
 		sa.assertEquals(Equuipment_VRTLoggersDetailspage.is_VrtLoggerDetailsTitle_Available(), true,
 				"Fail: Irtd Details title not visible");
@@ -920,7 +920,7 @@ public class EquipmentListTest extends BaseClass {
 
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 
-		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "AB36", "36");
+		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "AB36");
 		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
 		NewEquipmentCreation_Page.ClickSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -1132,11 +1132,12 @@ public class EquipmentListTest extends BaseClass {
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
 	}
-	// EL_050- Verify if user can filter the VRT Logger equipment available by Mfg
-	// Calibration Date
+
+	// EL_050- Verify if user can filter the VRT Logger equipment available by Mfg Calibration Date
 
 	@Test(groups = {
-			"Regression" }, description = "EL_050- Verify if user can filter the VRT Logger equipment available by Mfg Calibration Date")
+			"Regression" }, description = "EL_050- Verify if user can filter the VRT Logger "
+					+ "equipment available by Mfg Calibration Date")
 
 	public void EL_050() throws InterruptedException, IOException {
 
@@ -1146,7 +1147,7 @@ public class EquipmentListTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 
-		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "EL050", "50");
+		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "A50");
 		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
 		Thread.sleep(1000);
 		NewEquipmentCreation_Page.ClickSaveButton();
@@ -1158,8 +1159,8 @@ public class EquipmentListTest extends BaseClass {
 		VRTLoggerHubPage.clickOn_PrintBtn();
 		VRTLoggerHubPage.click_FilterBy_Options(1);
 		VRTLoggerHubPage.Select_datepickerfield(0);
-		VRTLoggerHubPage.Select_VRTSerialNo_printLoggers("  EL050");
-
+		VRTLoggerHubPage.Select_VRTSerialNo_printLoggers("  A50");
+		// VRTLoggerHubPage.clickOn_PrintReportBtn();
 		sa.assertEquals(VRTLoggerHubPage.is_loggerList_selected(0), true, "Fail: Irtd Details title not visible");
 		sa.assertAll();
 
@@ -1178,7 +1179,7 @@ public class EquipmentListTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 		NewEquipmentCreation_Page = EquipmentHubPage.ClickAddButton();
 
-		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "FL051", "51");
+		NewEquipmentCreation_Page.EqipCreation_VRTDLogger("VRT Logger", "FL051");
 		NewEquipmentCreation_Page.selectAnylogger_From_LoggerTypeComboBox(2);
 		Thread.sleep(1000);
 		NewEquipmentCreation_Page.ClickSaveButton();
@@ -1258,8 +1259,7 @@ public class EquipmentListTest extends BaseClass {
 		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
 		VRTLoggerHubPage.clickOn_PrintBtn();
-		VRTLoggerHubPage.click_FilterBy_Options(1);
-		VRTLoggerHubPage.Select_datepickerfield(0);
+		VRTLoggerHubPage.click_DeSelectAll_btn();
 		VRTLoggerHubPage.click_selectAll_btn();
 		sa.assertEquals(VRTLoggerHubPage.is_loggerList_selected(0), true,
 				"FAIL: logger displayed in the screen is not selected");
@@ -1270,6 +1270,7 @@ public class EquipmentListTest extends BaseClass {
 // to Deselect All
 // EL_056- Verify if clicking on the Deselect All button removes all the
 // equipment selection
+
 	@Test(groups = {
 			"Regression" }, description = "EL_055_EL_056- Verify if on selecting all the loggers, the Select All button changes to Deselect All")
 

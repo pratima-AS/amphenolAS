@@ -62,7 +62,7 @@ public class LoginTest extends BaseClass{
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("Login Test in Progress..");
 		
-		/*
+		
 		//Rename the User file (NgvUsers.uxx) if exists
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\AppData", "NgvUsers.uux");
 		// Rename the VRT folder if exists
@@ -70,7 +70,7 @@ public class LoginTest extends BaseClass{
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "Assets");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\", "Cache");
 		renameFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles", "VRTEquipments");
-		*/
+		
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		MainLoginPage = new LoginPage();
 		extent.addSystemInfo("VRT Version", MainLoginPage.get_SWVersion_About_Text());

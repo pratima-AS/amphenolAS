@@ -374,7 +374,7 @@ public class EquipmentHubTest extends BaseClass {
 	// EH_013- Verify if clicking on the Help button in the Equipment Hub Page
 	// displays the online help menu for that page
 	@Test(description = "EH_013- Verify if clicking on the Help button in the Equipment Hub Page displays the online help menu for that page")
-	public void CAL042() throws InterruptedException, IOException {
+	public void EH_013() throws InterruptedException, IOException {
 		extentTest = extent.startTest(
 				"EH_013- Verify if clicking on the Help button in the Equipment Hub Page displays the online help menu for that page");
 		SoftAssert sa = new SoftAssert();
@@ -396,7 +396,7 @@ public class EquipmentHubTest extends BaseClass {
 	@Test(dataProvider = "SET033", dataProviderClass = setupCreationUtility.class, 
 			description = "EH_015- Verify if clicking on the About button in the Equipment Hub Page "
 					+ "displays the current software version, Console IP")
-	public void CAL044(String SWVer) throws InterruptedException, UnknownHostException {
+	public void EH_015(String SWVer) throws InterruptedException, UnknownHostException {
 		extentTest = extent.startTest(
 				"EH_015- Verify if clicking on the About button in the Equipment Hub Page displays "
 				+ "the current software version, Console IP");

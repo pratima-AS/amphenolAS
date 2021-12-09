@@ -297,8 +297,8 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 		clickOn(DocumentsButton);
 
 	}
+	
 	// UploadDocumentsButton
-
 	public void click_UploadDocsBtn() throws InterruptedException {
 
 		clickOn(UploadDocs_Btn);
@@ -372,7 +372,6 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 	}
 
 	// ckick on yes button in delete windows popup
-
 	public void Click_Yes_DeleteWindowPopup() throws AWTException, IOException, InterruptedException {
 		WebElement Delete_Button = driver.findElementByAccessibilityId("Button1");
 		Thread.sleep(2000);
@@ -380,7 +379,6 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 	}
 
 	// HistoryButton
-
 	public void Click_HistoryButton() throws IOException {
 		WebElement Historybtn = driver.findElementByAccessibilityId("HistoryButton");
 		clickOn(Historybtn);
@@ -424,4 +422,12 @@ public class Equipment_IRTDDetailspage extends BaseClass {
 		WebElement Action_tab = driver.findElementByName("Action");
 		return IsElementVisibleStatus(Action_tab);
 	}
+	
+	public Equipment_IRTDHubPage click_Back_btn_alert() throws IOException, InterruptedException {
+		clickOn(Back_btn);
+		WebElement yes_Button1 = driver.findElementByAccessibilityId("Button1");
+		clickOn(yes_Button1);
+		return new Equipment_IRTDHubPage();
+	}
+
 }

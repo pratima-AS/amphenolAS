@@ -316,15 +316,11 @@ public class NewEquipmentCreation_Page extends BaseClass {
 		ClickSaveButton();
 	}
 
-	public void EqipCreation_VRTDLogger(String Etype, String ESN, String EMN) throws InterruptedException {
-		// select_EquipmentType(Etype);
-		// Thread.sleep(1000);
-		// selectAnylogger_From_LoggerTypeComboBox(1);
-		enterSN(ESN);
-		enterNewModelNumber(EMN);
+	public void EqipCreation_VRTDLogger(String Etype, String ESN) throws InterruptedException {
+        select_EquipmentType(Etype);
+        enterSN(ESN);
+ }
 
-		ClickSaveButton();
-	}
 
 	// Enter Mandatory fields and create BS Equipment
 	public void BaseStation_EqipCreation_MandatoryFields(String Etype, String EID, String EMnum, String McAddress)
