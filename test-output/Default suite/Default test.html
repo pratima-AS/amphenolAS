@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>79/4/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>128/5/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Aug 07 20:37:17 IST 2021</td>
+<td>Started on:</td><td>Tue Oct 26 12:16:00 IST 2021</td>
 </tr>
-<tr><td>Total time:</td><td>2163 seconds (2163828 ms)</td>
+<tr><td>Total time:</td><td>2208 seconds (2208860 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,12 +75,12 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST004()'><b>ASST004</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST004,ASST005-Verify if the details are saved during Edit Asset post modification,Verify the Audit trail for Edit Assets activity</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_020()'><b>EN_020</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_020 - Verify if the Manufacturing Cal date field displays the current system date and time by default</td>
 <td><div><pre>java.lang.AssertionError: The following asserts failed:
-	FAIL:The Audit trail record for Edit Assets activity is not exist  expected [Asset : &quot;Asset01&quot; &quot;Equipment ID&quot; field modified from &quot; 01 to 02 &quot; by  User ID : &quot;1&quot; , User Name : &quot;User1&quot;.] but found [Asset : &quot;Asset01&quot; &quot;Asset ID&quot; field modified from &quot; 01 to 02 &quot; by  User ID : &quot;1&quot; , User Name : &quot;User1&quot;.]
+	Fail: Current date is not maatching with ManufacturingCalDueDate  expected [10/26/2021] but found [10-26-2021]
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-	at com.vrt.testcases.assetDetailsTest1.ASST004(assetDetailsTest1.java:395)
+	at com.vrt.testcases.EquipmentCreationTest.EN_020(EquipmentCreationTest.java:575)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -109,12 +109,12 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace193502390", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace193502390'><pre>java.lang.AssertionError: The following asserts failed:
-	FAIL:The Audit trail record for Edit Assets activity is not exist  expected [Asset : &quot;Asset01&quot; &quot;Equipment ID&quot; field modified from &quot; 01 to 02 &quot; by  User ID : &quot;1&quot; , User Name : &quot;User1&quot;.] but found [Asset : &quot;Asset01&quot; &quot;Asset ID&quot; field modified from &quot; 01 to 02 &quot; by  User ID : &quot;1&quot; , User Name : &quot;User1&quot;.]
+</pre></div><a href='#' onClick='toggleBox("stack-trace1823282936", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1823282936'><pre>java.lang.AssertionError: The following asserts failed:
+	Fail: Current date is not maatching with ManufacturingCalDueDate  expected [10/26/2021] but found [10-26-2021]
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-	at com.vrt.testcases.assetDetailsTest1.ASST004(assetDetailsTest1.java:395)
+	at com.vrt.testcases.EquipmentCreationTest.EN_020(EquipmentCreationTest.java:575)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -144,269 +144,16 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>21</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>4</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST025STP()'><b>ASST025STP</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST025STP-Verify the on-click on the Initiate Qualification btn when the Qual start is defined as _Start on date and time_<br>Parameters: ASST025STP, 025, HeatBath, testA, Hyd, Timeofthedaysetup, 1, 1, TC, Time Of Day, 0:0:0:1:0:0</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.186.234&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: io.appium.java_client.windows.WindowsDriver
-Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
-Session ID: 300E6292-E62F-47DE-B32E-26CD73C23268
-*** Element info: {Using=name, value=Yes}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
-	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
-	at com.vrt.pages.Setup_ReviewPage.click_Yes_TODAlertMsg_Btn(Setup_ReviewPage.java:332)
-	at com.vrt.testcases.assetDetailsTest1.ASST025STP(assetDetailsTest1.java:885)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at org.testng.TestRunner.privateRun(TestRunner.java:764)
-	at org.testng.TestRunner.run(TestRunner.java:585)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.runSuites(TestNG.java:1069)
-	at org.testng.TestNG.run(TestNG.java:1037)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1548698684", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1548698684'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.186.234&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: io.appium.java_client.windows.WindowsDriver
-Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
-Session ID: 300E6292-E62F-47DE-B32E-26CD73C23268
-*** Element info: {Using=name, value=Yes}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
-	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
-	at com.vrt.pages.Setup_ReviewPage.click_Yes_TODAlertMsg_Btn(Setup_ReviewPage.java:332)
-	at com.vrt.testcases.assetDetailsTest1.ASST025STP(assetDetailsTest1.java:885)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at org.testng.TestRunner.privateRun(TestRunner.java:764)
-	at org.testng.TestRunner.run(TestRunner.java:585)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.runSuites(TestNG.java:1069)
-	at org.testng.TestNG.run(TestNG.java:1037)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>68</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST027()'><b>ASST027</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: Verify the edit setup functionality<br>Parameters: ASST026STP, 10, SetupSOP02, LD01, comments01, 10, TCS</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.186.234&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: io.appium.java_client.windows.WindowsDriver
-Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
-Session ID: DDE66249-E707-445A-AED7-DF4C1C6C2420
-*** Element info: {Using=accessibility id, value=DefaultGroupButton}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at io.appium.java_client.FindsByAccessibilityId.findElementByAccessibilityId(FindsByAccessibilityId.java:37)
-	at com.vrt.pages.Setup_GroupSensorsPage.click_DfltGrp_Btn(Setup_GroupSensorsPage.java:175)
-	at com.vrt.testcases.assetDetailsTest1.ASST027(assetDetailsTest1.java:1027)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at org.testng.TestRunner.privateRun(TestRunner.java:764)
-	at org.testng.TestRunner.run(TestRunner.java:585)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.runSuites(TestNG.java:1069)
-	at org.testng.TestNG.run(TestNG.java:1037)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace304908091", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace304908091'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;INAS-LP024&apos;, ip: &apos;192.168.186.234&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: io.appium.java_client.windows.WindowsDriver
-Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 10, platform: WINDOWS, platformName: WINDOWS}
-Session ID: DDE66249-E707-445A-AED7-DF4C1C6C2420
-*** Element info: {Using=accessibility id, value=DefaultGroupButton}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at io.appium.java_client.FindsByAccessibilityId.findElementByAccessibilityId(FindsByAccessibilityId.java:37)
-	at com.vrt.pages.Setup_GroupSensorsPage.click_DfltGrp_Btn(Setup_GroupSensorsPage.java:175)
-	at com.vrt.testcases.assetDetailsTest1.ASST027(assetDetailsTest1.java:1027)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at org.testng.TestRunner.privateRun(TestRunner.java:764)
-	at org.testng.TestRunner.run(TestRunner.java:585)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.runSuites(TestNG.java:1069)
-	at org.testng.TestNG.run(TestNG.java:1037)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>38</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST077()'><b>ASST077</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST077-Verify the invalid formats of the documents that should not be visible while uploading</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_022()'><b>EN_022</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_022- Verify if the Manufacturing Cal due date field displays the one year ahead timestamp of Manufacturing Cal date by default</td>
 <td><div><pre>java.lang.AssertionError: The following asserts failed:
-	FAIL:Reports tile count is  increasing  under Asset details page expected [3] but found [2]
+	FAIL : ManufacturingCalDate is not same with current date expected [10-26-2021] but found [10/26/2021],
+	Fail: By default Manufacturing Cal due date field not displaying one year ahead timestamp of Manufacturing Cal date expected [10-25-2022] but found [10/25/2022]
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-	at com.vrt.testcases.assetDetailsTest1.ASST077(assetDetailsTest1.java:2000)
+	at com.vrt.testcases.EquipmentCreationTest.EN_022(EquipmentCreationTest.java:626)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -435,12 +182,13 @@ Session ID: DDE66249-E707-445A-AED7-DF4C1C6C2420
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1693167823", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1693167823'><pre>java.lang.AssertionError: The following asserts failed:
-	FAIL:Reports tile count is  increasing  under Asset details page expected [3] but found [2]
+</pre></div><a href='#' onClick='toggleBox("stack-trace1645997384", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1645997384'><pre>java.lang.AssertionError: The following asserts failed:
+	FAIL : ManufacturingCalDate is not same with current date expected [10-26-2021] but found [10/26/2021],
+	Fail: By default Manufacturing Cal due date field not displaying one year ahead timestamp of Manufacturing Cal date expected [10-25-2022] but found [10/25/2022]
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
 	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-	at com.vrt.testcases.assetDetailsTest1.ASST077(assetDetailsTest1.java:2000)
+	at com.vrt.testcases.EquipmentCreationTest.EN_022(EquipmentCreationTest.java:626)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -470,8 +218,224 @@ Session ID: DDE66249-E707-445A-AED7-DF4C1C6C2420
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>32</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_024()'><b>EN_024</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_024- Verify if the Last verification date field should display the current system date and time by default</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	Fail: By default Last Verification Date field is not  displaying the current date expected [10-26-2021] but found [10/26/2021]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_024(EquipmentCreationTest.java:664)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1049672698", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1049672698'><pre>java.lang.AssertionError: The following asserts failed:
+	Fail: By default Last Verification Date field is not  displaying the current date expected [10-26-2021] but found [10/26/2021]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_024(EquipmentCreationTest.java:664)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_028()'><b>EN_028</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank<br>Parameters: , 0a01, , Equipment Type is mandatory, please enter Equipment Type</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	Fail : application displaying wrong alert message expected [Equipment Type is mandatory, please enter Equipment Type] but found [Object reference not set to an instance of an object.]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_028(EquipmentCreationTest.java:751)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace817326538", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace817326538'><pre>java.lang.AssertionError: The following asserts failed:
+	Fail : application displaying wrong alert message expected [Equipment Type is mandatory, please enter Equipment Type] but found [Object reference not set to an instance of an object.]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_028(EquipmentCreationTest.java:751)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>4</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_051()'><b>EN_051</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_051- Verify if clicking on the About button in the New Equipment page displays the current software version, Console IP<br>Parameters: 1.2.0.23</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	FAIL: Incorrect SW version &amp; Console IP adress displayed in About window expected [1.2.0.23] but found [1.2.0.24]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_051(EquipmentCreationTest.java:1145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1172740173", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1172740173'><pre>java.lang.AssertionError: The following asserts failed:
+	FAIL: Incorrect SW version &amp; Console IP adress displayed in About window expected [1.2.0.23] but found [1.2.0.24]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at com.vrt.testcases.EquipmentCreationTest.EN_051(EquipmentCreationTest.java:1145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>1</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -481,400 +445,645 @@ Session ID: DDE66249-E707-445A-AED7-DF4C1C6C2420
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST001()'><b>ASST001</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST001-Verify the details displayed in Asset details screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EH_001()'><b>EH_001</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_001- Verify the contents of the New Equipment screen</td>
 <td></td>
 <td>0</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST001A()'><b>ASST001A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST001A-Verify the reports are not displayed in Reports tile when they are not generated</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_002()'><b>EN_002</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters<br>Parameters: 12</td>
 <td></td>
-<td>0</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST001B()'><b>ASST001B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST001B-Generate the setup report and verify the report count<br>Parameters: ASST001B, 1, 1, TC, Manual</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_002()'><b>EN_002</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters<br>Parameters: 13</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_002()'><b>EN_002</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters<br>Parameters: ABC</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_002()'><b>EN_002</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_002-Verify if the Kaye Serial No. field accepts Alphanumeric characters<br>Parameters: ABC12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1~, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1!, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1#, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1$, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: !@%, Serial No. should have at least one letter or one digit</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1^, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1&, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1*, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1(), Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1|, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1+, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1=, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1{}, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1", Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1[], Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1', Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1:, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1;, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1?, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1., Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1,, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1<>, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_003()'><b>EN_003</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_003 - Verify if the Kaye Serial No. field do not accept Special characters<br>Parameters: 1)3&, Serial No. accepts only alphanumeric</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_004()'><b>EN_004</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_004- Verify if Kaye Serial No. field accepts valid character length of 17 characters<br>Parameters: 12345678qwertyuiop56778</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_004()'><b>EN_004</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_004- Verify if Kaye Serial No. field accepts valid character length of 17 characters<br>Parameters: qwertyuiopasdfghjkltryyuyi</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_005()'><b>EN_005</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_005- Verify if Kaye Serial No. field do not accept invalid character length of more than 16 characters<br>Parameters: 12345678qwertyuiop56778</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_005()'><b>EN_005</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_005- Verify if Kaye Serial No. field do not accept invalid character length of more than 16 characters<br>Parameters: qwertyuiopasdfghjkltryyuyi</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_006()'><b>EN_006</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_006- Verify if the Kaye Serial Number field accepts unique value only</td>
 <td></td>
 <td>32</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST002()'><b>ASST002</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST002-Verify the details displayed on the 2 sections in Asset details screen</td>
-<td></td>
-<td>1</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST003()'><b>ASST003</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST003-Verify the on-click functionality of edit icon for Asset</td>
-<td></td>
-<td>2</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST006()'><b>ASST006</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: Verify the Back Button functionality in Edit Asset screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: 12.0</td>
 <td></td>
 <td>5</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST007()'><b>ASST007</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST007-Verify the clear button functionality in Edit Asset screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: 13.0</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: ABC</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: ABC12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: ABC_12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: ABC/12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: ABC.34</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_007()'><b>EN_007</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_007-Verify if the Model No. field accepts Alphanumeric characters<br>Parameters: 12\89</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1~, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1!, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1#, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: !@$#, Model Number should have at least one letter or one digit</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: !@%, Model Number should have at least one letter or one digit</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1^, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1&, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1*, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1(), Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1|, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1+, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1=, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1{}, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1", Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1[], Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1', Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1:, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1;, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1?, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1,, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1<>, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_008()'><b>EN_008</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_008- Verify if the Model No. field accepts Special characters<br>Parameters: 1)3&, Model Number accepts alpha numeric and special characters like -,_ ,slash,Period (forward and backward) .</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_009()'><b>EN_009</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_009- Verify if Model No.  field accepts valid character length of 16 charcaters<br>Parameters: 1234567890123450</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_009()'><b>EN_009</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_009- Verify if Model No.  field accepts valid character length of 16 charcaters<br>Parameters: asdfghjkltryyuyi</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_010()'><b>EN_010</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_010- Verify if Model No. field do not accept  invalid character length of more than 16 charcaters<br>Parameters: 12345678qwertyuiop56778</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_010()'><b>EN_010</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_010- Verify if Model No. field do not accept  invalid character length of more than 16 charcaters<br>Parameters: qwertyuiopasdfghjkltryyuyi</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: 12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: 13</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: ABC</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: ABC12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: ABC_12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: ABC/12</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_011()'><b>EN_011</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_011-  Verify if the Equipment ID field accepts Alphanumeric characters<br>Parameters: 12\89</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1~, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1!, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1#, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1$!, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: !@%, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1^, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1&, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1*, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1(), Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1|, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1+, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1=, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1{}, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1", Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1[], Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1', Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1:, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1;, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1?, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1., Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1,, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1<>, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_012()'><b>EN_012</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_012- Verify if the Equipment ID field do not accept Special characters except -, _ and slash (both forward and backward)<br>Parameters: 1)3&, Equipment name accepts alpha numeric and special characters like space, -,_ ,slash (forward and backward)</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_013()'><b>EN_013</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_013- Verify if Equipment ID  field accepts valid character length of 16 characters<br>Parameters: 12345678901234500000</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_013()'><b>EN_013</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_013- Verify if Equipment ID  field accepts valid character length of 16 characters<br>Parameters: qwertyuiopasdfghjkltryyuyi</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_014()'><b>EN_014</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_014- Verify if the Equipment ID  field is not a mandatory field</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_015()'><b>EN_015</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_015- Verify if the User has scope to select different Kaye equipment type from the Equipment type dropdown</td>
+<td></td>
+<td>1</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_017()'><b>EN_017</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_017- Verify if Logger Type field is added to the New Equipment Screen content for VRT Logger  Equipment Type</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_018()'><b>EN_018</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_018- Verify if Last Verification Date field is added to the New Equipment Screen content for VRT Logger  Equipment Type</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_019()'><b>EN_019</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_019- Verify if User can select different logger type from the Logger Type dropdown in the New Equipment screen for VRT Loggers</td>
+<td></td>
+<td>7</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_019A()'><b>EN_019A</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_019A- Verify that the clicked logger type gets selected</td>
 <td></td>
 <td>4</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST008()'><b>ASST008</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST008-Verify the display of Asset in Asset hub page when any Asset is edited</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_021()'><b>EN_021</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_021- Verify if clicking on the Manufacturing Cal date field displays a date time picker to select the required date</td>
 <td></td>
-<td>14</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>4</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST009()'><b>ASST009</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST009,ASST022STP-Verify the on-click of Copy icon for Assets ASST022STP-Verify the Audit trail for Copy Assets activity</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_023()'><b>EN_023</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_023- Verify if user able not able to edit the Manufacturing Cal due date field</td>
 <td></td>
-<td>13</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST012()'><b>ASST012</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST012-Verify the on-click of Delete icon for Assets which has files in it</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_025()'><b>EN_025</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_025- Verify if clicking on the Last verification date field displays a date time picker to select the required date</td>
+<td></td>
+<td>3</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_026()'><b>EN_026</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank</td>
 <td></td>
 <td>11</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST013()'><b>ASST013</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST013-Verify for  a fresh asset with no activities - Setups, Qualifications Documents and  Reports -  as mentioned, all tiles should display 0</td>
-<td></td>
-<td>0</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST014()'><b>ASST014</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST014-Verify the details displayed under Setups tile</td>
-<td></td>
-<td>6</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST015()'><b>ASST015</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST015STP-Verify the Setup date and time for a new Setup</td>
-<td></td>
-<td>5</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST017()'><b>ASST017</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST017STP-Verify New button is available and clicking on button user should able to define new setup</td>
-<td></td>
-<td>1</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST018()'><b>ASST018</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST018STP-Verify on-click of Copy button for a setup</td>
-<td></td>
-<td>6</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST020()'><b>ASST020</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: Verify Copy to drive functionality of a setup for local drive</td>
-<td></td>
-<td>16</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST023()'><b>ASST023</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: Verify the display of Initiate Qualification button in setup tile</td>
-<td></td>
-<td>5</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024STP()'><b>ASST024STP</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024STP-Verify Clicking on Initiate Qualification the user should start Qualification Procedure</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: ABC</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: 123.0</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: AB12</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: 12_A</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: AB?</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: 1A/</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: 2B\</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_A()'><b>ASST024_A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_A-Verify the filed level validations for valid SOP protocl number field in Initiate qualification pop-up<br>Parameters: 12.AB</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 1^</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 1#</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 1@</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 3$</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 1!</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_B()'><b>ASST024_B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_B-Verify the invalid characters accepted in SOP protocl number field<br>Parameters: 1*</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_C()'><b>ASST024_C</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_C-Verify the max character length for SOP protocol number field</td>
-<td></td>
-<td>10</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_D()'><b>ASST024_D</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_D-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value<br>Parameters: 11.0</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_D()'><b>ASST024_D</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_D-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value<br>Parameters: 13.0</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_D()'><b>ASST024_D</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_D-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value<br>Parameters: 123.0</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_D()'><b>ASST024_D</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_D-Verify the filed level validations for Run number field in Initiate qualification pop-up-Valid value<br>Parameters: ab1</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: a  b  c</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: q&*</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: AB`</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: $#%%</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: AB@</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: A#</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: vb^</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_E()'><b>ASST024_E</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_E-Verify the filed level validations for Run number field in Initiate qualification pop-up-InValid value<br>Parameters: qw*()</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST024_F()'><b>ASST024_F</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST024_F-Verify Max 4 characters should be allowed for Run number field</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST026STP()'><b>ASST026STP</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST026STP-Verify on-click functionality of Edit icon for a setup<br>Parameters: ASST026STP, 11, SetupSOP01, Setup LD01, Setup comments01, 11, TC</td>
-<td></td>
-<td>38</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST029()'><b>ASST029</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST029WO-Verify the on-click functionality of the wiring icon for a setup</td>
-<td></td>
-<td>12</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST030()'><b>ASST030</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST030WO-Verify the details displayed in Wiring overlay screen for a setup</td>
-<td></td>
-<td>12</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST032()'><b>ASST032</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST032WO-Verify the on-click functionality of the print icon in the wiring overlay screen for a setup</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST033()'><b>ASST033</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST033WO-Verify the on-click functionality of the _Group Overlay Report_ btn in the wiring overlay screen for a setup</td>
-<td></td>
-<td>18</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST034()'><b>ASST034</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST034WO-Verify the on-click functionality of the _All Group Overlay Report_ btn in the wiring overlay screen for a setup</td>
-<td></td>
-<td>14</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST037()'><b>ASST037</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST037,ASST039STP-Verify the on-click functionality of the print icon for a setup<br>Parameters: AASST037, 051, HeatBath, testC, Hyd, SETUPASST037, 10, SOP02, 10, TCS</td>
-<td></td>
-<td>65</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST038()'><b>ASST038</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST038-Verify if user is unable to generate the setup report when there is no privilege given</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_027()'><b>EN_027</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_027- Verify if an alert message is displayed if the Manufacturing Cal Date is greater than the Last Verification Date for VRT Logger equipment type</td>
 <td></td>
 <td>9</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST043()'><b>ASST043</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST043-Verify the details displayed under Qualifications tile</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_028()'><b>EN_028</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank<br>Parameters: IRTD, , 001a1, Serial No. is mandatory, please enter Serial No.</td>
 <td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST044()'><b>ASST044</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST044,ASST046-Verify -Copy to drive- functionality of a Qualification study file for local driveVerify if Audit trial record exists for Copy of a study file</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_028()'><b>EN_028</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_028- Verify if User is not allowed to save the equipment  if any one of the mandatory fields are left blank<br>Parameters: IRTD, 090A, , Model Number is mandatory, please enter Model Number</td>
 <td></td>
-<td>27</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST047()'><b>ASST047</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST047-Verify the display of Generate Reports button in Qualifications tile</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST048()'><b>ASST048</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: 'ASST048-Verify the on-click functionality of generate reports button in Qualification tile</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST050()'><b>ASST050</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST050-Verify if user is not able to delete the study file when there are no privileges given</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST052A()'><b>ASST052A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST052.1REP-Verify the details displayed under reports tile- sub tab-Setup</td>
-<td></td>
-<td>7</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST052B()'><b>ASST052B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST052REP-Verify the details displayed under reports tile</td>
-<td></td>
-<td>6</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST053A()'><b>ASST053A</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST053REP-Verify -Copy to drive- functionality of a Setup Report for local drive</td>
-<td></td>
-<td>27</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST053B()'><b>ASST053B</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST053_1REP-Verify the on-click functionality of PDF icon for Detailed report under Reports tile-Qualifications sub tab</td>
-<td></td>
-<td>13</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST054A_REP()'><b>ASST054A_REP</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST054A_REP- Verify the on-click functionality of PDF icon for Summary report under Reports tile-Qualifications sub tab</td>
-<td></td>
-<td>16</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST056()'><b>ASST056</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST056REP-Verify the on-click functionality of PDF icon under Reports tile-Setups sub tab</td>
-<td></td>
-<td>10</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST059()'><b>ASST059</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST059REP,ASST061REP-Verify -Copy to drive- functionality of a Detailed Report for local drive</td>
-<td></td>
-<td>28</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST062()'><b>ASST062</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST062REP-Verify -Copy to drive- functionality of a Summary Report for local</td>
-<td></td>
-<td>28</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST065()'><b>ASST065</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST065REP,ASST067REP-Verify -Copy to drive- functionality of a Pass_Fail Report for local drive</td>
-<td></td>
-<td>24</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST068()'><b>ASST068</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST068REP-Verify the on-click functionality of PDF icon for Pass_Fail report under Reports tile-Pass_Fail sub tab</td>
-<td></td>
-<td>11</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST074()'><b>ASST074</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST074-Verify the details displayed under Documents tile</td>
-<td></td>
-<td>8</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST075()'><b>ASST075</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST075-Verify the on-click functionality of Upload Documents button</td>
-<td></td>
-<td>11</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST076()'><b>ASST076</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST076-Verify the valid formats of the documents that can be uploaded</td>
-<td></td>
-<td>12</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST078()'><b>ASST078</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST078,ASST080-Verify -Copy to drive- functionality of an uploaded document for local drive      </td>
-<td></td>
-<td>26</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST081()'><b>ASST081</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST081-Verify the on-click functionality of PDF icon for a document under Documents tile</td>
-<td></td>
-<td>12</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST084()'><b>ASST084</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST084-Verif if the application declines uploading documents that has same name</td>
-<td></td>
-<td>12</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST086()'><b>ASST086</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: 'ASST086-Verify the bottom menu options in Asset details screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_029()'><b>EN_029</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_029- This TC is equivalant to EN_030</td>
 <td></td>
 <td>0</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST087()'><b>ASST087</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST087-Verify the home btn functionality in bottom menu options in Asset details screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_029A()'><b>EN_029A</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_029- Verify if user has a scope to add a new equipment picture by clicking camera btn</td>
+<td></td>
+<td>5</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_029_EN_030()'><b>EN_029_EN_030</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_029,EN_030 - Verify if user has a scope to add a new equipment picture</td>
+<td></td>
+<td>12</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_031()'><b>EN_031</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_031- Verify if User is not allowed to upload an image of invalid image size of more than 5 MB      </td>
+<td></td>
+<td>12</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_032()'><b>EN_032</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_032- Verify if User can edit the equipment image by clicking on the Edit option available in the equipment image slot in the New Equipment screen   </td>
+<td></td>
+<td>23</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_033()'><b>EN_033</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_033- Verify if User can remove the equipment image by clicking on the Delete option available in the equipment image slot in the New Equipment screen</td>
+<td></td>
+<td>13</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_035()'><b>EN_035</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_035- Verify if user can create a new IRTD equipment by clicking on the  Save button after filling up all the mandatory fields<br>Parameters: IRTD, 35a2, 35A2</td>
+<td></td>
+<td>29</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_039_EN_040()'><b>EN_039_EN_040</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method:     EN_039- Verify if user can create a new VRT Logger equipment by clicking on the Save button after filling up all the mandatory fields, EN_040- Verify if a Login validation window appears on clicking the Save button to create a new equipmen</td>
+<td></td>
+<td>6</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_041_EN_046()'><b>EN_041_EN_046</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_041,EN_046- Verify if the new equipment is created for valid login credentials</td>
+<td></td>
+<td>33</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_042()'><b>EN_042</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_042- Verify if the new equipment is not created for invalid login crede</td>
+<td></td>
+<td>8</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_043()'><b>EN_043</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_043- Verify if an alert message is displayed on clicking the Save button by keeping any mandatory fields blank</td>
 <td></td>
 <td>1</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 <tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST088()'><b>ASST088</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST088-Verify the help btn functionality in bottom menu options in Asset details screen</td>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_044()'><b>EN_044</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_044- Verify if the clear button resets all the entries in the equipment text fields to blank</td>
+<td></td>
+<td>4</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_045()'><b>EN_045</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_045- Verify if clicking on the Back button redirects to the Equipment Types Page</td>
+<td></td>
+<td>17</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_048()'><b>EN_048</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_048-Verify the bottom menu options in New Equipment  screen</td>
+<td></td>
+<td>0</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_048_1()'><b>EN_048_1</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_048_1- Verify if clicking on the Home button in the New Equipment page navigate to the Main Hub page</td>
+<td></td>
+<td>2</td>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
+<tr>
+<td title='com.vrt.testcases.EquipmentCreationTest.EN_049()'><b>EN_049</b><br>Test class: com.vrt.testcases.EquipmentCreationTest<br>Test method: EN_049- Verify if clicking on the Help button in the New Equipment page displays the online help menu for that page</td>
 <td></td>
 <td>1</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
-<tr>
-<td title='com.vrt.testcases.assetDetailsTest1.ASST090()'><b>ASST090</b><br>Test class: com.vrt.testcases.assetDetailsTest1<br>Test method: ASST090-Verify the About btn functionality in bottom menu options in Asset creation screen</td>
-<td></td>
-<td>1</td>
-<td>com.vrt.testcases.assetDetailsTest1@23d2a7e8</td></tr>
+<td>com.vrt.testcases.EquipmentCreationTest@7a9273a8</td></tr>
 </table><p>
 </body>
 </html>

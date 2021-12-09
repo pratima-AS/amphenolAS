@@ -6,22 +6,18 @@
 package com.vrt.pages;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import com.vrt.pages.NewEquipmentCreation_Page;
-import com.vrt.pages.IRTDHubPage;
+import com.vrt.pages.Equipment_IRTDHubPage;
 import com.vrt.utility.TestUtilities;
 import com.vrt.base.BaseClass;
 
-public class VRTLoggersDetailspage extends BaseClass {
+public class Equipment_VRTLoggersDetailspage extends BaseClass {
 
-	IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage IRTDHubPage;
 	TestUtilities tu = new TestUtilities();
 
 	// EquipmentHubPage Element definition
@@ -38,7 +34,7 @@ public class VRTLoggersDetailspage extends BaseClass {
 		
 	}
 
-	VRTLoggersDetailspage() throws IOException {
+	Equipment_VRTLoggersDetailspage() throws IOException {
 		super();
 		initElements();
 	}

@@ -72,20 +72,20 @@ public class EquipmentEditTest extends BaseClass {
 	AuditPage AuditPage;
 	NewEquipmentCreation_Page NewEquipmentCreation_Page;
 	EquipmentHubPage EquipmentHubPage;
-	Equipment_IRTDHubPage IRTDHubPage;
+	Equipment_IRTDHubPage Equipment_IRTDHubPage;
 	Equipment_IRTDDetailspage Equipment_IRTDDetailspage;
 	FileManagementPage FileManagementPage;
 	SyncInPage SyncInPage;
 	SyncInAssetListPage SyncInAssetListPage;
-	Equipment_VRTLoggerHubPage VRTLoggerHubPage;
+	Equipment_VRTLoggerHubPage Equipment_VRTLoggerHubPage;
 	Equuipment_VRTLoggersDetailspage Equuipment_VRTLoggersDetailspage;
 
 	// Ensure the User has got rights to create Assets
 	// @BeforeTest
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, AWTException {
-		extent = new ExtentReports(
-				System.getProperty("user.dir") + "/test-output/ER_" + "EquipmentEditTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "EquipmentEditTest" + ".html",
+				true);
 		extent.addSystemInfo("TestSuiteName", "Asset Creation Test");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
@@ -151,7 +151,6 @@ public class EquipmentEditTest extends BaseClass {
 		Thread.sleep(8000);
 		SyncInAssetListPage.click_Success_alrtMeg_OkBtn();
 		Thread.sleep(2000);
-
 	}
 
 	// After All the tests are conducted
@@ -215,8 +214,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEIRTD_001- Verify  if the following contents are available in the Review Equipment screen");
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Thread.sleep(1000);
 
@@ -258,8 +257,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_001- Verify if user can review,edit and Save IRTD equipment by clicking on Save button in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.enter_IRTDEquipName("test1");
 		String expid = Equipment_IRTDDetailspage.fetch_ID();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -268,8 +267,8 @@ public class EquipmentEditTest extends BaseClass {
 		String Expmsg = "Equipment \" J1129\" Updated successfully.";
 		sa.assertEquals(actmsg, Expmsg, "FAIL: Alert message is not correct");
 
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		String actid = Equipment_IRTDDetailspage.fetch_ID();
 		sa.assertEquals(actid, expid, "FAIL: New ID has not updated");
 
@@ -288,9 +287,9 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_001-Verify if user can review,edit and Save IRTD equipment by clicking on Save button in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
-		MainHubPage = tu.Click_Home_Icon_AppBar();
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
+		MainHubPage = tu.Click_Home_Icon_AppBar1();
 		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
@@ -305,8 +304,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_003 - Verify if clicking on the Help button in the IRTD-Details Screen, displays the online help menu for that page");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		tu.Click_Help_Icon_AppBar();
 		sa.assertEquals(tu.get__HelpMenu_HdrText(), "Equipment Details",
 				"FAIL: Clicking Help icon/button in bottom app bar"
@@ -327,8 +326,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_005-Verify if clicking on the About button in the IRTD-Details screen displays the current software version, Console IP");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		tu.Click_About_Icon_AppBar();
 
 		sa.assertEquals(tu.SWversion_InAboutWndw(), SWVer,
@@ -351,8 +350,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_006 - Verify if the Equipment Name field in IRTD-Details Screen accepts Alphanumeric character and special characters like -, _ and slash (both forward and backward)");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.enter_IRTDEquipName(Ename);
 		sa.assertEquals(Equipment_IRTDDetailspage.UserLoginPopupVisible(), true,
 				"FAIL:User Login Popup is not visible");
@@ -370,8 +369,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_006 - Verify if the Equipment Name field in IRTD-Details Screen accepts Alphanumeric character and special characters like -, _ and slash (both forward and backward)");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Equipment_IRTDDetailspage.enter_IRTDEquipName(Ename);
 		sa.assertEquals(Equipment_IRTDDetailspage.AlertMsg(), Expalert, "FAIL:User Login Popup is not visible");
@@ -388,8 +387,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_007- Verify if Equipment Name  field in IRTD-Details Screen accepts valid character length");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.enter_EquipName("12345678901234AB");
 		Thread.sleep(1000);
 		String s = Equipment_IRTDDetailspage.fetch_ID();
@@ -409,8 +408,8 @@ public class EquipmentEditTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		// Enter more than 16 chars
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Equipment_IRTDDetailspage.enter_EquipName("12345678901234ABdcjh");
 		Thread.sleep(1000);
@@ -430,8 +429,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_008- Verify if the Equipment Name field in IRTD-Details Screen is not a mandatory field");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Equipment_IRTDDetailspage.clear_IDname();
 		Equipment_IRTDDetailspage.ClickSaveButton();
@@ -450,9 +449,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_009- Verify if user has a scope to add a new equipment picture with proper size in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("VRT_Pro.JPG");
 
 		// Capture the expected Image added to the Asset placeholder 1
@@ -460,9 +460,9 @@ public class EquipmentEditTest extends BaseClass {
 
 		Equipment_IRTDDetailspage.ClickSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
 
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		// Capture the actual Image saved to the Equipment
 		Equipment_IRTDDetailspage.Capture_EqpImg("Actual_VRT_Pro_Img");
@@ -484,8 +484,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_010- Verify if User is allowed to upload or change an image of valid image size in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.capture_Camera_Img();
 
 		// Capture the expected Image added to the Asset placeholder 1
@@ -493,9 +493,9 @@ public class EquipmentEditTest extends BaseClass {
 
 		Equipment_IRTDDetailspage.ClickSaveButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
 
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		// Capture the actual Image saved to the Equipment image holder
 		Equipment_IRTDDetailspage.Capture_EqpImg("Acctual_camera_Image");
@@ -518,9 +518,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_011- Verify if User is not allowed to upload or change an image of invalid image size in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("UserimageInValid.jpg");
 
 		String ExpAlrtMsg = "Select image file with size less than 5 mb";
@@ -540,8 +541,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEIRTD_012- Verify if adding an equipment image is not a mandatory field in IRTD-Details Screen");
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.ClickSaveButton();
 		sa.assertEquals(Equipment_IRTDDetailspage.UserLoginPopupVisible(), true,
 				"FAIL:User Login Popup is not visible");
@@ -556,18 +557,19 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEIRTD_013- Verify if User can delete the equipment image by clicking on the Delete option available in the equipment image slot in the IRTD-Details Screens");
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("VRT_Pro.JPG");
 
 		Equipment_IRTDDetailspage.Capture_EqpImg("Expected_VRT_Pro_Img");
-		Thread.sleep(1000);
+
 		Equipment_IRTDDetailspage.click_DeleteEquipImage();
+		Equipment_IRTDDetailspage.Click_HistoryButton();
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn_alert();
 
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
-
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		// Capture the actual Image saved to the Equipment
 		Equipment_IRTDDetailspage.Capture_EqpImg("Actual_VRT_Pro_Img");
 
@@ -608,10 +610,10 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.enter_IRTDEquipName("test1");
-		UserLoginPopup(getUID("6"), getPW("7232"));
+		UserLoginPopup("6", "7232");
 		String actualmsg = Equipment_IRTDDetailspage.AlertMsg();
 		String Expmsg = "Invalid Credential, Please try again";
 		sa.assertEquals(actualmsg, Expmsg, "FAIL: Alert message is not correct");
@@ -626,8 +628,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest("EEIRTD_017- Verify if user has the scope to delete a IRTD Equipment");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.clickDeleteEquipmentIcon();
 
 		String Actmsg = Equipment_IRTDDetailspage.get_text_DeleteAst_popup();
@@ -666,10 +668,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_020- Verify if clicking on the Back button from IRTD-Details page redirects to the Equipments - IRTD List page");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
-		sa.assertEquals(IRTDHubPage.isIRTDHeader_Visible(), true, "FAIL : Landed to wrong page");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
+		sa.assertEquals(Equipment_IRTDHubPage.isIRTDHeader_Visible(), true, "FAIL : Landed to wrong page");
 		sa.assertAll();
 
 	}
@@ -684,8 +686,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_039_EEIRTD_040- Verify if clicking on Upload Documents allows the user to upload documents from Local system (pdf and docx files) from the file systems in IRTD-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.click_DocumentsButton();
 		Equipment_IRTDDetailspage.click_UploadDocsBtn();
 		tu.uploadDoc("HelpFileWord.docx");
@@ -721,8 +723,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEIRTD_043- Verify if selecting a file and clicking on Copy To Drive allows to copy the report into Local system from IRTD-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.Select_DocName("HelpFileWord");
 		Equipment_IRTDDetailspage.selectFolder_CopyToDrive("AutoLogs");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
@@ -766,42 +768,51 @@ public class EquipmentEditTest extends BaseClass {
 	// IRTD-Details Screen
 
 	@Test(description = "EEIRTD_046- Verify if user can generate a report for selected file by clicking on the PDF icon against to the file under Documents section in IRTD-Details Screen")
-	public void EEIRTD_056() throws InterruptedException, AWTException, IOException {
+	public void EEIRTD_046() throws InterruptedException, AWTException, IOException {
 
 		extentTest = extent.startTest(
 				"EEIRTD_046- Verify if user can generate a report for selected file by clicking on the PDF icon against to the file under Documents section in IRTD-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.Select_DocName("HelpFileWord");
 		Equipment_IRTDDetailspage.Click_Print_Button();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+
 		Thread.sleep(4000);
 		Equipment_IRTDDetailspage.click_PDFpopup_OkBtn();
+
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
+
 	}
 
 	// EEIRTD_047- Verify if clicking on the Delete option against the file under
 	// Documents tab allows the user to delete a selected file in IRTD-Details
 	// Screen
 
-	@Test(description = "EEIRTD_047- Verify if clicking on the Delete option against the file under Documents tab allows the user to delete a selected file in IRTD-Details Screen")
+	@Test(description = "EEIRTD_047- Verify if clicking on the Delete option against the "
+			+ "file under Documents tab allows the user to delete a selected file in IRTD-Details Screen")
 	public void EEIRTD_047() throws InterruptedException, AWTException, IOException {
 
 		extentTest = extent.startTest(
-				"EEIRTD_047- Verify if clicking on the Delete option against the file under Documents tab allows the user to delete a selected file in IRTD-Details Screen");
+				"EEIRTD_047- Verify if clicking on the Delete option against the file under "
+				+ "Documents tab allows the user to delete a selected file in IRTD-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDDetailspage.click_DocumentsButton();
+		Equipment_IRTDDetailspage.click_UploadDocsBtn();
 
-		Equipment_IRTDDetailspage.Select_DocName("HelpFileWord");
+		Thread.sleep(1000);
+		tu.uploadDoc("HelpFileWord.docx");
 
 		Equipment_IRTDDetailspage.Click_Delete_DocumentButton();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		String actmsgalert = Equipment_IRTDDetailspage.get_text_DeleteAst_popup();
-		String expmsgalert = "Do you want to delete the '  J1129 ' Equipment?";
+		String expmsgalert = "Do you want to delete the ' HelpFileWord.docx ' Document?";
 		sa.assertEquals(actmsgalert, expmsgalert, "FAIL: Alert Message is not correct");
 		sa.assertAll();
 	}
@@ -821,8 +832,8 @@ public class EquipmentEditTest extends BaseClass {
 		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Equipment_IRTDDetailspage.Select_DocName("HelpFileWord");
 		Equipment_IRTDDetailspage.click_CopyToDrive();
@@ -847,14 +858,14 @@ public class EquipmentEditTest extends BaseClass {
 		LoginPage = MainHubPage.UserSignOut();
 		MainHubPage = LoginPage.Login(getUID("SysAdmin"), getPW("SysAdmin"));
 		EquipmentHubPage = MainHubPage.ClickEquipmentTile();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
 		Equipment_IRTDDetailspage.Select_DocName("HelpFileWord");
 		Equipment_IRTDDetailspage.Click_Delete_DocumentButton();
 		UserLoginPopup(getUID("SysAdmin"), getPW("SysAdmin"));
 
-		String ExpAlrtMsg1 = "User does not have sufficient privileges to perform this operation";
+		String ExpAlrtMsg1 = "User do not have permission to perform this operation";
 		String ActAlertMsg1 = tu.get_AlertMsg_text();
 		sa.assertEquals(ActAlertMsg1, ExpAlrtMsg1,
 				"FAIL: user is able to delete a selected file under Documents tab in IRTD-Details Screen");
@@ -869,24 +880,26 @@ public class EquipmentEditTest extends BaseClass {
 	public void EEIRTD_050() throws InterruptedException, AWTException, IOException {
 
 		extentTest = extent.startTest(
-				"EEIRTD_060- Verify if the Audit event is recorded in the Audit screen for editing and deleting of IRTD equipment");
+				"EEIRTD_050- Verify if the Audit event is recorded in the Audit screen for editing and deleting of IRTD equipment");
 
 		SoftAssert sa = new SoftAssert();
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 
-		Equipment_IRTDDetailspage.enter_IRTDEquipName("test2");
+		Equipment_IRTDDetailspage.enter_IRTDEquipName("test3");
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		Thread.sleep(1000);
-		IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
-		EquipmentHubPage = IRTDHubPage.click_Back_btn();
+		Equipment_IRTDDetailspage.enter_IRTDEquipName("test4");
+		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		Equipment_IRTDHubPage = Equipment_IRTDDetailspage.click_Back_btn();
+		EquipmentHubPage = Equipment_IRTDHubPage.click_Back_btn();
 		MainHubPage = EquipmentHubPage.ClickBackBtn();
 
 		AuditPage = MainHubPage.ClickAuditTitle();
 		Thread.sleep(2000);
+
 		String Actionmsg = AuditPage.get_auditEvent_text();
-		System.out.println(Actionmsg);
-		String ExpectMSG = "Asset : \"Asset01\" \"Equipment ID\" field modified from \" 01 to 02 \" by  User ID : \"1\" , User Name : \"User1\".";
+		String ExpectMSG = "“Equipment Name” field of  “ J1129” updated from “test3” to “test4” modified by User ID : \"1\" , User Name: \"User1\"";
 
 		sa.assertEquals(Actionmsg, ExpectMSG, "FAIL:The Audit trail record for Edit Assets activity is not exist ");
 		sa.assertAll();
@@ -904,8 +917,8 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.Click_HistoryButton();
 
 		sa.assertEquals(Equipment_IRTDDetailspage.is_PrintButton_visible(), true,
@@ -932,14 +945,16 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		IRTDHubPage = EquipmentHubPage.click_IRTDTile();
-		Equipment_IRTDDetailspage = IRTDHubPage.Click_IrtdSerialNo("J1129");
+		Equipment_IRTDHubPage = EquipmentHubPage.click_IRTDTile();
+		Equipment_IRTDDetailspage = Equipment_IRTDHubPage.Click_IrtdSerialNo("J1129");
 		Equipment_IRTDDetailspage.Click_HistoryButton();
 
 		Equipment_IRTDDetailspage.Click_Print_Button();
 
 		Thread.sleep(4000);
 		Equipment_IRTDDetailspage.click_PDFpopup_OkBtn();
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
 
 	}
 
@@ -953,8 +968,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent
 				.startTest("EEVRTL_055A Verify if the following contents are available in the Review Equipment screen");
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Thread.sleep(1000);
 
@@ -1010,8 +1025,8 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("A12");
 		String Expid = Equuipment_VRTLoggersDetailspage.fetch_eqipID();
@@ -1019,10 +1034,10 @@ public class EquipmentEditTest extends BaseClass {
 
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		String actmsg = Equuipment_VRTLoggersDetailspage.AlertMsg();
-		String Expmsg = "Equipment \" U88A\" Updated successfully.";
+		String Expmsg = "Equipment \"U88A\" Updated successfully.";
 		sa.assertEquals(actmsg, Expmsg, "FAIL: Alert message is not correct");
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		String Actid = Equuipment_VRTLoggersDetailspage.fetch_eqipID();
 		sa.assertEquals(Expid, Actid, "FAIL: Alert message is not correct");
 		sa.assertAll();
@@ -1040,10 +1055,10 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
-		MainHubPage = tu.Click_Home_Icon_AppBar();
+		MainHubPage = tu.Click_Home_Icon_AppBar1();
 		sa.assertEquals(MainHubPage.Is_mainHubPageTitle_Visible(), true,
 				"FAIL: Clicking Home icon/button in bottom app bar do not redirect to Mains Hub page");
 		sa.assertAll();
@@ -1057,8 +1072,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_057- Verify if clicking on the Help button in the VRT Logger-Details Screen, displays the online help menu for that page");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		tu.Click_Help_Icon_AppBar();
 		sa.assertEquals(tu.get__HelpMenu_HdrText(), "Equipment Details",
@@ -1077,8 +1092,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEVRTL_059-Verify if clicking on the About button in the VRT Logger-Details screen displays the current software version, Console IP");
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		tu.Click_About_Icon_AppBar();
 
@@ -1101,8 +1116,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_060-  Verify if the Equipment ID field in VRT Logger-Details Screen accepts Alphanumeric character and special characters like -, _ and slash (both forward and backward)");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID(Eid);
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 
@@ -1120,8 +1135,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent
 				.startTest("EEVRTL_060A - Verify if the Equipment ID field in VRT Logger-Details Screen _Invalid data");
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID(Eid);
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 
@@ -1139,8 +1154,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_061- Verify if Equipment Name  field in VRT Logger-Details Screen accepts valid character length");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("12345678901234AB");
 
 		Thread.sleep(1000);
@@ -1161,8 +1176,8 @@ public class EquipmentEditTest extends BaseClass {
 		SoftAssert sa = new SoftAssert();
 
 		// Enter more than 16 chars
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("12345678901234ABdcjh");
 
 		Thread.sleep(1000);
@@ -1182,8 +1197,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_062- Verify if the Equipment Name field in VRT Logger-Details Screen is not a mandatory field");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("");
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 		sa.assertEquals(Equuipment_VRTLoggersDetailspage.UserLoginPopupVisible(), true,
@@ -1201,9 +1216,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_063- Verify if user has a scope to add a new equipment picture in VRT Logger-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("VRT_Pro.JPG");
 
 		// Capture the expected Image added to the Asset placeholder 1
@@ -1211,9 +1227,9 @@ public class EquipmentEditTest extends BaseClass {
 
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.Backbtn();
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.Backbtn();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		// Capture the actual Image saved to the Equipment
 		Equuipment_VRTLoggersDetailspage.Capture_EqpImg("Actual_VRT_Pro_Img");
@@ -1234,8 +1250,8 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_064- Verify if User is allowed to upload or change an image of valid image size in VRT Logger-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.capture_Camera_Img();
 
 		// Capture the expected Image added to the Asset placeholder 1
@@ -1243,9 +1259,9 @@ public class EquipmentEditTest extends BaseClass {
 
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.Backbtn();
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.Backbtn();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		// Capture the actual Image saved to the Equipment image holder
 		Equuipment_VRTLoggersDetailspage.Capture_EqpImg("Acctual_camera_Image");
@@ -1267,9 +1283,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_065- Verify if User is not allowed to upload or change an image of invalid image size in VRT Logger-Details Screen");
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("UserimageInValid.jpg");
 
 		String ExpAlrtMsg = "Select image file with size less than 5 mb";
@@ -1289,8 +1306,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEVRTL_012- Verify if adding an equipment image is not a mandatory field in VRT Logger-Details Screen");
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.Click_Save();
 		sa.assertEquals(Equuipment_VRTLoggersDetailspage.UserLoginPopupVisible(), true,
 				"FAIL:User Login Popup is not visible");
@@ -1300,26 +1317,26 @@ public class EquipmentEditTest extends BaseClass {
 	// EEVRTL_067- Verify if User can delete the equipment image by clicking on the
 	// Delete option available in the equipment image slot in the VRT Logger-Details
 	// Screen
-
 	@Test(description = "EEVRTL_067- Verify if User can delete the equipment image by clicking on the Delete option available in the equipment image slot in the VRT Logger-Details Screen")
 	public void EEVRTL_067() throws InterruptedException, AWTException, IOException {
 
 		extentTest = extent.startTest(
 				"EEVRTL_067- Verify if User can delete the equipment image by clicking on the Delete option available in the equipment image slot in the VRT Logger-Details Screen");
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.click_Browse_btn();
+		Thread.sleep(1000);
 		tu.uploadDoc("VRT_Pro.JPG");
 
 		Equuipment_VRTLoggersDetailspage.Capture_EqpImg("Expected_VRT_Pro_Img");
 		Thread.sleep(1000);
 		Equuipment_VRTLoggersDetailspage.click_DeleteEquipImage();
+		Equuipment_VRTLoggersDetailspage.Click_HistoryButton();
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn_alert();
 
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.Backbtn();
-
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		// Capture the actual Image saved to the Equipment
 		Equuipment_VRTLoggersDetailspage.Capture_EqpImg("Actual_VRT_Pro_Img");
 
@@ -1363,11 +1380,12 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("A121");
-		UserLoginPopup(getUID("6"), getPW("7232"));
+		Equuipment_VRTLoggersDetailspage.Click_Save();
+		UserLoginPopup("6", "7232");
 		String actmsg = Equuipment_VRTLoggersDetailspage.AlertMsg();
 		String Expmsg = "Invalid Credential, Please try again";
 		sa.assertEquals(actmsg, Expmsg, "FAIL: Alert message is not correct");
@@ -1383,8 +1401,8 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest("EEVRTL_017- Verify if user has the scope to delete a VRT Logger Equipment");
 
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 		Equuipment_VRTLoggersDetailspage.clickDeleteEquipmentIcon();
 
 		String actmsg = Equuipment_VRTLoggersDetailspage.get_text_DeleteAst_popup();
@@ -1424,12 +1442,12 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_074- Verify if clicking on the Back button from VRT Logger-Details page redirects to the Equipments - VRT Logger List page");
 
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
 
-		sa.assertEquals(VRTLoggerHubPage.isVRTLogger_Title_Visible(), true, "FAIL : Landed to wrong page");
+		sa.assertEquals(Equipment_VRTLoggerHubPage.isVRTLogger_Title_Visible(), true, "FAIL : Landed to wrong page");
 		sa.assertAll();
 
 	}
@@ -1448,9 +1466,9 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_050- Verify if clicking on Upload Documents allows the user to upload documents from Local system (pdf and docx files) from the file systems in VRTL-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.click_DocumentsButton();
 		Equuipment_VRTLoggersDetailspage.click_UploadDocsBtn();
@@ -1481,9 +1499,10 @@ public class EquipmentEditTest extends BaseClass {
 				"EEVRTL_097-Verify if selecting a file and clicking on Copy To Drive allows to copy the report into Local system from VRTL-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
 
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equuipment_VRTLoggersDetailspage.click_DocumentsButton();
 
 		Equuipment_VRTLoggersDetailspage.Select_DocName("HelpFileWord");
 		Equuipment_VRTLoggersDetailspage.selectFolder_CopyToDrive("AutoLogs");
@@ -1529,32 +1548,33 @@ public class EquipmentEditTest extends BaseClass {
 		extentTest = extent.startTest(
 				"EEVRTL_100- Verify if user can generate a report for selected file by clicking on the PDF icon against to the file under Documents section in VRT Logger-Details Screen");
 
-		SoftAssert sa = new SoftAssert();
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
-
+		Equuipment_VRTLoggersDetailspage.click_DocumentsButton();
 		Equuipment_VRTLoggersDetailspage.Select_DocName("HelpFileWord");
 		Equuipment_VRTLoggersDetailspage.Click_Print_Button();
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+
 		Thread.sleep(4000);
 		Equuipment_VRTLoggersDetailspage.click_PDFpopup_OkBtn();
+		Thread.sleep(3000);
+		tu.click_ALTf4_KeyStroke_ToCloseApp();
 	}
 
-	// EEVRTL_101- Verify if clicking on the Delete option against the file under
-	// Documents tab allows the user to delete a selected file in VRT Logger-Details
-	// Screen
+	// EEVRTL_101- Verify if clicking on the Delete option against the file
+	// underDocuments tab allows the user to delete a selected file in VRT
+	// Logger-Details Screen
 
-	@Test(description = "EEVRTL_101- Verify if clicking on the Delete option against the file under Documents tab allows the user to delete a selected file in VRT Logger-Details Screen")
+	@Test(description = "EEVRTL_101- Verify if clicking on the Delete option against the file underDocuments tab allows the user to delete a selected file in VRT Logger-Details Screen")
 	public void EEVRTL_101() throws InterruptedException, AWTException, IOException {
 
 		extentTest = extent.startTest(
-				"EEVRTL_057- Verify if clicking on the Delete option against the file under Documents tab allows the user to delete a selected file in VRT Logger-Details Screen");
+				"EEVRTL_101- Verify if clicking on the Delete option against the file underDocuments tab allows the user to delete a selected file in VRT Logger-Details Screen");
 
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.Select_DocName("HelpFileWord");
 
@@ -1562,7 +1582,7 @@ public class EquipmentEditTest extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 
 		String actmsgalert = Equipment_IRTDDetailspage.get_text_DeleteAst_popup();
-		String expmsgalert = "Do you want to delete the '  J1129 ' Equipment?";
+		String expmsgalert = "Do you want to delete the ' U88A-A ' EquipmentStudy?";
 		sa.assertEquals(actmsgalert, expmsgalert, "FAIL: Alert Message is not correct");
 		sa.assertAll();
 	}
@@ -1576,7 +1596,7 @@ public class EquipmentEditTest extends BaseClass {
 
 //EEVRTL_102 ,EEVRTL_103 Already Covered in UM privillages test script
 
-	// EEVRTL_060- Verify if the Audit event is recorded in the Audit screen for
+	// EEVRTL_104- Verify if the Audit event is recorded in the Audit screen for
 	// editing and deleting of VRT Logger equipment
 
 	@Test(description = "EEVRTL_104- Verify if the Audit event is recorded in the Audit screen for editing and deleting of VRT Logger equipment")
@@ -1587,8 +1607,8 @@ public class EquipmentEditTest extends BaseClass {
 
 		SoftAssert sa = new SoftAssert();
 
-		VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
-		Equuipment_VRTLoggersDetailspage = VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
+		Equipment_VRTLoggerHubPage = EquipmentHubPage.Click_VRTLogger_listbox();
+		Equuipment_VRTLoggersDetailspage = Equipment_VRTLoggerHubPage.Click_VRTSerialNo("  U88A");
 
 		Equuipment_VRTLoggersDetailspage.Enter_EquipmentID("12");
 		Equuipment_VRTLoggersDetailspage.Click_Save();
@@ -1599,8 +1619,8 @@ public class EquipmentEditTest extends BaseClass {
 		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
 		Thread.sleep(1000);
 
-		VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
-		EquipmentHubPage = VRTLoggerHubPage.click_Back_btn();
+		Equipment_VRTLoggerHubPage = Equuipment_VRTLoggersDetailspage.click_Back_btn();
+		EquipmentHubPage = Equipment_VRTLoggerHubPage.click_Back_btn();
 		MainHubPage = EquipmentHubPage.ClickBackBtn();
 
 		AuditPage = MainHubPage.ClickAuditTitle();
